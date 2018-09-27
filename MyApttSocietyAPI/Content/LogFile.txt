@@ -1,0 +1,14 @@
+Input Value is  : 2017-11-11T12:00:00
+Could not parse String to Date time found is 1 : 
+Input Value is  : 2017-11-11 12:00:00
+Could not parse String to Date time found is 1 : 
+Input Value is  : 2016-11-11 12:00:00
+Could not parse String to Date time found is 1 : 
+Input Value is  : 11/11/2015 12:00:00
+Date found is  : 2015-11-11 12:00:00
+Input Value is  : 11/11/2015 12:00:00
+Date found is  : 2015-11-11 12:00:00
+Input Value is  : 11/11/2015 12:00:00
+Date found is  : 2015-11-11 12:00:00
+ Get Complaint has error at: 2018-09-20 12:54:31 String reference not set to an instance of a String.
+Parameter name: s

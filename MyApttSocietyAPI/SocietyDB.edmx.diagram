@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="79331fe78b3b4f789513c66c1bd4adf5" Name="Diagram1" ZoomLevel="101">
+        <EntityTypeShape EntityType="SocietyDBModel.Complaint" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="SocietyDBModel.ComplaintType" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="SocietyDBModel.CompSeverity" Width="1.5" PointX="2.75" PointY="3.75" />
+        <EntityTypeShape EntityType="SocietyDBModel.CompStatu" Width="1.5" PointX="4.75" PointY="0.75" />
+        <EntityTypeShape EntityType="SocietyDBModel.Employee" Width="1.5" PointX="4.75" PointY="3.75" />
+        <EntityTypeShape EntityType="SocietyDBModel.Forum" Width="1.5" PointX="6.75" PointY="0.75" />
+        <EntityTypeShape EntityType="SocietyDBModel.GCMList" Width="1.5" PointX="0.75" PointY="6.75" />
+        <EntityTypeShape EntityType="SocietyDBModel.GeneratedBill" Width="1.5" PointX="6.75" PointY="4.75" />
+        <EntityTypeShape EntityType="SocietyDBModel.PollingAnswer" Width="1.5" PointX="2.75" PointY="7.75" />
+        <EntityTypeShape EntityType="SocietyDBModel.PollingData" Width="1.5" PointX="8.75" PointY="0.75" />
+        <EntityTypeShape EntityType="SocietyDBModel.Resident" Width="1.5" PointX="8.75" PointY="6.75" />
+        <EntityTypeShape EntityType="SocietyDBModel.ResidentImage" Width="1.5" PointX="10.75" PointY="0.75" />
+        <EntityTypeShape EntityType="SocietyDBModel.TempResident" Width="1.5" PointX="0.75" PointY="10.75" />
+        <EntityTypeShape EntityType="SocietyDBModel.TempUser" Width="1.5" PointX="2.75" PointY="10.75" />
+        <EntityTypeShape EntityType="SocietyDBModel.Vendor" Width="1.5" PointX="10.75" PointY="3.75" />
+        <EntityTypeShape EntityType="SocietyDBModel.BillCycle" Width="1.5" PointX="4.75" PointY="10.75" />
+        <EntityTypeShape EntityType="SocietyDBModel.Flat" Width="1.5" PointX="10.75" PointY="7.75" />
+        <EntityTypeShape EntityType="SocietyDBModel.ImageCheck" Width="1.5" PointX="6.75" PointY="11.75" />
+        <EntityTypeShape EntityType="SocietyDBModel.Notification" Width="1.5" PointX="12.75" PointY="0.75" />
+        <EntityTypeShape EntityType="SocietyDBModel.Societybillplan" Width="1.5" PointX="12.75" PointY="3.75" />
+        <EntityTypeShape EntityType="SocietyDBModel.TempResidentView" Width="1.5" PointX="12.75" PointY="7.75" />
+        <EntityTypeShape EntityType="SocietyDBModel.ViewComplaintAge" Width="1.5" PointX="8.75" PointY="13.75" />
+        <EntityTypeShape EntityType="SocietyDBModel.ViewComplaintHistory" Width="1.5" PointX="10.75" PointY="13.75" />
+        <EntityTypeShape EntityType="SocietyDBModel.ViewComplaintInitiated" Width="1.5" PointX="12.75" PointY="13.75" />
+        <EntityTypeShape EntityType="SocietyDBModel.ViewComplaintLatest" Width="1.5" PointX="14.75" PointY="0.75" />
+        <EntityTypeShape EntityType="SocietyDBModel.ViewComplaintSummary" Width="1.5" PointX="2.75" PointY="14.75" />
+        <EntityTypeShape EntityType="SocietyDBModel.ViewFirstThreadwithCount" Width="1.5" PointX="14.75" PointY="3.75" />
+        <EntityTypeShape EntityType="SocietyDBModel.ViewFlat" Width="1.5" PointX="4.75" PointY="14.75" />
+        <EntityTypeShape EntityType="SocietyDBModel.ViewLatestGeneratedBill" Width="1.5" PointX="14.75" PointY="7.75" />
+        <EntityTypeShape EntityType="SocietyDBModel.ViewLatestThread" Width="1.5" PointX="14.75" PointY="14.75" />
+        <EntityTypeShape EntityType="SocietyDBModel.ViewOwnerResident" Width="1.5" PointX="16.75" PointY="0.75" />
+        <EntityTypeShape EntityType="SocietyDBModel.ViewPollCount" Width="1.5" PointX="16.75" PointY="5.75" />
+        <EntityTypeShape EntityType="SocietyDBModel.ViewPollDataWithCount" Width="1.5" PointX="6.75" PointY="16.75" />
+        <EntityTypeShape EntityType="SocietyDBModel.ViewResident" Width="1.5" PointX="16.75" PointY="8.75" />
+        <EntityTypeShape EntityType="SocietyDBModel.ViewThreadSummary" Width="1.5" PointX="16.75" PointY="13.75" />
+        <EntityTypeShape EntityType="SocietyDBModel.ViewThreadSummaryNoImage" Width="1.5" PointX="12.75" PointY="17.75" />
+        <EntityTypeShape EntityType="SocietyDBModel.ViewThreadSummaryNoImageCount" Width="1.5" PointX="18.75" PointY="0.75" />
+        <EntityTypeShape EntityType="SocietyDBModel.WatchViewFirstThreadNoImage" Width="1.5" PointX="18.75" PointY="5.75" />
+        <EntityTypeShape EntityType="SocietyDBModel.ViewForumNoImage" Width="1.5" PointX="9.375" PointY="18.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

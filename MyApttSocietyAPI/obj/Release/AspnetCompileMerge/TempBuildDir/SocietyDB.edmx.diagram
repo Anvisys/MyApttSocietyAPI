@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="684c3c1309d0498a8a6e1c39b49c2e2e" Name="Diagram1">
+        <EntityTypeShape EntityType="GaurGrandeurModel.Complaint" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GaurGrandeurModel.ComplaintType" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GaurGrandeurModel.CompSeverity" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GaurGrandeurModel.CompStatu" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GaurGrandeurModel.Flat" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GaurGrandeurModel.GCMList" Width="1.5" PointX="6.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GaurGrandeurModel.Resident" Width="1.5" PointX="2.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GaurGrandeurModel.Vendor" Width="1.5" PointX="4.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GaurGrandeurModel.Notification" Width="1.5" PointX="6.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GaurGrandeurModel.ViewCompCurrentStatu" Width="1.5" PointX="8.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GaurGrandeurModel.ViewComplaintAge" Width="1.5" PointX="8.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GaurGrandeurModel.ViewComplaintHistory" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GaurGrandeurModel.ViewEmployee" Width="1.5" PointX="10.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GaurGrandeurModel.ViewForum" Width="1.5" PointX="10.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GaurGrandeurModel.ViewResident" Width="1.5" PointX="6.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GaurGrandeurModel.Forum" Width="1.5" PointX="0.75" PointY="11.75" />
+        <EntityTypeShape EntityType="GaurGrandeurModel.ViewFirstThread" Width="1.5" PointX="2.75" PointY="11.75" />
+        <EntityTypeShape EntityType="GaurGrandeurModel.ViewLatestThread" Width="1.5" PointX="9.75" PointY="12.75" />
+        <EntityTypeShape EntityType="GaurGrandeurModel.Employee" Width="1.5" PointX="12.375" PointY="12.75" />
+        <EntityTypeShape EntityType="GaurGrandeurModel.ViewThreadSummary" Width="1.5" PointX="13.375" PointY="0.75" />
+        <EntityTypeShape EntityType="GaurGrandeurModel.ComplaintView" Width="1.5" PointX="13.375" PointY="4.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
