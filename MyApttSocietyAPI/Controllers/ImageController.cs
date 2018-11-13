@@ -12,6 +12,7 @@ using System.Diagnostics;
 namespace MyApttSocietyAPI.Controllers
 {
       [EnableCors(origins: "*", headers: "*", methods: "*")]
+      [RoutePrefix("api/Image")]
     public class ImageController : ApiController
     {
         // GET: api/Image
@@ -21,21 +22,25 @@ namespace MyApttSocietyAPI.Controllers
         }
 
         // GET: api/Image/5
-        public ShopImage GetByResID(int id)
+        [Route("Res/{ResId}")]
+        [HttpGet]
+        public ShopImage GetByResID(int ResId)
         {
             var context = new SocietyDBEntities();
             var Image = (from res in context.ResidentImages
-                             where (res.ResID == id)
+                         where (res.ResID == ResId)
                              select new ShopImage() { ID = res.ResID, ImageString = res.Profile_image }).First();
             return Image;
         }
 
-        public ShopImage GetByMobile(String id)
+        [Route("Mob/{Mobile}")]
+        [HttpGet]
+        public ShopImage GetByMobile(String Mobile)
         {
             var context = new SocietyDBEntities();
 
             var resID = (from res in context.Residents
-                         where (res.MobileNo == id)
+                         where (res.MobileNo == Mobile)
                          select res.ResID).First();
 
             var Image = (from res in context.ResidentImages

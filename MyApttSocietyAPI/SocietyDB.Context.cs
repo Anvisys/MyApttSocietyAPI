@@ -26,15 +26,11 @@ namespace MyApttSocietyAPI
         }
     
         public virtual DbSet<Complaint> Complaints { get; set; }
-        public virtual DbSet<ComplaintType> ComplaintTypes { get; set; }
-        public virtual DbSet<CompSeverity> CompSeverities { get; set; }
-        public virtual DbSet<CompStatu> CompStatus { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<Forum> Fora { get; set; }
         public virtual DbSet<GCMList> GCMLists { get; set; }
         public virtual DbSet<GeneratedBill> GeneratedBills { get; set; }
         public virtual DbSet<PollingAnswer> PollingAnswers { get; set; }
-        public virtual DbSet<PollingData> PollingDatas { get; set; }
         public virtual DbSet<Resident> Residents { get; set; }
         public virtual DbSet<ResidentImage> ResidentImages { get; set; }
         public virtual DbSet<TempResident> TempResidents { get; set; }
@@ -43,26 +39,36 @@ namespace MyApttSocietyAPI
         public virtual DbSet<BillCycle> BillCycles { get; set; }
         public virtual DbSet<Flat> Flats { get; set; }
         public virtual DbSet<ImageCheck> ImageChecks { get; set; }
-        public virtual DbSet<Notification> Notifications { get; set; }
         public virtual DbSet<Societybillplan> Societybillplans { get; set; }
         public virtual DbSet<TempResidentView> TempResidentViews { get; set; }
         public virtual DbSet<ViewComplaintAge> ViewComplaintAges { get; set; }
-        public virtual DbSet<ViewComplaintHistory> ViewComplaintHistories { get; set; }
-        public virtual DbSet<ViewComplaintInitiated> ViewComplaintInitiateds { get; set; }
-        public virtual DbSet<ViewComplaintLatest> ViewComplaintLatests { get; set; }
-        public virtual DbSet<ViewComplaintSummary> ViewComplaintSummaries { get; set; }
         public virtual DbSet<ViewFirstThreadwithCount> ViewFirstThreadwithCounts { get; set; }
         public virtual DbSet<ViewFlat> ViewFlats { get; set; }
         public virtual DbSet<ViewLatestGeneratedBill> ViewLatestGeneratedBills { get; set; }
         public virtual DbSet<ViewLatestThread> ViewLatestThreads { get; set; }
         public virtual DbSet<ViewOwnerResident> ViewOwnerResidents { get; set; }
         public virtual DbSet<ViewPollCount> ViewPollCounts { get; set; }
-        public virtual DbSet<ViewPollDataWithCount> ViewPollDataWithCounts { get; set; }
         public virtual DbSet<ViewResident> ViewResidents { get; set; }
-        public virtual DbSet<ViewThreadSummary> ViewThreadSummaries { get; set; }
-        public virtual DbSet<ViewThreadSummaryNoImage> ViewThreadSummaryNoImages { get; set; }
         public virtual DbSet<ViewThreadSummaryNoImageCount> ViewThreadSummaryNoImageCounts { get; set; }
         public virtual DbSet<WatchViewFirstThreadNoImage> WatchViewFirstThreadNoImages { get; set; }
         public virtual DbSet<ViewForumNoImage> ViewForumNoImages { get; set; }
+        public virtual DbSet<PollingData> PollingDatas { get; set; }
+        public virtual DbSet<ViewPollDataWithCount> ViewPollDataWithCounts { get; set; }
+        public virtual DbSet<lukBillType> lukBillTypes { get; set; }
+        public virtual DbSet<lukComplaintSeverity> lukComplaintSeverities { get; set; }
+        public virtual DbSet<lukComplaintStatu> lukComplaintStatus { get; set; }
+        public virtual DbSet<lukComplaintType> lukComplaintTypes { get; set; }
+        public virtual DbSet<lukVendorCategory> lukVendorCategories { get; set; }
+        public virtual DbSet<ViewComplaintHistory> ViewComplaintHistories { get; set; }
+        public virtual DbSet<ViewComplaintInitiated> ViewComplaintInitiateds { get; set; }
+        public virtual DbSet<ViewComplaintLatest> ViewComplaintLatests { get; set; }
+        public virtual DbSet<ViewComplaintSummary> ViewComplaintSummaries { get; set; }
+        public virtual DbSet<ViewEmployee> ViewEmployees { get; set; }
+        public virtual DbSet<Advertisement> Advertisements { get; set; }
+        public virtual DbSet<VisitorDetail> VisitorDetails { get; set; }
+        public virtual DbSet<VisitorRequest> VisitorRequests { get; set; }
+        public virtual DbSet<viewVisitorData> viewVisitorDatas { get; set; }
+        public virtual DbSet<ViewGeneratedBill> ViewGeneratedBills { get; set; }
+        public virtual DbSet<Notification> Notifications { get; set; }
     }
 }

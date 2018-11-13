@@ -12,10 +12,9 @@ namespace MyApttSocietyAPI
     using System;
     using System.Collections.Generic;
     
-    public partial class CompSeverity
+    public partial class lukVendorCategory
     {
-        public int SeverityID { get; set; }
-        public string Severity { get; set; }
-        public int SocietyID { get; set; }
+        public int ID { get; set; }
+        public string ShopCategory { get; set; }
     }
 }

@@ -127,21 +127,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Advertisement.cs">
+      <DependentUpon>SocietyDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="BillCycle.cs">
       <DependentUpon>SocietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Complaint.cs">
       <DependentUpon>SocietyDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="ComplaintType.cs">
-      <DependentUpon>SocietyDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="CompSeverity.cs">
-      <DependentUpon>SocietyDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="CompStatu.cs">
-      <DependentUpon>SocietyDB.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Controllers\AdsController.cs" />
     <Compile Include="Controllers\BatchVendorController.cs" />
     <Compile Include="Controllers\BillingController.cs" />
     <Compile Include="Controllers\ComplaintController.cs" />
@@ -151,6 +146,7 @@
     <Compile Include="Controllers\ForumController.cs" />
     <Compile Include="Controllers\ForumDiffController.cs" />
     <Compile Include="Controllers\GCMRegisterController.cs" />
+    <Compile Include="Controllers\VisitorController.cs" />
     <Compile Include="Controllers\ImageController.cs" />
     <Compile Include="Controllers\LastUpdateController.cs" />
     <Compile Include="Controllers\NotificationsController.cs" />
@@ -182,6 +178,21 @@
     <Compile Include="ImageCheck.cs">
       <DependentUpon>SocietyDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="lukBillType.cs">
+      <DependentUpon>SocietyDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="lukComplaintSeverity.cs">
+      <DependentUpon>SocietyDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="lukComplaintStatu.cs">
+      <DependentUpon>SocietyDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="lukComplaintType.cs">
+      <DependentUpon>SocietyDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="lukVendorCategory.cs">
+      <DependentUpon>SocietyDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Batch.cs" />
     <Compile Include="Models\Billing.cs" />
     <Compile Include="Models\Complaint.cs" />
@@ -190,6 +201,7 @@
     <Compile Include="Models\Domain.cs" />
     <Compile Include="Models\Forum.cs" />
     <Compile Include="Models\GCMRegister.cs" />
+    <Compile Include="Models\VisitorEntry.cs" />
     <Compile Include="Models\Notice.cs" />
     <Compile Include="Models\Poll.cs" />
     <Compile Include="Models\PollCount.cs" />
@@ -261,6 +273,9 @@
     <Compile Include="ViewComplaintSummary.cs">
       <DependentUpon>SocietyDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewEmployee.cs">
+      <DependentUpon>SocietyDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="ViewFirstThreadwithCount.cs">
       <DependentUpon>SocietyDB.tt</DependentUpon>
     </Compile>
@@ -268,6 +283,9 @@
       <DependentUpon>SocietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewForumNoImage.cs">
+      <DependentUpon>SocietyDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewGeneratedBill.cs">
       <DependentUpon>SocietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewLatestGeneratedBill.cs">
@@ -288,13 +306,16 @@
     <Compile Include="ViewResident.cs">
       <DependentUpon>SocietyDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="ViewThreadSummary.cs">
-      <DependentUpon>SocietyDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ViewThreadSummaryNoImage.cs">
-      <DependentUpon>SocietyDB.tt</DependentUpon>
-    </Compile>
     <Compile Include="ViewThreadSummaryNoImageCount.cs">
+      <DependentUpon>SocietyDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="viewVisitorData.cs">
+      <DependentUpon>SocietyDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VisitorDetail.cs">
+      <DependentUpon>SocietyDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VisitorRequest.cs">
       <DependentUpon>SocietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="WatchViewFirstThreadNoImage.cs">

@@ -25,7 +25,7 @@ namespace MyApttSocietyAPI.Controllers
                 using (var context = new SocietyDBEntities())
                 {
                     var L2EQuery = context.ViewFlats.Where(f => f.FlatNumber == id);
-                    var flat = L2EQuery.FirstOrDefault<ViewFlat>();
+                    var flat = L2EQuery.FirstOrDefault();
                     return flat;
                 }
             }

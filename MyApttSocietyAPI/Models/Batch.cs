@@ -12,6 +12,8 @@ namespace MyApttSocietyAPI.Models
 
         public int EndIndex { get; set; }
 
+        public String CompStatus { get; set; }
+
         public int ResId { get; set; }
 
         public String LastRefreshTime { get; set; }

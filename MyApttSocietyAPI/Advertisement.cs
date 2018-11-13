@@ -12,14 +12,15 @@ namespace MyApttSocietyAPI
     using System;
     using System.Collections.Generic;
     
-    public partial class Notification
+    public partial class Advertisement
     {
-        public int ID { get; set; }
-        public string Notification1 { get; set; }
-        public System.DateTime Date { get; set; }
-        public string AttachName { get; set; }
-        public int send_by { get; set; }
-        public int SocietyID { get; set; }
+        public int id { get; set; }
+        public string Owner { get; set; }
+        public string Title { get; set; }
+        public string Description { get; set; }
+        public string Offer { get; set; }
+        public System.DateTime StartDate { get; set; }
         public System.DateTime EndDate { get; set; }
+        public byte[] AdImage { get; set; }
     }
 }

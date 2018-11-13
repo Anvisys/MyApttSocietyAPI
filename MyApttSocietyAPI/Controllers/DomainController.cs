@@ -30,22 +30,30 @@ namespace MyApttSocietyAPI.Controllers
                 using (context)
                 {
                     //get comp types
-                    var ctype = from c in context.ComplaintTypes
+                    var ctype = from c in context.lukComplaintTypes
                                 select new Domain() { ID = c.CompTypeID, Value = c.CompType };
                     if (ctype != null && ctype.Any())
                         di.ComplaintType = ctype.ToList();
 
                     //get comp status
-                    var cStatus = from c in context.CompStatus
+                    var cStatus = from c in context.lukComplaintStatus
                                   select new Domain() { ID = c.StatusID, Value = c.CompStatus };
                     if (cStatus != null && cStatus.Any())
                         di.ComplaintStatus = cStatus.ToList();
 
                     //get comp status
-                    var cSev = from c in context.CompSeverities
+                    var cSev = from c in context.lukComplaintSeverities
                                select new Domain() { ID = c.SeverityID, Value = c.Severity };
                     if (cSev != null && cSev.Any())
                         di.Severity = cSev.ToList();
+
+
+                    //get Vendor Category
+                    var cVendorCategory = from v in context.lukVendorCategories
+                               select new Domain() { ID = v.ID, Value = v.ShopCategory };
+                    if (cVendorCategory != null && cVendorCategory.Any())
+                        di.VendorCategory = cVendorCategory.ToList();
+
                 }
 
                 Log.log(" Domain Info Returned : Type -" + di.ComplaintType.Count.ToString() + "-- at" + DateTime.Now.ToString());

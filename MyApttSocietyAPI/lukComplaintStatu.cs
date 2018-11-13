@@ -12,10 +12,10 @@ namespace MyApttSocietyAPI
     using System;
     using System.Collections.Generic;
     
-    public partial class ComplaintType
+    public partial class lukComplaintStatu
     {
-        public int CompTypeID { get; set; }
-        public string CompType { get; set; }
+        public int StatusID { get; set; }
+        public string CompStatus { get; set; }
         public int SocietyID { get; set; }
     }
 }

@@ -15,10 +15,12 @@ using System.Diagnostics;
 namespace MyApttSocietyAPI.Controllers
 {
      [EnableCors(origins: "*", headers: "*", methods: "*")]
-     [Route("api/[controller]/[action]")]
+     [RoutePrefix("api/Resident")]
     public class ResidentController : ApiController
     {
         // GET: api/Resident
+         [Route("All")]
+         [HttpGet]
         public IEnumerable<ViewResident> Get()
         {
             var context = new SocietyDBEntities();
@@ -29,6 +31,8 @@ namespace MyApttSocietyAPI.Controllers
         }
 
         // GET: api/Resident/5
+         [Route("User/{id}")]
+         [HttpGet]
         public ViewResident GetByUserID(int id)
         {
             try
@@ -49,13 +53,15 @@ namespace MyApttSocietyAPI.Controllers
 
 
         // GET: api/Resident/5
-        public ViewResident GetByMobile(String id)
+         [Route("Mobile/{mobile}")]
+         [HttpGet]
+         public ViewResident GetByMobile(String mobile)
         {
             try
             {
                 using (var context = new SocietyDBEntities())
                 {
-                    var L2EQuery = context.ViewResidents.Where(u => u.MobileNo == id);
+                    var L2EQuery = context.ViewResidents.Where(u => u.MobileNo == mobile);
                     var user = L2EQuery.FirstOrDefault<ViewResident>();
                      return user;
                 }
@@ -68,13 +74,15 @@ namespace MyApttSocietyAPI.Controllers
         }
 
         // GET: api/Resident/5
-        public ViewResident GetByEmail(String id)
+         [Route("Email/{email}")]
+         [HttpGet]
+         public ViewResident GetByEmail(String email)
         {
             try
             {
                 using (var context = new SocietyDBEntities())
                 {
-                    var L2EQuery = context.ViewResidents.Where(u => u.EmailId.ToLower() == id.ToLower());
+                    var L2EQuery = context.ViewResidents.Where(u => u.EmailId.ToLower() == email.ToLower());
                     var user = L2EQuery.FirstOrDefault<ViewResident>();
                     return user;
                 }
@@ -88,6 +96,8 @@ namespace MyApttSocietyAPI.Controllers
 
        
         // POST: api/Resident
+         [Route("Update")]
+         [HttpPost]
         public HttpResponseMessage Post([FromBody]Profile value)
         {
             String resp;

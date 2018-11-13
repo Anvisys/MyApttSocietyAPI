@@ -12,10 +12,13 @@ namespace MyApttSocietyAPI
     using System;
     using System.Collections.Generic;
     
-    public partial class CompStatu
+    public partial class VisitorDetail
     {
-        public int StatusID { get; set; }
-        public string CompStatus { get; set; }
-        public int SocietyID { get; set; }
+        public int id { get; set; }
+        public string VisitorMobileNo { get; set; }
+        public string VisitorName { get; set; }
+        public byte[] VisitorImage { get; set; }
+        public string VisitorAddress { get; set; }
+        public Nullable<int> SocietyId { get; set; }
     }
 }

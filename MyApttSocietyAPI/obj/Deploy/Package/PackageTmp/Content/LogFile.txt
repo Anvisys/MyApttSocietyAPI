@@ -1,0 +1,41 @@
+Input Value is  : 2017-11-11T12:00:00
+Could not parse String to Date time found is 1 : 
+Input Value is  : 2017-11-11 12:00:00
+Could not parse String to Date time found is 1 : 
+Input Value is  : 2016-11-11 12:00:00
+Could not parse String to Date time found is 1 : 
+Input Value is  : 11/11/2015 12:00:00
+Date found is  : 2015-11-11 12:00:00
+Input Value is  : 11/11/2015 12:00:00
+Date found is  : 2015-11-11 12:00:00
+Input Value is  : 11/11/2015 12:00:00
+Date found is  : 2015-11-11 12:00:00
+ Get Complaint has error at: 2018-09-20 12:54:31 String reference not set to an instance of a String.
+Parameter name: s
+ Get Forum has error at: 10/3/2018 11:11:29 AM The underlying provider failed on Open.
+ Get answer for : 1
+ Get Forum has error at: 10/3/2018 11:32:46 AM Nullable object must have a value.
+ Get answer for : 1
+ Get Forum has error at: 10/3/2018 11:34:13 AM Nullable object must have a value.
+ Get answer for : 1
+ Get answer for : 1
+ Get answer for : 2
+ Get answer for : 1
+ Get answer for : 2
+ Get answer for : 1
+ Get answer for : 2
+ Get Complaint has error at: 10/4/2018 7:28:31 PM String was not recognized as a valid DateTime.
+ Complaint Post request received : 10/24/2018 12:49:30 PM
+ Complaint Post request received : 10/24/2018 12:49:49 PM
+ Complaint Post request received : 10/24/2018 12:50:06 PM
+ Complaint Post request received : 10/24/2018 12:51:00 PM
+Input Value is  : 23/11/2017 10:00:00
+Date found is  : 11/23/2017 10:00:00 AM
+Value Passed is , 20  :  10/30/2018 4:16:59 PM
+Path is --- http://www.MyAptt.com/AppImage/Notice/20/f2bbab3bcf2f5f2cac934c7404560c2d.jpg
+NotFound
+X-Powered-By-Plesk: PleskWin
+Date: Tue, 30 Oct 2018 10:47:18 GMT
+Server: Microsoft-IIS/8.5
+X-Powered-By: ASP.NET
+

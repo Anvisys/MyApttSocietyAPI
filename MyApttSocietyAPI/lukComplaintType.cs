@@ -12,14 +12,10 @@ namespace MyApttSocietyAPI
     using System;
     using System.Collections.Generic;
     
-    public partial class Notification
+    public partial class lukComplaintType
     {
-        public int ID { get; set; }
-        public string Notification1 { get; set; }
-        public System.DateTime Date { get; set; }
-        public string AttachName { get; set; }
-        public int send_by { get; set; }
+        public int CompTypeID { get; set; }
+        public string CompType { get; set; }
         public int SocietyID { get; set; }
-        public System.DateTime EndDate { get; set; }
     }
 }

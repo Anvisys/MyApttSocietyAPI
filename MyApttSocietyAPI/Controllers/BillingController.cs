@@ -13,6 +13,7 @@ namespace MyApttSocietyAPI.Controllers
 {
 
      [EnableCors(origins: "*", headers: "*", methods: "*")]
+     [RoutePrefix("api/Billing")]
     public class BillingController : ApiController
     {
 
@@ -24,19 +25,20 @@ namespace MyApttSocietyAPI.Controllers
             return new string[] { "value1", "value2" };
         }
 
+
+
         // GET: api/Billing/5
-        public IEnumerable<ViewLatestGeneratedBill> Get(String id)
+        [Route("Flat/{FlatNo}")]
+        [HttpGet]
+        public IEnumerable<ViewLatestGeneratedBill> Get(String FlatNo)
         {
             try
             {
                 DateTime date = System.DateTime.Now;
                 String dueFor = String.Format("{0:MMMM, yyyy}", date);
-                   Log.log("Calculated for: " + dueFor + " at " + DateTime.Now.ToString());
+                    var context = new SocietyDBEntities();
+                    var L2EQuery = context.ViewLatestGeneratedBills.Where(gb => gb.FlatNumber == FlatNo);
 
-                   var context = new SocietyDBEntities();
-                    var L2EQuery = context.ViewLatestGeneratedBills.Where(gb => gb.FlatNumber == id);
-
-                    Log.log(" ViewBilling by Flat Number Results found are: " + DateTime.Now.ToString());
                     return L2EQuery;
               
             }
@@ -46,6 +48,33 @@ namespace MyApttSocietyAPI.Controllers
                 return null;
             }
         }
+
+
+        // GET: api/Billing/5
+        [Route("Flat/{FlatNo}/{year}/{month}")]
+        [HttpGet]
+        public IEnumerable<ViewGeneratedBill> GetBillForMonth(String FlatNo, int year, int month)
+        {
+            try
+            {
+                DateTime date = System.DateTime.Now;
+                String dueFor = String.Format("{0:MMMM, yyyy}", date);
+              
+
+                var context = new SocietyDBEntities();
+                var L2EQuery = context.ViewGeneratedBills.Where(gb => gb.FlatNumber == FlatNo && gb.BillMonth.Year == year && gb.BillMonth.Month == month);
+
+               
+                return L2EQuery;
+
+            }
+            catch (Exception ex)
+            {
+                Log.log(" Get thread by ID has error at: " + DateTime.Now.ToString() + " " + ex.Message);
+                return null;
+            }
+        }
+
 
         // POST: api/Billing
         public HttpResponseMessage Post([FromBody]Billing value)

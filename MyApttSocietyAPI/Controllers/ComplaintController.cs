@@ -63,6 +63,7 @@ namespace MyApttSocietyAPI.Controllers
                     {
                         CompID = comp.CompID,
                         ResidentID = comp.UserID,
+                        SocietyID = comp.SocietyID,
                         FlatNumber = comp.FlatNumber,
                         CompTypeID = comp.CompType,
                         SeverityID = comp.CompSeverity,

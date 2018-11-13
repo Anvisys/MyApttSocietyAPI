@@ -9,6 +9,7 @@ namespace MyApttSocietyAPI.Models
     {
         public int CompID;
         public int UserID;
+        public int SocietyID;
         public int CompType;
         public int CompSeverity;
         public int CompStatusID;

@@ -24,5 +24,7 @@ namespace MyApttSocietyAPI
         public string CmdType { get; set; }
         public Nullable<System.DateTime> Date { get; set; }
         public int SocietyID { get; set; }
+        public string ContantNumber2 { get; set; }
+        public string Address2 { get; set; }
     }
 }

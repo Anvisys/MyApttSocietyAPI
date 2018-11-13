@@ -29,21 +29,7 @@ namespace MyApttSocietyAPI.Controllers
         public IEnumerable<ViewThreadSummaryNoImageCount> Post([FromBody]Batch value)
         {
 
-          /*  Log.log("Input Value is  : " + value.value);
-
-            DateTime lastDateTime;
-            try
-            {
-                lastDateTime = DateTime.ParseExact(dateTime.value, "dd/MM/yyyy HH:mm:ss", System.Globalization.CultureInfo.CurrentUICulture);
-
-                Log.log("Date found is  : " + lastDateTime.ToString());
-            }
-            catch (Exception ex)
-            {
-                Log.log("Could not parse String to Date time found is 1 : ");
-                lastDateTime = DateTime.Now;
-            }*/
-
+         
             try
             {
                 var context = new SocietyDBEntities();

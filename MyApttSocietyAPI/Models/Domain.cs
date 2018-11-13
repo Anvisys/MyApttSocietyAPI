@@ -24,5 +24,7 @@ namespace MyApttSocietyAPI.Models
 
         public List<Domain> ComplaintStatus { get; set; }
 
+        public List<Domain> VendorCategory { get; set; }
+
     }
 }

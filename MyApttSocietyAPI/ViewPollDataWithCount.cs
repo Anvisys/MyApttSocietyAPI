@@ -23,9 +23,9 @@ namespace MyApttSocietyAPI
         public string Answer4 { get; set; }
         public Nullable<System.DateTime> StartDate { get; set; }
         public Nullable<System.DateTime> EndDate { get; set; }
-        public Nullable<int> Answer1Count { get; set; }
-        public Nullable<int> Answer2Count { get; set; }
-        public Nullable<int> Answer3Count { get; set; }
-        public Nullable<int> Answer4Count { get; set; }
+        public int Answer1Count { get; set; }
+        public int Answer2Count { get; set; }
+        public int Answer3Count { get; set; }
+        public int Answer4Count { get; set; }
     }
 }

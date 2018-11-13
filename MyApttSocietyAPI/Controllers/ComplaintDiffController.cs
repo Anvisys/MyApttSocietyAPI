@@ -27,14 +27,42 @@ namespace MyApttSocietyAPI.Controllers
         {
              try
             {
+                String[] ints1 = new String[0];
+
+                if (value.CompStatus == "Open")
+                {
+                    ints1 = new String[5];
+                    ints1[0] = "New";
+                    ints1[1] = "Assigned";
+                    ints1[2] = "InProgress";
+                    ints1[3] = "Complete";
+                    
+                }
+                else if (value.CompStatus == "Closed")
+                {
+
+                    ints1 = new String[1];
+                    ints1[0] = "Closed";
+                }
+                else if (value.CompStatus == "All")
+                {
+                    ints1 = new String[5];
+                    ints1[0] = "New";
+                    ints1[1] = "Assigned";
+                    ints1[2] = "InProgress";
+                    ints1[3] = "Complete";
+                    ints1[4] = "Closed";
                 
+                }
+               
+
                 var context = new SocietyDBEntities();
                
                 if (value.LastRefreshTime == "")
                 {
                     var count = value.EndIndex - value.StartIndex;
                     var Complaints = (from comp in context.ViewComplaintSummaries
-                                      where comp.ResidentID == value.ResId
+                                      where comp.ResidentID == value.ResId && ints1.Contains(comp.LastStatus)
                                       orderby comp.LastAt descending
                                       select comp);
 
@@ -45,7 +73,7 @@ namespace MyApttSocietyAPI.Controllers
                 {
                     DateTime ComplaintDateTime = DateTime.ParseExact(value.LastRefreshTime, "dd/MM/yyyy HH:mm:ss", System.Globalization.CultureInfo.CurrentUICulture);
                     return (from comp in context.ViewComplaintSummaries
-                                             where comp.ResidentID == value.ResId && comp.LastAt > ComplaintDateTime
+                            where comp.ResidentID == value.ResId  && comp.LastAt > ComplaintDateTime
                                              select comp).Take(10);
                 }
 
@@ -57,7 +85,7 @@ namespace MyApttSocietyAPI.Controllers
                 return null;
             }
 
-                      
+                 
 
         }
 
