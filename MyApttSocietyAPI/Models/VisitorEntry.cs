@@ -15,8 +15,8 @@ namespace MyApttSocietyAPI.Models
         public byte[] VisitorImage { get; set; }
         public string VisitorAddress { get; set; }
         public string VisitPurpose { get; set; }
-        public DateTime StartTime { get; set; }
-        public DateTime EndTime { get; set; }
+        public String StartTime { get; set; }
+        public String EndTime { get; set; }
 
         public int ResID { get; set; }
         public String FlatNumber { get; set; }

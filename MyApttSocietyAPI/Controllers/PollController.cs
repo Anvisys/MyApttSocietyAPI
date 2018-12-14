@@ -21,7 +21,9 @@ namespace MyApttSocietyAPI.Controllers
                 var op = (from poll in context.PollingDatas
                              orderby poll.EndDate descending
                              select poll);
+               
                 Log.log(" Get Forum Results found are:" + DateTime.Now.ToString());
+              
 
                 return op;
             }
@@ -84,6 +86,7 @@ namespace MyApttSocietyAPI.Controllers
                             {
                                 PollID = poll.PollID,
                                 ResID = poll.ResID,
+                                SocietyID = poll.SocietyId,
                                 SelectedAnswer = poll.selectedAnswer,
                                 LastUpdated = DateTime.UtcNow,
                             

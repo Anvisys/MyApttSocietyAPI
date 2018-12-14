@@ -8,5 +8,7 @@ namespace MyApttSocietyAPI.Models
     public class DateTimeInput
     {
         public String value { get; set; }
+
+        public int SocietyID { get; set; }
     }
 }

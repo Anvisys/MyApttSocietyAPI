@@ -17,5 +17,7 @@ namespace MyApttSocietyAPI.Models
         public String CurrentThread;
         public DateTime InitiatedAt;
         public DateTime ModifiedAt;
+        public int SocietyId;
+      
     }
 }

@@ -16,5 +16,8 @@ namespace MyApttSocietyAPI.Models
         public String Address { get; set; }
 
         public String ShopCategory { get; set; }
+
+        public String dateTime { get; set; }
+
     }
 }

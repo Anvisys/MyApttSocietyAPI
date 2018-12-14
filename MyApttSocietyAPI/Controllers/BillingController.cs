@@ -28,16 +28,16 @@ namespace MyApttSocietyAPI.Controllers
 
 
         // GET: api/Billing/5
-        [Route("Flat/{FlatNo}")]
+        [Route("{SocietyID}/Flat/{FlatNo}")]
         [HttpGet]
-        public IEnumerable<ViewLatestGeneratedBill> Get(String FlatNo)
+        public IEnumerable<ViewLatestGeneratedBill> Get(int SocietyID, String FlatNo)
         {
             try
             {
                 DateTime date = System.DateTime.Now;
                 String dueFor = String.Format("{0:MMMM, yyyy}", date);
                     var context = new SocietyDBEntities();
-                    var L2EQuery = context.ViewLatestGeneratedBills.Where(gb => gb.FlatNumber == FlatNo);
+                    var L2EQuery = context.ViewLatestGeneratedBills.Where(gb => gb.FlatNumber == FlatNo && gb.SocietyID == SocietyID);
 
                     return L2EQuery;
               
@@ -51,9 +51,9 @@ namespace MyApttSocietyAPI.Controllers
 
 
         // GET: api/Billing/5
-        [Route("Flat/{FlatNo}/{year}/{month}")]
+        [Route("{SocietyID}/Flat/{FlatNo}/{year}/{month}")]
         [HttpGet]
-        public IEnumerable<ViewGeneratedBill> GetBillForMonth(String FlatNo, int year, int month)
+        public IEnumerable<ViewGeneratedBill> GetBillForMonth(int SocietyID, String FlatNo, int year, int month)
         {
             try
             {
@@ -62,7 +62,7 @@ namespace MyApttSocietyAPI.Controllers
               
 
                 var context = new SocietyDBEntities();
-                var L2EQuery = context.ViewGeneratedBills.Where(gb => gb.FlatNumber == FlatNo && gb.BillMonth.Year == year && gb.BillMonth.Month == month);
+                var L2EQuery = context.ViewGeneratedBills.Where(gb => gb.FlatNumber == FlatNo && gb.SocietyID== SocietyID && gb.BillMonth.Year == year && gb.BillMonth.Month == month);
 
                
                 return L2EQuery;
@@ -76,7 +76,8 @@ namespace MyApttSocietyAPI.Controllers
         }
 
 
-        // POST: api/Billing
+        [Route("NewBill")]
+        [HttpPost]
         public HttpResponseMessage Post([FromBody]Billing value)
         {
             try

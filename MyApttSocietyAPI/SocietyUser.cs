@@ -12,17 +12,17 @@ namespace MyApttSocietyAPI
     using System;
     using System.Collections.Generic;
     
-    public partial class ViewForumNoImage
+    public partial class SocietyUser
     {
-        public int ID { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string FlatNumber { get; set; }
         public int ResID { get; set; }
-        public int ThreadID { get; set; }
-        public string Topic { get; set; }
-        public string Thread { get; set; }
-        public System.DateTime UpdatedOn { get; set; }
+        public int UserID { get; set; }
+        public int FlatID { get; set; }
+        public string Type { get; set; }
+        public int ServiceType { get; set; }
+        public string CompanyName { get; set; }
+        public Nullable<System.DateTime> ActiveDate { get; set; }
+        public Nullable<System.DateTime> DeActiveDate { get; set; }
+        public Nullable<System.DateTime> ModifiedDate { get; set; }
         public int SocietyID { get; set; }
     }
 }

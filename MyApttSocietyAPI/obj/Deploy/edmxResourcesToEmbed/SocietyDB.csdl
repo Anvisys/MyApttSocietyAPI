@@ -15,20 +15,16 @@
     <EntitySet Name="BillCycles" EntityType="SocietyDBModel.BillCycle" />
     <EntitySet Name="Flats" EntityType="SocietyDBModel.Flat" />
     <EntitySet Name="ImageChecks" EntityType="SocietyDBModel.ImageCheck" />
-    <EntitySet Name="Notifications" EntityType="SocietyDBModel.Notification" />
     <EntitySet Name="Societybillplans" EntityType="SocietyDBModel.Societybillplan" />
     <EntitySet Name="TempResidentViews" EntityType="SocietyDBModel.TempResidentView" />
     <EntitySet Name="ViewComplaintAges" EntityType="SocietyDBModel.ViewComplaintAge" />
     <EntitySet Name="ViewFirstThreadwithCounts" EntityType="SocietyDBModel.ViewFirstThreadwithCount" />
-    <EntitySet Name="ViewFlats" EntityType="SocietyDBModel.ViewFlat" />
     <EntitySet Name="ViewLatestGeneratedBills" EntityType="SocietyDBModel.ViewLatestGeneratedBill" />
     <EntitySet Name="ViewLatestThreads" EntityType="SocietyDBModel.ViewLatestThread" />
     <EntitySet Name="ViewOwnerResidents" EntityType="SocietyDBModel.ViewOwnerResident" />
     <EntitySet Name="ViewPollCounts" EntityType="SocietyDBModel.ViewPollCount" />
     <EntitySet Name="ViewResidents" EntityType="SocietyDBModel.ViewResident" />
-    <EntitySet Name="ViewThreadSummaryNoImageCounts" EntityType="SocietyDBModel.ViewThreadSummaryNoImageCount" />
     <EntitySet Name="WatchViewFirstThreadNoImages" EntityType="SocietyDBModel.WatchViewFirstThreadNoImage" />
-    <EntitySet Name="ViewForumNoImages" EntityType="SocietyDBModel.ViewForumNoImage" />
     <EntitySet Name="PollingDatas" EntityType="SocietyDBModel.PollingData" />
     <EntitySet Name="ViewPollDataWithCounts" EntityType="SocietyDBModel.ViewPollDataWithCount" />
     <EntitySet Name="lukBillTypes" EntityType="SocietyDBModel.lukBillType" />
@@ -39,13 +35,23 @@
     <EntitySet Name="ViewComplaintHistories" EntityType="SocietyDBModel.ViewComplaintHistory" />
     <EntitySet Name="ViewComplaintInitiateds" EntityType="SocietyDBModel.ViewComplaintInitiated" />
     <EntitySet Name="ViewComplaintLatests" EntityType="SocietyDBModel.ViewComplaintLatest" />
-    <EntitySet Name="ViewComplaintSummaries" EntityType="SocietyDBModel.ViewComplaintSummary" />
     <EntitySet Name="ViewEmployees" EntityType="SocietyDBModel.ViewEmployee" />
     <EntitySet Name="Advertisements" EntityType="SocietyDBModel.Advertisement" />
     <EntitySet Name="VisitorDetails" EntityType="SocietyDBModel.VisitorDetail" />
     <EntitySet Name="VisitorRequests" EntityType="SocietyDBModel.VisitorRequest" />
-    <EntitySet Name="viewVisitorDatas" EntityType="SocietyDBModel.viewVisitorData" />
     <EntitySet Name="ViewGeneratedBills" EntityType="SocietyDBModel.ViewGeneratedBill" />
+    <EntitySet Name="Notifications" EntityType="SocietyDBModel.Notification" />
+    <EntitySet Name="ViewComplaintSummaries" EntityType="SocietyDBModel.ViewComplaintSummary" />
+    <EntitySet Name="ViewLatestBillCycles" EntityType="SocietyDBModel.ViewLatestBillCycle" />
+    <EntitySet Name="ViewNotifications" EntityType="SocietyDBModel.ViewNotification" />
+    <EntitySet Name="ViewUserImages" EntityType="SocietyDBModel.ViewUserImage" />
+    <EntitySet Name="viewVisitorDatas" EntityType="SocietyDBModel.viewVisitorData" />
+    <EntitySet Name="SocietyUsers" EntityType="SocietyDBModel.SocietyUser" />
+    <EntitySet Name="ViewSocietyUsers" EntityType="SocietyDBModel.ViewSocietyUser" />
+    <EntitySet Name="ViewFlats" EntityType="SocietyDBModel.ViewFlat" />
+    <EntitySet Name="ViewLatestGeneratedBill_Resident" EntityType="SocietyDBModel.ViewLatestGeneratedBill_Resident" />
+    <EntitySet Name="ViewThreadSummaryNoImageCounts" EntityType="SocietyDBModel.ViewThreadSummaryNoImageCount" />
+    <EntitySet Name="ViewForumNoImages" EntityType="SocietyDBModel.ViewForumNoImage" />
   </EntityContainer>
   <EntityType Name="Complaint">
     <Key>
@@ -273,22 +279,6 @@
     <Property Name="Address" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Testimage" Type="Binary" MaxLength="Max" FixedLength="false" />
   </EntityType>
-  <EntityType Name="Notification">
-    <Key>
-      <PropertyRef Name="ID" />
-      <PropertyRef Name="Date" />
-      <PropertyRef Name="send_by" />
-      <PropertyRef Name="SocietyID" />
-      <PropertyRef Name="EndDate" />
-    </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Notification1" Type="String" MaxLength="650" FixedLength="false" Unicode="false" />
-    <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
-    <Property Name="AttachName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="send_by" Type="Int32" Nullable="false" />
-    <Property Name="SocietyID" Type="Int32" Nullable="false" />
-    <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="0" />
-  </EntityType>
   <EntityType Name="Societybillplan">
     <Key>
       <PropertyRef Name="BillID" />
@@ -363,36 +353,6 @@
     <Property Name="FirstThread" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="false" />
     <Property Name="InitiatedAt" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="commentsCount" Type="Int32" />
-  </EntityType>
-  <EntityType Name="ViewFlat">
-    <Key>
-      <PropertyRef Name="ID" />
-      <PropertyRef Name="FlatNumber" />
-      <PropertyRef Name="SocietyId" />
-      <PropertyRef Name="BHK" />
-      <PropertyRef Name="Floor" />
-      <PropertyRef Name="Block" />
-      <PropertyRef Name="OwnerName" />
-      <PropertyRef Name="Ownermobile" />
-    </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" />
-    <Property Name="FlatNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="SocietyId" Type="Int32" Nullable="false" />
-    <Property Name="BHK" Type="Int32" Nullable="false" />
-    <Property Name="Floor" Type="Int32" Nullable="false" />
-    <Property Name="Block" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="IntercomNumber" Type="Int32" />
-    <Property Name="OwnerName" Type="String" Nullable="false" MaxLength="25" FixedLength="true" Unicode="false" />
-    <Property Name="OwnerEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="Ownermobile" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="TenantUserID" Type="Int32" />
-    <Property Name="TenantFirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="TenantLastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="TenantEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="TenantMobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="TenantAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="TenantFrom" Type="DateTime" Precision="0" />
-    <Property Name="TenantTo" Type="DateTime" Precision="3" />
   </EntityType>
   <EntityType Name="ViewLatestGeneratedBill">
     <Key>
@@ -500,35 +460,6 @@
     <Property Name="FlatNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="IntercomNumber" Type="Int32" />
   </EntityType>
-  <EntityType Name="ViewThreadSummaryNoImageCount">
-    <Key>
-      <PropertyRef Name="FirstID" />
-      <PropertyRef Name="ThreadID" />
-      <PropertyRef Name="Topic" />
-      <PropertyRef Name="FirstThread" />
-      <PropertyRef Name="InitiatedAt" />
-      <PropertyRef Name="firstFlat" />
-      <PropertyRef Name="FirstResID" />
-      <PropertyRef Name="latestThread" />
-      <PropertyRef Name="UpdatedAt" />
-      <PropertyRef Name="lastFlat" />
-      <PropertyRef Name="LastResID" />
-    </Key>
-    <Property Name="FirstID" Type="Int32" Nullable="false" />
-    <Property Name="ThreadID" Type="Int32" Nullable="false" />
-    <Property Name="Topic" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="FirstThread" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="false" />
-    <Property Name="InitiatedAt" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="firstFlat" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="Initiater" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="FirstResID" Type="Int32" Nullable="false" />
-    <Property Name="latestThread" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="false" />
-    <Property Name="UpdatedAt" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="lastFlat" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="CurrentPostBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="LastResID" Type="Int32" Nullable="false" />
-    <Property Name="commentsCount" Type="Int32" />
-  </EntityType>
   <EntityType Name="WatchViewFirstThreadNoImage">
     <Key>
       <PropertyRef Name="ThreadID" />
@@ -543,25 +474,6 @@
     <Property Name="Topic" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="FirstThread" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
     <Property Name="InitiatedAt" Type="DateTime" Nullable="false" Precision="3" />
-  </EntityType>
-  <EntityType Name="ViewForumNoImage">
-    <Key>
-      <PropertyRef Name="ID" />
-      <PropertyRef Name="FlatNumber" />
-      <PropertyRef Name="ResID" />
-      <PropertyRef Name="ThreadID" />
-      <PropertyRef Name="Topic" />
-      <PropertyRef Name="UpdatedOn" />
-    </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" />
-    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="FlatNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="ResID" Type="Int32" Nullable="false" />
-    <Property Name="ThreadID" Type="Int32" Nullable="false" />
-    <Property Name="Topic" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="Thread" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
-    <Property Name="UpdatedOn" Type="DateTime" Nullable="false" Precision="3" />
   </EntityType>
   <EntityType Name="PollingData">
     <Key>
@@ -707,38 +619,6 @@
     <Property Name="CurrentStatus" Type="Int32" Nullable="false" />
     <Property Name="LastAt" Type="DateTime" Precision="3" />
   </EntityType>
-  <EntityType Name="ViewComplaintSummary">
-    <Key>
-      <PropertyRef Name="FirstID" />
-      <PropertyRef Name="SocietyID" />
-      <PropertyRef Name="CompID" />
-      <PropertyRef Name="ResidentID" />
-      <PropertyRef Name="FlatNumber" />
-      <PropertyRef Name="FirstStatusID" />
-      <PropertyRef Name="Assignedto" />
-      <PropertyRef Name="LastStatusID" />
-    </Key>
-    <Property Name="FirstID" Type="Int32" Nullable="false" />
-    <Property Name="SocietyID" Type="Int32" Nullable="false" />
-    <Property Name="CompID" Type="Int32" Nullable="false" />
-    <Property Name="ResidentID" Type="Int32" Nullable="false" />
-    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="FlatNumber" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-    <Property Name="Age" Type="Int32" />
-    <Property Name="CompType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-    <Property Name="InitialComment" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
-    <Property Name="FirstStatusID" Type="Int32" Nullable="false" />
-    <Property Name="FirstStatus" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-    <Property Name="InitiatedAt" Type="DateTime" Precision="3" />
-    <Property Name="StatusCount" Type="Int32" />
-    <Property Name="LastComment" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
-    <Property Name="Assignedto" Type="Int32" Nullable="false" />
-    <Property Name="EmployeeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="LastStatusID" Type="Int32" Nullable="false" />
-    <Property Name="LastStatus" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-    <Property Name="LastAt" Type="DateTime" Precision="3" />
-  </EntityType>
   <EntityType Name="ViewEmployee">
     <Key>
       <PropertyRef Name="ID" />
@@ -798,40 +678,6 @@
     <Property Name="ResId" Type="Int32" Nullable="false" />
     <Property Name="SocietyId" Type="Int32" />
   </EntityType>
-  <EntityType Name="viewVisitorData">
-    <Key>
-      <PropertyRef Name="RequestId" />
-      <PropertyRef Name="VisitorId" />
-      <PropertyRef Name="VisitorName" />
-      <PropertyRef Name="VisitorMobile" />
-      <PropertyRef Name="VisitorAddress" />
-      <PropertyRef Name="ResId" />
-      <PropertyRef Name="Flat" />
-      <PropertyRef Name="VisitPurpose" />
-      <PropertyRef Name="ActualInTime" />
-      <PropertyRef Name="ActualOutTime" />
-      <PropertyRef Name="SecurityCode" />
-      <PropertyRef Name="StartTime" />
-    </Key>
-    <Property Name="RequestId" Type="Int32" Nullable="false" />
-    <Property Name="VisitorId" Type="Int32" Nullable="false" />
-    <Property Name="VisitorName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="VisitorMobile" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-    <Property Name="VisitorAddress" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="VisitorImage" Type="Binary" MaxLength="Max" FixedLength="false" />
-    <Property Name="ResId" Type="Int32" Nullable="false" />
-    <Property Name="Flat" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="VisitPurpose" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="ActualInTime" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="ActualOutTime" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="SecurityCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="StartTime" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="SocietyId" Type="Int32" />
-    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="ResidentMobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-  </EntityType>
   <EntityType Name="ViewGeneratedBill">
     <Key>
       <PropertyRef Name="PayID" />
@@ -868,5 +714,328 @@
     <Property Name="TransactionID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="InvoiceID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="ModifiedAt" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Notification">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="Date" />
+      <PropertyRef Name="send_by" />
+      <PropertyRef Name="SocietyID" />
+      <PropertyRef Name="EndDate" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Notification1" Type="String" MaxLength="650" FixedLength="false" Unicode="false" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="AttachName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="send_by" Type="Int32" Nullable="false" />
+    <Property Name="SocietyID" Type="Int32" Nullable="false" />
+    <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="0" />
+  </EntityType>
+  <EntityType Name="ViewComplaintSummary">
+    <Key>
+      <PropertyRef Name="FirstID" />
+      <PropertyRef Name="SocietyID" />
+      <PropertyRef Name="CompID" />
+      <PropertyRef Name="ResidentID" />
+      <PropertyRef Name="FirstName" />
+      <PropertyRef Name="FlatNumber" />
+      <PropertyRef Name="FirstStatusID" />
+      <PropertyRef Name="Assignedto" />
+      <PropertyRef Name="LastStatusID" />
+    </Key>
+    <Property Name="FirstID" Type="Int32" Nullable="false" />
+    <Property Name="SocietyID" Type="Int32" Nullable="false" />
+    <Property Name="CompID" Type="Int32" Nullable="false" />
+    <Property Name="ResidentID" Type="Int32" Nullable="false" />
+    <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FlatNumber" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Age" Type="Int32" />
+    <Property Name="CompType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="InitialComment" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="FirstStatusID" Type="Int32" Nullable="false" />
+    <Property Name="FirstStatus" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="InitiatedAt" Type="DateTime" Precision="3" />
+    <Property Name="StatusCount" Type="Int32" />
+    <Property Name="LastComment" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Assignedto" Type="Int32" Nullable="false" />
+    <Property Name="EmployeeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="LastStatusID" Type="Int32" Nullable="false" />
+    <Property Name="LastStatus" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="LastAt" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="ViewLatestBillCycle">
+    <Key>
+      <PropertyRef Name="SocietyID" />
+      <PropertyRef Name="FlatID" />
+      <PropertyRef Name="BillID" />
+      <PropertyRef Name="BillType" />
+      <PropertyRef Name="Rate" />
+      <PropertyRef Name="ChargeType" />
+      <PropertyRef Name="CycleType" />
+      <PropertyRef Name="created_date" />
+    </Key>
+    <Property Name="SocietyID" Type="Int32" Nullable="false" />
+    <Property Name="FlatID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FlatArea" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BillID" Type="Int32" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BillType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Rate" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ChargeType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CycleType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CycleStart" Type="DateTime" Precision="3" />
+    <Property Name="CycleEnd" Type="DateTime" Precision="3" />
+    <Property Name="created_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="comments" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="ViewNotification">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="Date" />
+      <PropertyRef Name="send_by" />
+      <PropertyRef Name="SocietyID" />
+      <PropertyRef Name="EndDate" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="Notification" Type="String" MaxLength="650" FixedLength="false" Unicode="false" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="AttachName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="send_by" Type="Int32" Nullable="false" />
+    <Property Name="SocietyID" Type="Int32" Nullable="false" />
+    <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FlatID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="ViewUserImage">
+    <Key>
+      <PropertyRef Name="ResID" />
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="ResID" Type="Int32" Nullable="false" />
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="Profile_image" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="viewVisitorData">
+    <Key>
+      <PropertyRef Name="RequestId" />
+      <PropertyRef Name="VisitorId" />
+      <PropertyRef Name="VisitorName" />
+      <PropertyRef Name="VisitorMobile" />
+      <PropertyRef Name="VisitorAddress" />
+      <PropertyRef Name="ResId" />
+      <PropertyRef Name="Flat" />
+      <PropertyRef Name="VisitPurpose" />
+      <PropertyRef Name="ActualInTime" />
+      <PropertyRef Name="ActualOutTime" />
+      <PropertyRef Name="SecurityCode" />
+      <PropertyRef Name="StartTime" />
+      <PropertyRef Name="EndTime" />
+      <PropertyRef Name="FirstName" />
+      <PropertyRef Name="ResidentMobile" />
+      <PropertyRef Name="Type" />
+    </Key>
+    <Property Name="RequestId" Type="Int32" Nullable="false" />
+    <Property Name="VisitorId" Type="Int32" Nullable="false" />
+    <Property Name="VisitorName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="VisitorMobile" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="VisitorAddress" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="VisitorImage" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="ResId" Type="Int32" Nullable="false" />
+    <Property Name="Flat" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="VisitPurpose" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ActualInTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ActualOutTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="SecurityCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="StartTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="EndTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="SocietyId" Type="Int32" />
+    <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ResidentMobile" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Type" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="SocietyUser">
+    <Key>
+      <PropertyRef Name="ResID" />
+    </Key>
+    <Property Name="ResID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="FlatID" Type="Int32" Nullable="false" />
+    <Property Name="Type" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ServiceType" Type="Int32" Nullable="false" />
+    <Property Name="CompanyName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ActiveDate" Type="DateTime" Precision="0" />
+    <Property Name="DeActiveDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="SocietyID" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ViewSocietyUser">
+    <Key>
+      <PropertyRef Name="ResID" />
+      <PropertyRef Name="UserID" />
+      <PropertyRef Name="FlatID" />
+      <PropertyRef Name="Type" />
+      <PropertyRef Name="SocietyID" />
+      <PropertyRef Name="ServiceType" />
+      <PropertyRef Name="CompanyName" />
+      <PropertyRef Name="FirstName" />
+      <PropertyRef Name="MobileNo" />
+      <PropertyRef Name="SocietyName" />
+      <PropertyRef Name="FlatNumber" />
+    </Key>
+    <Property Name="ResID" Type="Int32" Nullable="false" />
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="FlatID" Type="Int32" Nullable="false" />
+    <Property Name="Type" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ActiveDate" Type="DateTime" Precision="0" />
+    <Property Name="DeActiveDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="SocietyID" Type="Int32" Nullable="false" />
+    <Property Name="ServiceType" Type="Int32" Nullable="false" />
+    <Property Name="CompanyName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MobileNo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="EmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Gender" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+    <Property Name="ParentName" Type="String" MaxLength="25" FixedLength="true" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="SocietyName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="FlatNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="ViewFlat">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="FlatNumber" />
+      <PropertyRef Name="SocietyId" />
+      <PropertyRef Name="BHK" />
+      <PropertyRef Name="Floor" />
+      <PropertyRef Name="Block" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="FlatNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SocietyId" Type="Int32" Nullable="false" />
+    <Property Name="BHK" Type="Int32" Nullable="false" />
+    <Property Name="Floor" Type="Int32" Nullable="false" />
+    <Property Name="Block" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IntercomNumber" Type="Int32" />
+    <Property Name="FlatArea" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="OwnerUserID" Type="Int32" />
+    <Property Name="OwnerFirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="OwnerLastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="OwnerEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="OwnerMobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="OwnerAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="TenantUserID" Type="Int32" />
+    <Property Name="TenantFirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TenantLastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TenantEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TenantMobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TenantAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="TenantFrom" Type="DateTime" Precision="0" />
+    <Property Name="TenantTo" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="ViewLatestGeneratedBill_Resident">
+    <Key>
+      <PropertyRef Name="PayID" />
+      <PropertyRef Name="FlatNumber" />
+      <PropertyRef Name="SocietyID" />
+      <PropertyRef Name="BillID" />
+      <PropertyRef Name="BillType" />
+      <PropertyRef Name="Rate" />
+      <PropertyRef Name="ChargeType" />
+      <PropertyRef Name="CycleType" />
+      <PropertyRef Name="BillMonth" />
+      <PropertyRef Name="FlatID" />
+    </Key>
+    <Property Name="PayID" Type="Int32" Nullable="false" />
+    <Property Name="FlatNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SocietyID" Type="Int32" Nullable="false" />
+    <Property Name="BillStartDate" Type="DateTime" Precision="3" />
+    <Property Name="BillEndDate" Type="DateTime" Precision="3" />
+    <Property Name="BillID" Type="Int32" Nullable="false" />
+    <Property Name="BillType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BillDate" Type="DateTime" Precision="3" />
+    <Property Name="Rate" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BillDescription" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="ChargeType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CurrentBillAmount" Type="Int32" />
+    <Property Name="CycleType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PaymentDueDate" Type="DateTime" Precision="0" />
+    <Property Name="BillMonth" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="AmountTobePaid" Type="Int32" />
+    <Property Name="PreviousMonthBalance" Type="Int32" />
+    <Property Name="AmountPaidDate" Type="DateTime" Precision="0" />
+    <Property Name="AmountPaid" Type="Int32" />
+    <Property Name="CurrentMonthBalance" Type="Int32" />
+    <Property Name="PaymentMode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TransactionID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="InvoiceID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ModifiedAt" Type="DateTime" Precision="3" />
+    <Property Name="FlatArea" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FlatID" Type="Int32" Nullable="false" />
+    <Property Name="OwnerUserID" Type="Int32" />
+    <Property Name="OwnerFirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="OwnerLastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="OwnerEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="OwnerMobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TenantUserID" Type="Int32" />
+    <Property Name="TenantFirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TenantLastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TenantEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TenantMobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="ViewThreadSummaryNoImageCount">
+    <Key>
+      <PropertyRef Name="FirstID" />
+      <PropertyRef Name="ThreadID" />
+      <PropertyRef Name="Topic" />
+      <PropertyRef Name="InitiatedAt" />
+      <PropertyRef Name="Initiater" />
+      <PropertyRef Name="FirstResID" />
+      <PropertyRef Name="UpdatedAt" />
+      <PropertyRef Name="CurrentPostBy" />
+      <PropertyRef Name="LastResID" />
+      <PropertyRef Name="SocietyID" />
+    </Key>
+    <Property Name="FirstID" Type="Int32" Nullable="false" />
+    <Property Name="ThreadID" Type="Int32" Nullable="false" />
+    <Property Name="Topic" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FirstThread" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+    <Property Name="InitiatedAt" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="firstFlat" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Initiater" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FirstResID" Type="Int32" Nullable="false" />
+    <Property Name="latestThread" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+    <Property Name="UpdatedAt" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="lastFlat" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CurrentPostBy" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="LastResID" Type="Int32" Nullable="false" />
+    <Property Name="commentsCount" Type="Int32" />
+    <Property Name="SocietyID" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ViewForumNoImage">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="FirstName" />
+      <PropertyRef Name="ResID" />
+      <PropertyRef Name="ThreadID" />
+      <PropertyRef Name="Topic" />
+      <PropertyRef Name="UpdatedOn" />
+      <PropertyRef Name="SocietyID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FlatNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ResID" Type="Int32" Nullable="false" />
+    <Property Name="ThreadID" Type="Int32" Nullable="false" />
+    <Property Name="Topic" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Thread" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+    <Property Name="UpdatedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="SocietyID" Type="Int32" Nullable="false" />
   </EntityType>
 </Schema>

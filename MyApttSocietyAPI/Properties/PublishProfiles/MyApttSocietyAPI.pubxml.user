@@ -10,10 +10,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/App_global.asax.compiled">
-      <publishTime>10/30/2018 18:41:04</publishTime>
+      <publishTime>11/30/2018 17:51:51</publishTime>
     </File>
     <File Include="bin/App_global.asax.dll">
-      <publishTime>10/30/2018 18:41:04</publishTime>
+      <publishTime>11/30/2018 17:51:51</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>09/28/2018 16:02:05</publishTime>
@@ -28,10 +28,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/28/2018 16:02:05</publishTime>
     </File>
     <File Include="bin/MyApttSocietyAPI.dll">
-      <publishTime>10/30/2018 18:41:01</publishTime>
+      <publishTime>11/30/2018 17:50:52</publishTime>
     </File>
     <File Include="bin/MyApttSocietyAPI.pdb">
-      <publishTime>10/30/2018 18:41:01</publishTime>
+      <publishTime>11/30/2018 17:50:52</publishTime>
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
       <publishTime>09/28/2018 16:02:05</publishTime>
@@ -70,16 +70,19 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/28/2018 16:02:05</publishTime>
     </File>
     <File Include="Content/LogFile.txt">
-      <publishTime>10/30/2018 16:17:21</publishTime>
+      <publishTime>11/30/2018 14:22:36</publishTime>
+    </File>
+    <File Include="Controllers/VisitorController.cs">
+      <publishTime>10/13/2018 12:08:32</publishTime>
     </File>
     <File Include="packages.config">
       <publishTime>09/28/2018 16:02:05</publishTime>
     </File>
     <File Include="PrecompiledApp.config">
-      <publishTime>10/30/2018 18:41:02</publishTime>
+      <publishTime>11/30/2018 17:51:50</publishTime>
     </File>
     <File Include="SocietyDB.edmx.diagram">
-      <publishTime>10/30/2018 18:33:47</publishTime>
+      <publishTime>11/27/2018 13:08:23</publishTime>
     </File>
     <File Include="Views/Web.config">
       <publishTime>09/28/2018 16:02:04</publishTime>

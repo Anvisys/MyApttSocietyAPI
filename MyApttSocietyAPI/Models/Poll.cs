@@ -8,6 +8,7 @@ namespace MyApttSocietyAPI.Models
     public class Poll
     {
         public int PollID { get; set; }
+        public int SocietyId { get; set; }
 
         public int ResID { get; set; }
 

@@ -62,7 +62,7 @@ namespace MyApttSocietyAPI.Controllers
                 {
                     var count = value.EndIndex - value.StartIndex;
                     var Complaints = (from comp in context.ViewComplaintSummaries
-                                      where comp.ResidentID == value.ResId && ints1.Contains(comp.LastStatus)
+                                      where comp.FlatNumber == value.FlatNumber && comp.SocietyID== value.SocietyID && ints1.Contains(comp.LastStatus)
                                       orderby comp.LastAt descending
                                       select comp);
 

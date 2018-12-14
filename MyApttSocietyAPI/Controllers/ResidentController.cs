@@ -21,10 +21,10 @@ namespace MyApttSocietyAPI.Controllers
         // GET: api/Resident
          [Route("All")]
          [HttpGet]
-        public IEnumerable<ViewResident> Get()
+        public IEnumerable<ViewSocietyUser> Get()
         {
             var context = new SocietyDBEntities();
-            var Residents = (from res in context.ViewResidents
+            var Residents = (from res in context.ViewSocietyUsers
                              where (res.DeActiveDate == null) || (DbFunctions.TruncateTime(res.DeActiveDate) > DbFunctions.TruncateTime(DateTime.UtcNow))
                              select res);
             return Residents;
@@ -33,16 +33,16 @@ namespace MyApttSocietyAPI.Controllers
         // GET: api/Resident/5
          [Route("User/{id}")]
          [HttpGet]
-        public ViewResident GetByUserID(int id)
+         public IEnumerable<ViewSocietyUser> GetByUserID(int id)
         {
             try
             {
-                using (var context = new SocietyDBEntities())
-                {
-                    var L2EQuery = context.ViewResidents.Where(u => u.UserID == id);
-                    var user = L2EQuery.FirstOrDefault<ViewResident>();
-                    return user;
-                }
+                    var context = new SocietyDBEntities();
+                    var Residents = (from res in context.ViewSocietyUsers
+                                     where ((res.DeActiveDate == null) || (DbFunctions.TruncateTime(res.DeActiveDate) > DbFunctions.TruncateTime(DateTime.UtcNow))) && res.UserID ==id
+                                     select res);
+                    return Residents;
+                
             }
             catch (Exception ex)
             {
@@ -55,14 +55,14 @@ namespace MyApttSocietyAPI.Controllers
         // GET: api/Resident/5
          [Route("Mobile/{mobile}")]
          [HttpGet]
-         public ViewResident GetByMobile(String mobile)
+         public ViewSocietyUser GetByMobile(String mobile)
         {
             try
             {
                 using (var context = new SocietyDBEntities())
                 {
-                    var L2EQuery = context.ViewResidents.Where(u => u.MobileNo == mobile);
-                    var user = L2EQuery.FirstOrDefault<ViewResident>();
+                    var L2EQuery = context.ViewSocietyUsers.Where(u => u.MobileNo == mobile);
+                    var user = L2EQuery.FirstOrDefault<ViewSocietyUser>();
                      return user;
                 }
             }
@@ -149,29 +149,28 @@ namespace MyApttSocietyAPI.Controllers
         [Route("AddResident")]
         [HttpPost]
         // POST: api/Resident/AddResident
-        public HttpResponseMessage AddResident([FromBody]Resident Res)
+        public HttpResponseMessage AddResident([FromBody]SocietyUser Res)
         {
             String resp;
             try
             {
                 using (var context = new SocietyDBEntities())
                 {
-                    var usr = context.Residents;
-                    usr.Add(new Resident()
-                    {
-                        UserID = Res.UserID,
-                        FlatID = Res.FlatID,
-                        Type = Res.Type,
-                        FirstName = Res.FirstName,
-                        LastName = Res.LastName,
-                        MobileNo = Res.MobileNo,
-                        EmailId = Res.EmailId,
-                        Addres = Res.Addres,
-                        ActiveDate = Res.ActiveDate,
-                        DeActiveDate = Res.DeActiveDate,
-                        Function="ADD",
-                        ModifiedDate = DateTime.Now.ToUniversalTime()          
-                    });
+                    var usr = context.SocietyUsers;
+                    //usr.Add(new SocietyUser()
+                    //{
+                    //    UserID = Res.UserID,
+                    //    FlatID = Res.FlatID,
+                    //    Type = Res.Type,
+                    //    CompanyName = Res.CompanyName,
+                    //    ServiceType = Res.ServiceType,
+                    //    ActiveDate = Res.ActiveDate,
+                    //    SocietyID = Res.SocietyID,
+         
+                    //    ModifiedDate = DateTime.Now.ToUniversalTime()          
+                    //});
+
+                    usr.Add(Res);
                     context.SaveChanges();
 
                     context.SaveChanges();

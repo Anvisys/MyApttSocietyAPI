@@ -18,13 +18,13 @@ namespace MyApttSocietyAPI.Controllers
         }
 
         // GET: api/Flat/5
-        public ViewFlat Get(String id)
+        public ViewFlat Get(int id)
         {
             try
             {
                 using (var context = new SocietyDBEntities())
                 {
-                    var L2EQuery = context.ViewFlats.Where(f => f.FlatNumber == id);
+                    var L2EQuery = context.ViewFlats.Where(f => f.ID == id);
                     var flat = L2EQuery.FirstOrDefault();
                     return flat;
                 }

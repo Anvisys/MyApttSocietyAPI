@@ -67,3 +67,4 @@ C:\aaWork\SoftwareApp\Git\MyApttSocietyAPI\MyApttSocietyAPI\bin\System.Web.WebPa
 C:\aaWork\SoftwareApp\Git\MyApttSocietyAPI\MyApttSocietyAPI\bin\System.Web.WebPages.Razor.xml
 C:\aaWork\SoftwareApp\Git\MyApttSocietyAPI\MyApttSocietyAPI\obj\Debug\MyApttSocietyAPI.dll
 C:\aaWork\SoftwareApp\Git\MyApttSocietyAPI\MyApttSocietyAPI\obj\Debug\MyApttSocietyAPI.pdb
+C:\aaWork\SoftwareApp\Git\MyApttSocietyAPI\MyApttSocietyAPI\obj\Debug\MyApttSocietyAPI.csprojResolveAssemblyReference.cache

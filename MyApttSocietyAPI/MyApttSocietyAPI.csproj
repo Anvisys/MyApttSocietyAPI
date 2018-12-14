@@ -246,6 +246,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SocietyDB.edmx</DependentUpon>
     </Compile>
+    <Compile Include="SocietyUser.cs">
+      <DependentUpon>SocietyDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="TempResident.cs">
       <DependentUpon>SocietyDB.tt</DependentUpon>
     </Compile>
@@ -288,10 +291,19 @@
     <Compile Include="ViewGeneratedBill.cs">
       <DependentUpon>SocietyDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewLatestBillCycle.cs">
+      <DependentUpon>SocietyDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="ViewLatestGeneratedBill.cs">
       <DependentUpon>SocietyDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewLatestGeneratedBill_Resident.cs">
+      <DependentUpon>SocietyDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="ViewLatestThread.cs">
+      <DependentUpon>SocietyDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewNotification.cs">
       <DependentUpon>SocietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewOwnerResident.cs">
@@ -306,7 +318,13 @@
     <Compile Include="ViewResident.cs">
       <DependentUpon>SocietyDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewSocietyUser.cs">
+      <DependentUpon>SocietyDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="ViewThreadSummaryNoImageCount.cs">
+      <DependentUpon>SocietyDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewUserImage.cs">
       <DependentUpon>SocietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="viewVisitorData.cs">

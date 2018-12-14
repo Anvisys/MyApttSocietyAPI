@@ -27,9 +27,22 @@ namespace MyApttSocietyAPI.Controllers
         public ShopImage GetByResID(int ResId)
         {
             var context = new SocietyDBEntities();
-            var Image = (from res in context.ResidentImages
+            var Image = (from res in context.ViewUserImages
                          where (res.ResID == ResId)
                              select new ShopImage() { ID = res.ResID, ImageString = res.Profile_image }).First();
+            return Image;
+        }
+
+
+        // GET: api/Image/5
+        [Route("User/{UserId}")]
+        [HttpGet]
+        public ShopImage GetByUserID(int UserId)
+        {
+            var context = new SocietyDBEntities();
+            var Image = (from res in context.ViewUserImages
+                         where (res.UserID == UserId)
+                         select new ShopImage() { ID = res.ResID, ImageString = res.Profile_image }).First();
             return Image;
         }
 

@@ -11,21 +11,29 @@ using System.Web.Http.Cors;
 namespace MyApttSocietyAPI.Controllers
 {
      [EnableCors(origins: "*", headers: "*", methods: "*")]
+
+     [RoutePrefix("api/ForumDiff")]
     public class ForumDiffController : ApiController
     {
         // GET: api/ForumDiff
+     
         public IEnumerable<string> Get()
         {
             return new string[] { "value1", "value2" };
         }
 
-        // GET: api/ForumDiff/5
-        public string Get(int id)
+
+        [Route("{SocietyID}")]
+        [HttpGet]
+         public string Get(int SocietyID)
         {
             return "value";
         }
 
         // POST: api/ForumDiff
+
+         [Route("{NewForumDiff}")]
+         [HttpPost]
         public IEnumerable<ViewThreadSummaryNoImageCount> Post([FromBody]Batch value)
         {
 
@@ -38,6 +46,7 @@ namespace MyApttSocietyAPI.Controllers
                 
                 var count = value.EndIndex - value.StartIndex;
                 var Forum = (from thread in context.ViewThreadSummaryNoImageCounts
+                             where thread.SocietyID == value.SocietyID
                              orderby thread.UpdatedAt descending
                              select thread);
                 return Forum.Skip(value.StartIndex).Take(count);

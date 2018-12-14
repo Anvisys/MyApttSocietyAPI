@@ -27,6 +27,7 @@ namespace MyApttSocietyAPI
         public System.DateTime ActualOutTime { get; set; }
         public string SecurityCode { get; set; }
         public System.DateTime StartTime { get; set; }
+        public System.DateTime EndTime { get; set; }
         public Nullable<int> SocietyId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }

@@ -50,6 +50,7 @@ namespace MyApttSocietyAPI.Controllers
                         MobileNo = Res.MobileNo,
                         EmailId = Res.EmailId,
                         Addres = Res.Addres,
+                        SocietyID = Res.SocietyID,
                         ActiveDate = DateTime.ParseExact(Res.ActiveDate, "dd/MM/yyyy", CultureInfo.InvariantCulture),
                         DeActiveDate = DateTime.ParseExact(Res.DeActiveDate, "dd/MM/yyyy", CultureInfo.InvariantCulture),
                         Function = "ADD",

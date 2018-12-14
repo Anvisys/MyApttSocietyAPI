@@ -50,7 +50,7 @@ namespace MyApttSocietyAPI.Controllers
         // GET: api/Vendor/5
         public IEnumerable<Vendor> Get(String id)
         {
-            DateTime lastDateTime = DateTime.ParseExact(id,"dd/mm/yyyy HH:MM:TT",null);
+            DateTime lastDateTime = DateTime.ParseExact(id,"dd/mm/yyyy HH:MM:SS",null);
             Log.log("Date found is  : " + lastDateTime.ToLongDateString());
 
             String sdate = "23/10/2016 4:05:00";
@@ -114,7 +114,7 @@ namespace MyApttSocietyAPI.Controllers
             {
                 var context = new SocietyDBEntities();
                 var vendor = (from vend in context.Vendors
-                              where vend.Date > lastDateTime
+                              where vend.Date > lastDateTime && vend.SocietyID == dateTime.SocietyID
                               select new Shop() { ID = vend.ID, VendorName = vend.VendorName, ContactNum = vend.ContactNum, Address = vend.Address, ShopCategory = vend.ShopCategory }
                              );
                                

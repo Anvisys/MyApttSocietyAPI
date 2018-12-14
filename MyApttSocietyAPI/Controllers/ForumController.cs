@@ -12,15 +12,20 @@ namespace MyApttSocietyAPI.Controllers
 {
 
        [EnableCors(origins: "*", headers: "*", methods: "*")]
+
+       [RoutePrefix("api/Forum")]
     public class ForumController : ApiController
     {
-        // GET: api/Forum
-        public IEnumerable<ViewThreadSummaryNoImageCount> Get()
+         
+         [Route("{SocietyID}")]
+         [HttpGet]
+           public IEnumerable<ViewThreadSummaryNoImageCount> Get(int SocietyID)
         {
             try
             {
                 var context = new SocietyDBEntities();
                 var Forum = (from thread in context.ViewThreadSummaryNoImageCounts
+                             where thread.SocietyID == SocietyID
                              orderby thread.UpdatedAt descending
                              select thread);
 
@@ -34,15 +39,16 @@ namespace MyApttSocietyAPI.Controllers
             }
         }
 
-        // GET: api/Forum/5
-        public IEnumerable<ViewForumNoImage> Get(int id)
+         [Route("{SocietyID}/Thread/{ThreadID}")]
+         [HttpGet]
+         public IEnumerable<ViewForumNoImage> Get(int SocietyID, int ThreadID)
         {
             try
             {
                 var context = new SocietyDBEntities();
 
                 var Thread = (from th in context.ViewForumNoImages
-                              where th.ThreadID == id
+                              where th.ThreadID == ThreadID && th.SocietyID == SocietyID
                               orderby th.UpdatedOn ascending
                               select th);
 
@@ -56,7 +62,8 @@ namespace MyApttSocietyAPI.Controllers
             }
         }
 
-        // POST: api/Forum
+         [Route("{NewForum}")]
+         [HttpPost]
         public HttpResponseMessage Post([FromBody]MyApttSocietyAPI.Models.Forum frm)
         {
 
@@ -90,8 +97,9 @@ namespace MyApttSocietyAPI.Controllers
                         ResID = frm.resID,
                         Topic = frm.Topic,
                         Thread = frm.CurrentThread,
+                        SocietyID = frm.SocietyId,
                         UpdatedOn = DateTime.Now.ToUniversalTime(),
-                        
+                     
                     });
                     context.SaveChanges();
 

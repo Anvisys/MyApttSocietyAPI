@@ -296,6 +296,21 @@ warning 6002: The table/view 'SocietyDB.dbo.Societybillplans' does not have a pr
     <Property Name="Applyto" Type="int" Nullable="false" />
     <Property Name="SocietyID" Type="int" Nullable="false" />
   </EntityType>
+  <EntityType Name="SocietyUser">
+    <Key>
+      <PropertyRef Name="ResID" />
+    </Key>
+    <Property Name="ResID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="FlatID" Type="int" Nullable="false" />
+    <Property Name="Type" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ServiceType" Type="int" Nullable="false" />
+    <Property Name="CompanyName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ActiveDate" Type="date" />
+    <Property Name="DeActiveDate" Type="datetime" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="SocietyID" Type="int" Nullable="false" />
+  </EntityType>
   <EntityType Name="TempResident">
     <Key>
       <PropertyRef Name="ResID" />
@@ -486,6 +501,7 @@ warning 6002: The table/view 'SocietyDB.dbo.ViewComplaintSummary' does not have 
       <PropertyRef Name="SocietyID" />
       <PropertyRef Name="CompID" />
       <PropertyRef Name="ResidentID" />
+      <PropertyRef Name="FirstName" />
       <PropertyRef Name="FlatNumber" />
       <PropertyRef Name="FirstStatusID" />
       <PropertyRef Name="Assignedto" />
@@ -495,7 +511,7 @@ warning 6002: The table/view 'SocietyDB.dbo.ViewComplaintSummary' does not have 
     <Property Name="SocietyID" Type="int" Nullable="false" />
     <Property Name="CompID" Type="int" Nullable="false" />
     <Property Name="ResidentID" Type="int" Nullable="false" />
-    <Property Name="FirstName" Type="varchar" MaxLength="50" />
+    <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="LastName" Type="varchar" MaxLength="50" />
     <Property Name="FlatNumber" Type="varchar" MaxLength="10" Nullable="false" />
     <Property Name="Age" Type="int" />
@@ -562,8 +578,6 @@ warning 6002: The table/view 'SocietyDB.dbo.ViewFlats' does not have a primary k
       <PropertyRef Name="BHK" />
       <PropertyRef Name="Floor" />
       <PropertyRef Name="Block" />
-      <PropertyRef Name="OwnerName" />
-      <PropertyRef Name="Ownermobile" />
     </Key>
     <Property Name="ID" Type="int" Nullable="false" />
     <Property Name="FlatNumber" Type="varchar" MaxLength="50" Nullable="false" />
@@ -572,9 +586,13 @@ warning 6002: The table/view 'SocietyDB.dbo.ViewFlats' does not have a primary k
     <Property Name="Floor" Type="int" Nullable="false" />
     <Property Name="Block" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="IntercomNumber" Type="int" />
-    <Property Name="OwnerName" Type="char" MaxLength="25" Nullable="false" />
+    <Property Name="FlatArea" Type="varchar" MaxLength="50" />
+    <Property Name="OwnerUserID" Type="int" />
+    <Property Name="OwnerFirstName" Type="varchar" MaxLength="50" />
+    <Property Name="OwnerLastName" Type="varchar" MaxLength="50" />
     <Property Name="OwnerEmail" Type="varchar" MaxLength="50" />
-    <Property Name="Ownermobile" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="OwnerMobile" Type="varchar" MaxLength="50" />
+    <Property Name="OwnerAddress" Type="varchar" MaxLength="100" />
     <Property Name="TenantUserID" Type="int" />
     <Property Name="TenantFirstName" Type="varchar" MaxLength="50" />
     <Property Name="TenantLastName" Type="varchar" MaxLength="50" />
@@ -589,21 +607,23 @@ warning 6002: The table/view 'SocietyDB.dbo.ViewForumNoImage' does not have a pr
   <EntityType Name="ViewForumNoImage">
     <Key>
       <PropertyRef Name="ID" />
-      <PropertyRef Name="FlatNumber" />
+      <PropertyRef Name="FirstName" />
       <PropertyRef Name="ResID" />
       <PropertyRef Name="ThreadID" />
       <PropertyRef Name="Topic" />
       <PropertyRef Name="UpdatedOn" />
+      <PropertyRef Name="SocietyID" />
     </Key>
     <Property Name="ID" Type="int" Nullable="false" />
-    <Property Name="FirstName" Type="varchar" MaxLength="50" />
+    <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="LastName" Type="varchar" MaxLength="50" />
-    <Property Name="FlatNumber" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="FlatNumber" Type="varchar" MaxLength="50" />
     <Property Name="ResID" Type="int" Nullable="false" />
     <Property Name="ThreadID" Type="int" Nullable="false" />
     <Property Name="Topic" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="Thread" Type="varchar" MaxLength="2000" />
     <Property Name="UpdatedOn" Type="datetime" Nullable="false" />
+    <Property Name="SocietyID" Type="int" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
 warning 6002: The table/view 'SocietyDB.dbo.ViewGeneratedBill' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -643,6 +663,34 @@ warning 6002: The table/view 'SocietyDB.dbo.ViewGeneratedBill' does not have a p
     <Property Name="TransactionID" Type="varchar" MaxLength="100" />
     <Property Name="InvoiceID" Type="varchar" MaxLength="100" />
     <Property Name="ModifiedAt" Type="datetime" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SocietyDB.dbo.ViewLatestBillCycle' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="ViewLatestBillCycle">
+    <Key>
+      <PropertyRef Name="SocietyID" />
+      <PropertyRef Name="FlatID" />
+      <PropertyRef Name="BillID" />
+      <PropertyRef Name="BillType" />
+      <PropertyRef Name="Rate" />
+      <PropertyRef Name="ChargeType" />
+      <PropertyRef Name="CycleType" />
+      <PropertyRef Name="created_date" />
+    </Key>
+    <Property Name="SocietyID" Type="int" Nullable="false" />
+    <Property Name="FlatID" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="FlatArea" Type="varchar" MaxLength="50" />
+    <Property Name="BillID" Type="int" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" MaxLength="50" />
+    <Property Name="LastName" Type="varchar" MaxLength="50" />
+    <Property Name="BillType" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Rate" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ChargeType" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CycleType" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CycleStart" Type="datetime" />
+    <Property Name="CycleEnd" Type="datetime" />
+    <Property Name="created_date" Type="datetime" Nullable="false" />
+    <Property Name="comments" Type="varchar" MaxLength="50" />
   </EntityType>
   <!--Errors Found During Generation:
 warning 6002: The table/view 'SocietyDB.dbo.ViewLatestGeneratedBill' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -685,6 +733,58 @@ warning 6002: The table/view 'SocietyDB.dbo.ViewLatestGeneratedBill' does not ha
     <Property Name="ModifiedAt" Type="datetime" />
   </EntityType>
   <!--Errors Found During Generation:
+warning 6002: The table/view 'SocietyDB.dbo.ViewLatestGeneratedBill_Resident' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="ViewLatestGeneratedBill_Resident">
+    <Key>
+      <PropertyRef Name="PayID" />
+      <PropertyRef Name="FlatNumber" />
+      <PropertyRef Name="SocietyID" />
+      <PropertyRef Name="BillID" />
+      <PropertyRef Name="BillType" />
+      <PropertyRef Name="Rate" />
+      <PropertyRef Name="ChargeType" />
+      <PropertyRef Name="CycleType" />
+      <PropertyRef Name="BillMonth" />
+      <PropertyRef Name="FlatID" />
+    </Key>
+    <Property Name="PayID" Type="int" Nullable="false" />
+    <Property Name="FlatNumber" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="SocietyID" Type="int" Nullable="false" />
+    <Property Name="BillStartDate" Type="datetime" />
+    <Property Name="BillEndDate" Type="datetime" />
+    <Property Name="BillID" Type="int" Nullable="false" />
+    <Property Name="BillType" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="BillDate" Type="datetime" />
+    <Property Name="Rate" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="BillDescription" Type="varchar" MaxLength="250" />
+    <Property Name="ChargeType" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CurrentBillAmount" Type="int" />
+    <Property Name="CycleType" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="PaymentDueDate" Type="date" />
+    <Property Name="BillMonth" Type="date" Nullable="false" />
+    <Property Name="AmountTobePaid" Type="int" />
+    <Property Name="PreviousMonthBalance" Type="int" />
+    <Property Name="AmountPaidDate" Type="date" />
+    <Property Name="AmountPaid" Type="int" />
+    <Property Name="CurrentMonthBalance" Type="int" />
+    <Property Name="PaymentMode" Type="varchar" MaxLength="50" />
+    <Property Name="TransactionID" Type="varchar" MaxLength="100" />
+    <Property Name="InvoiceID" Type="varchar" MaxLength="100" />
+    <Property Name="ModifiedAt" Type="datetime" />
+    <Property Name="FlatArea" Type="varchar" MaxLength="50" />
+    <Property Name="FlatID" Type="int" Nullable="false" />
+    <Property Name="OwnerUserID" Type="int" />
+    <Property Name="OwnerFirstName" Type="varchar" MaxLength="50" />
+    <Property Name="OwnerLastName" Type="varchar" MaxLength="50" />
+    <Property Name="OwnerEmail" Type="varchar" MaxLength="50" />
+    <Property Name="OwnerMobile" Type="varchar" MaxLength="50" />
+    <Property Name="TenantUserID" Type="int" />
+    <Property Name="TenantFirstName" Type="varchar" MaxLength="50" />
+    <Property Name="TenantLastName" Type="varchar" MaxLength="50" />
+    <Property Name="TenantEmail" Type="varchar" MaxLength="50" />
+    <Property Name="TenantMobile" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <!--Errors Found During Generation:
 warning 6002: The table/view 'SocietyDB.dbo.ViewLatestThread' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="ViewLatestThread">
     <Key>
@@ -700,6 +800,27 @@ warning 6002: The table/view 'SocietyDB.dbo.ViewLatestThread' does not have a pr
     <Property Name="Topic" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="latestThread" Type="varchar" MaxLength="2000" />
     <Property Name="UpdatedAt" Type="datetime" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SocietyDB.dbo.ViewNotifications' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="ViewNotifications">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="Date" />
+      <PropertyRef Name="send_by" />
+      <PropertyRef Name="SocietyID" />
+      <PropertyRef Name="EndDate" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="Notification" Type="varchar" MaxLength="650" />
+    <Property Name="Date" Type="smalldatetime" Nullable="false" />
+    <Property Name="AttachName" Type="varchar" MaxLength="50" />
+    <Property Name="send_by" Type="int" Nullable="false" />
+    <Property Name="SocietyID" Type="int" Nullable="false" />
+    <Property Name="EndDate" Type="date" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" MaxLength="50" />
+    <Property Name="LastName" Type="varchar" MaxLength="50" />
+    <Property Name="FlatID" Type="varchar" MaxLength="50" />
   </EntityType>
   <!--Errors Found During Generation:
 warning 6002: The table/view 'SocietyDB.dbo.ViewOwnerResidents' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -789,6 +910,42 @@ warning 6002: The table/view 'SocietyDB.dbo.ViewResidents' does not have a prima
     <Property Name="IntercomNumber" Type="int" />
   </EntityType>
   <!--Errors Found During Generation:
+warning 6002: The table/view 'SocietyDB.dbo.ViewSocietyUsers' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="ViewSocietyUsers">
+    <Key>
+      <PropertyRef Name="ResID" />
+      <PropertyRef Name="UserID" />
+      <PropertyRef Name="FlatID" />
+      <PropertyRef Name="Type" />
+      <PropertyRef Name="SocietyID" />
+      <PropertyRef Name="ServiceType" />
+      <PropertyRef Name="CompanyName" />
+      <PropertyRef Name="FirstName" />
+      <PropertyRef Name="MobileNo" />
+      <PropertyRef Name="SocietyName" />
+      <PropertyRef Name="FlatNumber" />
+    </Key>
+    <Property Name="ResID" Type="int" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="FlatID" Type="int" Nullable="false" />
+    <Property Name="Type" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ActiveDate" Type="date" />
+    <Property Name="DeActiveDate" Type="datetime" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="SocietyID" Type="int" Nullable="false" />
+    <Property Name="ServiceType" Type="int" Nullable="false" />
+    <Property Name="CompanyName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastName" Type="varchar" MaxLength="50" />
+    <Property Name="MobileNo" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="EmailId" Type="varchar" MaxLength="50" />
+    <Property Name="Gender" Type="char" MaxLength="20" />
+    <Property Name="ParentName" Type="char" MaxLength="25" />
+    <Property Name="Address" Type="varchar" MaxLength="100" />
+    <Property Name="SocietyName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="FlatNumber" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
 warning 6002: The table/view 'SocietyDB.dbo.ViewThreadSummaryNoImageCount' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="ViewThreadSummaryNoImageCount">
     <Key>
@@ -796,28 +953,39 @@ warning 6002: The table/view 'SocietyDB.dbo.ViewThreadSummaryNoImageCount' does 
       <PropertyRef Name="ThreadID" />
       <PropertyRef Name="Topic" />
       <PropertyRef Name="InitiatedAt" />
-      <PropertyRef Name="firstFlat" />
+      <PropertyRef Name="Initiater" />
       <PropertyRef Name="FirstResID" />
       <PropertyRef Name="UpdatedAt" />
-      <PropertyRef Name="lastFlat" />
+      <PropertyRef Name="CurrentPostBy" />
       <PropertyRef Name="LastResID" />
-      <PropertyRef Name="FirstThread" />
-      <PropertyRef Name="latestThread" />
+      <PropertyRef Name="SocietyID" />
     </Key>
     <Property Name="FirstID" Type="int" Nullable="false" />
     <Property Name="ThreadID" Type="int" Nullable="false" />
     <Property Name="Topic" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="FirstThread" Type="varchar" MaxLength="2000" Nullable="false" />
+    <Property Name="FirstThread" Type="varchar" MaxLength="2000" />
     <Property Name="InitiatedAt" Type="datetime" Nullable="false" />
-    <Property Name="firstFlat" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="Initiater" Type="varchar" MaxLength="50" />
+    <Property Name="firstFlat" Type="varchar" MaxLength="50" />
+    <Property Name="Initiater" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="FirstResID" Type="int" Nullable="false" />
-    <Property Name="latestThread" Type="varchar" MaxLength="2000" Nullable="false" />
+    <Property Name="latestThread" Type="varchar" MaxLength="2000" />
     <Property Name="UpdatedAt" Type="datetime" Nullable="false" />
-    <Property Name="lastFlat" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="CurrentPostBy" Type="varchar" MaxLength="50" />
+    <Property Name="lastFlat" Type="varchar" MaxLength="50" />
+    <Property Name="CurrentPostBy" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="LastResID" Type="int" Nullable="false" />
     <Property Name="commentsCount" Type="int" />
+    <Property Name="SocietyID" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SocietyDB.dbo.ViewUserImage' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="ViewUserImage">
+    <Key>
+      <PropertyRef Name="ResID" />
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="ResID" Type="int" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="Profile_image" Type="image" />
   </EntityType>
   <!--Errors Found During Generation:
 warning 6002: The table/view 'SocietyDB.dbo.viewVisitorData' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -835,6 +1003,10 @@ warning 6002: The table/view 'SocietyDB.dbo.viewVisitorData' does not have a pri
       <PropertyRef Name="ActualOutTime" />
       <PropertyRef Name="SecurityCode" />
       <PropertyRef Name="StartTime" />
+      <PropertyRef Name="EndTime" />
+      <PropertyRef Name="FirstName" />
+      <PropertyRef Name="ResidentMobile" />
+      <PropertyRef Name="Type" />
     </Key>
     <Property Name="RequestId" Type="int" Nullable="false" />
     <Property Name="VisitorId" Type="int" Nullable="false" />
@@ -849,11 +1021,12 @@ warning 6002: The table/view 'SocietyDB.dbo.viewVisitorData' does not have a pri
     <Property Name="ActualOutTime" Type="datetime" Nullable="false" />
     <Property Name="SecurityCode" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="StartTime" Type="datetime" Nullable="false" />
+    <Property Name="EndTime" Type="datetime" Nullable="false" />
     <Property Name="SocietyId" Type="int" />
-    <Property Name="FirstName" Type="varchar" MaxLength="50" />
+    <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="LastName" Type="varchar" MaxLength="50" />
-    <Property Name="ResidentMobile" Type="varchar" MaxLength="50" />
-    <Property Name="Type" Type="varchar" MaxLength="50" />
+    <Property Name="ResidentMobile" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Type" Type="varchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
 warning 6002: The table/view 'SocietyDB.dbo.WatchViewFirstThreadNoImage' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -888,6 +1061,7 @@ warning 6002: The table/view 'SocietyDB.dbo.WatchViewFirstThreadNoImage' does no
     <EntitySet Name="PollingData" EntityType="Self.PollingData" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Resident" EntityType="Self.Resident" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ResidentImage" EntityType="Self.ResidentImage" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SocietyUser" EntityType="Self.SocietyUser" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TempResident" EntityType="Self.TempResident" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TempUsers" EntityType="Self.TempUsers" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Vendors" EntityType="Self.Vendors" Schema="dbo" store:Type="Tables" />
@@ -1086,9 +1260,13 @@ warning 6002: The table/view 'SocietyDB.dbo.WatchViewFirstThreadNoImage' does no
     [ViewFlats].[Floor] AS [Floor], 
     [ViewFlats].[Block] AS [Block], 
     [ViewFlats].[IntercomNumber] AS [IntercomNumber], 
-    [ViewFlats].[OwnerName] AS [OwnerName], 
+    [ViewFlats].[FlatArea] AS [FlatArea], 
+    [ViewFlats].[OwnerUserID] AS [OwnerUserID], 
+    [ViewFlats].[OwnerFirstName] AS [OwnerFirstName], 
+    [ViewFlats].[OwnerLastName] AS [OwnerLastName], 
     [ViewFlats].[OwnerEmail] AS [OwnerEmail], 
-    [ViewFlats].[Ownermobile] AS [Ownermobile], 
+    [ViewFlats].[OwnerMobile] AS [OwnerMobile], 
+    [ViewFlats].[OwnerAddress] AS [OwnerAddress], 
     [ViewFlats].[TenantUserID] AS [TenantUserID], 
     [ViewFlats].[TenantFirstName] AS [TenantFirstName], 
     [ViewFlats].[TenantLastName] AS [TenantLastName], 
@@ -1109,7 +1287,8 @@ warning 6002: The table/view 'SocietyDB.dbo.WatchViewFirstThreadNoImage' does no
     [ViewForumNoImage].[ThreadID] AS [ThreadID], 
     [ViewForumNoImage].[Topic] AS [Topic], 
     [ViewForumNoImage].[Thread] AS [Thread], 
-    [ViewForumNoImage].[UpdatedOn] AS [UpdatedOn]
+    [ViewForumNoImage].[UpdatedOn] AS [UpdatedOn], 
+    [ViewForumNoImage].[SocietyID] AS [SocietyID]
     FROM [dbo].[ViewForumNoImage] AS [ViewForumNoImage]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="ViewGeneratedBill" EntityType="Self.ViewGeneratedBill" store:Type="Views" store:Schema="dbo">
@@ -1140,6 +1319,24 @@ warning 6002: The table/view 'SocietyDB.dbo.WatchViewFirstThreadNoImage' does no
     [ViewGeneratedBill].[ModifiedAt] AS [ModifiedAt]
     FROM [dbo].[ViewGeneratedBill] AS [ViewGeneratedBill]</DefiningQuery>
     </EntitySet>
+    <EntitySet Name="ViewLatestBillCycle" EntityType="Self.ViewLatestBillCycle" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [ViewLatestBillCycle].[SocietyID] AS [SocietyID], 
+    [ViewLatestBillCycle].[FlatID] AS [FlatID], 
+    [ViewLatestBillCycle].[FlatArea] AS [FlatArea], 
+    [ViewLatestBillCycle].[BillID] AS [BillID], 
+    [ViewLatestBillCycle].[FirstName] AS [FirstName], 
+    [ViewLatestBillCycle].[LastName] AS [LastName], 
+    [ViewLatestBillCycle].[BillType] AS [BillType], 
+    [ViewLatestBillCycle].[Rate] AS [Rate], 
+    [ViewLatestBillCycle].[ChargeType] AS [ChargeType], 
+    [ViewLatestBillCycle].[CycleType] AS [CycleType], 
+    [ViewLatestBillCycle].[CycleStart] AS [CycleStart], 
+    [ViewLatestBillCycle].[CycleEnd] AS [CycleEnd], 
+    [ViewLatestBillCycle].[created_date] AS [created_date], 
+    [ViewLatestBillCycle].[comments] AS [comments]
+    FROM [dbo].[ViewLatestBillCycle] AS [ViewLatestBillCycle]</DefiningQuery>
+    </EntitySet>
     <EntitySet Name="ViewLatestGeneratedBill" EntityType="Self.ViewLatestGeneratedBill" store:Type="Views" store:Schema="dbo">
       <DefiningQuery>SELECT 
     [ViewLatestGeneratedBill].[PayID] AS [PayID], 
@@ -1169,6 +1366,46 @@ warning 6002: The table/view 'SocietyDB.dbo.WatchViewFirstThreadNoImage' does no
     [ViewLatestGeneratedBill].[ModifiedAt] AS [ModifiedAt]
     FROM [dbo].[ViewLatestGeneratedBill] AS [ViewLatestGeneratedBill]</DefiningQuery>
     </EntitySet>
+    <EntitySet Name="ViewLatestGeneratedBill_Resident" EntityType="Self.ViewLatestGeneratedBill_Resident" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [ViewLatestGeneratedBill_Resident].[PayID] AS [PayID], 
+    [ViewLatestGeneratedBill_Resident].[FlatNumber] AS [FlatNumber], 
+    [ViewLatestGeneratedBill_Resident].[SocietyID] AS [SocietyID], 
+    [ViewLatestGeneratedBill_Resident].[BillStartDate] AS [BillStartDate], 
+    [ViewLatestGeneratedBill_Resident].[BillEndDate] AS [BillEndDate], 
+    [ViewLatestGeneratedBill_Resident].[BillID] AS [BillID], 
+    [ViewLatestGeneratedBill_Resident].[BillType] AS [BillType], 
+    [ViewLatestGeneratedBill_Resident].[BillDate] AS [BillDate], 
+    [ViewLatestGeneratedBill_Resident].[Rate] AS [Rate], 
+    [ViewLatestGeneratedBill_Resident].[BillDescription] AS [BillDescription], 
+    [ViewLatestGeneratedBill_Resident].[ChargeType] AS [ChargeType], 
+    [ViewLatestGeneratedBill_Resident].[CurrentBillAmount] AS [CurrentBillAmount], 
+    [ViewLatestGeneratedBill_Resident].[CycleType] AS [CycleType], 
+    [ViewLatestGeneratedBill_Resident].[PaymentDueDate] AS [PaymentDueDate], 
+    [ViewLatestGeneratedBill_Resident].[BillMonth] AS [BillMonth], 
+    [ViewLatestGeneratedBill_Resident].[AmountTobePaid] AS [AmountTobePaid], 
+    [ViewLatestGeneratedBill_Resident].[PreviousMonthBalance] AS [PreviousMonthBalance], 
+    [ViewLatestGeneratedBill_Resident].[AmountPaidDate] AS [AmountPaidDate], 
+    [ViewLatestGeneratedBill_Resident].[AmountPaid] AS [AmountPaid], 
+    [ViewLatestGeneratedBill_Resident].[CurrentMonthBalance] AS [CurrentMonthBalance], 
+    [ViewLatestGeneratedBill_Resident].[PaymentMode] AS [PaymentMode], 
+    [ViewLatestGeneratedBill_Resident].[TransactionID] AS [TransactionID], 
+    [ViewLatestGeneratedBill_Resident].[InvoiceID] AS [InvoiceID], 
+    [ViewLatestGeneratedBill_Resident].[ModifiedAt] AS [ModifiedAt], 
+    [ViewLatestGeneratedBill_Resident].[FlatArea] AS [FlatArea], 
+    [ViewLatestGeneratedBill_Resident].[FlatID] AS [FlatID], 
+    [ViewLatestGeneratedBill_Resident].[OwnerUserID] AS [OwnerUserID], 
+    [ViewLatestGeneratedBill_Resident].[OwnerFirstName] AS [OwnerFirstName], 
+    [ViewLatestGeneratedBill_Resident].[OwnerLastName] AS [OwnerLastName], 
+    [ViewLatestGeneratedBill_Resident].[OwnerEmail] AS [OwnerEmail], 
+    [ViewLatestGeneratedBill_Resident].[OwnerMobile] AS [OwnerMobile], 
+    [ViewLatestGeneratedBill_Resident].[TenantUserID] AS [TenantUserID], 
+    [ViewLatestGeneratedBill_Resident].[TenantFirstName] AS [TenantFirstName], 
+    [ViewLatestGeneratedBill_Resident].[TenantLastName] AS [TenantLastName], 
+    [ViewLatestGeneratedBill_Resident].[TenantEmail] AS [TenantEmail], 
+    [ViewLatestGeneratedBill_Resident].[TenantMobile] AS [TenantMobile]
+    FROM [dbo].[ViewLatestGeneratedBill_Resident] AS [ViewLatestGeneratedBill_Resident]</DefiningQuery>
+    </EntitySet>
     <EntitySet Name="ViewLatestThread" EntityType="Self.ViewLatestThread" store:Type="Views" store:Schema="dbo">
       <DefiningQuery>SELECT 
     [ViewLatestThread].[ThreadID] AS [ThreadID], 
@@ -1178,6 +1415,20 @@ warning 6002: The table/view 'SocietyDB.dbo.WatchViewFirstThreadNoImage' does no
     [ViewLatestThread].[latestThread] AS [latestThread], 
     [ViewLatestThread].[UpdatedAt] AS [UpdatedAt]
     FROM [dbo].[ViewLatestThread] AS [ViewLatestThread]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="ViewNotifications" EntityType="Self.ViewNotifications" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [ViewNotifications].[ID] AS [ID], 
+    [ViewNotifications].[Notification] AS [Notification], 
+    [ViewNotifications].[Date] AS [Date], 
+    [ViewNotifications].[AttachName] AS [AttachName], 
+    [ViewNotifications].[send_by] AS [send_by], 
+    [ViewNotifications].[SocietyID] AS [SocietyID], 
+    [ViewNotifications].[EndDate] AS [EndDate], 
+    [ViewNotifications].[FirstName] AS [FirstName], 
+    [ViewNotifications].[LastName] AS [LastName], 
+    [ViewNotifications].[FlatID] AS [FlatID]
+    FROM [dbo].[ViewNotifications] AS [ViewNotifications]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="ViewOwnerResidents" EntityType="Self.ViewOwnerResidents" store:Type="Views" store:Schema="dbo">
       <DefiningQuery>SELECT 
@@ -1238,6 +1489,29 @@ warning 6002: The table/view 'SocietyDB.dbo.WatchViewFirstThreadNoImage' does no
     [ViewResidents].[IntercomNumber] AS [IntercomNumber]
     FROM [dbo].[ViewResidents] AS [ViewResidents]</DefiningQuery>
     </EntitySet>
+    <EntitySet Name="ViewSocietyUsers" EntityType="Self.ViewSocietyUsers" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [ViewSocietyUsers].[ResID] AS [ResID], 
+    [ViewSocietyUsers].[UserID] AS [UserID], 
+    [ViewSocietyUsers].[FlatID] AS [FlatID], 
+    [ViewSocietyUsers].[Type] AS [Type], 
+    [ViewSocietyUsers].[ActiveDate] AS [ActiveDate], 
+    [ViewSocietyUsers].[DeActiveDate] AS [DeActiveDate], 
+    [ViewSocietyUsers].[ModifiedDate] AS [ModifiedDate], 
+    [ViewSocietyUsers].[SocietyID] AS [SocietyID], 
+    [ViewSocietyUsers].[ServiceType] AS [ServiceType], 
+    [ViewSocietyUsers].[CompanyName] AS [CompanyName], 
+    [ViewSocietyUsers].[FirstName] AS [FirstName], 
+    [ViewSocietyUsers].[LastName] AS [LastName], 
+    [ViewSocietyUsers].[MobileNo] AS [MobileNo], 
+    [ViewSocietyUsers].[EmailId] AS [EmailId], 
+    [ViewSocietyUsers].[Gender] AS [Gender], 
+    [ViewSocietyUsers].[ParentName] AS [ParentName], 
+    [ViewSocietyUsers].[Address] AS [Address], 
+    [ViewSocietyUsers].[SocietyName] AS [SocietyName], 
+    [ViewSocietyUsers].[FlatNumber] AS [FlatNumber]
+    FROM [dbo].[ViewSocietyUsers] AS [ViewSocietyUsers]</DefiningQuery>
+    </EntitySet>
     <EntitySet Name="ViewThreadSummaryNoImageCount" EntityType="Self.ViewThreadSummaryNoImageCount" store:Type="Views" store:Schema="dbo">
       <DefiningQuery>SELECT 
     [ViewThreadSummaryNoImageCount].[FirstID] AS [FirstID], 
@@ -1253,8 +1527,16 @@ warning 6002: The table/view 'SocietyDB.dbo.WatchViewFirstThreadNoImage' does no
     [ViewThreadSummaryNoImageCount].[lastFlat] AS [lastFlat], 
     [ViewThreadSummaryNoImageCount].[CurrentPostBy] AS [CurrentPostBy], 
     [ViewThreadSummaryNoImageCount].[LastResID] AS [LastResID], 
-    [ViewThreadSummaryNoImageCount].[commentsCount] AS [commentsCount]
+    [ViewThreadSummaryNoImageCount].[commentsCount] AS [commentsCount], 
+    [ViewThreadSummaryNoImageCount].[SocietyID] AS [SocietyID]
     FROM [dbo].[ViewThreadSummaryNoImageCount] AS [ViewThreadSummaryNoImageCount]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="ViewUserImage" EntityType="Self.ViewUserImage" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [ViewUserImage].[ResID] AS [ResID], 
+    [ViewUserImage].[UserID] AS [UserID], 
+    [ViewUserImage].[Profile_image] AS [Profile_image]
+    FROM [dbo].[ViewUserImage] AS [ViewUserImage]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="viewVisitorData" EntityType="Self.viewVisitorData" store:Type="Views" store:Schema="dbo">
       <DefiningQuery>SELECT 
@@ -1271,6 +1553,7 @@ warning 6002: The table/view 'SocietyDB.dbo.WatchViewFirstThreadNoImage' does no
     [viewVisitorData].[ActualOutTime] AS [ActualOutTime], 
     [viewVisitorData].[SecurityCode] AS [SecurityCode], 
     [viewVisitorData].[StartTime] AS [StartTime], 
+    [viewVisitorData].[EndTime] AS [EndTime], 
     [viewVisitorData].[SocietyId] AS [SocietyId], 
     [viewVisitorData].[FirstName] AS [FirstName], 
     [viewVisitorData].[LastName] AS [LastName], 

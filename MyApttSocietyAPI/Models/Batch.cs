@@ -19,5 +19,7 @@ namespace MyApttSocietyAPI.Models
         public String LastRefreshTime { get; set; }
 
         public int SocietyID { get; set; }
+
+        public String FlatNumber { get; set; }
     }
 }

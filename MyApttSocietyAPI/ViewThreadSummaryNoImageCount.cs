@@ -28,5 +28,6 @@ namespace MyApttSocietyAPI
         public string CurrentPostBy { get; set; }
         public int LastResID { get; set; }
         public Nullable<int> commentsCount { get; set; }
+        public int SocietyID { get; set; }
     }
 }
