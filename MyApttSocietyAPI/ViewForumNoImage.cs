@@ -18,6 +18,7 @@ namespace MyApttSocietyAPI
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string FlatNumber { get; set; }
+        public int UserID { get; set; }
         public int ResID { get; set; }
         public int ThreadID { get; set; }
         public string Topic { get; set; }

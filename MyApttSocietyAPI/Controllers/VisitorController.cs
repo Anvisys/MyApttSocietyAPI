@@ -80,7 +80,7 @@ namespace MyApttSocietyAPI.Controllers
                               where g.ResId == ResID && g.SocietyId == SocId
                               select g);
 
-                 return guest;
+                 return guest.ToList();
              }
              catch (Exception ex)
              {

@@ -23,6 +23,7 @@ namespace MyApttSocietyAPI
         public System.DateTime EndDate { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string FlatID { get; set; }
+        public Nullable<int> FlatID { get; set; }
+        public Nullable<int> UserID { get; set; }
     }
 }

@@ -19,18 +19,8 @@ namespace MyApttSocietyAPI
         public int Floor { get; set; }
         public string Block { get; set; }
         public Nullable<int> IntercomNumber { get; set; }
-        public string OwnerName { get; set; }
         public int BHK { get; set; }
-        public string Address { get; set; }
-        public string EmailId { get; set; }
-        public string MobileNo { get; set; }
         public int UserID { get; set; }
-        public string Type { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string MobileNoRes { get; set; }
-        public string EmailIdRes { get; set; }
-        public string UserLogin { get; set; }
         public string FlatArea { get; set; }
         public int SocietyID { get; set; }
     }

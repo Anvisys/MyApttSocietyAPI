@@ -58,6 +58,16 @@ namespace MyApttSocietyAPI.Controllers
                         comp.CompID = maxID + 1;
                     }
 
+                    var employee = (from emp in context.ViewSocietyUsers
+                                    orderby emp.ServiceType == comp.CompType && emp.SocietyID == comp.SocietyID descending
+                                    select emp);
+
+                    if (employee.Count() == 0)
+                    {
+                      employee = (from emp in context.ViewSocietyUsers
+                                  orderby emp.Type == "Admin" && emp.SocietyID == comp.SocietyID descending
+                                        select emp);
+                    }
 
                     c.Add(new Complaint()
                     {
@@ -68,7 +78,7 @@ namespace MyApttSocietyAPI.Controllers
                         CompTypeID = comp.CompType,
                         SeverityID = comp.CompSeverity,
                         Descrption = comp.CompDescription,
-                        Assignedto = comp.AssignedTo,
+                        Assignedto = employee.First().ResID,
                         ModifiedAt = DateTime.Now.ToUniversalTime(),
                         CurrentStatus = comp.CompStatusID,
 

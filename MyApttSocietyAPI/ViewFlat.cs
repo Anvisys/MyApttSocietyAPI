@@ -22,12 +22,14 @@ namespace MyApttSocietyAPI
         public string Block { get; set; }
         public Nullable<int> IntercomNumber { get; set; }
         public string FlatArea { get; set; }
+        public Nullable<int> OwnerResID { get; set; }
         public Nullable<int> OwnerUserID { get; set; }
         public string OwnerFirstName { get; set; }
         public string OwnerLastName { get; set; }
         public string OwnerEmail { get; set; }
         public string OwnerMobile { get; set; }
         public string OwnerAddress { get; set; }
+        public Nullable<int> TenantResID { get; set; }
         public Nullable<int> TenantUserID { get; set; }
         public string TenantFirstName { get; set; }
         public string TenantLastName { get; set; }

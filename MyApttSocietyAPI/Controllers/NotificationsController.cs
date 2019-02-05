@@ -13,14 +13,19 @@ using System.Drawing;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Drawing.Imaging;
+using System.Web.Http.Cors;
 
 namespace MyApttSocietyAPI.Controllers
 {
+
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
+    [RoutePrefix("api/Notifications")]
     public class NotificationsController : ApiController
     {
 
-       
-        // GET: api/Notifications
+
+        [Route("All")]
+        [HttpGet]  // GET: api/Notifications
         public IQueryable<Notification> Get()
         {
             var context = new SocietyDBEntities();
@@ -44,30 +49,40 @@ namespace MyApttSocietyAPI.Controllers
             
         }
 
-        // GET: api/Notifications/5
-        
-        public Notification Get(int id)
+        [Route("{SocietyID}")]
+        [HttpGet]
+
+        public IEnumerable<Notification> GetNotice(int SocietyID)
         {
             using (var context = new SocietyDBEntities())
             {
                 var notification = (from  notes in context.Notifications
-                                                where notes.ID == id 
-                                                select notes);
+                                    where notes.SocietyID == SocietyID && notes.EndDate < DateTime.UtcNow
+                                                select notes).Take(10);
 
-                if (notification.Count() == 1)
-                {
-                    return notification.First();
-                }
-                else {
-                    return new Notification {ID = -99, AttachName="a", Notification1="a" };
-                
-                }
+                return notification.ToList();
             }
-           
-           
-
-            
+          
+               
         }
+
+        [Route("old/{SocietyID}")]
+        [HttpGet]
+
+        public IEnumerable<Notification> GetOldNotice(int SocietyID)
+        {
+            using (var context = new SocietyDBEntities())
+            {
+                var notification = (from notes in context.Notifications
+                                    where notes.SocietyID == SocietyID && notes.EndDate > DateTime.UtcNow
+                                    select notes).Take(10);
+
+                return notification.ToList();
+            }
+
+        }
+
+
 
         // POST: api/Notifications
         public async Task<Notice> Post([FromBody]Notice value)

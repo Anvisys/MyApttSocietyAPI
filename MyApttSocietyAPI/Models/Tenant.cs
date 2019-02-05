@@ -9,7 +9,7 @@ namespace MyApttSocietyAPI.Models
     {
 
         public int UserID;
-        public String FlatID;
+        public int FlatID;
         public  String Type;
         public  String FirstName;
         public  String LastName;

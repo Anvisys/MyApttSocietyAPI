@@ -18,23 +18,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Employees">
-      <EntityTypeMapping TypeName="SocietyDBModel.Employee">
-        <MappingFragment StoreEntitySet="Employee">
-          <ScalarProperty Name="SocietyID" ColumnName="SocietyID" />
-          <ScalarProperty Name="DeActiveDate" ColumnName="DeActiveDate" />
-          <ScalarProperty Name="ActiveDate" ColumnName="ActiveDate" />
-          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
-          <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
-          <ScalarProperty Name="LastName" ColumnName="LastName" />
-          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
-          <ScalarProperty Name="ServiceType" ColumnName="ServiceType" />
-          <ScalarProperty Name="UserID" ColumnName="UserID" />
-          <ScalarProperty Name="ID" ColumnName="ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Fora">
       <EntityTypeMapping TypeName="SocietyDBModel.Forum">
         <MappingFragment StoreEntitySet="Forum">
@@ -94,26 +77,6 @@
           <ScalarProperty Name="ResID" ColumnName="ResID" />
           <ScalarProperty Name="PollID" ColumnName="PollID" />
           <ScalarProperty Name="ID" ColumnName="ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Residents">
-      <EntityTypeMapping TypeName="SocietyDBModel.Resident">
-        <MappingFragment StoreEntitySet="Resident">
-          <ScalarProperty Name="SocietyID" ColumnName="SocietyID" />
-          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-          <ScalarProperty Name="Function" ColumnName="Function" />
-          <ScalarProperty Name="Addres" ColumnName="Addres" />
-          <ScalarProperty Name="DeActiveDate" ColumnName="DeActiveDate" />
-          <ScalarProperty Name="ActiveDate" ColumnName="ActiveDate" />
-          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
-          <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
-          <ScalarProperty Name="LastName" ColumnName="LastName" />
-          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-          <ScalarProperty Name="Type" ColumnName="Type" />
-          <ScalarProperty Name="FlatID" ColumnName="FlatID" />
-          <ScalarProperty Name="UserID" ColumnName="UserID" />
-          <ScalarProperty Name="ResID" ColumnName="ResID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -189,31 +152,6 @@
           <ScalarProperty Name="CycleStart" ColumnName="CycleStart" />
           <ScalarProperty Name="BillID" ColumnName="BillID" />
           <ScalarProperty Name="FlatID" ColumnName="FlatID" />
-          <ScalarProperty Name="ID" ColumnName="ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Flats">
-      <EntityTypeMapping TypeName="SocietyDBModel.Flat">
-        <MappingFragment StoreEntitySet="Flats">
-          <ScalarProperty Name="SocietyID" ColumnName="SocietyID" />
-          <ScalarProperty Name="FlatArea" ColumnName="FlatArea" />
-          <ScalarProperty Name="UserLogin" ColumnName="UserLogin" />
-          <ScalarProperty Name="EmailIdRes" ColumnName="EmailIdRes" />
-          <ScalarProperty Name="MobileNoRes" ColumnName="MobileNoRes" />
-          <ScalarProperty Name="LastName" ColumnName="LastName" />
-          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-          <ScalarProperty Name="Type" ColumnName="Type" />
-          <ScalarProperty Name="UserID" ColumnName="UserID" />
-          <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
-          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
-          <ScalarProperty Name="Address" ColumnName="Address" />
-          <ScalarProperty Name="BHK" ColumnName="BHK" />
-          <ScalarProperty Name="OwnerName" ColumnName="OwnerName" />
-          <ScalarProperty Name="IntercomNumber" ColumnName="IntercomNumber" />
-          <ScalarProperty Name="Block" ColumnName="Block" />
-          <ScalarProperty Name="Floor" ColumnName="Floor" />
-          <ScalarProperty Name="FlatNumber" ColumnName="FlatNumber" />
           <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -357,24 +295,6 @@
           <ScalarProperty Name="Ans2" ColumnName="Ans2" />
           <ScalarProperty Name="Ans1" ColumnName="Ans1" />
           <ScalarProperty Name="PollID" ColumnName="PollID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="ViewResidents">
-      <EntityTypeMapping TypeName="SocietyDBModel.ViewResident">
-        <MappingFragment StoreEntitySet="ViewResidents">
-          <ScalarProperty Name="IntercomNumber" ColumnName="IntercomNumber" />
-          <ScalarProperty Name="FlatNumber" ColumnName="FlatNumber" />
-          <ScalarProperty Name="DeActiveDate" ColumnName="DeActiveDate" />
-          <ScalarProperty Name="ActiveDate" ColumnName="ActiveDate" />
-          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
-          <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
-          <ScalarProperty Name="LastName" ColumnName="LastName" />
-          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-          <ScalarProperty Name="Type" ColumnName="Type" />
-          <ScalarProperty Name="SocietyID" ColumnName="SocietyID" />
-          <ScalarProperty Name="UserID" ColumnName="UserID" />
-          <ScalarProperty Name="ResID" ColumnName="ResID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -523,23 +443,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="ViewEmployees">
-      <EntityTypeMapping TypeName="SocietyDBModel.ViewEmployee">
-        <MappingFragment StoreEntitySet="ViewEmployee">
-          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
-          <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
-          <ScalarProperty Name="LastName" ColumnName="LastName" />
-          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-          <ScalarProperty Name="DeActiveDate" ColumnName="DeActiveDate" />
-          <ScalarProperty Name="ActiveDate" ColumnName="ActiveDate" />
-          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
-          <ScalarProperty Name="ServiceType" ColumnName="ServiceType" />
-          <ScalarProperty Name="UserID" ColumnName="UserID" />
-          <ScalarProperty Name="SocietyID" ColumnName="SocietyID" />
-          <ScalarProperty Name="ID" ColumnName="ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Advertisements">
       <EntityTypeMapping TypeName="SocietyDBModel.Advertisement">
         <MappingFragment StoreEntitySet="Advertisement">
@@ -672,22 +575,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="ViewNotifications">
-      <EntityTypeMapping TypeName="SocietyDBModel.ViewNotification">
-        <MappingFragment StoreEntitySet="ViewNotifications">
-          <ScalarProperty Name="FlatID" ColumnName="FlatID" />
-          <ScalarProperty Name="LastName" ColumnName="LastName" />
-          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
-          <ScalarProperty Name="SocietyID" ColumnName="SocietyID" />
-          <ScalarProperty Name="send_by" ColumnName="send_by" />
-          <ScalarProperty Name="AttachName" ColumnName="AttachName" />
-          <ScalarProperty Name="Date" ColumnName="Date" />
-          <ScalarProperty Name="Notification" ColumnName="Notification" />
-          <ScalarProperty Name="ID" ColumnName="ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="ViewUserImages">
       <EntityTypeMapping TypeName="SocietyDBModel.ViewUserImage">
         <MappingFragment StoreEntitySet="ViewUserImage">
@@ -738,59 +625,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="ViewSocietyUsers">
-      <EntityTypeMapping TypeName="SocietyDBModel.ViewSocietyUser">
-        <MappingFragment StoreEntitySet="ViewSocietyUsers">
-          <ScalarProperty Name="FlatNumber" ColumnName="FlatNumber" />
-          <ScalarProperty Name="SocietyName" ColumnName="SocietyName" />
-          <ScalarProperty Name="Address" ColumnName="Address" />
-          <ScalarProperty Name="ParentName" ColumnName="ParentName" />
-          <ScalarProperty Name="Gender" ColumnName="Gender" />
-          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
-          <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
-          <ScalarProperty Name="LastName" ColumnName="LastName" />
-          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
-          <ScalarProperty Name="ServiceType" ColumnName="ServiceType" />
-          <ScalarProperty Name="SocietyID" ColumnName="SocietyID" />
-          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-          <ScalarProperty Name="DeActiveDate" ColumnName="DeActiveDate" />
-          <ScalarProperty Name="ActiveDate" ColumnName="ActiveDate" />
-          <ScalarProperty Name="Type" ColumnName="Type" />
-          <ScalarProperty Name="FlatID" ColumnName="FlatID" />
-          <ScalarProperty Name="UserID" ColumnName="UserID" />
-          <ScalarProperty Name="ResID" ColumnName="ResID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="ViewFlats">
-      <EntityTypeMapping TypeName="SocietyDBModel.ViewFlat">
-        <MappingFragment StoreEntitySet="ViewFlats">
-          <ScalarProperty Name="TenantTo" ColumnName="TenantTo" />
-          <ScalarProperty Name="TenantFrom" ColumnName="TenantFrom" />
-          <ScalarProperty Name="TenantAddress" ColumnName="TenantAddress" />
-          <ScalarProperty Name="TenantMobile" ColumnName="TenantMobile" />
-          <ScalarProperty Name="TenantEmail" ColumnName="TenantEmail" />
-          <ScalarProperty Name="TenantLastName" ColumnName="TenantLastName" />
-          <ScalarProperty Name="TenantFirstName" ColumnName="TenantFirstName" />
-          <ScalarProperty Name="TenantUserID" ColumnName="TenantUserID" />
-          <ScalarProperty Name="OwnerAddress" ColumnName="OwnerAddress" />
-          <ScalarProperty Name="OwnerMobile" ColumnName="OwnerMobile" />
-          <ScalarProperty Name="OwnerEmail" ColumnName="OwnerEmail" />
-          <ScalarProperty Name="OwnerLastName" ColumnName="OwnerLastName" />
-          <ScalarProperty Name="OwnerFirstName" ColumnName="OwnerFirstName" />
-          <ScalarProperty Name="OwnerUserID" ColumnName="OwnerUserID" />
-          <ScalarProperty Name="FlatArea" ColumnName="FlatArea" />
-          <ScalarProperty Name="IntercomNumber" ColumnName="IntercomNumber" />
-          <ScalarProperty Name="Block" ColumnName="Block" />
-          <ScalarProperty Name="Floor" ColumnName="Floor" />
-          <ScalarProperty Name="BHK" ColumnName="BHK" />
-          <ScalarProperty Name="SocietyId" ColumnName="SocietyId" />
-          <ScalarProperty Name="FlatNumber" ColumnName="FlatNumber" />
-          <ScalarProperty Name="ID" ColumnName="ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="ViewLatestGeneratedBill_Resident">
       <EntityTypeMapping TypeName="SocietyDBModel.ViewLatestGeneratedBill_Resident">
         <MappingFragment StoreEntitySet="ViewLatestGeneratedBill_Resident">
@@ -833,24 +667,80 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="ViewThreadSummaryNoImageCounts">
-      <EntityTypeMapping TypeName="SocietyDBModel.ViewThreadSummaryNoImageCount">
-        <MappingFragment StoreEntitySet="ViewThreadSummaryNoImageCount">
+    <EntitySetMapping Name="ViewFlats">
+      <EntityTypeMapping TypeName="SocietyDBModel.ViewFlat">
+        <MappingFragment StoreEntitySet="ViewFlats">
+          <ScalarProperty Name="TenantTo" ColumnName="TenantTo" />
+          <ScalarProperty Name="TenantFrom" ColumnName="TenantFrom" />
+          <ScalarProperty Name="TenantAddress" ColumnName="TenantAddress" />
+          <ScalarProperty Name="TenantMobile" ColumnName="TenantMobile" />
+          <ScalarProperty Name="TenantEmail" ColumnName="TenantEmail" />
+          <ScalarProperty Name="TenantLastName" ColumnName="TenantLastName" />
+          <ScalarProperty Name="TenantFirstName" ColumnName="TenantFirstName" />
+          <ScalarProperty Name="TenantUserID" ColumnName="TenantUserID" />
+          <ScalarProperty Name="TenantResID" ColumnName="TenantResID" />
+          <ScalarProperty Name="OwnerAddress" ColumnName="OwnerAddress" />
+          <ScalarProperty Name="OwnerMobile" ColumnName="OwnerMobile" />
+          <ScalarProperty Name="OwnerEmail" ColumnName="OwnerEmail" />
+          <ScalarProperty Name="OwnerLastName" ColumnName="OwnerLastName" />
+          <ScalarProperty Name="OwnerFirstName" ColumnName="OwnerFirstName" />
+          <ScalarProperty Name="OwnerUserID" ColumnName="OwnerUserID" />
+          <ScalarProperty Name="OwnerResID" ColumnName="OwnerResID" />
+          <ScalarProperty Name="FlatArea" ColumnName="FlatArea" />
+          <ScalarProperty Name="IntercomNumber" ColumnName="IntercomNumber" />
+          <ScalarProperty Name="Block" ColumnName="Block" />
+          <ScalarProperty Name="Floor" ColumnName="Floor" />
+          <ScalarProperty Name="BHK" ColumnName="BHK" />
+          <ScalarProperty Name="SocietyId" ColumnName="SocietyId" />
+          <ScalarProperty Name="FlatNumber" ColumnName="FlatNumber" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ViewSocietyUsers">
+      <EntityTypeMapping TypeName="SocietyDBModel.ViewSocietyUser">
+        <MappingFragment StoreEntitySet="ViewSocietyUsers">
+          <ScalarProperty Name="intercomNumber" ColumnName="intercomNumber" />
+          <ScalarProperty Name="CompType" ColumnName="CompType" />
+          <ScalarProperty Name="FlatNumber" ColumnName="FlatNumber" />
+          <ScalarProperty Name="SocietyName" ColumnName="SocietyName" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="ParentName" ColumnName="ParentName" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+          <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+          <ScalarProperty Name="ServiceType" ColumnName="ServiceType" />
           <ScalarProperty Name="SocietyID" ColumnName="SocietyID" />
-          <ScalarProperty Name="commentsCount" ColumnName="commentsCount" />
-          <ScalarProperty Name="LastResID" ColumnName="LastResID" />
-          <ScalarProperty Name="CurrentPostBy" ColumnName="CurrentPostBy" />
-          <ScalarProperty Name="lastFlat" ColumnName="lastFlat" />
-          <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
-          <ScalarProperty Name="latestThread" ColumnName="latestThread" />
-          <ScalarProperty Name="FirstResID" ColumnName="FirstResID" />
-          <ScalarProperty Name="Initiater" ColumnName="Initiater" />
-          <ScalarProperty Name="firstFlat" ColumnName="firstFlat" />
-          <ScalarProperty Name="InitiatedAt" ColumnName="InitiatedAt" />
-          <ScalarProperty Name="FirstThread" ColumnName="FirstThread" />
-          <ScalarProperty Name="Topic" ColumnName="Topic" />
-          <ScalarProperty Name="ThreadID" ColumnName="ThreadID" />
-          <ScalarProperty Name="FirstID" ColumnName="FirstID" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="DeActiveDate" ColumnName="DeActiveDate" />
+          <ScalarProperty Name="ActiveDate" ColumnName="ActiveDate" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="FlatID" ColumnName="FlatID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="ResID" ColumnName="ResID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ViewUsers">
+      <EntityTypeMapping TypeName="SocietyDBModel.ViewUser">
+        <MappingFragment StoreEntitySet="ViewUser">
+          <ScalarProperty Name="SocietyName" ColumnName="SocietyName" />
+          <ScalarProperty Name="UserType" ColumnName="UserType" />
+          <ScalarProperty Name="SocietyID" ColumnName="SocietyID" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Parentname" ColumnName="Parentname" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+          <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="UserLogin" ColumnName="UserLogin" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -863,9 +753,65 @@
           <ScalarProperty Name="Topic" ColumnName="Topic" />
           <ScalarProperty Name="ThreadID" ColumnName="ThreadID" />
           <ScalarProperty Name="ResID" ColumnName="ResID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
           <ScalarProperty Name="FlatNumber" ColumnName="FlatNumber" />
           <ScalarProperty Name="LastName" ColumnName="LastName" />
           <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ViewNotifications">
+      <EntityTypeMapping TypeName="SocietyDBModel.ViewNotification">
+        <MappingFragment StoreEntitySet="ViewNotifications">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="FlatID" ColumnName="FlatID" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="SocietyID" ColumnName="SocietyID" />
+          <ScalarProperty Name="send_by" ColumnName="send_by" />
+          <ScalarProperty Name="AttachName" ColumnName="AttachName" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Notification" ColumnName="Notification" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ViewThreadSummaryNoImageCounts">
+      <EntityTypeMapping TypeName="SocietyDBModel.ViewThreadSummaryNoImageCount">
+        <MappingFragment StoreEntitySet="ViewThreadSummaryNoImageCount">
+          <ScalarProperty Name="SocietyID" ColumnName="SocietyID" />
+          <ScalarProperty Name="commentsCount" ColumnName="commentsCount" />
+          <ScalarProperty Name="LastUserID" ColumnName="LastUserID" />
+          <ScalarProperty Name="LastResID" ColumnName="LastResID" />
+          <ScalarProperty Name="CurrentPostBy" ColumnName="CurrentPostBy" />
+          <ScalarProperty Name="lastFlat" ColumnName="lastFlat" />
+          <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+          <ScalarProperty Name="latestThread" ColumnName="latestThread" />
+          <ScalarProperty Name="FirstUserID" ColumnName="FirstUserID" />
+          <ScalarProperty Name="FirstResID" ColumnName="FirstResID" />
+          <ScalarProperty Name="Initiater" ColumnName="Initiater" />
+          <ScalarProperty Name="firstFlat" ColumnName="firstFlat" />
+          <ScalarProperty Name="InitiatedAt" ColumnName="InitiatedAt" />
+          <ScalarProperty Name="FirstThread" ColumnName="FirstThread" />
+          <ScalarProperty Name="Topic" ColumnName="Topic" />
+          <ScalarProperty Name="ThreadID" ColumnName="ThreadID" />
+          <ScalarProperty Name="FirstID" ColumnName="FirstID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Flats">
+      <EntityTypeMapping TypeName="SocietyDBModel.Flat">
+        <MappingFragment StoreEntitySet="Flats">
+          <ScalarProperty Name="SocietyID" ColumnName="SocietyID" />
+          <ScalarProperty Name="FlatArea" ColumnName="FlatArea" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="BHK" ColumnName="BHK" />
+          <ScalarProperty Name="IntercomNumber" ColumnName="IntercomNumber" />
+          <ScalarProperty Name="Block" ColumnName="Block" />
+          <ScalarProperty Name="Floor" ColumnName="Floor" />
+          <ScalarProperty Name="FlatNumber" ColumnName="FlatNumber" />
           <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>

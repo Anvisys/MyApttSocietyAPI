@@ -12,18 +12,21 @@ namespace MyApttSocietyAPI
     using System;
     using System.Collections.Generic;
     
-    public partial class Employee
+    public partial class ViewUser
     {
-        public int ID { get; set; }
         public int UserID { get; set; }
-        public Nullable<int> ServiceType { get; set; }
-        public string CompanyName { get; set; }
+        public string UserLogin { get; set; }
+        public string Password { get; set; }
         public string FirstName { get; set; }
+        public string MiddleName { get; set; }
         public string LastName { get; set; }
         public string MobileNo { get; set; }
         public string EmailId { get; set; }
-        public System.DateTime ActiveDate { get; set; }
-        public Nullable<System.DateTime> DeActiveDate { get; set; }
-        public int SocietyID { get; set; }
+        public string Gender { get; set; }
+        public string Parentname { get; set; }
+        public string Address { get; set; }
+        public Nullable<int> SocietyID { get; set; }
+        public string UserType { get; set; }
+        public string SocietyName { get; set; }
     }
 }

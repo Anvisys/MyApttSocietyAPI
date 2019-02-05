@@ -9,11 +9,17 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <_PublishTargetUrl>C:\aaWork\Publish\MyApttSocietyService</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
+    <File Include="Advertisement.cs">
+      <publishTime>10/11/2018 14:25:14</publishTime>
+    </File>
+    <File Include="BillCycle.cs">
+      <publishTime>09/28/2018 16:02:04</publishTime>
+    </File>
     <File Include="bin/App_global.asax.compiled">
-      <publishTime>11/30/2018 17:51:51</publishTime>
+      <publishTime>01/17/2019 16:55:22</publishTime>
     </File>
     <File Include="bin/App_global.asax.dll">
-      <publishTime>11/30/2018 17:51:51</publishTime>
+      <publishTime>01/17/2019 16:55:22</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>09/28/2018 16:02:05</publishTime>
@@ -28,10 +34,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/28/2018 16:02:05</publishTime>
     </File>
     <File Include="bin/MyApttSocietyAPI.dll">
-      <publishTime>11/30/2018 17:50:52</publishTime>
+      <publishTime>01/17/2019 16:55:20</publishTime>
     </File>
     <File Include="bin/MyApttSocietyAPI.pdb">
-      <publishTime>11/30/2018 17:50:52</publishTime>
+      <publishTime>01/17/2019 16:55:19</publishTime>
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
       <publishTime>09/28/2018 16:02:05</publishTime>
@@ -69,22 +75,178 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="bin/System.Web.WebPages.Razor.dll">
       <publishTime>09/28/2018 16:02:05</publishTime>
     </File>
+    <File Include="Complaint.cs">
+      <publishTime>09/28/2018 16:02:04</publishTime>
+    </File>
     <File Include="Content/LogFile.txt">
-      <publishTime>11/30/2018 14:22:36</publishTime>
+      <publishTime>01/17/2019 14:44:12</publishTime>
     </File>
     <File Include="Controllers/VisitorController.cs">
       <publishTime>10/13/2018 12:08:32</publishTime>
     </File>
+    <File Include="Employee.cs">
+      <publishTime>09/28/2018 16:02:04</publishTime>
+    </File>
+    <File Include="Flat.cs">
+      <publishTime>09/28/2018 16:02:04</publishTime>
+    </File>
+    <File Include="Forum.cs">
+      <publishTime>09/28/2018 16:02:04</publishTime>
+    </File>
+    <File Include="GCMList.cs">
+      <publishTime>09/28/2018 16:02:04</publishTime>
+    </File>
+    <File Include="GeneratedBill.cs">
+      <publishTime>09/28/2018 16:02:04</publishTime>
+    </File>
+    <File Include="ImageCheck.cs">
+      <publishTime>09/28/2018 16:02:04</publishTime>
+    </File>
+    <File Include="lukBillType.cs">
+      <publishTime>10/05/2018 15:12:59</publishTime>
+    </File>
+    <File Include="lukComplaintSeverity.cs">
+      <publishTime>10/05/2018 15:12:59</publishTime>
+    </File>
+    <File Include="lukComplaintStatu.cs">
+      <publishTime>10/05/2018 15:12:59</publishTime>
+    </File>
+    <File Include="lukComplaintType.cs">
+      <publishTime>10/05/2018 15:12:59</publishTime>
+    </File>
+    <File Include="lukVendorCategory.cs">
+      <publishTime>10/05/2018 15:12:59</publishTime>
+    </File>
+    <File Include="Notification.cs">
+      <publishTime>10/30/2018 18:33:51</publishTime>
+    </File>
     <File Include="packages.config">
       <publishTime>09/28/2018 16:02:05</publishTime>
     </File>
+    <File Include="PollingAnswer.cs">
+      <publishTime>09/28/2018 16:02:04</publishTime>
+    </File>
+    <File Include="PollingData.cs">
+      <publishTime>09/28/2018 16:02:04</publishTime>
+    </File>
     <File Include="PrecompiledApp.config">
-      <publishTime>11/30/2018 17:51:50</publishTime>
+      <publishTime>01/17/2019 16:55:21</publishTime>
+    </File>
+    <File Include="ResidentImage.cs">
+      <publishTime>09/28/2018 16:02:04</publishTime>
+    </File>
+    <File Include="Societybillplan.cs">
+      <publishTime>09/28/2018 16:02:04</publishTime>
+    </File>
+    <File Include="SocietyDB.Context.cs">
+      <publishTime>01/04/2019 16:42:58</publishTime>
+    </File>
+    <File Include="SocietyDB.Context.tt">
+      <publishTime>09/28/2018 16:02:04</publishTime>
+    </File>
+    <File Include="SocietyDB.cs">
+      <publishTime>01/04/2019 16:43:01</publishTime>
+    </File>
+    <File Include="SocietyDB.Designer.cs">
+      <publishTime>01/04/2019 16:43:01</publishTime>
+    </File>
+    <File Include="SocietyDB.edmx">
+      <publishTime>01/04/2019 16:42:55</publishTime>
     </File>
     <File Include="SocietyDB.edmx.diagram">
-      <publishTime>11/27/2018 13:08:23</publishTime>
+      <publishTime>01/14/2019 16:20:34</publishTime>
+    </File>
+    <File Include="SocietyDB.tt">
+      <publishTime>09/28/2018 16:02:04</publishTime>
+    </File>
+    <File Include="SocietyUser.cs">
+      <publishTime>11/26/2018 14:40:14</publishTime>
+    </File>
+    <File Include="TempResident.cs">
+      <publishTime>09/28/2018 16:02:04</publishTime>
+    </File>
+    <File Include="TempResidentView.cs">
+      <publishTime>09/28/2018 16:02:04</publishTime>
+    </File>
+    <File Include="TempUser.cs">
+      <publishTime>09/28/2018 16:02:04</publishTime>
+    </File>
+    <File Include="Vendor.cs">
+      <publishTime>10/03/2018 11:31:39</publishTime>
+    </File>
+    <File Include="ViewComplaintAge.cs">
+      <publishTime>09/28/2018 16:02:04</publishTime>
+    </File>
+    <File Include="ViewComplaintHistory.cs">
+      <publishTime>09/28/2018 16:02:04</publishTime>
+    </File>
+    <File Include="ViewComplaintInitiated.cs">
+      <publishTime>09/28/2018 16:02:04</publishTime>
+    </File>
+    <File Include="ViewComplaintLatest.cs">
+      <publishTime>09/28/2018 16:02:04</publishTime>
+    </File>
+    <File Include="ViewComplaintSummary.cs">
+      <publishTime>09/28/2018 16:02:04</publishTime>
+    </File>
+    <File Include="ViewEmployee.cs">
+      <publishTime>10/03/2018 11:31:39</publishTime>
+    </File>
+    <File Include="ViewFirstThreadwithCount.cs">
+      <publishTime>09/28/2018 16:02:04</publishTime>
+    </File>
+    <File Include="ViewFlat.cs">
+      <publishTime>12/15/2018 18:02:47</publishTime>
+    </File>
+    <File Include="ViewForumNoImage.cs">
+      <publishTime>11/27/2018 13:08:26</publishTime>
+    </File>
+    <File Include="ViewGeneratedBill.cs">
+      <publishTime>10/30/2018 18:33:51</publishTime>
+    </File>
+    <File Include="ViewLatestBillCycle.cs">
+      <publishTime>11/21/2018 16:56:12</publishTime>
+    </File>
+    <File Include="ViewLatestGeneratedBill.cs">
+      <publishTime>09/28/2018 16:02:04</publishTime>
+    </File>
+    <File Include="ViewLatestGeneratedBill_Resident.cs">
+      <publishTime>11/26/2018 15:50:45</publishTime>
+    </File>
+    <File Include="ViewLatestThread.cs">
+      <publishTime>09/28/2018 16:02:04</publishTime>
+    </File>
+    <File Include="ViewNotification.cs">
+      <publishTime>11/23/2018 14:31:43</publishTime>
+    </File>
+    <File Include="ViewOwnerResident.cs">
+      <publishTime>09/28/2018 16:02:04</publishTime>
+    </File>
+    <File Include="ViewPollCount.cs">
+      <publishTime>09/28/2018 16:02:04</publishTime>
+    </File>
+    <File Include="ViewPollDataWithCount.cs">
+      <publishTime>10/03/2018 11:46:40</publishTime>
     </File>
     <File Include="Views/Web.config">
+      <publishTime>09/28/2018 16:02:04</publishTime>
+    </File>
+    <File Include="ViewThreadSummaryNoImageCount.cs">
+      <publishTime>11/27/2018 13:01:08</publishTime>
+    </File>
+    <File Include="ViewUserImage.cs">
+      <publishTime>11/23/2018 14:31:43</publishTime>
+    </File>
+    <File Include="viewVisitorData.cs">
+      <publishTime>11/21/2018 17:03:42</publishTime>
+    </File>
+    <File Include="VisitorDetail.cs">
+      <publishTime>10/12/2018 15:32:55</publishTime>
+    </File>
+    <File Include="VisitorRequest.cs">
+      <publishTime>10/12/2018 15:32:55</publishTime>
+    </File>
+    <File Include="WatchViewFirstThreadNoImage.cs">
       <publishTime>09/28/2018 16:02:04</publishTime>
     </File>
     <File Include="Web.config">

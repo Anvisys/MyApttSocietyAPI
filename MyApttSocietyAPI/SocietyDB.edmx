@@ -53,22 +53,6 @@ warning 6002: The table/view 'SocietyDB.dbo.BillCycle' does not have a primary k
           <Property Name="FlatNumber" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="SocietyID" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="Employee">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="UserID" Type="int" Nullable="false" />
-          <Property Name="ServiceType" Type="int" />
-          <Property Name="CompanyName" Type="varchar" MaxLength="50" />
-          <Property Name="FirstName" Type="varchar" MaxLength="50" />
-          <Property Name="LastName" Type="varchar" MaxLength="50" />
-          <Property Name="MobileNo" Type="varchar" MaxLength="10" />
-          <Property Name="EmailId" Type="varchar" MaxLength="50" />
-          <Property Name="ActiveDate" Type="datetime" Nullable="false" />
-          <Property Name="DeActiveDate" Type="datetime" />
-          <Property Name="SocietyID" Type="int" Nullable="false" />
-        </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'SocietyDB.dbo.Flats' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Flats">
@@ -77,10 +61,7 @@ warning 6002: The table/view 'SocietyDB.dbo.Flats' does not have a primary key d
             <PropertyRef Name="FlatNumber" />
             <PropertyRef Name="Floor" />
             <PropertyRef Name="Block" />
-            <PropertyRef Name="OwnerName" />
             <PropertyRef Name="BHK" />
-            <PropertyRef Name="Address" />
-            <PropertyRef Name="MobileNo" />
             <PropertyRef Name="UserID" />
             <PropertyRef Name="SocietyID" />
           </Key>
@@ -89,18 +70,8 @@ warning 6002: The table/view 'SocietyDB.dbo.Flats' does not have a primary key d
           <Property Name="Floor" Type="int" Nullable="false" />
           <Property Name="Block" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="IntercomNumber" Type="int" />
-          <Property Name="OwnerName" Type="char" MaxLength="25" Nullable="false" />
           <Property Name="BHK" Type="int" Nullable="false" />
-          <Property Name="Address" Type="char" MaxLength="25" Nullable="false" />
-          <Property Name="EmailId" Type="varchar" MaxLength="50" />
-          <Property Name="MobileNo" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="UserID" Type="int" Nullable="false" />
-          <Property Name="Type" Type="varchar" MaxLength="50" />
-          <Property Name="FirstName" Type="varchar" MaxLength="50" />
-          <Property Name="LastName" Type="varchar" MaxLength="50" />
-          <Property Name="MobileNoRes" Type="varchar" MaxLength="50" />
-          <Property Name="EmailIdRes" Type="varchar" MaxLength="50" />
-          <Property Name="UserLogin" Type="varchar" MaxLength="50" />
           <Property Name="FlatArea" Type="varchar" MaxLength="50" />
           <Property Name="SocietyID" Type="int" Nullable="false" />
         </EntityType>
@@ -251,25 +222,6 @@ warning 6002: The table/view 'SocietyDB.dbo.Notifications' does not have a prima
           <Property Name="Answer4String" Type="varchar(max)" />
           <Property Name="TotalCount" Type="int" StoreGeneratedPattern="Computed" />
           <Property Name="LastUpdated" Type="datetime" />
-          <Property Name="SocietyID" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Resident">
-          <Key>
-            <PropertyRef Name="ResID" />
-          </Key>
-          <Property Name="ResID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="UserID" Type="int" Nullable="false" />
-          <Property Name="FlatID" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Type" Type="varchar" MaxLength="50" />
-          <Property Name="FirstName" Type="varchar" MaxLength="50" />
-          <Property Name="LastName" Type="varchar" MaxLength="50" />
-          <Property Name="MobileNo" Type="varchar" MaxLength="50" />
-          <Property Name="EmailId" Type="varchar" MaxLength="50" />
-          <Property Name="ActiveDate" Type="date" />
-          <Property Name="DeActiveDate" Type="datetime" />
-          <Property Name="Addres" Type="varchar" MaxLength="100" />
-          <Property Name="Function" Type="varchar" MaxLength="20" />
-          <Property Name="ModifiedDate" Type="datetime" />
           <Property Name="SocietyID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="ResidentImage">
@@ -534,27 +486,6 @@ warning 6002: The table/view 'SocietyDB.dbo.ViewComplaintSummary' does not have 
           <Property Name="LastAt" Type="datetime" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'SocietyDB.dbo.ViewEmployee' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="ViewEmployee">
-          <Key>
-            <PropertyRef Name="ID" />
-            <PropertyRef Name="SocietyID" />
-            <PropertyRef Name="UserID" />
-            <PropertyRef Name="ActiveDate" />
-          </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
-          <Property Name="SocietyID" Type="int" Nullable="false" />
-          <Property Name="UserID" Type="int" Nullable="false" />
-          <Property Name="ServiceType" Type="varchar" MaxLength="20" />
-          <Property Name="CompanyName" Type="varchar" MaxLength="50" />
-          <Property Name="ActiveDate" Type="datetime" Nullable="false" />
-          <Property Name="DeActiveDate" Type="datetime" />
-          <Property Name="FirstName" Type="varchar" MaxLength="50" />
-          <Property Name="LastName" Type="varchar" MaxLength="50" />
-          <Property Name="MobileNo" Type="varchar" MaxLength="10" />
-          <Property Name="EmailId" Type="varchar" MaxLength="50" />
-        </EntityType>
-        <!--Errors Found During Generation:
 warning 6002: The table/view 'SocietyDB.dbo.ViewFirstThreadwithCount' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="ViewFirstThreadwithCount">
           <Key>
@@ -592,12 +523,14 @@ warning 6002: The table/view 'SocietyDB.dbo.ViewFlats' does not have a primary k
           <Property Name="Block" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="IntercomNumber" Type="int" />
           <Property Name="FlatArea" Type="varchar" MaxLength="50" />
+          <Property Name="OwnerResID" Type="int" />
           <Property Name="OwnerUserID" Type="int" />
           <Property Name="OwnerFirstName" Type="varchar" MaxLength="50" />
           <Property Name="OwnerLastName" Type="varchar" MaxLength="50" />
           <Property Name="OwnerEmail" Type="varchar" MaxLength="50" />
           <Property Name="OwnerMobile" Type="varchar" MaxLength="50" />
           <Property Name="OwnerAddress" Type="varchar" MaxLength="100" />
+          <Property Name="TenantResID" Type="int" />
           <Property Name="TenantUserID" Type="int" />
           <Property Name="TenantFirstName" Type="varchar" MaxLength="50" />
           <Property Name="TenantLastName" Type="varchar" MaxLength="50" />
@@ -613,6 +546,8 @@ warning 6002: The table/view 'SocietyDB.dbo.ViewForumNoImage' does not have a pr
           <Key>
             <PropertyRef Name="ID" />
             <PropertyRef Name="FirstName" />
+            <PropertyRef Name="FlatNumber" />
+            <PropertyRef Name="UserID" />
             <PropertyRef Name="ResID" />
             <PropertyRef Name="ThreadID" />
             <PropertyRef Name="Topic" />
@@ -622,7 +557,8 @@ warning 6002: The table/view 'SocietyDB.dbo.ViewForumNoImage' does not have a pr
           <Property Name="ID" Type="int" Nullable="false" />
           <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="LastName" Type="varchar" MaxLength="50" />
-          <Property Name="FlatNumber" Type="varchar" MaxLength="50" />
+          <Property Name="FlatNumber" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
           <Property Name="ResID" Type="int" Nullable="false" />
           <Property Name="ThreadID" Type="int" Nullable="false" />
           <Property Name="Topic" Type="varchar" MaxLength="50" Nullable="false" />
@@ -825,7 +761,8 @@ warning 6002: The table/view 'SocietyDB.dbo.ViewNotifications' does not have a p
           <Property Name="EndDate" Type="date" Nullable="false" />
           <Property Name="FirstName" Type="varchar" MaxLength="50" />
           <Property Name="LastName" Type="varchar" MaxLength="50" />
-          <Property Name="FlatID" Type="varchar" MaxLength="50" />
+          <Property Name="FlatID" Type="int" />
+          <Property Name="UserID" Type="int" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'SocietyDB.dbo.ViewOwnerResidents' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -893,28 +830,6 @@ warning 6002: The table/view 'SocietyDB.dbo.ViewPollDataWithCount' does not have
           <Property Name="Answer4Count" Type="int" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'SocietyDB.dbo.ViewResidents' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="ViewResidents">
-          <Key>
-            <PropertyRef Name="ResID" />
-            <PropertyRef Name="UserID" />
-            <PropertyRef Name="SocietyID" />
-            <PropertyRef Name="FlatNumber" />
-          </Key>
-          <Property Name="ResID" Type="int" Nullable="false" />
-          <Property Name="UserID" Type="int" Nullable="false" />
-          <Property Name="SocietyID" Type="int" Nullable="false" />
-          <Property Name="Type" Type="varchar" MaxLength="50" />
-          <Property Name="FirstName" Type="varchar" MaxLength="50" />
-          <Property Name="LastName" Type="varchar" MaxLength="50" />
-          <Property Name="MobileNo" Type="varchar" MaxLength="50" />
-          <Property Name="EmailId" Type="varchar" MaxLength="50" />
-          <Property Name="ActiveDate" Type="date" />
-          <Property Name="DeActiveDate" Type="datetime" />
-          <Property Name="FlatNumber" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="IntercomNumber" Type="int" />
-        </EntityType>
-        <!--Errors Found During Generation:
 warning 6002: The table/view 'SocietyDB.dbo.ViewSocietyUsers' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="ViewSocietyUsers">
           <Key>
@@ -949,6 +864,8 @@ warning 6002: The table/view 'SocietyDB.dbo.ViewSocietyUsers' does not have a pr
           <Property Name="Address" Type="varchar" MaxLength="100" />
           <Property Name="SocietyName" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="FlatNumber" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CompType" Type="varchar" MaxLength="20" />
+          <Property Name="intercomNumber" Type="int" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'SocietyDB.dbo.ViewThreadSummaryNoImageCount' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -958,11 +875,15 @@ warning 6002: The table/view 'SocietyDB.dbo.ViewThreadSummaryNoImageCount' does 
             <PropertyRef Name="ThreadID" />
             <PropertyRef Name="Topic" />
             <PropertyRef Name="InitiatedAt" />
+            <PropertyRef Name="firstFlat" />
             <PropertyRef Name="Initiater" />
             <PropertyRef Name="FirstResID" />
+            <PropertyRef Name="FirstUserID" />
             <PropertyRef Name="UpdatedAt" />
+            <PropertyRef Name="lastFlat" />
             <PropertyRef Name="CurrentPostBy" />
             <PropertyRef Name="LastResID" />
+            <PropertyRef Name="LastUserID" />
             <PropertyRef Name="SocietyID" />
           </Key>
           <Property Name="FirstID" Type="int" Nullable="false" />
@@ -970,16 +891,43 @@ warning 6002: The table/view 'SocietyDB.dbo.ViewThreadSummaryNoImageCount' does 
           <Property Name="Topic" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="FirstThread" Type="varchar" MaxLength="2000" />
           <Property Name="InitiatedAt" Type="datetime" Nullable="false" />
-          <Property Name="firstFlat" Type="varchar" MaxLength="50" />
+          <Property Name="firstFlat" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Initiater" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="FirstResID" Type="int" Nullable="false" />
+          <Property Name="FirstUserID" Type="int" Nullable="false" />
           <Property Name="latestThread" Type="varchar" MaxLength="2000" />
           <Property Name="UpdatedAt" Type="datetime" Nullable="false" />
-          <Property Name="lastFlat" Type="varchar" MaxLength="50" />
+          <Property Name="lastFlat" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="CurrentPostBy" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="LastResID" Type="int" Nullable="false" />
+          <Property Name="LastUserID" Type="int" Nullable="false" />
           <Property Name="commentsCount" Type="int" />
           <Property Name="SocietyID" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'SocietyDB.dbo.ViewUser' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ViewUser">
+          <Key>
+            <PropertyRef Name="UserID" />
+            <PropertyRef Name="UserLogin" />
+            <PropertyRef Name="FirstName" />
+            <PropertyRef Name="MobileNo" />
+            <PropertyRef Name="Address" />
+          </Key>
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="UserLogin" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="MiddleName" Type="varchar" MaxLength="50" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" />
+          <Property Name="MobileNo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="EmailId" Type="varchar" MaxLength="50" />
+          <Property Name="Gender" Type="char" MaxLength="20" />
+          <Property Name="Parentname" Type="char" MaxLength="25" />
+          <Property Name="Address" Type="char" MaxLength="25" Nullable="false" />
+          <Property Name="SocietyID" Type="int" />
+          <Property Name="UserType" Type="varchar" MaxLength="50" />
+          <Property Name="SocietyName" Type="varchar" MaxLength="100" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'SocietyDB.dbo.ViewUserImage' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -1053,7 +1001,6 @@ warning 6002: The table/view 'SocietyDB.dbo.WatchViewFirstThreadNoImage' does no
         <EntityContainer Name="SocietyDBModelStoreContainer">
           <EntitySet Name="Advertisement" EntityType="Self.Advertisement" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Complaints" EntityType="Self.Complaints" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Forum" EntityType="Self.Forum" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GCMList" EntityType="Self.GCMList" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GeneratedBill" EntityType="Self.GeneratedBill" Schema="dbo" store:Type="Tables" />
@@ -1064,7 +1011,6 @@ warning 6002: The table/view 'SocietyDB.dbo.WatchViewFirstThreadNoImage' does no
           <EntitySet Name="lukVendorCategory" EntityType="Self.lukVendorCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PollingAnswer" EntityType="Self.PollingAnswer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PollingData" EntityType="Self.PollingData" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Resident" EntityType="Self.Resident" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ResidentImage" EntityType="Self.ResidentImage" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SocietyUser" EntityType="Self.SocietyUser" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TempResident" EntityType="Self.TempResident" Schema="dbo" store:Type="Tables" />
@@ -1091,18 +1037,8 @@ warning 6002: The table/view 'SocietyDB.dbo.WatchViewFirstThreadNoImage' does no
     [Flats].[Floor] AS [Floor], 
     [Flats].[Block] AS [Block], 
     [Flats].[IntercomNumber] AS [IntercomNumber], 
-    [Flats].[OwnerName] AS [OwnerName], 
     [Flats].[BHK] AS [BHK], 
-    [Flats].[Address] AS [Address], 
-    [Flats].[EmailId] AS [EmailId], 
-    [Flats].[MobileNo] AS [MobileNo], 
     [Flats].[UserID] AS [UserID], 
-    [Flats].[Type] AS [Type], 
-    [Flats].[FirstName] AS [FirstName], 
-    [Flats].[LastName] AS [LastName], 
-    [Flats].[MobileNoRes] AS [MobileNoRes], 
-    [Flats].[EmailIdRes] AS [EmailIdRes], 
-    [Flats].[UserLogin] AS [UserLogin], 
     [Flats].[FlatArea] AS [FlatArea], 
     [Flats].[SocietyID] AS [SocietyID]
     FROM [dbo].[Flats] AS [Flats]</DefiningQuery>
@@ -1230,21 +1166,6 @@ warning 6002: The table/view 'SocietyDB.dbo.WatchViewFirstThreadNoImage' does no
     [ViewComplaintSummary].[LastAt] AS [LastAt]
     FROM [dbo].[ViewComplaintSummary] AS [ViewComplaintSummary]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="ViewEmployee" EntityType="Self.ViewEmployee" store:Type="Views" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [ViewEmployee].[ID] AS [ID], 
-    [ViewEmployee].[SocietyID] AS [SocietyID], 
-    [ViewEmployee].[UserID] AS [UserID], 
-    [ViewEmployee].[ServiceType] AS [ServiceType], 
-    [ViewEmployee].[CompanyName] AS [CompanyName], 
-    [ViewEmployee].[ActiveDate] AS [ActiveDate], 
-    [ViewEmployee].[DeActiveDate] AS [DeActiveDate], 
-    [ViewEmployee].[FirstName] AS [FirstName], 
-    [ViewEmployee].[LastName] AS [LastName], 
-    [ViewEmployee].[MobileNo] AS [MobileNo], 
-    [ViewEmployee].[EmailId] AS [EmailId]
-    FROM [dbo].[ViewEmployee] AS [ViewEmployee]</DefiningQuery>
-          </EntitySet>
           <EntitySet Name="ViewFirstThreadwithCount" EntityType="Self.ViewFirstThreadwithCount" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [ViewFirstThreadwithCount].[FirstID] AS [FirstID], 
@@ -1266,12 +1187,14 @@ warning 6002: The table/view 'SocietyDB.dbo.WatchViewFirstThreadNoImage' does no
     [ViewFlats].[Block] AS [Block], 
     [ViewFlats].[IntercomNumber] AS [IntercomNumber], 
     [ViewFlats].[FlatArea] AS [FlatArea], 
+    [ViewFlats].[OwnerResID] AS [OwnerResID], 
     [ViewFlats].[OwnerUserID] AS [OwnerUserID], 
     [ViewFlats].[OwnerFirstName] AS [OwnerFirstName], 
     [ViewFlats].[OwnerLastName] AS [OwnerLastName], 
     [ViewFlats].[OwnerEmail] AS [OwnerEmail], 
     [ViewFlats].[OwnerMobile] AS [OwnerMobile], 
     [ViewFlats].[OwnerAddress] AS [OwnerAddress], 
+    [ViewFlats].[TenantResID] AS [TenantResID], 
     [ViewFlats].[TenantUserID] AS [TenantUserID], 
     [ViewFlats].[TenantFirstName] AS [TenantFirstName], 
     [ViewFlats].[TenantLastName] AS [TenantLastName], 
@@ -1288,6 +1211,7 @@ warning 6002: The table/view 'SocietyDB.dbo.WatchViewFirstThreadNoImage' does no
     [ViewForumNoImage].[FirstName] AS [FirstName], 
     [ViewForumNoImage].[LastName] AS [LastName], 
     [ViewForumNoImage].[FlatNumber] AS [FlatNumber], 
+    [ViewForumNoImage].[UserID] AS [UserID], 
     [ViewForumNoImage].[ResID] AS [ResID], 
     [ViewForumNoImage].[ThreadID] AS [ThreadID], 
     [ViewForumNoImage].[Topic] AS [Topic], 
@@ -1432,7 +1356,8 @@ warning 6002: The table/view 'SocietyDB.dbo.WatchViewFirstThreadNoImage' does no
     [ViewNotifications].[EndDate] AS [EndDate], 
     [ViewNotifications].[FirstName] AS [FirstName], 
     [ViewNotifications].[LastName] AS [LastName], 
-    [ViewNotifications].[FlatID] AS [FlatID]
+    [ViewNotifications].[FlatID] AS [FlatID], 
+    [ViewNotifications].[UserID] AS [UserID]
     FROM [dbo].[ViewNotifications] AS [ViewNotifications]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="ViewOwnerResidents" EntityType="Self.ViewOwnerResidents" store:Type="Views" store:Schema="dbo">
@@ -1478,22 +1403,6 @@ warning 6002: The table/view 'SocietyDB.dbo.WatchViewFirstThreadNoImage' does no
     [ViewPollDataWithCount].[Answer4Count] AS [Answer4Count]
     FROM [dbo].[ViewPollDataWithCount] AS [ViewPollDataWithCount]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="ViewResidents" EntityType="Self.ViewResidents" store:Type="Views" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [ViewResidents].[ResID] AS [ResID], 
-    [ViewResidents].[UserID] AS [UserID], 
-    [ViewResidents].[SocietyID] AS [SocietyID], 
-    [ViewResidents].[Type] AS [Type], 
-    [ViewResidents].[FirstName] AS [FirstName], 
-    [ViewResidents].[LastName] AS [LastName], 
-    [ViewResidents].[MobileNo] AS [MobileNo], 
-    [ViewResidents].[EmailId] AS [EmailId], 
-    [ViewResidents].[ActiveDate] AS [ActiveDate], 
-    [ViewResidents].[DeActiveDate] AS [DeActiveDate], 
-    [ViewResidents].[FlatNumber] AS [FlatNumber], 
-    [ViewResidents].[IntercomNumber] AS [IntercomNumber]
-    FROM [dbo].[ViewResidents] AS [ViewResidents]</DefiningQuery>
-          </EntitySet>
           <EntitySet Name="ViewSocietyUsers" EntityType="Self.ViewSocietyUsers" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [ViewSocietyUsers].[ResID] AS [ResID], 
@@ -1514,7 +1423,9 @@ warning 6002: The table/view 'SocietyDB.dbo.WatchViewFirstThreadNoImage' does no
     [ViewSocietyUsers].[ParentName] AS [ParentName], 
     [ViewSocietyUsers].[Address] AS [Address], 
     [ViewSocietyUsers].[SocietyName] AS [SocietyName], 
-    [ViewSocietyUsers].[FlatNumber] AS [FlatNumber]
+    [ViewSocietyUsers].[FlatNumber] AS [FlatNumber], 
+    [ViewSocietyUsers].[CompType] AS [CompType], 
+    [ViewSocietyUsers].[intercomNumber] AS [intercomNumber]
     FROM [dbo].[ViewSocietyUsers] AS [ViewSocietyUsers]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="ViewThreadSummaryNoImageCount" EntityType="Self.ViewThreadSummaryNoImageCount" store:Type="Views" store:Schema="dbo">
@@ -1527,14 +1438,34 @@ warning 6002: The table/view 'SocietyDB.dbo.WatchViewFirstThreadNoImage' does no
     [ViewThreadSummaryNoImageCount].[firstFlat] AS [firstFlat], 
     [ViewThreadSummaryNoImageCount].[Initiater] AS [Initiater], 
     [ViewThreadSummaryNoImageCount].[FirstResID] AS [FirstResID], 
+    [ViewThreadSummaryNoImageCount].[FirstUserID] AS [FirstUserID], 
     [ViewThreadSummaryNoImageCount].[latestThread] AS [latestThread], 
     [ViewThreadSummaryNoImageCount].[UpdatedAt] AS [UpdatedAt], 
     [ViewThreadSummaryNoImageCount].[lastFlat] AS [lastFlat], 
     [ViewThreadSummaryNoImageCount].[CurrentPostBy] AS [CurrentPostBy], 
     [ViewThreadSummaryNoImageCount].[LastResID] AS [LastResID], 
+    [ViewThreadSummaryNoImageCount].[LastUserID] AS [LastUserID], 
     [ViewThreadSummaryNoImageCount].[commentsCount] AS [commentsCount], 
     [ViewThreadSummaryNoImageCount].[SocietyID] AS [SocietyID]
     FROM [dbo].[ViewThreadSummaryNoImageCount] AS [ViewThreadSummaryNoImageCount]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ViewUser" EntityType="Self.ViewUser" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ViewUser].[UserID] AS [UserID], 
+    [ViewUser].[UserLogin] AS [UserLogin], 
+    [ViewUser].[Password] AS [Password], 
+    [ViewUser].[FirstName] AS [FirstName], 
+    [ViewUser].[MiddleName] AS [MiddleName], 
+    [ViewUser].[LastName] AS [LastName], 
+    [ViewUser].[MobileNo] AS [MobileNo], 
+    [ViewUser].[EmailId] AS [EmailId], 
+    [ViewUser].[Gender] AS [Gender], 
+    [ViewUser].[Parentname] AS [Parentname], 
+    [ViewUser].[Address] AS [Address], 
+    [ViewUser].[SocietyID] AS [SocietyID], 
+    [ViewUser].[UserType] AS [UserType], 
+    [ViewUser].[SocietyName] AS [SocietyName]
+    FROM [dbo].[ViewUser] AS [ViewUser]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="ViewUserImage" EntityType="Self.ViewUserImage" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -1583,18 +1514,15 @@ warning 6002: The table/view 'SocietyDB.dbo.WatchViewFirstThreadNoImage' does no
       <Schema Namespace="SocietyDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="SocietyDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Complaints" EntityType="SocietyDBModel.Complaint" />
-          <EntitySet Name="Employees" EntityType="SocietyDBModel.Employee" />
           <EntitySet Name="Fora" EntityType="SocietyDBModel.Forum" />
           <EntitySet Name="GCMLists" EntityType="SocietyDBModel.GCMList" />
           <EntitySet Name="GeneratedBills" EntityType="SocietyDBModel.GeneratedBill" />
           <EntitySet Name="PollingAnswers" EntityType="SocietyDBModel.PollingAnswer" />
-          <EntitySet Name="Residents" EntityType="SocietyDBModel.Resident" />
           <EntitySet Name="ResidentImages" EntityType="SocietyDBModel.ResidentImage" />
           <EntitySet Name="TempResidents" EntityType="SocietyDBModel.TempResident" />
           <EntitySet Name="TempUsers" EntityType="SocietyDBModel.TempUser" />
           <EntitySet Name="Vendors" EntityType="SocietyDBModel.Vendor" />
           <EntitySet Name="BillCycles" EntityType="SocietyDBModel.BillCycle" />
-          <EntitySet Name="Flats" EntityType="SocietyDBModel.Flat" />
           <EntitySet Name="ImageChecks" EntityType="SocietyDBModel.ImageCheck" />
           <EntitySet Name="Societybillplans" EntityType="SocietyDBModel.Societybillplan" />
           <EntitySet Name="TempResidentViews" EntityType="SocietyDBModel.TempResidentView" />
@@ -1604,7 +1532,6 @@ warning 6002: The table/view 'SocietyDB.dbo.WatchViewFirstThreadNoImage' does no
           <EntitySet Name="ViewLatestThreads" EntityType="SocietyDBModel.ViewLatestThread" />
           <EntitySet Name="ViewOwnerResidents" EntityType="SocietyDBModel.ViewOwnerResident" />
           <EntitySet Name="ViewPollCounts" EntityType="SocietyDBModel.ViewPollCount" />
-          <EntitySet Name="ViewResidents" EntityType="SocietyDBModel.ViewResident" />
           <EntitySet Name="WatchViewFirstThreadNoImages" EntityType="SocietyDBModel.WatchViewFirstThreadNoImage" />
           <EntitySet Name="PollingDatas" EntityType="SocietyDBModel.PollingData" />
           <EntitySet Name="ViewPollDataWithCounts" EntityType="SocietyDBModel.ViewPollDataWithCount" />
@@ -1616,7 +1543,6 @@ warning 6002: The table/view 'SocietyDB.dbo.WatchViewFirstThreadNoImage' does no
           <EntitySet Name="ViewComplaintHistories" EntityType="SocietyDBModel.ViewComplaintHistory" />
           <EntitySet Name="ViewComplaintInitiateds" EntityType="SocietyDBModel.ViewComplaintInitiated" />
           <EntitySet Name="ViewComplaintLatests" EntityType="SocietyDBModel.ViewComplaintLatest" />
-          <EntitySet Name="ViewEmployees" EntityType="SocietyDBModel.ViewEmployee" />
           <EntitySet Name="Advertisements" EntityType="SocietyDBModel.Advertisement" />
           <EntitySet Name="VisitorDetails" EntityType="SocietyDBModel.VisitorDetail" />
           <EntitySet Name="VisitorRequests" EntityType="SocietyDBModel.VisitorRequest" />
@@ -1624,15 +1550,17 @@ warning 6002: The table/view 'SocietyDB.dbo.WatchViewFirstThreadNoImage' does no
           <EntitySet Name="Notifications" EntityType="SocietyDBModel.Notification" />
           <EntitySet Name="ViewComplaintSummaries" EntityType="SocietyDBModel.ViewComplaintSummary" />
           <EntitySet Name="ViewLatestBillCycles" EntityType="SocietyDBModel.ViewLatestBillCycle" />
-          <EntitySet Name="ViewNotifications" EntityType="SocietyDBModel.ViewNotification" />
           <EntitySet Name="ViewUserImages" EntityType="SocietyDBModel.ViewUserImage" />
           <EntitySet Name="viewVisitorDatas" EntityType="SocietyDBModel.viewVisitorData" />
           <EntitySet Name="SocietyUsers" EntityType="SocietyDBModel.SocietyUser" />
-          <EntitySet Name="ViewSocietyUsers" EntityType="SocietyDBModel.ViewSocietyUser" />
-          <EntitySet Name="ViewFlats" EntityType="SocietyDBModel.ViewFlat" />
           <EntitySet Name="ViewLatestGeneratedBill_Resident" EntityType="SocietyDBModel.ViewLatestGeneratedBill_Resident" />
-          <EntitySet Name="ViewThreadSummaryNoImageCounts" EntityType="SocietyDBModel.ViewThreadSummaryNoImageCount" />
+          <EntitySet Name="ViewFlats" EntityType="SocietyDBModel.ViewFlat" />
+          <EntitySet Name="ViewSocietyUsers" EntityType="SocietyDBModel.ViewSocietyUser" />
+          <EntitySet Name="ViewUsers" EntityType="SocietyDBModel.ViewUser" />
           <EntitySet Name="ViewForumNoImages" EntityType="SocietyDBModel.ViewForumNoImage" />
+          <EntitySet Name="ViewNotifications" EntityType="SocietyDBModel.ViewNotification" />
+          <EntitySet Name="ViewThreadSummaryNoImageCounts" EntityType="SocietyDBModel.ViewThreadSummaryNoImageCount" />
+          <EntitySet Name="Flats" EntityType="SocietyDBModel.Flat" />
         </EntityContainer>
         <EntityType Name="Complaint">
           <Key>
@@ -1648,22 +1576,6 @@ warning 6002: The table/view 'SocietyDB.dbo.WatchViewFirstThreadNoImage' does no
           <Property Name="ResidentID" Type="Int32" Nullable="false" />
           <Property Name="ModifiedAt" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="FlatNumber" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="SocietyID" Type="Int32" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Employee">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserID" Type="Int32" Nullable="false" />
-          <Property Name="ServiceType" Type="Int32" />
-          <Property Name="CompanyName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="MobileNo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="EmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ActiveDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="DeActiveDate" Type="DateTime" Precision="3" />
           <Property Name="SocietyID" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Forum">
@@ -1722,25 +1634,6 @@ warning 6002: The table/view 'SocietyDB.dbo.WatchViewFirstThreadNoImage' does no
           <Property Name="ResID" Type="Int32" Nullable="false" />
           <Property Name="SelectedAnswer" Type="Int32" Nullable="false" />
           <Property Name="LastUpdated" Type="DateTime" Precision="3" />
-          <Property Name="SocietyID" Type="Int32" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Resident">
-          <Key>
-            <PropertyRef Name="ResID" />
-          </Key>
-          <Property Name="ResID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserID" Type="Int32" Nullable="false" />
-          <Property Name="FlatID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="MobileNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="EmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ActiveDate" Type="DateTime" Precision="0" />
-          <Property Name="DeActiveDate" Type="DateTime" Precision="3" />
-          <Property Name="Addres" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Function" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
           <Property Name="SocietyID" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="ResidentImage">
@@ -1816,39 +1709,6 @@ warning 6002: The table/view 'SocietyDB.dbo.WatchViewFirstThreadNoImage' does no
           <Property Name="CycleEnD" Type="DateTime" Precision="3" />
           <Property Name="created_date" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="comments" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="SocietyID" Type="Int32" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Flat">
-          <Key>
-            <PropertyRef Name="ID" />
-            <PropertyRef Name="FlatNumber" />
-            <PropertyRef Name="Floor" />
-            <PropertyRef Name="Block" />
-            <PropertyRef Name="OwnerName" />
-            <PropertyRef Name="BHK" />
-            <PropertyRef Name="Address" />
-            <PropertyRef Name="MobileNo" />
-            <PropertyRef Name="UserID" />
-            <PropertyRef Name="SocietyID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FlatNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Floor" Type="Int32" Nullable="false" />
-          <Property Name="Block" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="IntercomNumber" Type="Int32" />
-          <Property Name="OwnerName" Type="String" Nullable="false" MaxLength="25" FixedLength="true" Unicode="false" />
-          <Property Name="BHK" Type="Int32" Nullable="false" />
-          <Property Name="Address" Type="String" Nullable="false" MaxLength="25" FixedLength="true" Unicode="false" />
-          <Property Name="EmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="MobileNo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="UserID" Type="Int32" Nullable="false" />
-          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="MobileNoRes" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="EmailIdRes" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="UserLogin" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="FlatArea" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="SocietyID" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="ImageCheck">
@@ -2021,26 +1881,6 @@ warning 6002: The table/view 'SocietyDB.dbo.WatchViewFirstThreadNoImage' does no
           <Property Name="Ans3" Type="Int32" />
           <Property Name="Ans4" Type="Int32" />
         </EntityType>
-        <EntityType Name="ViewResident">
-          <Key>
-            <PropertyRef Name="ResID" />
-            <PropertyRef Name="UserID" />
-            <PropertyRef Name="SocietyID" />
-            <PropertyRef Name="FlatNumber" />
-          </Key>
-          <Property Name="ResID" Type="Int32" Nullable="false" />
-          <Property Name="UserID" Type="Int32" Nullable="false" />
-          <Property Name="SocietyID" Type="Int32" Nullable="false" />
-          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="MobileNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="EmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ActiveDate" Type="DateTime" Precision="0" />
-          <Property Name="DeActiveDate" Type="DateTime" Precision="3" />
-          <Property Name="FlatNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="IntercomNumber" Type="Int32" />
-        </EntityType>
         <EntityType Name="WatchViewFirstThreadNoImage">
           <Key>
             <PropertyRef Name="ThreadID" />
@@ -2200,25 +2040,6 @@ warning 6002: The table/view 'SocietyDB.dbo.WatchViewFirstThreadNoImage' does no
           <Property Name="CurrentStatus" Type="Int32" Nullable="false" />
           <Property Name="LastAt" Type="DateTime" Precision="3" />
         </EntityType>
-        <EntityType Name="ViewEmployee">
-          <Key>
-            <PropertyRef Name="ID" />
-            <PropertyRef Name="SocietyID" />
-            <PropertyRef Name="UserID" />
-            <PropertyRef Name="ActiveDate" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="SocietyID" Type="Int32" Nullable="false" />
-          <Property Name="UserID" Type="Int32" Nullable="false" />
-          <Property Name="ServiceType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="CompanyName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ActiveDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="DeActiveDate" Type="DateTime" Precision="3" />
-          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="MobileNo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="EmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-        </EntityType>
         <EntityType Name="Advertisement">
           <Key>
             <PropertyRef Name="id" />
@@ -2371,25 +2192,6 @@ warning 6002: The table/view 'SocietyDB.dbo.WatchViewFirstThreadNoImage' does no
           <Property Name="created_date" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="comments" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityType Name="ViewNotification">
-          <Key>
-            <PropertyRef Name="ID" />
-            <PropertyRef Name="Date" />
-            <PropertyRef Name="send_by" />
-            <PropertyRef Name="SocietyID" />
-            <PropertyRef Name="EndDate" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="Notification" Type="String" MaxLength="650" FixedLength="false" Unicode="false" />
-          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="AttachName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="send_by" Type="Int32" Nullable="false" />
-          <Property Name="SocietyID" Type="Int32" Nullable="false" />
-          <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="FlatID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-        </EntityType>
         <EntityType Name="ViewUserImage">
           <Key>
             <PropertyRef Name="ResID" />
@@ -2453,72 +2255,6 @@ warning 6002: The table/view 'SocietyDB.dbo.WatchViewFirstThreadNoImage' does no
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
           <Property Name="SocietyID" Type="Int32" Nullable="false" />
         </EntityType>
-        <EntityType Name="ViewSocietyUser">
-          <Key>
-            <PropertyRef Name="ResID" />
-            <PropertyRef Name="UserID" />
-            <PropertyRef Name="FlatID" />
-            <PropertyRef Name="Type" />
-            <PropertyRef Name="SocietyID" />
-            <PropertyRef Name="ServiceType" />
-            <PropertyRef Name="CompanyName" />
-            <PropertyRef Name="FirstName" />
-            <PropertyRef Name="MobileNo" />
-            <PropertyRef Name="SocietyName" />
-            <PropertyRef Name="FlatNumber" />
-          </Key>
-          <Property Name="ResID" Type="Int32" Nullable="false" />
-          <Property Name="UserID" Type="Int32" Nullable="false" />
-          <Property Name="FlatID" Type="Int32" Nullable="false" />
-          <Property Name="Type" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ActiveDate" Type="DateTime" Precision="0" />
-          <Property Name="DeActiveDate" Type="DateTime" Precision="3" />
-          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
-          <Property Name="SocietyID" Type="Int32" Nullable="false" />
-          <Property Name="ServiceType" Type="Int32" Nullable="false" />
-          <Property Name="CompanyName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="MobileNo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="EmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Gender" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
-          <Property Name="ParentName" Type="String" MaxLength="25" FixedLength="true" Unicode="false" />
-          <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="SocietyName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="FlatNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="ViewFlat">
-          <Key>
-            <PropertyRef Name="ID" />
-            <PropertyRef Name="FlatNumber" />
-            <PropertyRef Name="SocietyId" />
-            <PropertyRef Name="BHK" />
-            <PropertyRef Name="Floor" />
-            <PropertyRef Name="Block" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="FlatNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="SocietyId" Type="Int32" Nullable="false" />
-          <Property Name="BHK" Type="Int32" Nullable="false" />
-          <Property Name="Floor" Type="Int32" Nullable="false" />
-          <Property Name="Block" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="IntercomNumber" Type="Int32" />
-          <Property Name="FlatArea" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="OwnerUserID" Type="Int32" />
-          <Property Name="OwnerFirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="OwnerLastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="OwnerEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="OwnerMobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="OwnerAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="TenantUserID" Type="Int32" />
-          <Property Name="TenantFirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="TenantLastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="TenantEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="TenantMobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="TenantAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="TenantFrom" Type="DateTime" Precision="0" />
-          <Property Name="TenantTo" Type="DateTime" Precision="3" />
-        </EntityType>
         <EntityType Name="ViewLatestGeneratedBill_Resident">
           <Key>
             <PropertyRef Name="PayID" />
@@ -2569,39 +2305,105 @@ warning 6002: The table/view 'SocietyDB.dbo.WatchViewFirstThreadNoImage' does no
           <Property Name="TenantEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="TenantMobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityType Name="ViewThreadSummaryNoImageCount">
+        <EntityType Name="ViewFlat">
           <Key>
-            <PropertyRef Name="FirstID" />
-            <PropertyRef Name="ThreadID" />
-            <PropertyRef Name="Topic" />
-            <PropertyRef Name="InitiatedAt" />
-            <PropertyRef Name="Initiater" />
-            <PropertyRef Name="FirstResID" />
-            <PropertyRef Name="UpdatedAt" />
-            <PropertyRef Name="CurrentPostBy" />
-            <PropertyRef Name="LastResID" />
-            <PropertyRef Name="SocietyID" />
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="FlatNumber" />
+            <PropertyRef Name="SocietyId" />
+            <PropertyRef Name="BHK" />
+            <PropertyRef Name="Floor" />
+            <PropertyRef Name="Block" />
           </Key>
-          <Property Name="FirstID" Type="Int32" Nullable="false" />
-          <Property Name="ThreadID" Type="Int32" Nullable="false" />
-          <Property Name="Topic" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="FirstThread" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
-          <Property Name="InitiatedAt" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="firstFlat" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Initiater" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="FirstResID" Type="Int32" Nullable="false" />
-          <Property Name="latestThread" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
-          <Property Name="UpdatedAt" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="lastFlat" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="CurrentPostBy" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="LastResID" Type="Int32" Nullable="false" />
-          <Property Name="commentsCount" Type="Int32" />
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="FlatNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SocietyId" Type="Int32" Nullable="false" />
+          <Property Name="BHK" Type="Int32" Nullable="false" />
+          <Property Name="Floor" Type="Int32" Nullable="false" />
+          <Property Name="Block" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IntercomNumber" Type="Int32" />
+          <Property Name="FlatArea" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OwnerResID" Type="Int32" />
+          <Property Name="OwnerUserID" Type="Int32" />
+          <Property Name="OwnerFirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OwnerLastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OwnerEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OwnerMobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OwnerAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TenantResID" Type="Int32" />
+          <Property Name="TenantUserID" Type="Int32" />
+          <Property Name="TenantFirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TenantLastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TenantEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TenantMobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TenantAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TenantFrom" Type="DateTime" Precision="0" />
+          <Property Name="TenantTo" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="ViewSocietyUser">
+          <Key>
+            <PropertyRef Name="ResID" />
+            <PropertyRef Name="UserID" />
+            <PropertyRef Name="FlatID" />
+            <PropertyRef Name="Type" />
+            <PropertyRef Name="SocietyID" />
+            <PropertyRef Name="ServiceType" />
+            <PropertyRef Name="CompanyName" />
+            <PropertyRef Name="FirstName" />
+            <PropertyRef Name="MobileNo" />
+            <PropertyRef Name="SocietyName" />
+            <PropertyRef Name="FlatNumber" />
+          </Key>
+          <Property Name="ResID" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="FlatID" Type="Int32" Nullable="false" />
+          <Property Name="Type" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ActiveDate" Type="DateTime" Precision="0" />
+          <Property Name="DeActiveDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
           <Property Name="SocietyID" Type="Int32" Nullable="false" />
+          <Property Name="ServiceType" Type="Int32" Nullable="false" />
+          <Property Name="CompanyName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MobileNo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Gender" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="ParentName" Type="String" MaxLength="25" FixedLength="true" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SocietyName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FlatNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CompType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="intercomNumber" Type="Int32" />
+        </EntityType>
+        <EntityType Name="ViewUser">
+          <Key>
+            <PropertyRef Name="UserID" />
+            <PropertyRef Name="UserLogin" />
+            <PropertyRef Name="FirstName" />
+            <PropertyRef Name="MobileNo" />
+            <PropertyRef Name="Address" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="UserLogin" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MobileNo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Gender" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="Parentname" Type="String" MaxLength="25" FixedLength="true" Unicode="false" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="25" FixedLength="true" Unicode="false" />
+          <Property Name="SocietyID" Type="Int32" />
+          <Property Name="UserType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SocietyName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="ViewForumNoImage">
           <Key>
             <PropertyRef Name="ID" />
             <PropertyRef Name="FirstName" />
+            <PropertyRef Name="FlatNumber" />
+            <PropertyRef Name="UserID" />
             <PropertyRef Name="ResID" />
             <PropertyRef Name="ThreadID" />
             <PropertyRef Name="Topic" />
@@ -2611,12 +2413,88 @@ warning 6002: The table/view 'SocietyDB.dbo.WatchViewFirstThreadNoImage' does no
           <Property Name="ID" Type="Int32" Nullable="false" />
           <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="FlatNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FlatNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
           <Property Name="ResID" Type="Int32" Nullable="false" />
           <Property Name="ThreadID" Type="Int32" Nullable="false" />
           <Property Name="Topic" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Thread" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
           <Property Name="UpdatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SocietyID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ViewNotification">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="Date" />
+            <PropertyRef Name="send_by" />
+            <PropertyRef Name="SocietyID" />
+            <PropertyRef Name="EndDate" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Notification" Type="String" MaxLength="650" FixedLength="false" Unicode="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="AttachName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="send_by" Type="Int32" Nullable="false" />
+          <Property Name="SocietyID" Type="Int32" Nullable="false" />
+          <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FlatID" Type="Int32" />
+          <Property Name="UserID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="ViewThreadSummaryNoImageCount">
+          <Key>
+            <PropertyRef Name="FirstID" />
+            <PropertyRef Name="ThreadID" />
+            <PropertyRef Name="Topic" />
+            <PropertyRef Name="InitiatedAt" />
+            <PropertyRef Name="firstFlat" />
+            <PropertyRef Name="Initiater" />
+            <PropertyRef Name="FirstResID" />
+            <PropertyRef Name="FirstUserID" />
+            <PropertyRef Name="UpdatedAt" />
+            <PropertyRef Name="lastFlat" />
+            <PropertyRef Name="CurrentPostBy" />
+            <PropertyRef Name="LastResID" />
+            <PropertyRef Name="LastUserID" />
+            <PropertyRef Name="SocietyID" />
+          </Key>
+          <Property Name="FirstID" Type="Int32" Nullable="false" />
+          <Property Name="ThreadID" Type="Int32" Nullable="false" />
+          <Property Name="Topic" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FirstThread" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="InitiatedAt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="firstFlat" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Initiater" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FirstResID" Type="Int32" Nullable="false" />
+          <Property Name="FirstUserID" Type="Int32" Nullable="false" />
+          <Property Name="latestThread" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="UpdatedAt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="lastFlat" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CurrentPostBy" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastResID" Type="Int32" Nullable="false" />
+          <Property Name="LastUserID" Type="Int32" Nullable="false" />
+          <Property Name="commentsCount" Type="Int32" />
+          <Property Name="SocietyID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Flat">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="FlatNumber" />
+            <PropertyRef Name="Floor" />
+            <PropertyRef Name="Block" />
+            <PropertyRef Name="BHK" />
+            <PropertyRef Name="UserID" />
+            <PropertyRef Name="SocietyID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FlatNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Floor" Type="Int32" Nullable="false" />
+          <Property Name="Block" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IntercomNumber" Type="Int32" />
+          <Property Name="BHK" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="FlatArea" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="SocietyID" Type="Int32" Nullable="false" />
         </EntityType>
         </Schema>
@@ -2638,23 +2516,6 @@ warning 6002: The table/view 'SocietyDB.dbo.WatchViewFirstThreadNoImage' does no
                 <ScalarProperty Name="Assignedto" ColumnName="Assignedto" />
                 <ScalarProperty Name="Descrption" ColumnName="Descrption" />
                 <ScalarProperty Name="CompID" ColumnName="CompID" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Employees">
-            <EntityTypeMapping TypeName="SocietyDBModel.Employee">
-              <MappingFragment StoreEntitySet="Employee">
-                <ScalarProperty Name="SocietyID" ColumnName="SocietyID" />
-                <ScalarProperty Name="DeActiveDate" ColumnName="DeActiveDate" />
-                <ScalarProperty Name="ActiveDate" ColumnName="ActiveDate" />
-                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
-                <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
-                <ScalarProperty Name="ServiceType" ColumnName="ServiceType" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -2718,26 +2579,6 @@ warning 6002: The table/view 'SocietyDB.dbo.WatchViewFirstThreadNoImage' does no
                 <ScalarProperty Name="ResID" ColumnName="ResID" />
                 <ScalarProperty Name="PollID" ColumnName="PollID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Residents">
-            <EntityTypeMapping TypeName="SocietyDBModel.Resident">
-              <MappingFragment StoreEntitySet="Resident">
-                <ScalarProperty Name="SocietyID" ColumnName="SocietyID" />
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-                <ScalarProperty Name="Function" ColumnName="Function" />
-                <ScalarProperty Name="Addres" ColumnName="Addres" />
-                <ScalarProperty Name="DeActiveDate" ColumnName="DeActiveDate" />
-                <ScalarProperty Name="ActiveDate" ColumnName="ActiveDate" />
-                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
-                <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="Type" ColumnName="Type" />
-                <ScalarProperty Name="FlatID" ColumnName="FlatID" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="ResID" ColumnName="ResID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2813,31 +2654,6 @@ warning 6002: The table/view 'SocietyDB.dbo.WatchViewFirstThreadNoImage' does no
                 <ScalarProperty Name="CycleStart" ColumnName="CycleStart" />
                 <ScalarProperty Name="BillID" ColumnName="BillID" />
                 <ScalarProperty Name="FlatID" ColumnName="FlatID" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Flats">
-            <EntityTypeMapping TypeName="SocietyDBModel.Flat">
-              <MappingFragment StoreEntitySet="Flats">
-                <ScalarProperty Name="SocietyID" ColumnName="SocietyID" />
-                <ScalarProperty Name="FlatArea" ColumnName="FlatArea" />
-                <ScalarProperty Name="UserLogin" ColumnName="UserLogin" />
-                <ScalarProperty Name="EmailIdRes" ColumnName="EmailIdRes" />
-                <ScalarProperty Name="MobileNoRes" ColumnName="MobileNoRes" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="Type" ColumnName="Type" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
-                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="BHK" ColumnName="BHK" />
-                <ScalarProperty Name="OwnerName" ColumnName="OwnerName" />
-                <ScalarProperty Name="IntercomNumber" ColumnName="IntercomNumber" />
-                <ScalarProperty Name="Block" ColumnName="Block" />
-                <ScalarProperty Name="Floor" ColumnName="Floor" />
-                <ScalarProperty Name="FlatNumber" ColumnName="FlatNumber" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -2981,24 +2797,6 @@ warning 6002: The table/view 'SocietyDB.dbo.WatchViewFirstThreadNoImage' does no
                 <ScalarProperty Name="Ans2" ColumnName="Ans2" />
                 <ScalarProperty Name="Ans1" ColumnName="Ans1" />
                 <ScalarProperty Name="PollID" ColumnName="PollID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ViewResidents">
-            <EntityTypeMapping TypeName="SocietyDBModel.ViewResident">
-              <MappingFragment StoreEntitySet="ViewResidents">
-                <ScalarProperty Name="IntercomNumber" ColumnName="IntercomNumber" />
-                <ScalarProperty Name="FlatNumber" ColumnName="FlatNumber" />
-                <ScalarProperty Name="DeActiveDate" ColumnName="DeActiveDate" />
-                <ScalarProperty Name="ActiveDate" ColumnName="ActiveDate" />
-                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
-                <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="Type" ColumnName="Type" />
-                <ScalarProperty Name="SocietyID" ColumnName="SocietyID" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="ResID" ColumnName="ResID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3147,23 +2945,6 @@ warning 6002: The table/view 'SocietyDB.dbo.WatchViewFirstThreadNoImage' does no
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ViewEmployees">
-            <EntityTypeMapping TypeName="SocietyDBModel.ViewEmployee">
-              <MappingFragment StoreEntitySet="ViewEmployee">
-                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
-                <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="DeActiveDate" ColumnName="DeActiveDate" />
-                <ScalarProperty Name="ActiveDate" ColumnName="ActiveDate" />
-                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
-                <ScalarProperty Name="ServiceType" ColumnName="ServiceType" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="SocietyID" ColumnName="SocietyID" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Advertisements">
             <EntityTypeMapping TypeName="SocietyDBModel.Advertisement">
               <MappingFragment StoreEntitySet="Advertisement">
@@ -3296,22 +3077,6 @@ warning 6002: The table/view 'SocietyDB.dbo.WatchViewFirstThreadNoImage' does no
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ViewNotifications">
-            <EntityTypeMapping TypeName="SocietyDBModel.ViewNotification">
-              <MappingFragment StoreEntitySet="ViewNotifications">
-                <ScalarProperty Name="FlatID" ColumnName="FlatID" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
-                <ScalarProperty Name="SocietyID" ColumnName="SocietyID" />
-                <ScalarProperty Name="send_by" ColumnName="send_by" />
-                <ScalarProperty Name="AttachName" ColumnName="AttachName" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="Notification" ColumnName="Notification" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="ViewUserImages">
             <EntityTypeMapping TypeName="SocietyDBModel.ViewUserImage">
               <MappingFragment StoreEntitySet="ViewUserImage">
@@ -3362,59 +3127,6 @@ warning 6002: The table/view 'SocietyDB.dbo.WatchViewFirstThreadNoImage' does no
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ViewSocietyUsers">
-            <EntityTypeMapping TypeName="SocietyDBModel.ViewSocietyUser">
-              <MappingFragment StoreEntitySet="ViewSocietyUsers">
-                <ScalarProperty Name="FlatNumber" ColumnName="FlatNumber" />
-                <ScalarProperty Name="SocietyName" ColumnName="SocietyName" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="ParentName" ColumnName="ParentName" />
-                <ScalarProperty Name="Gender" ColumnName="Gender" />
-                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
-                <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
-                <ScalarProperty Name="ServiceType" ColumnName="ServiceType" />
-                <ScalarProperty Name="SocietyID" ColumnName="SocietyID" />
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-                <ScalarProperty Name="DeActiveDate" ColumnName="DeActiveDate" />
-                <ScalarProperty Name="ActiveDate" ColumnName="ActiveDate" />
-                <ScalarProperty Name="Type" ColumnName="Type" />
-                <ScalarProperty Name="FlatID" ColumnName="FlatID" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="ResID" ColumnName="ResID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ViewFlats">
-            <EntityTypeMapping TypeName="SocietyDBModel.ViewFlat">
-              <MappingFragment StoreEntitySet="ViewFlats">
-                <ScalarProperty Name="TenantTo" ColumnName="TenantTo" />
-                <ScalarProperty Name="TenantFrom" ColumnName="TenantFrom" />
-                <ScalarProperty Name="TenantAddress" ColumnName="TenantAddress" />
-                <ScalarProperty Name="TenantMobile" ColumnName="TenantMobile" />
-                <ScalarProperty Name="TenantEmail" ColumnName="TenantEmail" />
-                <ScalarProperty Name="TenantLastName" ColumnName="TenantLastName" />
-                <ScalarProperty Name="TenantFirstName" ColumnName="TenantFirstName" />
-                <ScalarProperty Name="TenantUserID" ColumnName="TenantUserID" />
-                <ScalarProperty Name="OwnerAddress" ColumnName="OwnerAddress" />
-                <ScalarProperty Name="OwnerMobile" ColumnName="OwnerMobile" />
-                <ScalarProperty Name="OwnerEmail" ColumnName="OwnerEmail" />
-                <ScalarProperty Name="OwnerLastName" ColumnName="OwnerLastName" />
-                <ScalarProperty Name="OwnerFirstName" ColumnName="OwnerFirstName" />
-                <ScalarProperty Name="OwnerUserID" ColumnName="OwnerUserID" />
-                <ScalarProperty Name="FlatArea" ColumnName="FlatArea" />
-                <ScalarProperty Name="IntercomNumber" ColumnName="IntercomNumber" />
-                <ScalarProperty Name="Block" ColumnName="Block" />
-                <ScalarProperty Name="Floor" ColumnName="Floor" />
-                <ScalarProperty Name="BHK" ColumnName="BHK" />
-                <ScalarProperty Name="SocietyId" ColumnName="SocietyId" />
-                <ScalarProperty Name="FlatNumber" ColumnName="FlatNumber" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="ViewLatestGeneratedBill_Resident">
             <EntityTypeMapping TypeName="SocietyDBModel.ViewLatestGeneratedBill_Resident">
               <MappingFragment StoreEntitySet="ViewLatestGeneratedBill_Resident">
@@ -3457,24 +3169,80 @@ warning 6002: The table/view 'SocietyDB.dbo.WatchViewFirstThreadNoImage' does no
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ViewThreadSummaryNoImageCounts">
-            <EntityTypeMapping TypeName="SocietyDBModel.ViewThreadSummaryNoImageCount">
-              <MappingFragment StoreEntitySet="ViewThreadSummaryNoImageCount">
+          <EntitySetMapping Name="ViewFlats">
+            <EntityTypeMapping TypeName="SocietyDBModel.ViewFlat">
+              <MappingFragment StoreEntitySet="ViewFlats">
+                <ScalarProperty Name="TenantTo" ColumnName="TenantTo" />
+                <ScalarProperty Name="TenantFrom" ColumnName="TenantFrom" />
+                <ScalarProperty Name="TenantAddress" ColumnName="TenantAddress" />
+                <ScalarProperty Name="TenantMobile" ColumnName="TenantMobile" />
+                <ScalarProperty Name="TenantEmail" ColumnName="TenantEmail" />
+                <ScalarProperty Name="TenantLastName" ColumnName="TenantLastName" />
+                <ScalarProperty Name="TenantFirstName" ColumnName="TenantFirstName" />
+                <ScalarProperty Name="TenantUserID" ColumnName="TenantUserID" />
+                <ScalarProperty Name="TenantResID" ColumnName="TenantResID" />
+                <ScalarProperty Name="OwnerAddress" ColumnName="OwnerAddress" />
+                <ScalarProperty Name="OwnerMobile" ColumnName="OwnerMobile" />
+                <ScalarProperty Name="OwnerEmail" ColumnName="OwnerEmail" />
+                <ScalarProperty Name="OwnerLastName" ColumnName="OwnerLastName" />
+                <ScalarProperty Name="OwnerFirstName" ColumnName="OwnerFirstName" />
+                <ScalarProperty Name="OwnerUserID" ColumnName="OwnerUserID" />
+                <ScalarProperty Name="OwnerResID" ColumnName="OwnerResID" />
+                <ScalarProperty Name="FlatArea" ColumnName="FlatArea" />
+                <ScalarProperty Name="IntercomNumber" ColumnName="IntercomNumber" />
+                <ScalarProperty Name="Block" ColumnName="Block" />
+                <ScalarProperty Name="Floor" ColumnName="Floor" />
+                <ScalarProperty Name="BHK" ColumnName="BHK" />
+                <ScalarProperty Name="SocietyId" ColumnName="SocietyId" />
+                <ScalarProperty Name="FlatNumber" ColumnName="FlatNumber" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ViewSocietyUsers">
+            <EntityTypeMapping TypeName="SocietyDBModel.ViewSocietyUser">
+              <MappingFragment StoreEntitySet="ViewSocietyUsers">
+                <ScalarProperty Name="intercomNumber" ColumnName="intercomNumber" />
+                <ScalarProperty Name="CompType" ColumnName="CompType" />
+                <ScalarProperty Name="FlatNumber" ColumnName="FlatNumber" />
+                <ScalarProperty Name="SocietyName" ColumnName="SocietyName" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="ParentName" ColumnName="ParentName" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+                <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="ServiceType" ColumnName="ServiceType" />
                 <ScalarProperty Name="SocietyID" ColumnName="SocietyID" />
-                <ScalarProperty Name="commentsCount" ColumnName="commentsCount" />
-                <ScalarProperty Name="LastResID" ColumnName="LastResID" />
-                <ScalarProperty Name="CurrentPostBy" ColumnName="CurrentPostBy" />
-                <ScalarProperty Name="lastFlat" ColumnName="lastFlat" />
-                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
-                <ScalarProperty Name="latestThread" ColumnName="latestThread" />
-                <ScalarProperty Name="FirstResID" ColumnName="FirstResID" />
-                <ScalarProperty Name="Initiater" ColumnName="Initiater" />
-                <ScalarProperty Name="firstFlat" ColumnName="firstFlat" />
-                <ScalarProperty Name="InitiatedAt" ColumnName="InitiatedAt" />
-                <ScalarProperty Name="FirstThread" ColumnName="FirstThread" />
-                <ScalarProperty Name="Topic" ColumnName="Topic" />
-                <ScalarProperty Name="ThreadID" ColumnName="ThreadID" />
-                <ScalarProperty Name="FirstID" ColumnName="FirstID" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="DeActiveDate" ColumnName="DeActiveDate" />
+                <ScalarProperty Name="ActiveDate" ColumnName="ActiveDate" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="FlatID" ColumnName="FlatID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="ResID" ColumnName="ResID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ViewUsers">
+            <EntityTypeMapping TypeName="SocietyDBModel.ViewUser">
+              <MappingFragment StoreEntitySet="ViewUser">
+                <ScalarProperty Name="SocietyName" ColumnName="SocietyName" />
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+                <ScalarProperty Name="SocietyID" ColumnName="SocietyID" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Parentname" ColumnName="Parentname" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+                <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserLogin" ColumnName="UserLogin" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3487,9 +3255,65 @@ warning 6002: The table/view 'SocietyDB.dbo.WatchViewFirstThreadNoImage' does no
                 <ScalarProperty Name="Topic" ColumnName="Topic" />
                 <ScalarProperty Name="ThreadID" ColumnName="ThreadID" />
                 <ScalarProperty Name="ResID" ColumnName="ResID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="FlatNumber" ColumnName="FlatNumber" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ViewNotifications">
+            <EntityTypeMapping TypeName="SocietyDBModel.ViewNotification">
+              <MappingFragment StoreEntitySet="ViewNotifications">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="FlatID" ColumnName="FlatID" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="SocietyID" ColumnName="SocietyID" />
+                <ScalarProperty Name="send_by" ColumnName="send_by" />
+                <ScalarProperty Name="AttachName" ColumnName="AttachName" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Notification" ColumnName="Notification" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ViewThreadSummaryNoImageCounts">
+            <EntityTypeMapping TypeName="SocietyDBModel.ViewThreadSummaryNoImageCount">
+              <MappingFragment StoreEntitySet="ViewThreadSummaryNoImageCount">
+                <ScalarProperty Name="SocietyID" ColumnName="SocietyID" />
+                <ScalarProperty Name="commentsCount" ColumnName="commentsCount" />
+                <ScalarProperty Name="LastUserID" ColumnName="LastUserID" />
+                <ScalarProperty Name="LastResID" ColumnName="LastResID" />
+                <ScalarProperty Name="CurrentPostBy" ColumnName="CurrentPostBy" />
+                <ScalarProperty Name="lastFlat" ColumnName="lastFlat" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="latestThread" ColumnName="latestThread" />
+                <ScalarProperty Name="FirstUserID" ColumnName="FirstUserID" />
+                <ScalarProperty Name="FirstResID" ColumnName="FirstResID" />
+                <ScalarProperty Name="Initiater" ColumnName="Initiater" />
+                <ScalarProperty Name="firstFlat" ColumnName="firstFlat" />
+                <ScalarProperty Name="InitiatedAt" ColumnName="InitiatedAt" />
+                <ScalarProperty Name="FirstThread" ColumnName="FirstThread" />
+                <ScalarProperty Name="Topic" ColumnName="Topic" />
+                <ScalarProperty Name="ThreadID" ColumnName="ThreadID" />
+                <ScalarProperty Name="FirstID" ColumnName="FirstID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Flats">
+            <EntityTypeMapping TypeName="SocietyDBModel.Flat">
+              <MappingFragment StoreEntitySet="Flats">
+                <ScalarProperty Name="SocietyID" ColumnName="SocietyID" />
+                <ScalarProperty Name="FlatArea" ColumnName="FlatArea" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="BHK" ColumnName="BHK" />
+                <ScalarProperty Name="IntercomNumber" ColumnName="IntercomNumber" />
+                <ScalarProperty Name="Block" ColumnName="Block" />
+                <ScalarProperty Name="Floor" ColumnName="Floor" />
+                <ScalarProperty Name="FlatNumber" ColumnName="FlatNumber" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

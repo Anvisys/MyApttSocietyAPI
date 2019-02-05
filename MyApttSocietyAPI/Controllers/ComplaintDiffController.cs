@@ -83,9 +83,7 @@ namespace MyApttSocietyAPI.Controllers
             {
                 Log.log(" Get Complaint has error at: " + DateTime.Now.ToString() + " " + ex.Message);
                 return null;
-            }
-
-                 
+            }      
 
         }
 

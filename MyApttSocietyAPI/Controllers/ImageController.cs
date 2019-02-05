@@ -39,11 +39,19 @@ namespace MyApttSocietyAPI.Controllers
         [HttpGet]
         public ShopImage GetByUserID(int UserId)
         {
-            var context = new SocietyDBEntities();
-            var Image = (from res in context.ViewUserImages
-                         where (res.UserID == UserId)
-                         select new ShopImage() { ID = res.ResID, ImageString = res.Profile_image }).First();
-            return Image;
+            try
+            {
+                var context = new SocietyDBEntities();
+                var Image = (from res in context.ViewUserImages
+                             where (res.UserID == UserId)
+                             select new ShopImage() { ID = res.ResID, ImageString = res.Profile_image }).First();
+                return Image;
+            }
+            catch (Exception ex)
+            {
+
+                return new ShopImage { ID = -99, ImageString = { } };
+            }
         }
 
         [Route("Mob/{Mobile}")]
@@ -52,7 +60,7 @@ namespace MyApttSocietyAPI.Controllers
         {
             var context = new SocietyDBEntities();
 
-            var resID = (from res in context.Residents
+            var resID = (from res in context.ViewSocietyUsers
                          where (res.MobileNo == Mobile)
                          select res.ResID).First();
 
@@ -67,42 +75,53 @@ namespace MyApttSocietyAPI.Controllers
             String resp;
             try
             {
-
-                using (var context = new SocietyDBEntities())
-                {
-                    
-                    List<ResidentImage> users = (from u in context.ResidentImages
-                                               where u.UserID == value.UserID
-                                               select u).ToList();
-                    if (users.Count == 0)
-                    {
-
-                        Log.log("Saving Image for new user : " + value.ResID + " " + value.UserID);
-                        context.ResidentImages.Add(new ResidentImage {
-                            ResID = value.ResID,
-                            UserID = value.UserID,
-                            Profile_image = Convert.FromBase64String(value.ImageString),
-                        
-                        });
-                    
-                    }
-                    else
-                    {
-                        Log.log("Image updated for user : " + value.ResID + " " + value.UserID);
-                        foreach (ResidentImage user in users)
+                        if (value.UserID == 0 || value.ImageString == null)
                         {
-                            user.Profile_image = Convert.FromBase64String(value.ImageString);
-
+                            resp = "{\"Response\":\"Fail\",\"Message\":\"UserID or Image String is null\" }";
+                            var response = Request.CreateResponse(HttpStatusCode.ExpectationFailed);
+                            response.Content = new StringContent(resp, System.Text.Encoding.UTF8, "application/json");
+                            return response;
                         }
-                    }
+                        else
+                        {
+                                    using (var context = new SocietyDBEntities())
+                                    {
+                                           List<ResidentImage> users = (from u in context.ResidentImages
+                                                                         where u.UserID == value.UserID
+                                                                         select u).ToList();
+                                            if (users.Count == 0)
+                                            {
 
-                    context.SaveChanges();
-                    resp = "{\"Response\":\"OK\"}";
-                }
+                                                Log.log("Saving Image for new user : " + value.ResID + " " + value.UserID);
+                                                context.ResidentImages.Add(new ResidentImage
+                                                {
+                                                    ResID = value.ResID,
+                                                    UserID = value.UserID,
+                                                    Profile_image = Convert.FromBase64String(value.ImageString),
 
-                var response = Request.CreateResponse(HttpStatusCode.OK);
-                response.Content = new StringContent(resp, System.Text.Encoding.UTF8, "application/json");
-                return response;
+                                                });
+
+                                            }
+                                            else
+                                            {
+                                                Log.log("Image updated for user : " + value.ResID + " " + value.UserID);
+                                                foreach (ResidentImage user in users)
+                                                {
+                                                    user.Profile_image = Convert.FromBase64String(value.ImageString);
+
+                                                }
+                                            }
+
+                                            context.SaveChanges();
+                                            resp = "{\"Response\":\"OK\"}";
+                                            var response = Request.CreateResponse(HttpStatusCode.OK);
+                                            response.Content = new StringContent(resp, System.Text.Encoding.UTF8, "application/json");
+                                            return response;
+                                        }
+                    
+                        }
+
+              
             }
 
             catch (DbEntityValidationException dbEx)
@@ -117,8 +136,8 @@ namespace MyApttSocietyAPI.Controllers
 
                     }
                 }
-                resp = "{\"Response\":\"Fail\"}";
-                var response = Request.CreateResponse(HttpStatusCode.OK);
+                resp = "{\"Response\":\"Fail\",\"Message\":\"" + dbEx.Message + "\" }";
+                var response = Request.CreateResponse(HttpStatusCode.ExpectationFailed);
                 response.Content = new StringContent(resp, System.Text.Encoding.UTF8, "application/json");
                 return response;
             }

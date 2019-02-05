@@ -10,10 +10,12 @@ using MyApttSocietyAPI.Models;
 
 namespace MyApttSocietyAPI.Controllers
 {
-      [EnableCors(origins: "*", headers: "*", methods: "*")]
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
+    [RoutePrefix("api/Vendor")]
     public class VendorController : ApiController
     {
-        // GET: api/Vendor
+        [Route("All")]
+        [HttpGet]
         public IEnumerable<Vendor> Get()
         {
             try
@@ -47,10 +49,11 @@ namespace MyApttSocietyAPI.Controllers
             }
         }
 
-        // GET: api/Vendor/5
-        public IEnumerable<Vendor> Get(String id)
+        [Route("Society/{SocID}/Date/{date}")]
+        [HttpGet]
+        public IEnumerable<Vendor> Get(String date, int SocID)
         {
-            DateTime lastDateTime = DateTime.ParseExact(id,"dd/mm/yyyy HH:MM:SS",null);
+            DateTime lastDateTime = DateTime.ParseExact(date, "dd/mm/yyyy HH:MM:SS", null);
             Log.log("Date found is  : " + lastDateTime.ToLongDateString());
 
             String sdate = "23/10/2016 4:05:00";
@@ -62,7 +65,7 @@ namespace MyApttSocietyAPI.Controllers
             {
                 var context = new SocietyDBEntities();
                 var vendor = (from vend in context.Vendors
-                              where vend.Date >lastDateTime
+                              where vend.Date >lastDateTime && vend.SocietyID == SocID
                               select vend
                              );
 
@@ -91,7 +94,8 @@ namespace MyApttSocietyAPI.Controllers
             }
         }
 
-        // POST: api/Vendor
+        [Route("ByDate")]
+        [HttpPost]
         public IEnumerable<Shop> Post([FromBody]DateTimeInput dateTime)
         {
 
@@ -127,6 +131,27 @@ namespace MyApttSocietyAPI.Controllers
                 return null;
             }
         }
+
+        [Route("Images")]
+        [HttpPost]
+        public IEnumerable<ShopImage> Post([FromBody]Batch value)
+        {
+            var context = new SocietyDBEntities();
+
+            var count = value.EndIndex - value.StartIndex;
+
+            var vendor = (from vend in context.Vendors
+                          where vend.SocietyID == value.SocietyID
+                          orderby vend.Date descending
+                          select new ShopImage() { ID = vend.ID, ImageString = vend.VendorIcon }
+                             );
+
+            var y = vendor.Skip(value.StartIndex).Take(count);
+
+            return y;
+        }
+
+
 
         // PUT: api/Vendor/5
         public void Put(int id, [FromBody]string value)

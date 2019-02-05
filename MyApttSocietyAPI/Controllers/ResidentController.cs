@@ -40,7 +40,7 @@ namespace MyApttSocietyAPI.Controllers
                     var context = new SocietyDBEntities();
                     var Residents = (from res in context.ViewSocietyUsers
                                      where ((res.DeActiveDate == null) || (DbFunctions.TruncateTime(res.DeActiveDate) > DbFunctions.TruncateTime(DateTime.UtcNow))) && res.UserID ==id
-                                     select res);
+                                     select res).ToList();
                     return Residents;
                 
             }
@@ -76,14 +76,14 @@ namespace MyApttSocietyAPI.Controllers
         // GET: api/Resident/5
          [Route("Email/{email}")]
          [HttpGet]
-         public ViewResident GetByEmail(String email)
+         public ViewSocietyUser GetByEmail(String email)
         {
             try
             {
                 using (var context = new SocietyDBEntities())
                 {
-                    var L2EQuery = context.ViewResidents.Where(u => u.EmailId.ToLower() == email.ToLower());
-                    var user = L2EQuery.FirstOrDefault<ViewResident>();
+                    var L2EQuery = context.ViewSocietyUsers.Where(u => u.EmailId.ToLower() == email.ToLower());
+                    var user = L2EQuery.FirstOrDefault<ViewSocietyUser>();
                     return user;
                 }
             }
@@ -94,57 +94,7 @@ namespace MyApttSocietyAPI.Controllers
             }
         }
 
-       
-        // POST: api/Resident
-         [Route("Update")]
-         [HttpPost]
-        public HttpResponseMessage Post([FromBody]Profile value)
-        {
-            String resp;
-            try
-            {
-                using (var context = new SocietyDBEntities())
-                {
-                    var usr = context.Residents;
-                    List<Resident> users = (from u in context.Residents
-                                            where u.UserID == value.UserID
-                                            select u).ToList();
-
-                    foreach (Resident user in users)
-                    {
-                        user.FirstName = value.UserName;
-                        user.EmailId = value.Email;
-                        user.Addres = value.Location;
-                        user.Function = "EDIT";
-                    }
-
-                    context.SaveChanges();
-                    resp = "{\"Response\":\"OK\"}";
-                }
-
-                var response = Request.CreateResponse(HttpStatusCode.OK);
-                response.Content = new StringContent(resp, System.Text.Encoding.UTF8, "application/json");
-                return response;
-            }
-            
-            catch (DbEntityValidationException dbEx)
-            {
-                foreach (var validationErrors in dbEx.EntityValidationErrors)
-                {
-                    foreach (var validationError in validationErrors.ValidationErrors)
-                    {
-
-                        Log.log("api/Profile Failed to Edit : Property-" + validationError.PropertyName + "  Error- " + validationError.ErrorMessage + "  At " + DateTime.Now.ToString());
-
-
-                    }
-                }
-                resp = "{\"Response\":\"Fail\"}";
-                var response = Request.CreateResponse(HttpStatusCode.OK);
-                response.Content = new StringContent(resp, System.Text.Encoding.UTF8, "application/json");
-                return response;
-            }
-        }
+      
 
         [Route("AddResident")]
         [HttpPost]

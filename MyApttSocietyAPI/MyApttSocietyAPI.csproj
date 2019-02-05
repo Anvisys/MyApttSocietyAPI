@@ -137,7 +137,6 @@
       <DependentUpon>SocietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\AdsController.cs" />
-    <Compile Include="Controllers\BatchVendorController.cs" />
     <Compile Include="Controllers\BillingController.cs" />
     <Compile Include="Controllers\ComplaintController.cs" />
     <Compile Include="Controllers\ComplaintDiffController.cs" />
@@ -146,6 +145,7 @@
     <Compile Include="Controllers\ForumController.cs" />
     <Compile Include="Controllers\ForumDiffController.cs" />
     <Compile Include="Controllers\GCMRegisterController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\VisitorController.cs" />
     <Compile Include="Controllers\ImageController.cs" />
     <Compile Include="Controllers\LastUpdateController.cs" />
@@ -156,9 +156,6 @@
     <Compile Include="Controllers\SummaryController.cs" />
     <Compile Include="Controllers\TenantController.cs" />
     <Compile Include="Controllers\VendorController.cs" />
-    <Compile Include="Employee.cs">
-      <DependentUpon>SocietyDB.tt</DependentUpon>
-    </Compile>
     <Compile Include="Flat.cs">
       <DependentUpon>SocietyDB.tt</DependentUpon>
     </Compile>
@@ -201,6 +198,8 @@
     <Compile Include="Models\Domain.cs" />
     <Compile Include="Models\Forum.cs" />
     <Compile Include="Models\GCMRegister.cs" />
+    <Compile Include="Models\ValidateUser.cs" />
+    <Compile Include="Models\ValidUser.cs" />
     <Compile Include="Models\VisitorEntry.cs" />
     <Compile Include="Models\Notice.cs" />
     <Compile Include="Models\Poll.cs" />
@@ -222,9 +221,6 @@
       <DependentUpon>SocietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Resident.cs">
-      <DependentUpon>SocietyDB.tt</DependentUpon>
-    </Compile>
     <Compile Include="ResidentImage.cs">
       <DependentUpon>SocietyDB.tt</DependentUpon>
     </Compile>
@@ -276,9 +272,6 @@
     <Compile Include="ViewComplaintSummary.cs">
       <DependentUpon>SocietyDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="ViewEmployee.cs">
-      <DependentUpon>SocietyDB.tt</DependentUpon>
-    </Compile>
     <Compile Include="ViewFirstThreadwithCount.cs">
       <DependentUpon>SocietyDB.tt</DependentUpon>
     </Compile>
@@ -315,13 +308,13 @@
     <Compile Include="ViewPollDataWithCount.cs">
       <DependentUpon>SocietyDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="ViewResident.cs">
-      <DependentUpon>SocietyDB.tt</DependentUpon>
-    </Compile>
     <Compile Include="ViewSocietyUser.cs">
       <DependentUpon>SocietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewThreadSummaryNoImageCount.cs">
+      <DependentUpon>SocietyDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewUser.cs">
       <DependentUpon>SocietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewUserImage.cs">

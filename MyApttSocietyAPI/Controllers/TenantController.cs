@@ -16,6 +16,7 @@ namespace MyApttSocietyAPI.Controllers
 {
 
     [EnableCors(origins: "*", headers: "*", methods: "*")]
+    [RoutePrefix("api/Tenant")]
     public class TenantController : ApiController
     {
         // GET: api/Tenant
@@ -30,7 +31,9 @@ namespace MyApttSocietyAPI.Controllers
             return "value";
         }
 
-        
+
+        [Route("New")]
+        [HttpPost]
         // POST: api/Tenant
         public HttpResponseMessage Post([FromBody]Tenant Res)
         {
@@ -39,21 +42,17 @@ namespace MyApttSocietyAPI.Controllers
             {
                 using (var context = new SocietyDBEntities())
                 {
-                    var usr = context.Residents;
-                    usr.Add(new Resident()
+                    var usr = context.SocietyUsers;
+                    usr.Add(new SocietyUser()
                     {
                         UserID = Res.UserID,
                         FlatID = Res.FlatID,
                         Type = Res.Type,
-                        FirstName = Res.FirstName,
-                        LastName = Res.LastName,
-                        MobileNo = Res.MobileNo,
-                        EmailId = Res.EmailId,
-                        Addres = Res.Addres,
                         SocietyID = Res.SocietyID,
                         ActiveDate = DateTime.ParseExact(Res.ActiveDate, "dd/MM/yyyy", CultureInfo.InvariantCulture),
                         DeActiveDate = DateTime.ParseExact(Res.DeActiveDate, "dd/MM/yyyy", CultureInfo.InvariantCulture),
-                        Function = "ADD",
+                        CompanyName = "NA",
+                        ServiceType =0,
                         ModifiedDate = DateTime.Now.ToUniversalTime()
                     });
                     context.SaveChanges();
@@ -85,21 +84,21 @@ namespace MyApttSocietyAPI.Controllers
             }
         }
 
-        [Route("UpdateTenant")]
+        [Route("Update")]
         [HttpPost]
         // POST: api/Tenant/UpdateTenant
-        public HttpResponseMessage UpdateTenant(int id,[FromBody]UpdateDate updatedDate)
+        public HttpResponseMessage UpdateTenant([FromBody]UpdateDate updatedDate)
         {
             String resp;
             try
             {
                 using (var context = new SocietyDBEntities())
                 {
-                    List<Resident> users = (from u in context.Residents
-                                            where u.UserID == updatedDate.id
+                    List<SocietyUser> users = (from u in context.SocietyUsers
+                                            where u.ResID == updatedDate.id && u.Type == "Tenant"
                                             select u).ToList();
 
-                    foreach (Resident user in users)
+                    foreach (SocietyUser user in users)
                     {
 
                         user.DeActiveDate = DateTime.ParseExact(updatedDate.date, "dd/MM/yyyy", CultureInfo.InvariantCulture);

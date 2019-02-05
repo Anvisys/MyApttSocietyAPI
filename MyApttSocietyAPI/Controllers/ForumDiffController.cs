@@ -56,7 +56,8 @@ namespace MyApttSocietyAPI.Controllers
                 {
                     DateTime updatedDateTime = DateTime.ParseExact(value.LastRefreshTime, "dd/MM/yyyy HH:mm:ss", System.Globalization.CultureInfo.CurrentUICulture);
                     return (from thread in context.ViewThreadSummaryNoImageCounts
-                            where thread.UpdatedAt > updatedDateTime
+                            where thread.SocietyID == value.SocietyID && thread.UpdatedAt > updatedDateTime
+                            orderby thread.UpdatedAt descending
                             select thread).Take(10);
                 }
                

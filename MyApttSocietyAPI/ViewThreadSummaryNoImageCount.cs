@@ -22,11 +22,13 @@ namespace MyApttSocietyAPI
         public string firstFlat { get; set; }
         public string Initiater { get; set; }
         public int FirstResID { get; set; }
+        public int FirstUserID { get; set; }
         public string latestThread { get; set; }
         public System.DateTime UpdatedAt { get; set; }
         public string lastFlat { get; set; }
         public string CurrentPostBy { get; set; }
         public int LastResID { get; set; }
+        public int LastUserID { get; set; }
         public Nullable<int> commentsCount { get; set; }
         public int SocietyID { get; set; }
     }

@@ -33,5 +33,7 @@ namespace MyApttSocietyAPI
         public string Address { get; set; }
         public string SocietyName { get; set; }
         public string FlatNumber { get; set; }
+        public string CompType { get; set; }
+        public Nullable<int> intercomNumber { get; set; }
     }
 }

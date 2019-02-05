@@ -99,7 +99,7 @@ namespace MyApttSocietyAPI.Controllers
                         Thread = frm.CurrentThread,
                         SocietyID = frm.SocietyId,
                         UpdatedOn = DateTime.Now.ToUniversalTime(),
-                     
+                    
                     });
                     context.SaveChanges();
 
