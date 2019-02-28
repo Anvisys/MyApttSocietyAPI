@@ -178,31 +178,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="TempResidentViews">
-      <EntityTypeMapping TypeName="SocietyDBModel.TempResidentView">
-        <MappingFragment StoreEntitySet="TempResidentView">
-          <ScalarProperty Name="ActiveDate" ColumnName="ActiveDate" />
-          <ScalarProperty Name="ResID" ColumnName="ResID" />
-          <ScalarProperty Name="Address" ColumnName="Address" />
-          <ScalarProperty Name="EmailIdRes" ColumnName="EmailIdRes" />
-          <ScalarProperty Name="MobileNoRes" ColumnName="MobileNoRes" />
-          <ScalarProperty Name="IntercomNumber" ColumnName="IntercomNumber" />
-          <ScalarProperty Name="BHK" ColumnName="BHK" />
-          <ScalarProperty Name="Block" ColumnName="Block" />
-          <ScalarProperty Name="Floor" ColumnName="Floor" />
-          <ScalarProperty Name="FlatArea" ColumnName="FlatArea" />
-          <ScalarProperty Name="FlatID" ColumnName="FlatID" />
-          <ScalarProperty Name="LastName" ColumnName="LastName" />
-          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-          <ScalarProperty Name="OwnerName" ColumnName="OwnerName" />
-          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
-          <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
-          <ScalarProperty Name="Type" ColumnName="Type" />
-          <ScalarProperty Name="UserLogin" ColumnName="UserLogin" />
-          <ScalarProperty Name="UserID" ColumnName="UserID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="ViewComplaintAges">
       <EntityTypeMapping TypeName="SocietyDBModel.ViewComplaintAge">
         <MappingFragment StoreEntitySet="ViewComplaintAge">
@@ -813,6 +788,49 @@
           <ScalarProperty Name="Floor" ColumnName="Floor" />
           <ScalarProperty Name="FlatNumber" ColumnName="FlatNumber" />
           <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ResidentSettings">
+      <EntityTypeMapping TypeName="SocietyDBModel.ResidentSetting">
+        <MappingFragment StoreEntitySet="ResidentSettings">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="NoticeSMS" ColumnName="NoticeSMS" />
+          <ScalarProperty Name="NoticeMail" ColumnName="NoticeMail" />
+          <ScalarProperty Name="NoticeNotification" ColumnName="NoticeNotification" />
+          <ScalarProperty Name="forumSMS" ColumnName="forumSMS" />
+          <ScalarProperty Name="forumMail" ColumnName="forumMail" />
+          <ScalarProperty Name="forumNotification" ColumnName="forumNotification" />
+          <ScalarProperty Name="ComplaintSMS" ColumnName="ComplaintSMS" />
+          <ScalarProperty Name="ComplaintMail" ColumnName="ComplaintMail" />
+          <ScalarProperty Name="ComplaintNotification" ColumnName="ComplaintNotification" />
+          <ScalarProperty Name="BillingSMS" ColumnName="BillingSMS" />
+          <ScalarProperty Name="BillingMail" ColumnName="BillingMail" />
+          <ScalarProperty Name="BillingNotification" ColumnName="BillingNotification" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ViewUserSettings">
+      <EntityTypeMapping TypeName="SocietyDBModel.ViewUserSetting">
+        <MappingFragment StoreEntitySet="ViewUserSetting">
+          <ScalarProperty Name="NoticeSMS" ColumnName="NoticeSMS" />
+          <ScalarProperty Name="NoticeMail" ColumnName="NoticeMail" />
+          <ScalarProperty Name="NoticeNotification" ColumnName="NoticeNotification" />
+          <ScalarProperty Name="forumSMS" ColumnName="forumSMS" />
+          <ScalarProperty Name="forumMail" ColumnName="forumMail" />
+          <ScalarProperty Name="forumNotification" ColumnName="forumNotification" />
+          <ScalarProperty Name="ComplaintSMS" ColumnName="ComplaintSMS" />
+          <ScalarProperty Name="ComplaintMail" ColumnName="ComplaintMail" />
+          <ScalarProperty Name="ComplaintNotification" ColumnName="ComplaintNotification" />
+          <ScalarProperty Name="BillingSMS" ColumnName="BillingSMS" />
+          <ScalarProperty Name="BillingMail" ColumnName="BillingMail" />
+          <ScalarProperty Name="BillingNotification" ColumnName="BillingNotification" />
+          <ScalarProperty Name="RegID" ColumnName="RegID" />
+          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+          <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -13,7 +13,6 @@
     <EntitySet Name="BillCycles" EntityType="SocietyDBModel.BillCycle" />
     <EntitySet Name="ImageChecks" EntityType="SocietyDBModel.ImageCheck" />
     <EntitySet Name="Societybillplans" EntityType="SocietyDBModel.Societybillplan" />
-    <EntitySet Name="TempResidentViews" EntityType="SocietyDBModel.TempResidentView" />
     <EntitySet Name="ViewComplaintAges" EntityType="SocietyDBModel.ViewComplaintAge" />
     <EntitySet Name="ViewFirstThreadwithCounts" EntityType="SocietyDBModel.ViewFirstThreadwithCount" />
     <EntitySet Name="ViewLatestGeneratedBills" EntityType="SocietyDBModel.ViewLatestGeneratedBill" />
@@ -49,6 +48,8 @@
     <EntitySet Name="ViewNotifications" EntityType="SocietyDBModel.ViewNotification" />
     <EntitySet Name="ViewThreadSummaryNoImageCounts" EntityType="SocietyDBModel.ViewThreadSummaryNoImageCount" />
     <EntitySet Name="Flats" EntityType="SocietyDBModel.Flat" />
+    <EntitySet Name="ResidentSettings" EntityType="SocietyDBModel.ResidentSetting" />
+    <EntitySet Name="ViewUserSettings" EntityType="SocietyDBModel.ViewUserSetting" />
   </EntityContainer>
   <EntityType Name="Complaint">
     <Key>
@@ -225,37 +226,6 @@
     <Property Name="CycleType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Applyto" Type="Int32" Nullable="false" />
     <Property Name="SocietyID" Type="Int32" Nullable="false" />
-  </EntityType>
-  <EntityType Name="TempResidentView">
-    <Key>
-      <PropertyRef Name="UserID" />
-      <PropertyRef Name="UserLogin" />
-      <PropertyRef Name="OwnerName" />
-      <PropertyRef Name="FlatID" />
-      <PropertyRef Name="Floor" />
-      <PropertyRef Name="Block" />
-      <PropertyRef Name="BHK" />
-      <PropertyRef Name="ResID" />
-    </Key>
-    <Property Name="UserID" Type="Int32" Nullable="false" />
-    <Property Name="UserLogin" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="MobileNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="EmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="OwnerName" Type="String" Nullable="false" MaxLength="25" FixedLength="true" Unicode="false" />
-    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="FlatID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="FlatArea" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="Floor" Type="Int32" Nullable="false" />
-    <Property Name="Block" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="BHK" Type="Int32" Nullable="false" />
-    <Property Name="IntercomNumber" Type="Int32" />
-    <Property Name="MobileNoRes" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="EmailIdRes" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="ResID" Type="Int32" Nullable="false" />
-    <Property Name="ActiveDate" Type="DateTime" Precision="0" />
   </EntityType>
   <EntityType Name="ViewComplaintAge">
     <Key>
@@ -984,5 +954,69 @@
     <Property Name="UserID" Type="Int32" Nullable="false" />
     <Property Name="FlatArea" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="SocietyID" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ResidentSetting">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="BillingNotification" />
+      <PropertyRef Name="BillingMail" />
+      <PropertyRef Name="BillingSMS" />
+      <PropertyRef Name="ComplaintNotification" />
+      <PropertyRef Name="ComplaintMail" />
+      <PropertyRef Name="ComplaintSMS" />
+      <PropertyRef Name="forumNotification" />
+      <PropertyRef Name="NoticeNotification" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BillingNotification" Type="Boolean" Nullable="false" />
+    <Property Name="BillingMail" Type="Boolean" Nullable="false" />
+    <Property Name="BillingSMS" Type="Boolean" Nullable="false" />
+    <Property Name="ComplaintNotification" Type="Boolean" Nullable="false" />
+    <Property Name="ComplaintMail" Type="Boolean" Nullable="false" />
+    <Property Name="ComplaintSMS" Type="Boolean" Nullable="false" />
+    <Property Name="forumNotification" Type="Boolean" Nullable="false" />
+    <Property Name="forumMail" Type="Boolean" />
+    <Property Name="forumSMS" Type="Boolean" />
+    <Property Name="NoticeNotification" Type="Boolean" Nullable="false" />
+    <Property Name="NoticeMail" Type="Boolean" />
+    <Property Name="NoticeSMS" Type="Boolean" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ViewUserSetting">
+    <Key>
+      <PropertyRef Name="UserID" />
+      <PropertyRef Name="FirstName" />
+      <PropertyRef Name="MobileNo" />
+      <PropertyRef Name="BillingNotification" />
+      <PropertyRef Name="BillingMail" />
+      <PropertyRef Name="BillingSMS" />
+      <PropertyRef Name="ComplaintNotification" />
+      <PropertyRef Name="ComplaintMail" />
+      <PropertyRef Name="ComplaintSMS" />
+      <PropertyRef Name="forumNotification" />
+      <PropertyRef Name="forumMail" />
+      <PropertyRef Name="forumSMS" />
+      <PropertyRef Name="NoticeNotification" />
+      <PropertyRef Name="NoticeMail" />
+      <PropertyRef Name="NoticeSMS" />
+    </Key>
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MobileNo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="EmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="RegID" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="BillingNotification" Type="Boolean" Nullable="false" />
+    <Property Name="BillingMail" Type="Boolean" Nullable="false" />
+    <Property Name="BillingSMS" Type="Boolean" Nullable="false" />
+    <Property Name="ComplaintNotification" Type="Boolean" Nullable="false" />
+    <Property Name="ComplaintMail" Type="Boolean" Nullable="false" />
+    <Property Name="ComplaintSMS" Type="Boolean" Nullable="false" />
+    <Property Name="forumNotification" Type="Boolean" Nullable="false" />
+    <Property Name="forumMail" Type="Boolean" Nullable="false" />
+    <Property Name="forumSMS" Type="Boolean" Nullable="false" />
+    <Property Name="NoticeNotification" Type="Boolean" Nullable="false" />
+    <Property Name="NoticeMail" Type="Boolean" Nullable="false" />
+    <Property Name="NoticeSMS" Type="Boolean" Nullable="false" />
   </EntityType>
 </Schema>

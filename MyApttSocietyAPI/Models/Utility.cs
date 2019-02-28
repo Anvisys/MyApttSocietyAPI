@@ -47,7 +47,7 @@ namespace MyApttSocietyAPI.Models
                 {"apikey" , "msfOwE8inQk-tKtISb5ZeGF09HkktGreaH64DJlkg3"},
                 {"numbers" , MobileNumber},
                 {"message" , message},
-                {"sender" , "NESTIN"}
+                {"sender" , "TXTLCL"}
                 });
                 string result = System.Text.Encoding.UTF8.GetString(response);
                 return result;

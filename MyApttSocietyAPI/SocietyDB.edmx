@@ -938,6 +938,44 @@ warning 6002: The table/view 'SocietyDB.dbo.ViewUserImage' does not have a prima
           <Property Name="Profile_image" Type="image" />
         </EntityType>
         <!--Errors Found During Generation:
+warning 6002: The table/view 'SocietyDB.dbo.ViewUserSetting' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ViewUserSetting">
+          <Key>
+            <PropertyRef Name="UserID" />
+            <PropertyRef Name="FirstName" />
+            <PropertyRef Name="MobileNo" />
+            <PropertyRef Name="BillingNotification" />
+            <PropertyRef Name="BillingMail" />
+            <PropertyRef Name="BillingSMS" />
+            <PropertyRef Name="ComplaintNotification" />
+            <PropertyRef Name="ComplaintMail" />
+            <PropertyRef Name="ComplaintSMS" />
+            <PropertyRef Name="forumNotification" />
+            <PropertyRef Name="forumMail" />
+            <PropertyRef Name="forumSMS" />
+            <PropertyRef Name="NoticeNotification" />
+            <PropertyRef Name="NoticeMail" />
+            <PropertyRef Name="NoticeSMS" />
+          </Key>
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="MobileNo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="EmailId" Type="varchar" MaxLength="50" />
+          <Property Name="RegID" Type="varchar" MaxLength="250" />
+          <Property Name="BillingNotification" Type="bit" Nullable="false" />
+          <Property Name="BillingMail" Type="bit" Nullable="false" />
+          <Property Name="BillingSMS" Type="bit" Nullable="false" />
+          <Property Name="ComplaintNotification" Type="bit" Nullable="false" />
+          <Property Name="ComplaintMail" Type="bit" Nullable="false" />
+          <Property Name="ComplaintSMS" Type="bit" Nullable="false" />
+          <Property Name="forumNotification" Type="bit" Nullable="false" />
+          <Property Name="forumMail" Type="bit" Nullable="false" />
+          <Property Name="forumSMS" Type="bit" Nullable="false" />
+          <Property Name="NoticeNotification" Type="bit" Nullable="false" />
+          <Property Name="NoticeMail" Type="bit" Nullable="false" />
+          <Property Name="NoticeSMS" Type="bit" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
 warning 6002: The table/view 'SocietyDB.dbo.viewVisitorData' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="viewVisitorData">
           <Key>
@@ -994,43 +1032,6 @@ warning 6002: The table/view 'SocietyDB.dbo.WatchViewFirstThreadNoImage' does no
           <Property Name="Topic" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="FirstThread" Type="varchar" MaxLength="2000" />
           <Property Name="InitiatedAt" Type="datetime" Nullable="false" />
-        </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'SocietyDB.Society.ViewUserSetting' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="ViewUserSetting">
-          <Key>
-            <PropertyRef Name="UserID" />
-            <PropertyRef Name="FirstName" />
-            <PropertyRef Name="MobileNo" />
-            <PropertyRef Name="BillingNotification" />
-            <PropertyRef Name="BillingMail" />
-            <PropertyRef Name="BillingSMS" />
-            <PropertyRef Name="ComplaintNotification" />
-            <PropertyRef Name="ComplaintMail" />
-            <PropertyRef Name="ComplaintSMS" />
-            <PropertyRef Name="forumNotification" />
-            <PropertyRef Name="forumMail" />
-            <PropertyRef Name="forumSMS" />
-            <PropertyRef Name="NoticeNotification" />
-            <PropertyRef Name="NoticeMail" />
-            <PropertyRef Name="NoticeSMS" />
-          </Key>
-          <Property Name="UserID" Type="int" Nullable="false" />
-          <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="MobileNo" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="EmailId" Type="varchar" MaxLength="50" />
-          <Property Name="BillingNotification" Type="bit" Nullable="false" />
-          <Property Name="BillingMail" Type="bit" Nullable="false" />
-          <Property Name="BillingSMS" Type="bit" Nullable="false" />
-          <Property Name="ComplaintNotification" Type="bit" Nullable="false" />
-          <Property Name="ComplaintMail" Type="bit" Nullable="false" />
-          <Property Name="ComplaintSMS" Type="bit" Nullable="false" />
-          <Property Name="forumNotification" Type="bit" Nullable="false" />
-          <Property Name="forumMail" Type="bit" Nullable="false" />
-          <Property Name="forumSMS" Type="bit" Nullable="false" />
-          <Property Name="NoticeNotification" Type="bit" Nullable="false" />
-          <Property Name="NoticeMail" Type="bit" Nullable="false" />
-          <Property Name="NoticeSMS" Type="bit" Nullable="false" />
         </EntityType>
         <EntityContainer Name="SocietyDBModelStoreContainer">
           <EntitySet Name="Advertisement" EntityType="Self.Advertisement" Schema="dbo" store:Type="Tables" />
@@ -1503,6 +1504,27 @@ warning 6002: The table/view 'SocietyDB.Society.ViewUserSetting' does not have a
     [ViewUserImage].[Profile_image] AS [Profile_image]
     FROM [dbo].[ViewUserImage] AS [ViewUserImage]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="ViewUserSetting" EntityType="Self.ViewUserSetting" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ViewUserSetting].[UserID] AS [UserID], 
+    [ViewUserSetting].[FirstName] AS [FirstName], 
+    [ViewUserSetting].[MobileNo] AS [MobileNo], 
+    [ViewUserSetting].[EmailId] AS [EmailId], 
+    [ViewUserSetting].[RegID] AS [RegID], 
+    [ViewUserSetting].[BillingNotification] AS [BillingNotification], 
+    [ViewUserSetting].[BillingMail] AS [BillingMail], 
+    [ViewUserSetting].[BillingSMS] AS [BillingSMS], 
+    [ViewUserSetting].[ComplaintNotification] AS [ComplaintNotification], 
+    [ViewUserSetting].[ComplaintMail] AS [ComplaintMail], 
+    [ViewUserSetting].[ComplaintSMS] AS [ComplaintSMS], 
+    [ViewUserSetting].[forumNotification] AS [forumNotification], 
+    [ViewUserSetting].[forumMail] AS [forumMail], 
+    [ViewUserSetting].[forumSMS] AS [forumSMS], 
+    [ViewUserSetting].[NoticeNotification] AS [NoticeNotification], 
+    [ViewUserSetting].[NoticeMail] AS [NoticeMail], 
+    [ViewUserSetting].[NoticeSMS] AS [NoticeSMS]
+    FROM [dbo].[ViewUserSetting] AS [ViewUserSetting]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="viewVisitorData" EntityType="Self.viewVisitorData" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [viewVisitorData].[RequestId] AS [RequestId], 
@@ -1535,26 +1557,6 @@ warning 6002: The table/view 'SocietyDB.Society.ViewUserSetting' does not have a
     [WatchViewFirstThreadNoImage].[FirstThread] AS [FirstThread], 
     [WatchViewFirstThreadNoImage].[InitiatedAt] AS [InitiatedAt]
     FROM [dbo].[WatchViewFirstThreadNoImage] AS [WatchViewFirstThreadNoImage]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="ViewUserSetting" EntityType="Self.ViewUserSetting" store:Type="Views" store:Schema="Society">
-            <DefiningQuery>SELECT 
-    [ViewUserSetting].[UserID] AS [UserID], 
-    [ViewUserSetting].[FirstName] AS [FirstName], 
-    [ViewUserSetting].[MobileNo] AS [MobileNo], 
-    [ViewUserSetting].[EmailId] AS [EmailId], 
-    [ViewUserSetting].[BillingNotification] AS [BillingNotification], 
-    [ViewUserSetting].[BillingMail] AS [BillingMail], 
-    [ViewUserSetting].[BillingSMS] AS [BillingSMS], 
-    [ViewUserSetting].[ComplaintNotification] AS [ComplaintNotification], 
-    [ViewUserSetting].[ComplaintMail] AS [ComplaintMail], 
-    [ViewUserSetting].[ComplaintSMS] AS [ComplaintSMS], 
-    [ViewUserSetting].[forumNotification] AS [forumNotification], 
-    [ViewUserSetting].[forumMail] AS [forumMail], 
-    [ViewUserSetting].[forumSMS] AS [forumSMS], 
-    [ViewUserSetting].[NoticeNotification] AS [NoticeNotification], 
-    [ViewUserSetting].[NoticeMail] AS [NoticeMail], 
-    [ViewUserSetting].[NoticeSMS] AS [NoticeSMS]
-    FROM [Society].[ViewUserSetting] AS [ViewUserSetting]</DefiningQuery>
           </EntitySet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -2566,6 +2568,7 @@ warning 6002: The table/view 'SocietyDB.Society.ViewUserSetting' does not have a
           <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="MobileNo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="EmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RegID" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Name="BillingNotification" Type="Boolean" Nullable="false" />
           <Property Name="BillingMail" Type="Boolean" Nullable="false" />
           <Property Name="BillingSMS" Type="Boolean" Nullable="false" />
@@ -3410,6 +3413,7 @@ warning 6002: The table/view 'SocietyDB.Society.ViewUserSetting' does not have a
                 <ScalarProperty Name="BillingSMS" ColumnName="BillingSMS" />
                 <ScalarProperty Name="BillingMail" ColumnName="BillingMail" />
                 <ScalarProperty Name="BillingNotification" ColumnName="BillingNotification" />
+                <ScalarProperty Name="RegID" ColumnName="RegID" />
                 <ScalarProperty Name="EmailId" ColumnName="EmailId" />
                 <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />

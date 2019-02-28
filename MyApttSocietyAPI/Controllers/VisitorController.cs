@@ -179,10 +179,10 @@ namespace MyApttSocietyAPI.Controllers
                     dbContextTransaction.Commit();
                     var strMessage = "Code for Entry in Flat : " + value.FlatNumber + " is " + code.ToString();
                     VisitorNotification visitorNotification = new VisitorNotification(ctx, value.HostMobile);
-                    visitorNotification.NotifyVisitor(strMessage, value.VisitorMobile);
+                   var result =  visitorNotification.NotifyVisitor(strMessage, value.VisitorMobile);
 
 
-                    resp = "{\"Response\":\"OK\"}";
+                    resp = "{\"Response\":\""+ result + "\"}";
                 }
                 catch (Exception ex)
                 {

@@ -18,6 +18,7 @@ namespace MyApttSocietyAPI
         public string FirstName { get; set; }
         public string MobileNo { get; set; }
         public string EmailId { get; set; }
+        public string RegID { get; set; }
         public bool BillingNotification { get; set; }
         public bool BillingMail { get; set; }
         public bool BillingSMS { get; set; }

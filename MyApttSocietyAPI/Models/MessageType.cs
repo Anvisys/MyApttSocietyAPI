@@ -138,9 +138,9 @@ namespace MyApttSocietyAPI.Models
             IsGcm = true;
         }
 
-        public void NotifyVisitor(String Message, String MobileNUmber)
+        public String NotifyVisitor(String Message, String MobileNUmber)
         {
-            Utility.sendSMS(Message, MobileNUmber);
+          return  Utility.sendSMS(Message, MobileNUmber);
         }
 
     }
