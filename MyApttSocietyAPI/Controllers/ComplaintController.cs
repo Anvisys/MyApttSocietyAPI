@@ -8,6 +8,7 @@ using System.Web.Http;
 using MyApttSocietyAPI.Models;
 using System.Net.Http.Formatting;
 using System.Web.Http.Cors;
+using MyApttSocietyAPI;
 
 namespace MyApttSocietyAPI.Controllers
 {
@@ -50,12 +51,20 @@ namespace MyApttSocietyAPI.Controllers
             {
                 using (var context = new SocietyDBEntities())
                 {
+                    bool isNewComplaint = false;
+
+                    String smsMessage = "";
                     var c = context.Complaints;
 
                     if (comp.CompID < 1)
                     {
+                        isNewComplaint = true;
                         var maxID = c.Max(maxcomp => maxcomp.CompID);
                         comp.CompID = maxID + 1;
+                        smsMessage = "Ticket No " + comp.CompID + " Updated to " + comp.CompStatusID;
+                    }
+                    else {
+                        isNewComplaint = false;
                     }
 
                     var employee = (from emp in context.ViewSocietyUsers
@@ -67,7 +76,10 @@ namespace MyApttSocietyAPI.Controllers
                       employee = (from emp in context.ViewSocietyUsers
                                   orderby emp.Type == "Admin" && emp.SocietyID == comp.SocietyID descending
                                         select emp);
+                      
                     }
+
+                    var em = employee.First();
 
                     c.Add(new Complaint()
                     {
@@ -78,12 +90,32 @@ namespace MyApttSocietyAPI.Controllers
                         CompTypeID = comp.CompType,
                         SeverityID = comp.CompSeverity,
                         Descrption = comp.CompDescription,
-                        Assignedto = employee.First().ResID,
+                        Assignedto = em.ResID,
                         ModifiedAt = DateTime.Now.ToUniversalTime(),
                         CurrentStatus = comp.CompStatusID,
 
                     });
                     context.SaveChanges();
+
+                    if (isNewComplaint)
+                    {
+                        smsMessage = "A New Complaint is assigned to you. Flat Number: " + comp.FlatNumber +
+                            ", Ticket No: " + comp.CompID + ", Description: " + comp.CompDescription;
+
+                        bool result =  Utility.NotifyEmployee(smsMessage, em.MobileNo);
+                       
+                    }
+                    else
+                    {
+                        smsMessage = "Ticket No: " + comp.CompID + " is assigned to you, Flat : " + comp.FlatNumber + ", Description" + comp.CompDescription;
+                       // bool result = Utility.NotifyEmployee(smsMessage, em.MobileNo);
+
+                        string strSubject = "Ticket no: " + comp.CompID;
+                        string residentMessage = "Your ticket no: " + comp.CompID + " is assigned to " + em.MobileNo;
+                        ComplaintNotification notification = new ComplaintNotification(context, em.MobileNo);
+                        notification.NotifyResidents(smsMessage, strSubject);
+                    }
+
                     String resp = "{\"Response\":\"OK\"}";
                     var response = Request.CreateResponse(HttpStatusCode.OK);
                     response.Content = new StringContent(resp, System.Text.Encoding.UTF8, "application/json");
@@ -109,6 +141,11 @@ namespace MyApttSocietyAPI.Controllers
         // DELETE: api/Complaint/5
         public void Delete(int id)
         {
+        }
+
+        private void SendNotification()
+        {
+
         }
     }
 }

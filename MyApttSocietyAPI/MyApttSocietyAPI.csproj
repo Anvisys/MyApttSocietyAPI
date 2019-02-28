@@ -20,6 +20,8 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <Use64BitIISExpress />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -198,6 +200,8 @@
     <Compile Include="Models\Domain.cs" />
     <Compile Include="Models\Forum.cs" />
     <Compile Include="Models\GCMRegister.cs" />
+    <Compile Include="Models\MessageType.cs" />
+    <Compile Include="Models\Utility.cs" />
     <Compile Include="Models\ValidateUser.cs" />
     <Compile Include="Models\ValidUser.cs" />
     <Compile Include="Models\VisitorEntry.cs" />
@@ -224,6 +228,9 @@
     <Compile Include="ResidentImage.cs">
       <DependentUpon>SocietyDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="ResidentSetting.cs">
+      <DependentUpon>SocietyDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Societybillplan.cs">
       <DependentUpon>SocietyDB.tt</DependentUpon>
     </Compile>
@@ -246,9 +253,6 @@
       <DependentUpon>SocietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="TempResident.cs">
-      <DependentUpon>SocietyDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="TempResidentView.cs">
       <DependentUpon>SocietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="TempUser.cs">
@@ -318,6 +322,9 @@
       <DependentUpon>SocietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewUserImage.cs">
+      <DependentUpon>SocietyDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewUserSetting.cs">
       <DependentUpon>SocietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="viewVisitorData.cs">

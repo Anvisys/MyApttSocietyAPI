@@ -150,6 +150,7 @@ namespace MyApttSocietyAPI.Controllers
                         guest.VisitorName = value.VisitorName;
                         guest.VisitorAddress = value.VisitorAddress;
                         guest.SocietyId = value.SocietyId;
+                        guest.VisitorImage = value.VisitorImage;
                         var c = ctx.VisitorDetails;
                         c.Add(guest);
                         ctx.SaveChanges();
@@ -176,6 +177,11 @@ namespace MyApttSocietyAPI.Controllers
                     ctx.SaveChanges();
 
                     dbContextTransaction.Commit();
+                    var strMessage = "Code for Entry in Flat : " + value.FlatNumber + " is " + code.ToString();
+                    VisitorNotification visitorNotification = new VisitorNotification(ctx, value.HostMobile);
+                    visitorNotification.NotifyVisitor(strMessage, value.VisitorMobile);
+
+
                     resp = "{\"Response\":\"OK\"}";
                 }
                 catch (Exception ex)
@@ -210,7 +216,11 @@ namespace MyApttSocietyAPI.Controllers
 
                     guest.ActualInTime = DateTime.Now.ToUniversalTime();
                     context.SaveChanges();
-         
+
+                    var strMessage = "Your guest " + value.VisitorName + " has checked in.";
+                    VisitorNotification visitorNotification = new VisitorNotification(context, value.HostMobile);
+                    visitorNotification.NotifyResidents(strMessage, value.VisitorMobile);
+                         
                     resp = "{\"Response\":\"OK\"}";
                 }
                 catch (Exception ex)

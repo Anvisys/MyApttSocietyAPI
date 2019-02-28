@@ -37,7 +37,6 @@ namespace MyApttSocietyAPI
         public virtual DbSet<BillCycle> BillCycles { get; set; }
         public virtual DbSet<ImageCheck> ImageChecks { get; set; }
         public virtual DbSet<Societybillplan> Societybillplans { get; set; }
-        public virtual DbSet<TempResidentView> TempResidentViews { get; set; }
         public virtual DbSet<ViewComplaintAge> ViewComplaintAges { get; set; }
         public virtual DbSet<ViewFirstThreadwithCount> ViewFirstThreadwithCounts { get; set; }
         public virtual DbSet<ViewLatestGeneratedBill> ViewLatestGeneratedBills { get; set; }
@@ -73,5 +72,7 @@ namespace MyApttSocietyAPI
         public virtual DbSet<ViewNotification> ViewNotifications { get; set; }
         public virtual DbSet<ViewThreadSummaryNoImageCount> ViewThreadSummaryNoImageCounts { get; set; }
         public virtual DbSet<Flat> Flats { get; set; }
+        public virtual DbSet<ResidentSetting> ResidentSettings { get; set; }
+        public virtual DbSet<ViewUserSetting> ViewUserSettings { get; set; }
     }
 }

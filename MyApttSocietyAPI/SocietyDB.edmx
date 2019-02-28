@@ -234,6 +234,36 @@ warning 6002: The table/view 'SocietyDB.dbo.Notifications' does not have a prima
           <Property Name="Profile_image" Type="image" />
         </EntityType>
         <!--Errors Found During Generation:
+warning 6002: The table/view 'SocietyDB.dbo.ResidentSettings' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ResidentSettings">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="BillingNotification" />
+            <PropertyRef Name="BillingMail" />
+            <PropertyRef Name="BillingSMS" />
+            <PropertyRef Name="ComplaintNotification" />
+            <PropertyRef Name="ComplaintMail" />
+            <PropertyRef Name="ComplaintSMS" />
+            <PropertyRef Name="forumNotification" />
+            <PropertyRef Name="NoticeNotification" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BillingNotification" Type="bit" Nullable="false" />
+          <Property Name="BillingMail" Type="bit" Nullable="false" />
+          <Property Name="BillingSMS" Type="bit" Nullable="false" />
+          <Property Name="ComplaintNotification" Type="bit" Nullable="false" />
+          <Property Name="ComplaintMail" Type="bit" Nullable="false" />
+          <Property Name="ComplaintSMS" Type="bit" Nullable="false" />
+          <Property Name="forumNotification" Type="bit" Nullable="false" />
+          <Property Name="forumMail" Type="bit" />
+          <Property Name="forumSMS" Type="bit" />
+          <Property Name="NoticeNotification" Type="bit" Nullable="false" />
+          <Property Name="NoticeMail" Type="bit" />
+          <Property Name="NoticeSMS" Type="bit" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
 warning 6002: The table/view 'SocietyDB.dbo.Societybillplans' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Societybillplans">
           <Key>
@@ -343,39 +373,6 @@ warning 6002: The table/view 'SocietyDB.dbo.Societybillplans' does not have a pr
           <Property Name="Flat" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="ResId" Type="int" Nullable="false" />
           <Property Name="SocietyId" Type="int" />
-        </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'SocietyDB.dbo.TempResidentView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="TempResidentView">
-          <Key>
-            <PropertyRef Name="UserID" />
-            <PropertyRef Name="UserLogin" />
-            <PropertyRef Name="OwnerName" />
-            <PropertyRef Name="FlatID" />
-            <PropertyRef Name="Floor" />
-            <PropertyRef Name="Block" />
-            <PropertyRef Name="BHK" />
-            <PropertyRef Name="ResID" />
-          </Key>
-          <Property Name="UserID" Type="int" Nullable="false" />
-          <Property Name="UserLogin" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Type" Type="varchar" MaxLength="50" />
-          <Property Name="MobileNo" Type="varchar" MaxLength="50" />
-          <Property Name="EmailId" Type="varchar" MaxLength="50" />
-          <Property Name="OwnerName" Type="char" MaxLength="25" Nullable="false" />
-          <Property Name="FirstName" Type="varchar" MaxLength="50" />
-          <Property Name="LastName" Type="varchar" MaxLength="50" />
-          <Property Name="FlatID" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="FlatArea" Type="varchar" MaxLength="50" />
-          <Property Name="Floor" Type="int" Nullable="false" />
-          <Property Name="Block" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="BHK" Type="int" Nullable="false" />
-          <Property Name="IntercomNumber" Type="int" />
-          <Property Name="MobileNoRes" Type="varchar" MaxLength="50" />
-          <Property Name="EmailIdRes" Type="varchar" MaxLength="50" />
-          <Property Name="Address" Type="varchar" MaxLength="100" />
-          <Property Name="ResID" Type="int" Nullable="false" />
-          <Property Name="ActiveDate" Type="date" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'SocietyDB.dbo.ViewComplaintAge' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -998,6 +995,43 @@ warning 6002: The table/view 'SocietyDB.dbo.WatchViewFirstThreadNoImage' does no
           <Property Name="FirstThread" Type="varchar" MaxLength="2000" />
           <Property Name="InitiatedAt" Type="datetime" Nullable="false" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'SocietyDB.Society.ViewUserSetting' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ViewUserSetting">
+          <Key>
+            <PropertyRef Name="UserID" />
+            <PropertyRef Name="FirstName" />
+            <PropertyRef Name="MobileNo" />
+            <PropertyRef Name="BillingNotification" />
+            <PropertyRef Name="BillingMail" />
+            <PropertyRef Name="BillingSMS" />
+            <PropertyRef Name="ComplaintNotification" />
+            <PropertyRef Name="ComplaintMail" />
+            <PropertyRef Name="ComplaintSMS" />
+            <PropertyRef Name="forumNotification" />
+            <PropertyRef Name="forumMail" />
+            <PropertyRef Name="forumSMS" />
+            <PropertyRef Name="NoticeNotification" />
+            <PropertyRef Name="NoticeMail" />
+            <PropertyRef Name="NoticeSMS" />
+          </Key>
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="MobileNo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="EmailId" Type="varchar" MaxLength="50" />
+          <Property Name="BillingNotification" Type="bit" Nullable="false" />
+          <Property Name="BillingMail" Type="bit" Nullable="false" />
+          <Property Name="BillingSMS" Type="bit" Nullable="false" />
+          <Property Name="ComplaintNotification" Type="bit" Nullable="false" />
+          <Property Name="ComplaintMail" Type="bit" Nullable="false" />
+          <Property Name="ComplaintSMS" Type="bit" Nullable="false" />
+          <Property Name="forumNotification" Type="bit" Nullable="false" />
+          <Property Name="forumMail" Type="bit" Nullable="false" />
+          <Property Name="forumSMS" Type="bit" Nullable="false" />
+          <Property Name="NoticeNotification" Type="bit" Nullable="false" />
+          <Property Name="NoticeMail" Type="bit" Nullable="false" />
+          <Property Name="NoticeSMS" Type="bit" Nullable="false" />
+        </EntityType>
         <EntityContainer Name="SocietyDBModelStoreContainer">
           <EntitySet Name="Advertisement" EntityType="Self.Advertisement" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Complaints" EntityType="Self.Complaints" Schema="dbo" store:Type="Tables" />
@@ -1061,6 +1095,24 @@ warning 6002: The table/view 'SocietyDB.dbo.WatchViewFirstThreadNoImage' does no
     [Notifications].[EndDate] AS [EndDate]
     FROM [dbo].[Notifications] AS [Notifications]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="ResidentSettings" EntityType="Self.ResidentSettings" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ResidentSettings].[ID] AS [ID], 
+    [ResidentSettings].[BillingNotification] AS [BillingNotification], 
+    [ResidentSettings].[BillingMail] AS [BillingMail], 
+    [ResidentSettings].[BillingSMS] AS [BillingSMS], 
+    [ResidentSettings].[ComplaintNotification] AS [ComplaintNotification], 
+    [ResidentSettings].[ComplaintMail] AS [ComplaintMail], 
+    [ResidentSettings].[ComplaintSMS] AS [ComplaintSMS], 
+    [ResidentSettings].[forumNotification] AS [forumNotification], 
+    [ResidentSettings].[forumMail] AS [forumMail], 
+    [ResidentSettings].[forumSMS] AS [forumSMS], 
+    [ResidentSettings].[NoticeNotification] AS [NoticeNotification], 
+    [ResidentSettings].[NoticeMail] AS [NoticeMail], 
+    [ResidentSettings].[NoticeSMS] AS [NoticeSMS], 
+    [ResidentSettings].[UserId] AS [UserId]
+    FROM [dbo].[ResidentSettings] AS [ResidentSettings]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="Societybillplans" EntityType="Self.Societybillplans" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [Societybillplans].[BillID] AS [BillID], 
@@ -1071,29 +1123,6 @@ warning 6002: The table/view 'SocietyDB.dbo.WatchViewFirstThreadNoImage' does no
     [Societybillplans].[Applyto] AS [Applyto], 
     [Societybillplans].[SocietyID] AS [SocietyID]
     FROM [dbo].[Societybillplans] AS [Societybillplans]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="TempResidentView" EntityType="Self.TempResidentView" store:Type="Views" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [TempResidentView].[UserID] AS [UserID], 
-    [TempResidentView].[UserLogin] AS [UserLogin], 
-    [TempResidentView].[Type] AS [Type], 
-    [TempResidentView].[MobileNo] AS [MobileNo], 
-    [TempResidentView].[EmailId] AS [EmailId], 
-    [TempResidentView].[OwnerName] AS [OwnerName], 
-    [TempResidentView].[FirstName] AS [FirstName], 
-    [TempResidentView].[LastName] AS [LastName], 
-    [TempResidentView].[FlatID] AS [FlatID], 
-    [TempResidentView].[FlatArea] AS [FlatArea], 
-    [TempResidentView].[Floor] AS [Floor], 
-    [TempResidentView].[Block] AS [Block], 
-    [TempResidentView].[BHK] AS [BHK], 
-    [TempResidentView].[IntercomNumber] AS [IntercomNumber], 
-    [TempResidentView].[MobileNoRes] AS [MobileNoRes], 
-    [TempResidentView].[EmailIdRes] AS [EmailIdRes], 
-    [TempResidentView].[Address] AS [Address], 
-    [TempResidentView].[ResID] AS [ResID], 
-    [TempResidentView].[ActiveDate] AS [ActiveDate]
-    FROM [dbo].[TempResidentView] AS [TempResidentView]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="ViewComplaintAge" EntityType="Self.ViewComplaintAge" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -1507,6 +1536,26 @@ warning 6002: The table/view 'SocietyDB.dbo.WatchViewFirstThreadNoImage' does no
     [WatchViewFirstThreadNoImage].[InitiatedAt] AS [InitiatedAt]
     FROM [dbo].[WatchViewFirstThreadNoImage] AS [WatchViewFirstThreadNoImage]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="ViewUserSetting" EntityType="Self.ViewUserSetting" store:Type="Views" store:Schema="Society">
+            <DefiningQuery>SELECT 
+    [ViewUserSetting].[UserID] AS [UserID], 
+    [ViewUserSetting].[FirstName] AS [FirstName], 
+    [ViewUserSetting].[MobileNo] AS [MobileNo], 
+    [ViewUserSetting].[EmailId] AS [EmailId], 
+    [ViewUserSetting].[BillingNotification] AS [BillingNotification], 
+    [ViewUserSetting].[BillingMail] AS [BillingMail], 
+    [ViewUserSetting].[BillingSMS] AS [BillingSMS], 
+    [ViewUserSetting].[ComplaintNotification] AS [ComplaintNotification], 
+    [ViewUserSetting].[ComplaintMail] AS [ComplaintMail], 
+    [ViewUserSetting].[ComplaintSMS] AS [ComplaintSMS], 
+    [ViewUserSetting].[forumNotification] AS [forumNotification], 
+    [ViewUserSetting].[forumMail] AS [forumMail], 
+    [ViewUserSetting].[forumSMS] AS [forumSMS], 
+    [ViewUserSetting].[NoticeNotification] AS [NoticeNotification], 
+    [ViewUserSetting].[NoticeMail] AS [NoticeMail], 
+    [ViewUserSetting].[NoticeSMS] AS [NoticeSMS]
+    FROM [Society].[ViewUserSetting] AS [ViewUserSetting]</DefiningQuery>
+          </EntitySet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -1525,7 +1574,6 @@ warning 6002: The table/view 'SocietyDB.dbo.WatchViewFirstThreadNoImage' does no
           <EntitySet Name="BillCycles" EntityType="SocietyDBModel.BillCycle" />
           <EntitySet Name="ImageChecks" EntityType="SocietyDBModel.ImageCheck" />
           <EntitySet Name="Societybillplans" EntityType="SocietyDBModel.Societybillplan" />
-          <EntitySet Name="TempResidentViews" EntityType="SocietyDBModel.TempResidentView" />
           <EntitySet Name="ViewComplaintAges" EntityType="SocietyDBModel.ViewComplaintAge" />
           <EntitySet Name="ViewFirstThreadwithCounts" EntityType="SocietyDBModel.ViewFirstThreadwithCount" />
           <EntitySet Name="ViewLatestGeneratedBills" EntityType="SocietyDBModel.ViewLatestGeneratedBill" />
@@ -1561,6 +1609,8 @@ warning 6002: The table/view 'SocietyDB.dbo.WatchViewFirstThreadNoImage' does no
           <EntitySet Name="ViewNotifications" EntityType="SocietyDBModel.ViewNotification" />
           <EntitySet Name="ViewThreadSummaryNoImageCounts" EntityType="SocietyDBModel.ViewThreadSummaryNoImageCount" />
           <EntitySet Name="Flats" EntityType="SocietyDBModel.Flat" />
+          <EntitySet Name="ResidentSettings" EntityType="SocietyDBModel.ResidentSetting" />
+          <EntitySet Name="ViewUserSettings" EntityType="SocietyDBModel.ViewUserSetting" />
         </EntityContainer>
         <EntityType Name="Complaint">
           <Key>
@@ -1737,37 +1787,6 @@ warning 6002: The table/view 'SocietyDB.dbo.WatchViewFirstThreadNoImage' does no
           <Property Name="CycleType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Applyto" Type="Int32" Nullable="false" />
           <Property Name="SocietyID" Type="Int32" Nullable="false" />
-        </EntityType>
-        <EntityType Name="TempResidentView">
-          <Key>
-            <PropertyRef Name="UserID" />
-            <PropertyRef Name="UserLogin" />
-            <PropertyRef Name="OwnerName" />
-            <PropertyRef Name="FlatID" />
-            <PropertyRef Name="Floor" />
-            <PropertyRef Name="Block" />
-            <PropertyRef Name="BHK" />
-            <PropertyRef Name="ResID" />
-          </Key>
-          <Property Name="UserID" Type="Int32" Nullable="false" />
-          <Property Name="UserLogin" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="MobileNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="EmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="OwnerName" Type="String" Nullable="false" MaxLength="25" FixedLength="true" Unicode="false" />
-          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="FlatID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="FlatArea" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Floor" Type="Int32" Nullable="false" />
-          <Property Name="Block" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="BHK" Type="Int32" Nullable="false" />
-          <Property Name="IntercomNumber" Type="Int32" />
-          <Property Name="MobileNoRes" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="EmailIdRes" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="ResID" Type="Int32" Nullable="false" />
-          <Property Name="ActiveDate" Type="DateTime" Precision="0" />
         </EntityType>
         <EntityType Name="ViewComplaintAge">
           <Key>
@@ -2497,6 +2516,69 @@ warning 6002: The table/view 'SocietyDB.dbo.WatchViewFirstThreadNoImage' does no
           <Property Name="FlatArea" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="SocietyID" Type="Int32" Nullable="false" />
         </EntityType>
+        <EntityType Name="ResidentSetting">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="BillingNotification" />
+            <PropertyRef Name="BillingMail" />
+            <PropertyRef Name="BillingSMS" />
+            <PropertyRef Name="ComplaintNotification" />
+            <PropertyRef Name="ComplaintMail" />
+            <PropertyRef Name="ComplaintSMS" />
+            <PropertyRef Name="forumNotification" />
+            <PropertyRef Name="NoticeNotification" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BillingNotification" Type="Boolean" Nullable="false" />
+          <Property Name="BillingMail" Type="Boolean" Nullable="false" />
+          <Property Name="BillingSMS" Type="Boolean" Nullable="false" />
+          <Property Name="ComplaintNotification" Type="Boolean" Nullable="false" />
+          <Property Name="ComplaintMail" Type="Boolean" Nullable="false" />
+          <Property Name="ComplaintSMS" Type="Boolean" Nullable="false" />
+          <Property Name="forumNotification" Type="Boolean" Nullable="false" />
+          <Property Name="forumMail" Type="Boolean" />
+          <Property Name="forumSMS" Type="Boolean" />
+          <Property Name="NoticeNotification" Type="Boolean" Nullable="false" />
+          <Property Name="NoticeMail" Type="Boolean" />
+          <Property Name="NoticeSMS" Type="Boolean" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ViewUserSetting">
+          <Key>
+            <PropertyRef Name="UserID" />
+            <PropertyRef Name="FirstName" />
+            <PropertyRef Name="MobileNo" />
+            <PropertyRef Name="BillingNotification" />
+            <PropertyRef Name="BillingMail" />
+            <PropertyRef Name="BillingSMS" />
+            <PropertyRef Name="ComplaintNotification" />
+            <PropertyRef Name="ComplaintMail" />
+            <PropertyRef Name="ComplaintSMS" />
+            <PropertyRef Name="forumNotification" />
+            <PropertyRef Name="forumMail" />
+            <PropertyRef Name="forumSMS" />
+            <PropertyRef Name="NoticeNotification" />
+            <PropertyRef Name="NoticeMail" />
+            <PropertyRef Name="NoticeSMS" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MobileNo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BillingNotification" Type="Boolean" Nullable="false" />
+          <Property Name="BillingMail" Type="Boolean" Nullable="false" />
+          <Property Name="BillingSMS" Type="Boolean" Nullable="false" />
+          <Property Name="ComplaintNotification" Type="Boolean" Nullable="false" />
+          <Property Name="ComplaintMail" Type="Boolean" Nullable="false" />
+          <Property Name="ComplaintSMS" Type="Boolean" Nullable="false" />
+          <Property Name="forumNotification" Type="Boolean" Nullable="false" />
+          <Property Name="forumMail" Type="Boolean" Nullable="false" />
+          <Property Name="forumSMS" Type="Boolean" Nullable="false" />
+          <Property Name="NoticeNotification" Type="Boolean" Nullable="false" />
+          <Property Name="NoticeMail" Type="Boolean" Nullable="false" />
+          <Property Name="NoticeSMS" Type="Boolean" Nullable="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2677,31 +2759,6 @@ warning 6002: The table/view 'SocietyDB.dbo.WatchViewFirstThreadNoImage' does no
                 <ScalarProperty Name="ChargeType" ColumnName="ChargeType" />
                 <ScalarProperty Name="BillType" ColumnName="BillType" />
                 <ScalarProperty Name="BillID" ColumnName="BillID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TempResidentViews">
-            <EntityTypeMapping TypeName="SocietyDBModel.TempResidentView">
-              <MappingFragment StoreEntitySet="TempResidentView">
-                <ScalarProperty Name="ActiveDate" ColumnName="ActiveDate" />
-                <ScalarProperty Name="ResID" ColumnName="ResID" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="EmailIdRes" ColumnName="EmailIdRes" />
-                <ScalarProperty Name="MobileNoRes" ColumnName="MobileNoRes" />
-                <ScalarProperty Name="IntercomNumber" ColumnName="IntercomNumber" />
-                <ScalarProperty Name="BHK" ColumnName="BHK" />
-                <ScalarProperty Name="Block" ColumnName="Block" />
-                <ScalarProperty Name="Floor" ColumnName="Floor" />
-                <ScalarProperty Name="FlatArea" ColumnName="FlatArea" />
-                <ScalarProperty Name="FlatID" ColumnName="FlatID" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="OwnerName" ColumnName="OwnerName" />
-                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
-                <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
-                <ScalarProperty Name="Type" ColumnName="Type" />
-                <ScalarProperty Name="UserLogin" ColumnName="UserLogin" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3315,6 +3372,48 @@ warning 6002: The table/view 'SocietyDB.dbo.WatchViewFirstThreadNoImage' does no
                 <ScalarProperty Name="Floor" ColumnName="Floor" />
                 <ScalarProperty Name="FlatNumber" ColumnName="FlatNumber" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ResidentSettings">
+            <EntityTypeMapping TypeName="SocietyDBModel.ResidentSetting">
+              <MappingFragment StoreEntitySet="ResidentSettings">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="NoticeSMS" ColumnName="NoticeSMS" />
+                <ScalarProperty Name="NoticeMail" ColumnName="NoticeMail" />
+                <ScalarProperty Name="NoticeNotification" ColumnName="NoticeNotification" />
+                <ScalarProperty Name="forumSMS" ColumnName="forumSMS" />
+                <ScalarProperty Name="forumMail" ColumnName="forumMail" />
+                <ScalarProperty Name="forumNotification" ColumnName="forumNotification" />
+                <ScalarProperty Name="ComplaintSMS" ColumnName="ComplaintSMS" />
+                <ScalarProperty Name="ComplaintMail" ColumnName="ComplaintMail" />
+                <ScalarProperty Name="ComplaintNotification" ColumnName="ComplaintNotification" />
+                <ScalarProperty Name="BillingSMS" ColumnName="BillingSMS" />
+                <ScalarProperty Name="BillingMail" ColumnName="BillingMail" />
+                <ScalarProperty Name="BillingNotification" ColumnName="BillingNotification" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ViewUserSettings">
+            <EntityTypeMapping TypeName="SocietyDBModel.ViewUserSetting">
+              <MappingFragment StoreEntitySet="ViewUserSetting">
+                <ScalarProperty Name="NoticeSMS" ColumnName="NoticeSMS" />
+                <ScalarProperty Name="NoticeMail" ColumnName="NoticeMail" />
+                <ScalarProperty Name="NoticeNotification" ColumnName="NoticeNotification" />
+                <ScalarProperty Name="forumSMS" ColumnName="forumSMS" />
+                <ScalarProperty Name="forumMail" ColumnName="forumMail" />
+                <ScalarProperty Name="forumNotification" ColumnName="forumNotification" />
+                <ScalarProperty Name="ComplaintSMS" ColumnName="ComplaintSMS" />
+                <ScalarProperty Name="ComplaintMail" ColumnName="ComplaintMail" />
+                <ScalarProperty Name="ComplaintNotification" ColumnName="ComplaintNotification" />
+                <ScalarProperty Name="BillingSMS" ColumnName="BillingSMS" />
+                <ScalarProperty Name="BillingMail" ColumnName="BillingMail" />
+                <ScalarProperty Name="BillingNotification" ColumnName="BillingNotification" />
+                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+                <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -57,7 +57,7 @@ namespace MyApttSocietyAPI.Controllers
             using (var context = new SocietyDBEntities())
             {
                 var notification = (from  notes in context.Notifications
-                                    where notes.SocietyID == SocietyID && notes.EndDate < DateTime.UtcNow
+                                    where notes.SocietyID == SocietyID && notes.EndDate > DateTime.UtcNow
                                                 select notes).Take(10);
 
                 return notification.ToList();
@@ -74,7 +74,7 @@ namespace MyApttSocietyAPI.Controllers
             using (var context = new SocietyDBEntities())
             {
                 var notification = (from notes in context.Notifications
-                                    where notes.SocietyID == SocietyID && notes.EndDate > DateTime.UtcNow
+                                    where notes.SocietyID == SocietyID && notes.EndDate < DateTime.UtcNow
                                     select notes).Take(10);
 
                 return notification.ToList();

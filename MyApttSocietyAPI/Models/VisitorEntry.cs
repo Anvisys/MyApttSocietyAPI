@@ -20,7 +20,7 @@ namespace MyApttSocietyAPI.Models
 
         public int ResID { get; set; }
         public String FlatNumber { get; set; }
+        public String HostMobile { get; set; }
 
-      
     }
 }

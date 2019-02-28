@@ -29,6 +29,64 @@ namespace MyApttSocietyAPI.Controllers
             return "value";
         }
 
+        [Route("Setting/{UserId}")]
+        [HttpGet]
+        public IHttpActionResult GetSetting(int UserId)
+        {
+            try
+            {
+                using (var context = new SocietyDBEntities())
+                {
+                    var L2EQuery = context.ViewUserSettings.Where(f => f.UserID == UserId);
+                    if (L2EQuery.Count() > 0)
+                    {
+                        var userSetting = L2EQuery.FirstOrDefault();
+                        return Ok(userSetting);
+                    }
+                    else {
+                        return NotFound();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.log("Error in Get User Setting at: " + DateTime.Now.ToString());
+                return NotFound();
+            }
+        }
+
+        [Route("Setting")]
+        [HttpPost]
+        public IHttpActionResult UpdateSetting(ResidentSetting UserSetting)
+        {
+            try
+            {
+                using (var context = new SocietyDBEntities())
+                {
+                    var L2EQuery = context.ResidentSettings.Where(f => f.UserId == UserSetting.UserId);
+
+                    if (L2EQuery.Count() > 0)
+                    {
+                        var userSetting = L2EQuery.FirstOrDefault();
+                        userSetting = UserSetting;
+                    }
+                    else
+                    {
+                        context.ResidentSettings.Add(UserSetting);
+                     }
+                    var newSetting = context.ViewUserSettings.Where(f => f.UserID == UserSetting.UserId);
+
+                    return Ok(newSetting);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.log("Error in Update User Setting at: " + DateTime.Now.ToString());
+                return NotFound();
+            }
+        }
+
         [Route("Validate")]
         [HttpPost]
         public ValidUser Post([FromBody]ValidateUser ValUser)
