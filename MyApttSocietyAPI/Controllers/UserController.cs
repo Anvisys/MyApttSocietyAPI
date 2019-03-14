@@ -59,8 +59,9 @@ namespace MyApttSocietyAPI.Controllers
 
         [Route("Setting")]
         [HttpPost]
-        public IHttpActionResult UpdateSetting(UserSetting UserSetting)
+        public HttpResponseMessage UpdateSetting(UserSetting UserSetting)
         {
+            String resp;
             try
             {
                 using (var context = new SocietyDBEntities())
@@ -77,14 +78,20 @@ namespace MyApttSocietyAPI.Controllers
                    context.SaveChanges();
                     var newSetting = context.ViewUserSettings.Where(f => f.UserID == UserSetting.UserId).ToList() ;
 
-                    return Ok(newSetting);
+                    resp = "{\"Response\":\"OK\"}";
+                    var response = Request.CreateResponse(HttpStatusCode.OK);
+                    response.Content = new StringContent(resp, System.Text.Encoding.UTF8, "application/json");
+                    return response;
 
                 }
             }
             catch (Exception ex)
             {
                 Log.log("Error in Update User Setting at: " + DateTime.Now.ToString());
-                return InternalServerError(ex.InnerException);
+                resp = "{\"Response\":\"Fail\"}";
+                var response = Request.CreateResponse(HttpStatusCode.InternalServerError);
+                response.Content = new StringContent(resp, System.Text.Encoding.UTF8, "application/json");
+                return response;
             }
         }
 

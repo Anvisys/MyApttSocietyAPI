@@ -30,10 +30,11 @@ namespace MyApttSocietyAPI.Controllers
         public IHttpActionResult GetInventory([FromBody]RentInventory value)
         {
             try {
+                
                 var context = new SocietyDBEntities();
 
                 var inventory = context.RentInventories.Where(X => X.InventoryID == value.InventoryID && X.RentTypeID == value.RentTypeID 
-                                                               && X.RentValue == value.RentValue ).ToList();
+                                                               && X.RentValue > 0.8*value.RentValue && X.RentValue<1.2*value.RentValue).ToList();
                 return Ok(inventory);
 
 
@@ -47,28 +48,25 @@ namespace MyApttSocietyAPI.Controllers
 
         [Route("New")]
         [HttpPost]
-        public IHttpActionResult Post([FromBody]RentInventory value)
+        public HttpResponseMessage Post([FromBody]RentInventory value)
         {
+            String resp;
             try {
                 var context = new SocietyDBEntities();
-                    context.RentInventories.Add(new RentInventory {
-                        Available = value.Available,
-                        ContactName = value.ContactName,
-                        ContactNumber = value.ContactNumber,
-                        Description = value.Description,
-                        FlatID = value.FlatID,
-                        InventoryID = value.InventoryID,
-                        RentTypeID = value.RentTypeID,
-                        RentValue = value.RentValue,
-                        UserID = value.UserID
-                    } );
+                    context.RentInventories.Add(value);
                     context.SaveChanges();
-                    return Ok();
+                resp = "{\"Response\":\"OK\"}";
+                var response = Request.CreateResponse(HttpStatusCode.OK);
+                response.Content = new StringContent(resp, System.Text.Encoding.UTF8, "application/json");
+                return response;
 
             }
             catch (Exception ex)
             {
-                return InternalServerError(ex.InnerException);
+                resp = "{\"Response\":\"Fail\"}";
+                var response = Request.CreateResponse(HttpStatusCode.InternalServerError);
+                response.Content = new StringContent(resp, System.Text.Encoding.UTF8, "application/json");
+                return response;
             }
         }
 

@@ -141,3 +141,4 @@ C:\Code\Git\MyApttSocietyAPI\MyApttSocietyAPI\obj\Release\MyApttSocietyAPI.cspro
 C:\Code\Git\MyApttSocietyAPI\MyApttSocietyAPI\obj\Release\MyApttSocietyAPI.dll
 C:\Code\Git\MyApttSocietyAPI\MyApttSocietyAPI\obj\Release\MyApttSocietyAPI.pdb
 C:\Code\Git\MyApttSocietyAPI\MyApttSocietyAPI\obj\Release\MyApttSocietyAPI.csprojAssemblyReference.cache
+C:\aaWork\Code\Git\MyApttSocietyAPI\MyApttSocietyAPI\obj\Release\MyApttSocietyAPI.csprojAssemblyReference.cache
