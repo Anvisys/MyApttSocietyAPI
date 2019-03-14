@@ -12,25 +12,18 @@ namespace MyApttSocietyAPI
     using System;
     using System.Collections.Generic;
     
-    public partial class TempResident
+    public partial class TotalUser
     {
-        public int ResID { get; set; }
-        public string FlatID { get; set; }
-        public string FlatArea { get; set; }
-        public int Floor { get; set; }
-        public string Block { get; set; }
-        public Nullable<int> IntercomNumber { get; set; }
-        public string OwnerName { get; set; }
-        public int BHK { get; set; }
-        public string Type { get; set; }
+        public int UserID { get; set; }
+        public string UserLogin { get; set; }
+        public string Password { get; set; }
         public string FirstName { get; set; }
+        public string MiddleName { get; set; }
         public string LastName { get; set; }
         public string MobileNo { get; set; }
         public string EmailId { get; set; }
-        public string MobileNoRes { get; set; }
-        public string EmailIdRes { get; set; }
+        public string Gender { get; set; }
+        public string Parentname { get; set; }
         public string Address { get; set; }
-        public string UserLogin { get; set; }
-        public Nullable<System.DateTime> ActiveDate { get; set; }
     }
 }

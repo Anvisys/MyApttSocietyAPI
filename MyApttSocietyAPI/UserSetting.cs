@@ -12,7 +12,7 @@ namespace MyApttSocietyAPI
     using System;
     using System.Collections.Generic;
     
-    public partial class ResidentSetting
+    public partial class UserSetting
     {
         public int ID { get; set; }
         public bool BillingNotification { get; set; }

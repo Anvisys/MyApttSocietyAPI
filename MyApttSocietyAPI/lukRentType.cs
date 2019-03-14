@@ -12,11 +12,9 @@ namespace MyApttSocietyAPI
     using System;
     using System.Collections.Generic;
     
-    public partial class TempUser
+    public partial class lukRentType
     {
-        public int ID { get; set; }
-        public int UserID { get; set; }
-        public string UserLogin { get; set; }
-        public string mobileNo { get; set; }
+        public int RentTypeID { get; set; }
+        public string RentType { get; set; }
     }
 }

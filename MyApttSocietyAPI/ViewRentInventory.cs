@@ -12,20 +12,19 @@ namespace MyApttSocietyAPI
     using System;
     using System.Collections.Generic;
     
-    public partial class ViewOwnerResident
+    public partial class ViewRentInventory
     {
-        public string FlatNumber { get; set; }
+        public string Inventory { get; set; }
+        public string RentType { get; set; }
+        public int RentValue { get; set; }
+        public Nullable<bool> Available { get; set; }
+        public string Description { get; set; }
+        public string ContactName { get; set; }
+        public string ContactNumber { get; set; }
         public int UserID { get; set; }
-        public int SocietyID { get; set; }
-        public string FirstName { get; set; }
-        public int Floor { get; set; }
-        public string Block { get; set; }
-        public Nullable<int> IntercomNumber { get; set; }
-        public int BHK { get; set; }
+        public Nullable<int> SocietyID { get; set; }
+        public string SocietyName { get; set; }
+        public string OwnerName { get; set; }
         public string MobileNo { get; set; }
-        public string EmailId { get; set; }
-        public string Type { get; set; }
-        public Nullable<System.DateTime> ActiveDate { get; set; }
-        public Nullable<System.DateTime> DeActiveDate { get; set; }
     }
 }

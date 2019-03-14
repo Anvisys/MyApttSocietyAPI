@@ -60,13 +60,13 @@ namespace MyApttSocietyAPI.Controllers
         {
             var context = new SocietyDBEntities();
 
-            var resID = (from res in context.ViewSocietyUsers
+            var userID = (from res in context.ViewSocietyUsers
                          where (res.MobileNo == Mobile)
-                         select res.ResID).First();
+                         select res.UserID).First();
 
-            var Image = (from res in context.ResidentImages
-                         where (res.ResID == resID)
-                             select new ShopImage() { ID = res.ResID, ImageString = res.Profile_image }).First();
+            var Image = (from res in context.UserImages
+                         where (res.UserID == userID)
+                             select new ShopImage() { ID = res.UserID, ImageString = res.Profile_image }).First();
             return Image;
         }
         // POST: api/Image
@@ -86,16 +86,16 @@ namespace MyApttSocietyAPI.Controllers
                         {
                                     using (var context = new SocietyDBEntities())
                                     {
-                                           List<ResidentImage> users = (from u in context.ResidentImages
+                                           List<UserImage> users = (from u in context.UserImages
                                                                          where u.UserID == value.UserID
                                                                          select u).ToList();
                                             if (users.Count == 0)
                                             {
 
                                                 Log.log("Saving Image for new user : " + value.ResID + " " + value.UserID);
-                                                context.ResidentImages.Add(new ResidentImage
+                                                context.UserImages.Add(new UserImage
                                                 {
-                                                    ResID = value.ResID,
+                                                  
                                                     UserID = value.UserID,
                                                     Profile_image = Convert.FromBase64String(value.ImageString),
 
@@ -105,7 +105,7 @@ namespace MyApttSocietyAPI.Controllers
                                             else
                                             {
                                                 Log.log("Image updated for user : " + value.ResID + " " + value.UserID);
-                                                foreach (ResidentImage user in users)
+                                                foreach (UserImage user in users)
                                                 {
                                                     user.Profile_image = Convert.FromBase64String(value.ImageString);
 

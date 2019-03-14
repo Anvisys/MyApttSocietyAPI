@@ -22,7 +22,7 @@ namespace MyApttSocietyAPI.Models
         {
 
             MD5CryptoServiceProvider encoder = new MD5CryptoServiceProvider();
-            byte[] bytDataToHash = Encoding.UTF8.GetBytes(userID + userPWD);
+            byte[] bytDataToHash = Encoding.UTF8.GetBytes(userID.ToLower() + userPWD);
             byte[] bytHashValue = new System.Security.Cryptography.MD5CryptoServiceProvider().ComputeHash(bytDataToHash);
             return BitConverter.ToString(bytHashValue).Replace("-", "");
         }

@@ -147,6 +147,7 @@
     <Compile Include="Controllers\ForumController.cs" />
     <Compile Include="Controllers\ForumDiffController.cs" />
     <Compile Include="Controllers\GCMRegisterController.cs" />
+    <Compile Include="Controllers\RentInventoryController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\VisitorController.cs" />
     <Compile Include="Controllers\ImageController.cs" />
@@ -174,6 +175,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="App_Code\Log.cs" />
+    <Compile Include="House.cs">
+      <DependentUpon>SocietyDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="ImageCheck.cs">
       <DependentUpon>SocietyDB.tt</DependentUpon>
     </Compile>
@@ -187,6 +191,12 @@
       <DependentUpon>SocietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="lukComplaintType.cs">
+      <DependentUpon>SocietyDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="lukInventory.cs">
+      <DependentUpon>SocietyDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="lukRentType.cs">
       <DependentUpon>SocietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="lukVendorCategory.cs">
@@ -218,6 +228,9 @@
     <Compile Include="Notification.cs">
       <DependentUpon>SocietyDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Offer.cs">
+      <DependentUpon>SocietyDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="PollingAnswer.cs">
       <DependentUpon>SocietyDB.tt</DependentUpon>
     </Compile>
@@ -225,10 +238,10 @@
       <DependentUpon>SocietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ResidentImage.cs">
+    <Compile Include="RentInventory.cs">
       <DependentUpon>SocietyDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="ResidentSetting.cs">
+    <Compile Include="Society.cs">
       <DependentUpon>SocietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Societybillplan.cs">
@@ -252,10 +265,13 @@
     <Compile Include="SocietyUser.cs">
       <DependentUpon>SocietyDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="TempResident.cs">
+    <Compile Include="TotalUser.cs">
       <DependentUpon>SocietyDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="TempUser.cs">
+    <Compile Include="UserImage.cs">
+      <DependentUpon>SocietyDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserSetting.cs">
       <DependentUpon>SocietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Vendor.cs">
@@ -303,13 +319,16 @@
     <Compile Include="ViewNotification.cs">
       <DependentUpon>SocietyDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="ViewOwnerResident.cs">
+    <Compile Include="ViewOffer.cs">
       <DependentUpon>SocietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewPollCount.cs">
       <DependentUpon>SocietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewPollDataWithCount.cs">
+      <DependentUpon>SocietyDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewRentInventory.cs">
       <DependentUpon>SocietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewSocietyUser.cs">

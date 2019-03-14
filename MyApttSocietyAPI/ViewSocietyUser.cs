@@ -24,6 +24,8 @@ namespace MyApttSocietyAPI
         public int SocietyID { get; set; }
         public int ServiceType { get; set; }
         public string CompanyName { get; set; }
+        public Nullable<int> HouseID { get; set; }
+        public Nullable<int> Status { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string MobileNo { get; set; }
@@ -35,5 +37,10 @@ namespace MyApttSocietyAPI
         public string FlatNumber { get; set; }
         public string CompType { get; set; }
         public Nullable<int> intercomNumber { get; set; }
+        public string HouseNUmber { get; set; }
+        public string Sector { get; set; }
+        public string City { get; set; }
+        public string State { get; set; }
+        public Nullable<int> PinCode { get; set; }
     }
 }

@@ -16,16 +16,17 @@ namespace MyApttSocietyAPI.Controllers
     public class VisitorController : ApiController
     {
         // GET: api/Guest
-         [Route("Soc/{SocId}")]
+         [Route("Soc/{SocId}/{Page}/{Size}")]
          [HttpGet]
-         public IEnumerable<viewVisitorData> Get(int SocId)
+         public IEnumerable<viewVisitorData> Get(int SocId, int Page, int Size)
         {
             try
             {
+                int skip = (Page - 1) * Size;
                 var context = new SocietyDBEntities();
                 var Visitor = (from g in context.viewVisitorDatas
-                               where g.SocietyId == SocId
-                             select g);
+                               where g.SocietyId == SocId orderby g.RequestId descending
+                             select g).Skip(skip).Take(Size);
 
                 return Visitor;
             }
@@ -69,16 +70,18 @@ namespace MyApttSocietyAPI.Controllers
          }
 
          // GET: api/Guest/5
-         [Route("{SocId}/Res/{ResID}")]
+         [Route("{SocId}/Res/{ResID}/{Page}/{Size}")]
          [HttpGet]
-         public IEnumerable<viewVisitorData> GetByResID(int ResID, int SocId)
+         public IEnumerable<viewVisitorData> GetByResID(int ResID, int SocId, int Page, int Size)
          {
              try
              {
-                 var context = new SocietyDBEntities();
+                int skip = (Page - 1) * Size;
+                var context = new SocietyDBEntities();
                  var guest = (from g in context.viewVisitorDatas
                               where g.ResId == ResID && g.SocietyId == SocId
-                              select g);
+                              orderby g.RequestId descending
+                              select g).Skip(skip).Take(Size);
 
                  return guest.ToList();
              }

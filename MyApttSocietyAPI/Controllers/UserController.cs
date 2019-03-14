@@ -55,26 +55,27 @@ namespace MyApttSocietyAPI.Controllers
             }
         }
 
+
+
         [Route("Setting")]
         [HttpPost]
-        public IHttpActionResult UpdateSetting(ResidentSetting UserSetting)
+        public IHttpActionResult UpdateSetting(UserSetting UserSetting)
         {
             try
             {
                 using (var context = new SocietyDBEntities())
                 {
-                    var L2EQuery = context.ResidentSettings.Where(f => f.UserId == UserSetting.UserId);
+                    var L2EQuery = context.UserSettings.Where(f => f.UserId == UserSetting.UserId);
 
                     if (L2EQuery.Count() > 0)
                     {
-                        var userSetting = L2EQuery.FirstOrDefault();
-                        userSetting = UserSetting;
+                      
+                          context.UserSettings.Remove(L2EQuery.FirstOrDefault());
                     }
-                    else
-                    {
-                        context.ResidentSettings.Add(UserSetting);
-                     }
-                    var newSetting = context.ViewUserSettings.Where(f => f.UserID == UserSetting.UserId);
+                           
+                   context.UserSettings.Add(UserSetting);
+                   context.SaveChanges();
+                    var newSetting = context.ViewUserSettings.Where(f => f.UserID == UserSetting.UserId).ToList() ;
 
                     return Ok(newSetting);
 
@@ -83,7 +84,7 @@ namespace MyApttSocietyAPI.Controllers
             catch (Exception ex)
             {
                 Log.log("Error in Update User Setting at: " + DateTime.Now.ToString());
-                return NotFound();
+                return InternalServerError(ex.InnerException);
             }
         }
 
@@ -94,11 +95,9 @@ namespace MyApttSocietyAPI.Controllers
             var ValidUser = new ValidUser();
             try
             {
-
-                using (var context = new SocietyDBEntities())
+               using (var context = new SocietyDBEntities())
                 {
-
-                    if (ValUser.Email == null && ValUser.Mobile == null)
+                   if (ValUser.Email == null && ValUser.Mobile == null)
                     {
                        
                         ValidUser.result = "Fail";
@@ -180,6 +179,134 @@ namespace MyApttSocietyAPI.Controllers
             }
             return ValidUser;
         }
+
+
+        [Route("Add/Demo")]
+        [HttpPost]
+        public IHttpActionResult AddUser([FromBody]TotalUser User)
+        {
+            try
+            {
+                var context = new SocietyDBEntities();
+                using (var dbContextTransaction = context.Database.BeginTransaction())
+                {
+                    var users = (from USER in context.ViewUsers
+                                 where USER.MobileNo == User.MobileNo || USER.EmailId == User.EmailId
+                                 select USER);
+                    if (users.Count() > 0)
+                    {
+                        return BadRequest();
+
+                    }
+                    else
+                    {
+                        String encryptPwd = ValidateUser.EncryptPassword(User.EmailId, User.Password);
+                        User.Password = encryptPwd;
+
+                        // Add User
+                        context.TotalUsers.Add(User
+                            );
+                        context.SaveChanges();
+
+                        Flat newFlat = new Flat
+                        {
+                            FlatNumber = User.FirstName.Substring(0,1) + User.LastName.Substring(0,1) + User.MobileNo.Substring(7,3),
+                            BHK = 3,
+                            Block = User.FirstName.Substring(0, 1),
+                            FlatArea = "1200",
+                            Floor =  Convert.ToInt32(User.MobileNo.Substring(9, 1)),
+                            IntercomNumber = Convert.ToInt32(User.MobileNo.Substring(5, 5)),
+                            SocietyID = 1,
+                            UserID = User.UserID
+                        };
+                        // Add Flat
+                        context.Flats.Add(newFlat);
+                        context.SaveChanges();
+                        context.SocietyUsers.Add(new SocietyUser {
+                            UserID = User.UserID,
+                            SocietyID = 1,
+                            ActiveDate = DateTime.UtcNow,
+                            CompanyName = "",
+                            DeActiveDate = DateTime.UtcNow.AddDays(15),
+                            FlatID = newFlat.ID,
+                            ModifiedDate = DateTime.UtcNow,
+                            ServiceType =0,
+                            Type = "Owner"
+                        });
+
+                        context.SaveChanges();
+                        dbContextTransaction.Commit();
+                        var sub = "Your Demo ID is created";
+                        var EmailBody = "Dear User \n You have successfully Registered with Nestin.Online For Demo. You demo will run for 15 days. Please" +
+                                        "Explore the application and contact us for any further query";
+                        var smsBody = "Welcome to Nestin.online. your demo login is valid for 15 days.";
+
+                        Utility.SendMail(User.EmailId, sub, EmailBody);
+                        Utility.sendSMS2Resident(smsBody, User.MobileNo);
+                        return Ok();
+
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex.InnerException);
+            }
+          
+        }
+
+
+
+        [Route("Add/House/{UserId}")]
+        [HttpPost]
+        public IHttpActionResult AddHouse([FromBody]House newHouse, int UserId)
+        {
+            try
+            {
+                var context = new SocietyDBEntities();
+                using (var dbContextTransaction = context.Database.BeginTransaction())
+                {
+
+                    context.Houses.Add(newHouse);
+                    context.SaveChanges();
+
+                    context.SocietyUsers.Add(new SocietyUser {
+                        UserID = UserId,
+                        FlatID = 0,
+                        HouseID = newHouse.ID,
+                        CompanyName = "NA",
+                        ServiceType = 0,
+                        SocietyID = 0,
+                        Status =0,
+                        Type= "Individual",                       
+                        ActiveDate = DateTime.UtcNow,
+                        DeActiveDate = DateTime.UtcNow.AddYears(1),
+                        ModifiedDate = DateTime.UtcNow
+                    });
+
+                    context.SaveChanges();
+                    dbContextTransaction.Commit();
+
+                    var User = context.ViewSocietyUsers.Where(x => x.UserID == UserId).First();
+
+                    var sub = "Your Demo ID is created";
+                    var EmailBody = "Dear User \n You have successfully Registered with Nestin.Online For Demo. You demo will run for 15 days. Please" +
+                                    "Explore the application and contact us for any further query";
+                    var smsBody = "Welcome to Nestin.online. your demo login is valid for 15 days.";
+
+                    Utility.SendMail(User.EmailId, sub, EmailBody);
+                    Utility.sendSMS2Resident(smsBody, User.MobileNo);
+                    return Ok();
+                }
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex.InnerException);
+            }
+
+        }
+
 
         // PUT: api/User/5
         public void Put(int id, [FromBody]string value)
