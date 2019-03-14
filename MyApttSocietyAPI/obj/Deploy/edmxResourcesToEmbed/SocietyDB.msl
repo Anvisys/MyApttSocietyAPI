@@ -584,26 +584,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="ViewUsers">
-      <EntityTypeMapping TypeName="SocietyDBModel.ViewUser">
-        <MappingFragment StoreEntitySet="ViewUser">
-          <ScalarProperty Name="SocietyName" ColumnName="SocietyName" />
-          <ScalarProperty Name="UserType" ColumnName="UserType" />
-          <ScalarProperty Name="SocietyID" ColumnName="SocietyID" />
-          <ScalarProperty Name="Address" ColumnName="Address" />
-          <ScalarProperty Name="Parentname" ColumnName="Parentname" />
-          <ScalarProperty Name="Gender" ColumnName="Gender" />
-          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
-          <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
-          <ScalarProperty Name="LastName" ColumnName="LastName" />
-          <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
-          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-          <ScalarProperty Name="Password" ColumnName="Password" />
-          <ScalarProperty Name="UserLogin" ColumnName="UserLogin" />
-          <ScalarProperty Name="UserID" ColumnName="UserID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="ViewForumNoImages">
       <EntityTypeMapping TypeName="SocietyDBModel.ViewForumNoImage">
         <MappingFragment StoreEntitySet="ViewForumNoImage">
@@ -704,22 +684,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="RentInventories">
-      <EntityTypeMapping TypeName="SocietyDBModel.RentInventory">
-        <MappingFragment StoreEntitySet="RentInventory">
-          <ScalarProperty Name="FlatID" ColumnName="FlatID" />
-          <ScalarProperty Name="UserID" ColumnName="UserID" />
-          <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
-          <ScalarProperty Name="ContactName" ColumnName="ContactName" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="Available" ColumnName="Available" />
-          <ScalarProperty Name="RentValue" ColumnName="RentValue" />
-          <ScalarProperty Name="RentTypeID" ColumnName="RentTypeID" />
-          <ScalarProperty Name="InventoryID" ColumnName="InventoryID" />
-          <ScalarProperty Name="RentInventoryID" ColumnName="RentInventoryID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Societies">
       <EntityTypeMapping TypeName="SocietyDBModel.Society">
         <MappingFragment StoreEntitySet="Societies">
@@ -809,24 +773,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="ViewRentInventories">
-      <EntityTypeMapping TypeName="SocietyDBModel.ViewRentInventory">
-        <MappingFragment StoreEntitySet="ViewRentInventory">
-          <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
-          <ScalarProperty Name="OwnerName" ColumnName="OwnerName" />
-          <ScalarProperty Name="SocietyName" ColumnName="SocietyName" />
-          <ScalarProperty Name="SocietyID" ColumnName="SocietyID" />
-          <ScalarProperty Name="UserID" ColumnName="UserID" />
-          <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
-          <ScalarProperty Name="ContactName" ColumnName="ContactName" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="Available" ColumnName="Available" />
-          <ScalarProperty Name="RentValue" ColumnName="RentValue" />
-          <ScalarProperty Name="RentType" ColumnName="RentType" />
-          <ScalarProperty Name="Inventory" ColumnName="Inventory" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="ViewSocietyUsers">
       <EntityTypeMapping TypeName="SocietyDBModel.ViewSocietyUser">
         <MappingFragment StoreEntitySet="ViewSocietyUsers">
@@ -902,6 +848,49 @@
           <ScalarProperty Name="Sector" ColumnName="Sector" />
           <ScalarProperty Name="HouseNumber" ColumnName="HouseNumber" />
           <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RentInventories">
+      <EntityTypeMapping TypeName="SocietyDBModel.RentInventory">
+        <MappingFragment StoreEntitySet="RentInventory">
+          <ScalarProperty Name="HouseID" ColumnName="HouseID" />
+          <ScalarProperty Name="FlatID" ColumnName="FlatID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+          <ScalarProperty Name="ContactName" ColumnName="ContactName" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Available" ColumnName="Available" />
+          <ScalarProperty Name="RentValue" ColumnName="RentValue" />
+          <ScalarProperty Name="RentTypeID" ColumnName="RentTypeID" />
+          <ScalarProperty Name="InventoryID" ColumnName="InventoryID" />
+          <ScalarProperty Name="RentInventoryID" ColumnName="RentInventoryID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ViewRentInventories">
+      <EntityTypeMapping TypeName="SocietyDBModel.ViewRentInventory">
+        <MappingFragment StoreEntitySet="ViewRentInventory">
+          <ScalarProperty Name="HouseNumber" ColumnName="HouseNumber" />
+          <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+          <ScalarProperty Name="OwnerName" ColumnName="OwnerName" />
+          <ScalarProperty Name="PinCode" ColumnName="PinCode" />
+          <ScalarProperty Name="FlatCity" ColumnName="FlatCity" />
+          <ScalarProperty Name="sector" ColumnName="sector" />
+          <ScalarProperty Name="SocietyName" ColumnName="SocietyName" />
+          <ScalarProperty Name="SocietyID" ColumnName="SocietyID" />
+          <ScalarProperty Name="Floor" ColumnName="Floor" />
+          <ScalarProperty Name="FlatArea" ColumnName="FlatArea" />
+          <ScalarProperty Name="BHK" ColumnName="BHK" />
+          <ScalarProperty Name="FlatNumber" ColumnName="FlatNumber" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+          <ScalarProperty Name="ContactName" ColumnName="ContactName" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Available" ColumnName="Available" />
+          <ScalarProperty Name="RentValue" ColumnName="RentValue" />
+          <ScalarProperty Name="RentType" ColumnName="RentType" />
+          <ScalarProperty Name="Inventory" ColumnName="Inventory" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

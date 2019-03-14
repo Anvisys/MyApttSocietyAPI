@@ -109,7 +109,7 @@ namespace MyApttSocietyAPI.Controllers
                     else if (ValUser.Email == null || ValUser.Email == "")
                     {
                        
-                        var users = (from USER in context.ViewUsers
+                        var users = (from USER in context.ViewSocietyUsers
                                      where USER.MobileNo == ValUser.Mobile
                                      select USER);
                         if (users.Count() >0)
@@ -128,7 +128,7 @@ namespace MyApttSocietyAPI.Controllers
 
                     Log.log("Encrypted Password is :" + encPwd + " At " + DateTime.Now.ToString());
 
-                    var L2EQuery = context.ViewUsers.Where(u => (u.UserLogin == ValUser.Email || u.MobileNo == ValUser.Mobile) && u.Password == encPwd);
+                    var L2EQuery = context.TotalUsers.Where(u => (u.UserLogin == ValUser.Email || u.MobileNo == ValUser.Mobile) && u.Password == encPwd);
                     var user = L2EQuery.FirstOrDefault();
 
                     
@@ -190,7 +190,7 @@ namespace MyApttSocietyAPI.Controllers
                 var context = new SocietyDBEntities();
                 using (var dbContextTransaction = context.Database.BeginTransaction())
                 {
-                    var users = (from USER in context.ViewUsers
+                    var users = (from USER in context.ViewSocietyUsers
                                  where USER.MobileNo == User.MobileNo || USER.EmailId == User.EmailId
                                  select USER);
                     if (users.Count() > 0)

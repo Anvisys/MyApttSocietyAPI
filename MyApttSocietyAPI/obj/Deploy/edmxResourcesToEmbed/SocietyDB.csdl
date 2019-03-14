@@ -36,7 +36,6 @@
     <EntitySet Name="viewVisitorDatas" EntityType="SocietyDBModel.viewVisitorData" />
     <EntitySet Name="ViewLatestGeneratedBill_Resident" EntityType="SocietyDBModel.ViewLatestGeneratedBill_Resident" />
     <EntitySet Name="ViewFlats" EntityType="SocietyDBModel.ViewFlat" />
-    <EntitySet Name="ViewUsers" EntityType="SocietyDBModel.ViewUser" />
     <EntitySet Name="ViewForumNoImages" EntityType="SocietyDBModel.ViewForumNoImage" />
     <EntitySet Name="ViewNotifications" EntityType="SocietyDBModel.ViewNotification" />
     <EntitySet Name="ViewThreadSummaryNoImageCounts" EntityType="SocietyDBModel.ViewThreadSummaryNoImageCount" />
@@ -44,18 +43,18 @@
     <EntitySet Name="lukInventories" EntityType="SocietyDBModel.lukInventory" />
     <EntitySet Name="lukRentTypes" EntityType="SocietyDBModel.lukRentType" />
     <EntitySet Name="Offers" EntityType="SocietyDBModel.Offer" />
-    <EntitySet Name="RentInventories" EntityType="SocietyDBModel.RentInventory" />
     <EntitySet Name="Societies" EntityType="SocietyDBModel.Society" />
     <EntitySet Name="SocietyUsers" EntityType="SocietyDBModel.SocietyUser" />
     <EntitySet Name="TotalUsers" EntityType="SocietyDBModel.TotalUser" />
     <EntitySet Name="UserImages" EntityType="SocietyDBModel.UserImage" />
     <EntitySet Name="UserSettings" EntityType="SocietyDBModel.UserSetting" />
     <EntitySet Name="ViewOffers" EntityType="SocietyDBModel.ViewOffer" />
-    <EntitySet Name="ViewRentInventories" EntityType="SocietyDBModel.ViewRentInventory" />
     <EntitySet Name="ViewSocietyUsers" EntityType="SocietyDBModel.ViewSocietyUser" />
     <EntitySet Name="ViewUserImages" EntityType="SocietyDBModel.ViewUserImage" />
     <EntitySet Name="ViewUserSettings" EntityType="SocietyDBModel.ViewUserSetting" />
     <EntitySet Name="Houses" EntityType="SocietyDBModel.House" />
+    <EntitySet Name="RentInventories" EntityType="SocietyDBModel.RentInventory" />
+    <EntitySet Name="ViewRentInventories" EntityType="SocietyDBModel.ViewRentInventory" />
   </EntityContainer>
   <EntityType Name="Complaint">
     <Key>
@@ -715,29 +714,6 @@
     <Property Name="TenantFrom" Type="DateTime" Precision="0" />
     <Property Name="TenantTo" Type="DateTime" Precision="3" />
   </EntityType>
-  <EntityType Name="ViewUser">
-    <Key>
-      <PropertyRef Name="UserID" />
-      <PropertyRef Name="UserLogin" />
-      <PropertyRef Name="FirstName" />
-      <PropertyRef Name="MobileNo" />
-      <PropertyRef Name="Address" />
-    </Key>
-    <Property Name="UserID" Type="Int32" Nullable="false" />
-    <Property Name="UserLogin" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="MobileNo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="EmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="Gender" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
-    <Property Name="Parentname" Type="String" MaxLength="25" FixedLength="true" Unicode="false" />
-    <Property Name="Address" Type="String" Nullable="false" MaxLength="25" FixedLength="true" Unicode="false" />
-    <Property Name="SocietyID" Type="Int32" />
-    <Property Name="UserType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="SocietyName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-  </EntityType>
   <EntityType Name="ViewForumNoImage">
     <Key>
       <PropertyRef Name="ID" />
@@ -856,21 +832,6 @@
     <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="SocietyID" Type="Int32" Nullable="false" />
   </EntityType>
-  <EntityType Name="RentInventory">
-    <Key>
-      <PropertyRef Name="RentInventoryID" />
-    </Key>
-    <Property Name="RentInventoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="InventoryID" Type="Int32" Nullable="false" />
-    <Property Name="RentTypeID" Type="Int32" Nullable="false" />
-    <Property Name="RentValue" Type="Int32" Nullable="false" />
-    <Property Name="Available" Type="Boolean" />
-    <Property Name="Description" Type="String" Nullable="false" MaxLength="1024" FixedLength="false" Unicode="false" />
-    <Property Name="ContactName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="false" />
-    <Property Name="ContactNumber" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="false" />
-    <Property Name="UserID" Type="Int32" Nullable="false" />
-    <Property Name="FlatID" Type="Int32" Nullable="false" />
-  </EntityType>
   <EntityType Name="Society">
     <Key>
       <PropertyRef Name="SocietyID" />
@@ -957,27 +918,6 @@
     <Property Name="VendorName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="VendorID" Type="Int32" Nullable="false" />
     <Property Name="SocietyID" Type="Int32" Nullable="false" />
-  </EntityType>
-  <EntityType Name="ViewRentInventory">
-    <Key>
-      <PropertyRef Name="RentValue" />
-      <PropertyRef Name="Description" />
-      <PropertyRef Name="ContactName" />
-      <PropertyRef Name="ContactNumber" />
-      <PropertyRef Name="UserID" />
-    </Key>
-    <Property Name="Inventory" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-    <Property Name="RentType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-    <Property Name="RentValue" Type="Int32" Nullable="false" />
-    <Property Name="Available" Type="Boolean" />
-    <Property Name="Description" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="false" />
-    <Property Name="ContactName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="false" />
-    <Property Name="ContactNumber" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="false" />
-    <Property Name="UserID" Type="Int32" Nullable="false" />
-    <Property Name="SocietyID" Type="Int32" />
-    <Property Name="SocietyName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="OwnerName" Type="String" MaxLength="101" FixedLength="false" Unicode="false" />
-    <Property Name="MobileNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="ViewSocietyUser">
     <Key>
@@ -1075,5 +1015,50 @@
     <Property Name="City" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="State" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="PinCode" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RentInventory">
+    <Key>
+      <PropertyRef Name="RentInventoryID" />
+    </Key>
+    <Property Name="RentInventoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="InventoryID" Type="Int32" Nullable="false" />
+    <Property Name="RentTypeID" Type="Int32" Nullable="false" />
+    <Property Name="RentValue" Type="Int32" Nullable="false" />
+    <Property Name="Available" Type="Boolean" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="1024" FixedLength="false" Unicode="false" />
+    <Property Name="ContactName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="ContactNumber" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="FlatID" Type="Int32" Nullable="false" />
+    <Property Name="HouseID" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ViewRentInventory">
+    <Key>
+      <PropertyRef Name="RentValue" />
+      <PropertyRef Name="Description" />
+      <PropertyRef Name="ContactName" />
+      <PropertyRef Name="ContactNumber" />
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="Inventory" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="RentType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="RentValue" Type="Int32" Nullable="false" />
+    <Property Name="Available" Type="Boolean" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="1024" FixedLength="false" Unicode="false" />
+    <Property Name="ContactName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="ContactNumber" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="FlatNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BHK" Type="Int32" />
+    <Property Name="FlatArea" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Floor" Type="Int32" />
+    <Property Name="SocietyID" Type="Int32" />
+    <Property Name="SocietyName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="sector" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="FlatCity" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="PinCode" Type="Int32" />
+    <Property Name="OwnerName" Type="String" MaxLength="101" FixedLength="false" Unicode="false" />
+    <Property Name="MobileNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="HouseNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
   </EntityType>
 </Schema>

@@ -261,6 +261,7 @@ warning 6002: The table/view 'SocietyDB.dbo.Notifications' does not have a prima
     <Property Name="ContactNumber" Type="varchar" MaxLength="256" Nullable="false" />
     <Property Name="UserID" Type="int" Nullable="false" />
     <Property Name="FlatID" Type="int" Nullable="false" />
+    <Property Name="HouseID" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Societies">
     <Key>
@@ -856,14 +857,22 @@ warning 6002: The table/view 'SocietyDB.dbo.ViewRentInventory' does not have a p
     <Property Name="RentType" Type="varchar" MaxLength="20" />
     <Property Name="RentValue" Type="int" Nullable="false" />
     <Property Name="Available" Type="bit" />
-    <Property Name="Description" Type="varchar" MaxLength="256" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="1024" Nullable="false" />
     <Property Name="ContactName" Type="varchar" MaxLength="256" Nullable="false" />
     <Property Name="ContactNumber" Type="varchar" MaxLength="256" Nullable="false" />
     <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="FlatNumber" Type="varchar" MaxLength="50" />
+    <Property Name="BHK" Type="int" />
+    <Property Name="FlatArea" Type="varchar" MaxLength="50" />
+    <Property Name="Floor" Type="int" />
     <Property Name="SocietyID" Type="int" />
     <Property Name="SocietyName" Type="varchar" MaxLength="100" />
+    <Property Name="sector" Type="varchar" MaxLength="20" />
+    <Property Name="FlatCity" Type="varchar" MaxLength="20" />
+    <Property Name="PinCode" Type="int" />
     <Property Name="OwnerName" Type="varchar" MaxLength="101" />
     <Property Name="MobileNo" Type="varchar" MaxLength="50" />
+    <Property Name="HouseNumber" Type="varchar" MaxLength="50" />
   </EntityType>
   <!--Errors Found During Generation:
 warning 6002: The table/view 'SocietyDB.dbo.ViewSocietyUsers' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -944,31 +953,6 @@ warning 6002: The table/view 'SocietyDB.dbo.ViewThreadSummaryNoImageCount' does 
     <Property Name="LastUserID" Type="int" Nullable="false" />
     <Property Name="commentsCount" Type="int" />
     <Property Name="SocietyID" Type="int" Nullable="false" />
-  </EntityType>
-  <!--Errors Found During Generation:
-warning 6002: The table/view 'SocietyDB.dbo.ViewUser' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-  <EntityType Name="ViewUser">
-    <Key>
-      <PropertyRef Name="UserID" />
-      <PropertyRef Name="UserLogin" />
-      <PropertyRef Name="FirstName" />
-      <PropertyRef Name="MobileNo" />
-      <PropertyRef Name="Address" />
-    </Key>
-    <Property Name="UserID" Type="int" Nullable="false" />
-    <Property Name="UserLogin" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="Password" Type="varchar" MaxLength="50" />
-    <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="MiddleName" Type="varchar" MaxLength="50" />
-    <Property Name="LastName" Type="varchar" MaxLength="50" />
-    <Property Name="MobileNo" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="EmailId" Type="varchar" MaxLength="50" />
-    <Property Name="Gender" Type="char" MaxLength="20" />
-    <Property Name="Parentname" Type="char" MaxLength="25" />
-    <Property Name="Address" Type="char" MaxLength="25" Nullable="false" />
-    <Property Name="SocietyID" Type="int" />
-    <Property Name="UserType" Type="varchar" MaxLength="50" />
-    <Property Name="SocietyName" Type="varchar" MaxLength="100" />
   </EntityType>
   <!--Errors Found During Generation:
 warning 6002: The table/view 'SocietyDB.dbo.ViewUserImage' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -1456,10 +1440,18 @@ warning 6002: The table/view 'SocietyDB.dbo.WatchViewFirstThreadNoImage' does no
     [ViewRentInventory].[ContactName] AS [ContactName], 
     [ViewRentInventory].[ContactNumber] AS [ContactNumber], 
     [ViewRentInventory].[UserID] AS [UserID], 
+    [ViewRentInventory].[FlatNumber] AS [FlatNumber], 
+    [ViewRentInventory].[BHK] AS [BHK], 
+    [ViewRentInventory].[FlatArea] AS [FlatArea], 
+    [ViewRentInventory].[Floor] AS [Floor], 
     [ViewRentInventory].[SocietyID] AS [SocietyID], 
     [ViewRentInventory].[SocietyName] AS [SocietyName], 
+    [ViewRentInventory].[sector] AS [sector], 
+    [ViewRentInventory].[FlatCity] AS [FlatCity], 
+    [ViewRentInventory].[PinCode] AS [PinCode], 
     [ViewRentInventory].[OwnerName] AS [OwnerName], 
-    [ViewRentInventory].[MobileNo] AS [MobileNo]
+    [ViewRentInventory].[MobileNo] AS [MobileNo], 
+    [ViewRentInventory].[HouseNumber] AS [HouseNumber]
     FROM [dbo].[ViewRentInventory] AS [ViewRentInventory]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="ViewSocietyUsers" EntityType="Self.ViewSocietyUsers" store:Type="Views" store:Schema="dbo">
@@ -1514,24 +1506,6 @@ warning 6002: The table/view 'SocietyDB.dbo.WatchViewFirstThreadNoImage' does no
     [ViewThreadSummaryNoImageCount].[commentsCount] AS [commentsCount], 
     [ViewThreadSummaryNoImageCount].[SocietyID] AS [SocietyID]
     FROM [dbo].[ViewThreadSummaryNoImageCount] AS [ViewThreadSummaryNoImageCount]</DefiningQuery>
-    </EntitySet>
-    <EntitySet Name="ViewUser" EntityType="Self.ViewUser" store:Type="Views" store:Schema="dbo">
-      <DefiningQuery>SELECT 
-    [ViewUser].[UserID] AS [UserID], 
-    [ViewUser].[UserLogin] AS [UserLogin], 
-    [ViewUser].[Password] AS [Password], 
-    [ViewUser].[FirstName] AS [FirstName], 
-    [ViewUser].[MiddleName] AS [MiddleName], 
-    [ViewUser].[LastName] AS [LastName], 
-    [ViewUser].[MobileNo] AS [MobileNo], 
-    [ViewUser].[EmailId] AS [EmailId], 
-    [ViewUser].[Gender] AS [Gender], 
-    [ViewUser].[Parentname] AS [Parentname], 
-    [ViewUser].[Address] AS [Address], 
-    [ViewUser].[SocietyID] AS [SocietyID], 
-    [ViewUser].[UserType] AS [UserType], 
-    [ViewUser].[SocietyName] AS [SocietyName]
-    FROM [dbo].[ViewUser] AS [ViewUser]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="ViewUserImage" EntityType="Self.ViewUserImage" store:Type="Views" store:Schema="dbo">
       <DefiningQuery>SELECT 

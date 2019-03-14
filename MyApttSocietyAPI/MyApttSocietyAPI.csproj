@@ -337,9 +337,6 @@
     <Compile Include="ViewThreadSummaryNoImageCount.cs">
       <DependentUpon>SocietyDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="ViewUser.cs">
-      <DependentUpon>SocietyDB.tt</DependentUpon>
-    </Compile>
     <Compile Include="ViewUserImage.cs">
       <DependentUpon>SocietyDB.tt</DependentUpon>
     </Compile>

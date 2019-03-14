@@ -22,9 +22,17 @@ namespace MyApttSocietyAPI
         public string ContactName { get; set; }
         public string ContactNumber { get; set; }
         public int UserID { get; set; }
+        public string FlatNumber { get; set; }
+        public Nullable<int> BHK { get; set; }
+        public string FlatArea { get; set; }
+        public Nullable<int> Floor { get; set; }
         public Nullable<int> SocietyID { get; set; }
         public string SocietyName { get; set; }
+        public string sector { get; set; }
+        public string FlatCity { get; set; }
+        public Nullable<int> PinCode { get; set; }
         public string OwnerName { get; set; }
         public string MobileNo { get; set; }
+        public string HouseNumber { get; set; }
     }
 }

@@ -60,7 +60,6 @@ namespace MyApttSocietyAPI
         public virtual DbSet<viewVisitorData> viewVisitorDatas { get; set; }
         public virtual DbSet<ViewLatestGeneratedBill_Resident> ViewLatestGeneratedBill_Resident { get; set; }
         public virtual DbSet<ViewFlat> ViewFlats { get; set; }
-        public virtual DbSet<ViewUser> ViewUsers { get; set; }
         public virtual DbSet<ViewForumNoImage> ViewForumNoImages { get; set; }
         public virtual DbSet<ViewNotification> ViewNotifications { get; set; }
         public virtual DbSet<ViewThreadSummaryNoImageCount> ViewThreadSummaryNoImageCounts { get; set; }
@@ -68,17 +67,17 @@ namespace MyApttSocietyAPI
         public virtual DbSet<lukInventory> lukInventories { get; set; }
         public virtual DbSet<lukRentType> lukRentTypes { get; set; }
         public virtual DbSet<Offer> Offers { get; set; }
-        public virtual DbSet<RentInventory> RentInventories { get; set; }
         public virtual DbSet<Society> Societies { get; set; }
         public virtual DbSet<SocietyUser> SocietyUsers { get; set; }
         public virtual DbSet<TotalUser> TotalUsers { get; set; }
         public virtual DbSet<UserImage> UserImages { get; set; }
         public virtual DbSet<UserSetting> UserSettings { get; set; }
         public virtual DbSet<ViewOffer> ViewOffers { get; set; }
-        public virtual DbSet<ViewRentInventory> ViewRentInventories { get; set; }
         public virtual DbSet<ViewSocietyUser> ViewSocietyUsers { get; set; }
         public virtual DbSet<ViewUserImage> ViewUserImages { get; set; }
         public virtual DbSet<ViewUserSetting> ViewUserSettings { get; set; }
         public virtual DbSet<House> Houses { get; set; }
+        public virtual DbSet<RentInventory> RentInventories { get; set; }
+        public virtual DbSet<ViewRentInventory> ViewRentInventories { get; set; }
     }
 }

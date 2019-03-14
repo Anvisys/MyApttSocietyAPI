@@ -33,8 +33,7 @@ namespace MyApttSocietyAPI.Controllers
                 var context = new SocietyDBEntities();
 
                 var inventory = context.RentInventories.Where(X => X.InventoryID == value.InventoryID && X.RentTypeID == value.RentTypeID 
-                                                           && X.RentValue == value.RentValue ).ToList();
-
+                                                               && X.RentValue == value.RentValue ).ToList();
                 return Ok(inventory);
 
 

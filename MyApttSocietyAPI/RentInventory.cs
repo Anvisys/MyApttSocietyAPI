@@ -24,5 +24,6 @@ namespace MyApttSocietyAPI
         public string ContactNumber { get; set; }
         public int UserID { get; set; }
         public int FlatID { get; set; }
+        public int HouseID { get; set; }
     }
 }
