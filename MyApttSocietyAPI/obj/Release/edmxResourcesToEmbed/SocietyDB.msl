@@ -872,6 +872,7 @@
       <EntityTypeMapping TypeName="SocietyDBModel.ViewRentInventory">
         <MappingFragment StoreEntitySet="ViewRentInventory">
           <ScalarProperty Name="HouseNumber" ColumnName="HouseNumber" />
+          <ScalarProperty Name="HouseID" ColumnName="HouseID" />
           <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
           <ScalarProperty Name="OwnerName" ColumnName="OwnerName" />
           <ScalarProperty Name="PinCode" ColumnName="PinCode" />
@@ -883,6 +884,7 @@
           <ScalarProperty Name="FlatArea" ColumnName="FlatArea" />
           <ScalarProperty Name="BHK" ColumnName="BHK" />
           <ScalarProperty Name="FlatNumber" ColumnName="FlatNumber" />
+          <ScalarProperty Name="FlatID" ColumnName="FlatID" />
           <ScalarProperty Name="UserID" ColumnName="UserID" />
           <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
           <ScalarProperty Name="ContactName" ColumnName="ContactName" />
@@ -890,7 +892,10 @@
           <ScalarProperty Name="Available" ColumnName="Available" />
           <ScalarProperty Name="RentValue" ColumnName="RentValue" />
           <ScalarProperty Name="RentType" ColumnName="RentType" />
+          <ScalarProperty Name="RentTypeID" ColumnName="RentTypeID" />
           <ScalarProperty Name="Inventory" ColumnName="Inventory" />
+          <ScalarProperty Name="InventoryID" ColumnName="InventoryID" />
+          <ScalarProperty Name="RentInventoryID" ColumnName="RentInventoryID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

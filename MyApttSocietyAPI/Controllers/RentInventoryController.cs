@@ -25,16 +25,40 @@ namespace MyApttSocietyAPI.Controllers
             return new string[] { "value1", "value2" };
         }
 
-        [Route("Find")]
-        [HttpPost]
-        public IHttpActionResult GetInventory([FromBody]RentInventory value)
+
+        [Route("Find/{FlatId}/{HouseId}")]
+        [HttpGet]
+        public IHttpActionResult GetMyInventory(int FlatId, int HouseId)
         {
-            try {
-                
+            try
+            {
+
                 var context = new SocietyDBEntities();
 
-                var inventory = context.RentInventories.Where(X => X.InventoryID == value.InventoryID && X.RentTypeID == value.RentTypeID 
-                                                               && X.RentValue > 0.8*value.RentValue && X.RentValue<1.2*value.RentValue).ToList();
+                var inventory = context.ViewRentInventories.Where(X => (X.HouseID == HouseId && X.FlatID == FlatId)
+                                                                  && X.Available == true).ToList();
+                return Ok(inventory);
+
+
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError();
+
+            }
+        }
+
+        [Route("Find")]
+        [HttpPost]
+        public IHttpActionResult GetInventory([FromBody]ViewRentInventory value)
+        {
+            try {
+
+                var context = new SocietyDBEntities();
+
+                var inventory = context.ViewRentInventories.Where(X => X.InventoryID == value.InventoryID && X.RentTypeID == value.RentTypeID
+                                                                && X.FlatCity == value.FlatCity && X.Available == true
+                                                               && X.RentValue > 0.8 * value.RentValue && X.RentValue < 1.2 * value.RentValue).ToList();
                 return Ok(inventory);
 
 
@@ -52,13 +76,31 @@ namespace MyApttSocietyAPI.Controllers
         {
             String resp;
             try {
+
                 var context = new SocietyDBEntities();
+
+                var inv = context.ViewRentInventories.Where(X => (X.HouseID == value.HouseID || X.FlatID == value.FlatID)
+                                                                  && X.Available == true).ToList();
+
+                if (inv.Count > 0)
+                {
                     context.RentInventories.Add(value);
                     context.SaveChanges();
-                resp = "{\"Response\":\"OK\"}";
-                var response = Request.CreateResponse(HttpStatusCode.OK);
-                response.Content = new StringContent(resp, System.Text.Encoding.UTF8, "application/json");
-                return response;
+                    resp = "{\"Response\":\"Duplicate\"}";
+                    var response = Request.CreateResponse(HttpStatusCode.Conflict);
+                    response.Content = new StringContent(resp, System.Text.Encoding.UTF8, "application/json");
+                    return response;
+                }
+                else {
+                    context.RentInventories.Add(value);
+                    context.SaveChanges();
+                    resp = "{\"Response\":\"OK\"}";
+                    var response = Request.CreateResponse(HttpStatusCode.OK);
+                    response.Content = new StringContent(resp, System.Text.Encoding.UTF8, "application/json");
+                    return response;
+                }
+
+
 
             }
             catch (Exception ex)
@@ -70,6 +112,48 @@ namespace MyApttSocietyAPI.Controllers
             }
         }
 
+        [Route("Close")]
+        [HttpPost]
+        public HttpResponseMessage Post([FromBody]InventoryUpdate value)
+        {
+            String resp;
+
+            try
+            {
+
+                var context = new SocietyDBEntities();
+
+                var inv = context.RentInventories.Where(X => X.RentInventoryID == value.InventoryId).First();
+
+                if (inv != null)
+                {
+                    inv.Available = false;
+                    context.SaveChanges();
+                    resp = "{\"Response\":\"Ok\"}";
+                    var response = Request.CreateResponse(HttpStatusCode.OK);
+                    response.Content = new StringContent(resp, System.Text.Encoding.UTF8, "application/json");
+                    return response;
+                }
+                else
+                {
+                    resp = "{\"Response\":\"NotFound\"}";
+                    var response = Request.CreateResponse(HttpStatusCode.NotFound);
+                    response.Content = new StringContent(resp, System.Text.Encoding.UTF8, "application/json");
+                    return response;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                resp = "{\"Response\":\"Fail\"}";
+                var response = Request.CreateResponse(HttpStatusCode.InternalServerError);
+                response.Content = new StringContent(resp, System.Text.Encoding.UTF8, "application/json");
+                return response;
+            }
+        }
+
+
+
         // PUT: api/RentInventory/5
         public void Put(int id, [FromBody]string value)
         {
@@ -79,5 +163,11 @@ namespace MyApttSocietyAPI.Controllers
         public void Delete(int id)
         {
         }
+
+        public class InventoryUpdate
+            {
+            public int InventoryId;
+            public bool Status;
+            }
     }
 }

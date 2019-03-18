@@ -852,13 +852,23 @@ warning 6002: The table/view 'SocietyDB.dbo.ViewPollDataWithCount' does not have
 warning 6002: The table/view 'SocietyDB.dbo.ViewRentInventory' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="ViewRentInventory">
           <Key>
+            <PropertyRef Name="RentInventoryID" />
+            <PropertyRef Name="InventoryID" />
+            <PropertyRef Name="RentTypeID" />
             <PropertyRef Name="RentValue" />
             <PropertyRef Name="Description" />
             <PropertyRef Name="ContactName" />
             <PropertyRef Name="ContactNumber" />
             <PropertyRef Name="UserID" />
+            <PropertyRef Name="FlatID" />
+            <PropertyRef Name="FlatNumber" />
+            <PropertyRef Name="HouseID" />
+            <PropertyRef Name="HouseNumber" />
           </Key>
+          <Property Name="RentInventoryID" Type="int" Nullable="false" />
+          <Property Name="InventoryID" Type="int" Nullable="false" />
           <Property Name="Inventory" Type="varchar" MaxLength="20" />
+          <Property Name="RentTypeID" Type="int" Nullable="false" />
           <Property Name="RentType" Type="varchar" MaxLength="20" />
           <Property Name="RentValue" Type="int" Nullable="false" />
           <Property Name="Available" Type="bit" />
@@ -866,7 +876,8 @@ warning 6002: The table/view 'SocietyDB.dbo.ViewRentInventory' does not have a p
           <Property Name="ContactName" Type="varchar" MaxLength="256" Nullable="false" />
           <Property Name="ContactNumber" Type="varchar" MaxLength="256" Nullable="false" />
           <Property Name="UserID" Type="int" Nullable="false" />
-          <Property Name="FlatNumber" Type="varchar" MaxLength="50" />
+          <Property Name="FlatID" Type="int" Nullable="false" />
+          <Property Name="FlatNumber" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="BHK" Type="int" />
           <Property Name="FlatArea" Type="varchar" MaxLength="50" />
           <Property Name="Floor" Type="int" />
@@ -877,7 +888,8 @@ warning 6002: The table/view 'SocietyDB.dbo.ViewRentInventory' does not have a p
           <Property Name="PinCode" Type="int" />
           <Property Name="OwnerName" Type="varchar" MaxLength="101" />
           <Property Name="MobileNo" Type="varchar" MaxLength="50" />
-          <Property Name="HouseNumber" Type="varchar" MaxLength="50" />
+          <Property Name="HouseID" Type="int" Nullable="false" />
+          <Property Name="HouseNumber" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'SocietyDB.dbo.ViewSocietyUsers' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -1437,7 +1449,10 @@ warning 6002: The table/view 'SocietyDB.dbo.WatchViewFirstThreadNoImage' does no
           </EntitySet>
           <EntitySet Name="ViewRentInventory" EntityType="Self.ViewRentInventory" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
+    [ViewRentInventory].[RentInventoryID] AS [RentInventoryID], 
+    [ViewRentInventory].[InventoryID] AS [InventoryID], 
     [ViewRentInventory].[Inventory] AS [Inventory], 
+    [ViewRentInventory].[RentTypeID] AS [RentTypeID], 
     [ViewRentInventory].[RentType] AS [RentType], 
     [ViewRentInventory].[RentValue] AS [RentValue], 
     [ViewRentInventory].[Available] AS [Available], 
@@ -1445,6 +1460,7 @@ warning 6002: The table/view 'SocietyDB.dbo.WatchViewFirstThreadNoImage' does no
     [ViewRentInventory].[ContactName] AS [ContactName], 
     [ViewRentInventory].[ContactNumber] AS [ContactNumber], 
     [ViewRentInventory].[UserID] AS [UserID], 
+    [ViewRentInventory].[FlatID] AS [FlatID], 
     [ViewRentInventory].[FlatNumber] AS [FlatNumber], 
     [ViewRentInventory].[BHK] AS [BHK], 
     [ViewRentInventory].[FlatArea] AS [FlatArea], 
@@ -1456,6 +1472,7 @@ warning 6002: The table/view 'SocietyDB.dbo.WatchViewFirstThreadNoImage' does no
     [ViewRentInventory].[PinCode] AS [PinCode], 
     [ViewRentInventory].[OwnerName] AS [OwnerName], 
     [ViewRentInventory].[MobileNo] AS [MobileNo], 
+    [ViewRentInventory].[HouseID] AS [HouseID], 
     [ViewRentInventory].[HouseNumber] AS [HouseNumber]
     FROM [dbo].[ViewRentInventory] AS [ViewRentInventory]</DefiningQuery>
           </EntitySet>
@@ -2612,13 +2629,23 @@ warning 6002: The table/view 'SocietyDB.dbo.WatchViewFirstThreadNoImage' does no
         </EntityType>
         <EntityType Name="ViewRentInventory">
           <Key>
+            <PropertyRef Name="RentInventoryID" />
+            <PropertyRef Name="InventoryID" />
+            <PropertyRef Name="RentTypeID" />
             <PropertyRef Name="RentValue" />
             <PropertyRef Name="Description" />
             <PropertyRef Name="ContactName" />
             <PropertyRef Name="ContactNumber" />
             <PropertyRef Name="UserID" />
+            <PropertyRef Name="FlatID" />
+            <PropertyRef Name="FlatNumber" />
+            <PropertyRef Name="HouseID" />
+            <PropertyRef Name="HouseNumber" />
           </Key>
+          <Property Name="RentInventoryID" Type="Int32" Nullable="false" />
+          <Property Name="InventoryID" Type="Int32" Nullable="false" />
           <Property Name="Inventory" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="RentTypeID" Type="Int32" Nullable="false" />
           <Property Name="RentType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="RentValue" Type="Int32" Nullable="false" />
           <Property Name="Available" Type="Boolean" />
@@ -2626,7 +2653,8 @@ warning 6002: The table/view 'SocietyDB.dbo.WatchViewFirstThreadNoImage' does no
           <Property Name="ContactName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="false" />
           <Property Name="ContactNumber" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="false" />
           <Property Name="UserID" Type="Int32" Nullable="false" />
-          <Property Name="FlatNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FlatID" Type="Int32" Nullable="false" />
+          <Property Name="FlatNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="BHK" Type="Int32" />
           <Property Name="FlatArea" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Floor" Type="Int32" />
@@ -2637,7 +2665,8 @@ warning 6002: The table/view 'SocietyDB.dbo.WatchViewFirstThreadNoImage' does no
           <Property Name="PinCode" Type="Int32" />
           <Property Name="OwnerName" Type="String" MaxLength="101" FixedLength="false" Unicode="false" />
           <Property Name="MobileNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="HouseNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="HouseID" Type="Int32" Nullable="false" />
+          <Property Name="HouseNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -3516,6 +3545,7 @@ warning 6002: The table/view 'SocietyDB.dbo.WatchViewFirstThreadNoImage' does no
             <EntityTypeMapping TypeName="SocietyDBModel.ViewRentInventory">
               <MappingFragment StoreEntitySet="ViewRentInventory">
                 <ScalarProperty Name="HouseNumber" ColumnName="HouseNumber" />
+                <ScalarProperty Name="HouseID" ColumnName="HouseID" />
                 <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
                 <ScalarProperty Name="OwnerName" ColumnName="OwnerName" />
                 <ScalarProperty Name="PinCode" ColumnName="PinCode" />
@@ -3527,6 +3557,7 @@ warning 6002: The table/view 'SocietyDB.dbo.WatchViewFirstThreadNoImage' does no
                 <ScalarProperty Name="FlatArea" ColumnName="FlatArea" />
                 <ScalarProperty Name="BHK" ColumnName="BHK" />
                 <ScalarProperty Name="FlatNumber" ColumnName="FlatNumber" />
+                <ScalarProperty Name="FlatID" ColumnName="FlatID" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
                 <ScalarProperty Name="ContactName" ColumnName="ContactName" />
@@ -3534,7 +3565,10 @@ warning 6002: The table/view 'SocietyDB.dbo.WatchViewFirstThreadNoImage' does no
                 <ScalarProperty Name="Available" ColumnName="Available" />
                 <ScalarProperty Name="RentValue" ColumnName="RentValue" />
                 <ScalarProperty Name="RentType" ColumnName="RentType" />
+                <ScalarProperty Name="RentTypeID" ColumnName="RentTypeID" />
                 <ScalarProperty Name="Inventory" ColumnName="Inventory" />
+                <ScalarProperty Name="InventoryID" ColumnName="InventoryID" />
+                <ScalarProperty Name="RentInventoryID" ColumnName="RentInventoryID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

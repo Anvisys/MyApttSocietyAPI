@@ -847,13 +847,23 @@ warning 6002: The table/view 'SocietyDB.dbo.ViewPollDataWithCount' does not have
 warning 6002: The table/view 'SocietyDB.dbo.ViewRentInventory' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="ViewRentInventory">
     <Key>
+      <PropertyRef Name="RentInventoryID" />
+      <PropertyRef Name="InventoryID" />
+      <PropertyRef Name="RentTypeID" />
       <PropertyRef Name="RentValue" />
       <PropertyRef Name="Description" />
       <PropertyRef Name="ContactName" />
       <PropertyRef Name="ContactNumber" />
       <PropertyRef Name="UserID" />
+      <PropertyRef Name="FlatID" />
+      <PropertyRef Name="FlatNumber" />
+      <PropertyRef Name="HouseID" />
+      <PropertyRef Name="HouseNumber" />
     </Key>
+    <Property Name="RentInventoryID" Type="int" Nullable="false" />
+    <Property Name="InventoryID" Type="int" Nullable="false" />
     <Property Name="Inventory" Type="varchar" MaxLength="20" />
+    <Property Name="RentTypeID" Type="int" Nullable="false" />
     <Property Name="RentType" Type="varchar" MaxLength="20" />
     <Property Name="RentValue" Type="int" Nullable="false" />
     <Property Name="Available" Type="bit" />
@@ -861,7 +871,8 @@ warning 6002: The table/view 'SocietyDB.dbo.ViewRentInventory' does not have a p
     <Property Name="ContactName" Type="varchar" MaxLength="256" Nullable="false" />
     <Property Name="ContactNumber" Type="varchar" MaxLength="256" Nullable="false" />
     <Property Name="UserID" Type="int" Nullable="false" />
-    <Property Name="FlatNumber" Type="varchar" MaxLength="50" />
+    <Property Name="FlatID" Type="int" Nullable="false" />
+    <Property Name="FlatNumber" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="BHK" Type="int" />
     <Property Name="FlatArea" Type="varchar" MaxLength="50" />
     <Property Name="Floor" Type="int" />
@@ -872,7 +883,8 @@ warning 6002: The table/view 'SocietyDB.dbo.ViewRentInventory' does not have a p
     <Property Name="PinCode" Type="int" />
     <Property Name="OwnerName" Type="varchar" MaxLength="101" />
     <Property Name="MobileNo" Type="varchar" MaxLength="50" />
-    <Property Name="HouseNumber" Type="varchar" MaxLength="50" />
+    <Property Name="HouseID" Type="int" Nullable="false" />
+    <Property Name="HouseNumber" Type="varchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
 warning 6002: The table/view 'SocietyDB.dbo.ViewSocietyUsers' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -1432,7 +1444,10 @@ warning 6002: The table/view 'SocietyDB.dbo.WatchViewFirstThreadNoImage' does no
     </EntitySet>
     <EntitySet Name="ViewRentInventory" EntityType="Self.ViewRentInventory" store:Type="Views" store:Schema="dbo">
       <DefiningQuery>SELECT 
+    [ViewRentInventory].[RentInventoryID] AS [RentInventoryID], 
+    [ViewRentInventory].[InventoryID] AS [InventoryID], 
     [ViewRentInventory].[Inventory] AS [Inventory], 
+    [ViewRentInventory].[RentTypeID] AS [RentTypeID], 
     [ViewRentInventory].[RentType] AS [RentType], 
     [ViewRentInventory].[RentValue] AS [RentValue], 
     [ViewRentInventory].[Available] AS [Available], 
@@ -1440,6 +1455,7 @@ warning 6002: The table/view 'SocietyDB.dbo.WatchViewFirstThreadNoImage' does no
     [ViewRentInventory].[ContactName] AS [ContactName], 
     [ViewRentInventory].[ContactNumber] AS [ContactNumber], 
     [ViewRentInventory].[UserID] AS [UserID], 
+    [ViewRentInventory].[FlatID] AS [FlatID], 
     [ViewRentInventory].[FlatNumber] AS [FlatNumber], 
     [ViewRentInventory].[BHK] AS [BHK], 
     [ViewRentInventory].[FlatArea] AS [FlatArea], 
@@ -1451,6 +1467,7 @@ warning 6002: The table/view 'SocietyDB.dbo.WatchViewFirstThreadNoImage' does no
     [ViewRentInventory].[PinCode] AS [PinCode], 
     [ViewRentInventory].[OwnerName] AS [OwnerName], 
     [ViewRentInventory].[MobileNo] AS [MobileNo], 
+    [ViewRentInventory].[HouseID] AS [HouseID], 
     [ViewRentInventory].[HouseNumber] AS [HouseNumber]
     FROM [dbo].[ViewRentInventory] AS [ViewRentInventory]</DefiningQuery>
     </EntitySet>

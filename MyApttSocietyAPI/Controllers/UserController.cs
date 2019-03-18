@@ -190,8 +190,9 @@ namespace MyApttSocietyAPI.Controllers
 
         [Route("Add/Demo")]
         [HttpPost]
-        public IHttpActionResult AddUser([FromBody]TotalUser User)
+        public HttpResponseMessage AddUser([FromBody]TotalUser User)
         {
+            String resp;
             try
             {
                 var context = new SocietyDBEntities();
@@ -202,7 +203,12 @@ namespace MyApttSocietyAPI.Controllers
                                  select USER);
                     if (users.Count() > 0)
                     {
-                        return BadRequest();
+                        //return BadRequest();
+
+                        resp = "{\"Response\":\"Fail\"}";
+                        var response = Request.CreateResponse(HttpStatusCode.BadRequest);
+                        response.Content = new StringContent(resp, System.Text.Encoding.UTF8, "application/json");
+                        return response;
 
                     }
                     else
@@ -250,7 +256,11 @@ namespace MyApttSocietyAPI.Controllers
 
                         Utility.SendMail(User.EmailId, sub, EmailBody);
                         Utility.sendSMS2Resident(smsBody, User.MobileNo);
-                        return Ok();
+                        //return Ok();
+                        resp = "{\"Response\":\"Ok\"}";
+                        var response = Request.CreateResponse(HttpStatusCode.OK);
+                        response.Content = new StringContent(resp, System.Text.Encoding.UTF8, "application/json");
+                        return response;
 
                     }
 
@@ -258,7 +268,11 @@ namespace MyApttSocietyAPI.Controllers
             }
             catch (Exception ex)
             {
-                return InternalServerError(ex.InnerException);
+                //return InternalServerError(ex.InnerException);
+                resp = "{\"Response\":\"Fail\"}";
+                var response = Request.CreateResponse(HttpStatusCode.InternalServerError);
+                response.Content = new StringContent(resp, System.Text.Encoding.UTF8, "application/json");
+                return response;
             }
           
         }
