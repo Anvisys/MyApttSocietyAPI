@@ -23,10 +23,28 @@ namespace MyApttSocietyAPI.Controllers
             return new string[] { "value1", "value2" };
         }
 
-        // GET: api/User/5
-        public string Get(int id)
+        [Route("Society/{SocName}")]
+        [HttpGet]
+        public IEnumerable<Society> GetSocieties(String SocName)
         {
-            return "value";
+            var context = new SocietyDBEntities();
+             var soc = (from s in context.Societies
+                     where s.SocietyName.Contains(SocName)
+                     select s).ToList();
+
+            return soc;
+        }
+
+        [Route("Flat/{SocID}/{FlatNumber}")]
+        [HttpGet]
+        public IEnumerable<ViewFlat> GetFlats(int SocID, String FlatNumber)
+        {
+            var context = new SocietyDBEntities();
+            var soc = (from s in context.ViewFlats
+                       where s.FlatNumber == FlatNumber && s.SocietyId == SocID
+                       select s).ToList();
+
+            return soc;
         }
 
         [Route("Setting/{UserId}")]
@@ -190,9 +208,10 @@ namespace MyApttSocietyAPI.Controllers
 
         [Route("Add/Demo")]
         [HttpPost]
-        public HttpResponseMessage AddUser([FromBody]TotalUser User)
+        public ValidUser AddUser([FromBody]TotalUser User)
         {
             String resp;
+            ValidUser DemoUser = new ValidUser();
             try
             {
                 var context = new SocietyDBEntities();
@@ -203,12 +222,17 @@ namespace MyApttSocietyAPI.Controllers
                                  select USER);
                     if (users.Count() > 0)
                     {
+                        DemoUser.result = "Fail";
+                        DemoUser.message = "No Valid User";
+
                         //return BadRequest();
 
-                        resp = "{\"Response\":\"Fail\"}";
-                        var response = Request.CreateResponse(HttpStatusCode.BadRequest);
-                        response.Content = new StringContent(resp, System.Text.Encoding.UTF8, "application/json");
-                        return response;
+                        //resp = "{\"Response\":\"Fail\"}";
+                        //var response = Request.CreateResponse(HttpStatusCode.BadRequest);
+                        //response.Content = new StringContent(resp, System.Text.Encoding.UTF8, "application/json");
+                        //return response;
+
+                        return DemoUser;
 
                     }
                     else
@@ -235,7 +259,9 @@ namespace MyApttSocietyAPI.Controllers
                         // Add Flat
                         context.Flats.Add(newFlat);
                         context.SaveChanges();
-                        context.SocietyUsers.Add(new SocietyUser {
+
+                        SocietyUser demoSocietyUser = new SocietyUser
+                        {
                             UserID = User.UserID,
                             SocietyID = 1,
                             ActiveDate = DateTime.UtcNow,
@@ -243,12 +269,21 @@ namespace MyApttSocietyAPI.Controllers
                             DeActiveDate = DateTime.UtcNow.AddDays(15),
                             FlatID = newFlat.ID,
                             ModifiedDate = DateTime.UtcNow,
-                            ServiceType =0,
+                            ServiceType = 0,
                             Type = "Owner"
-                        });
+                        };
+
+                     
+
+                        context.SocietyUsers.Add(demoSocietyUser);
 
                         context.SaveChanges();
                         dbContextTransaction.Commit();
+                        var socUser = context.ViewSocietyUsers.Where(x => x.ResID == demoSocietyUser.ResID).First();
+                        DemoUser.UserData = User;
+                        DemoUser.result = "Ok";
+                        DemoUser.SocietyUser.Add(socUser);
+
                         var sub = "Your Demo ID is created";
                         var EmailBody = "Dear User \n You have successfully Registered with Nestin.Online For Demo. You demo will run for 15 days. Please" +
                                         "Explore the application and contact us for any further query";
@@ -257,10 +292,10 @@ namespace MyApttSocietyAPI.Controllers
                         Utility.SendMail(User.EmailId, sub, EmailBody);
                         Utility.sendSMS2Resident(smsBody, User.MobileNo);
                         //return Ok();
-                        resp = "{\"Response\":\"Ok\"}";
-                        var response = Request.CreateResponse(HttpStatusCode.OK);
-                        response.Content = new StringContent(resp, System.Text.Encoding.UTF8, "application/json");
-                        return response;
+                        //resp = "{\"Response\":\"Ok\"}";
+                        //var response = Request.CreateResponse(HttpStatusCode.OK);
+                        //response.Content = new StringContent(resp, System.Text.Encoding.UTF8, "application/json");
+                        return DemoUser;
 
                     }
 
@@ -269,10 +304,14 @@ namespace MyApttSocietyAPI.Controllers
             catch (Exception ex)
             {
                 //return InternalServerError(ex.InnerException);
-                resp = "{\"Response\":\"Fail\"}";
-                var response = Request.CreateResponse(HttpStatusCode.InternalServerError);
-                response.Content = new StringContent(resp, System.Text.Encoding.UTF8, "application/json");
-                return response;
+                //resp = "{\"Response\":\"Fail\"}";
+                //var response = Request.CreateResponse(HttpStatusCode.InternalServerError);
+                //response.Content = new StringContent(resp, System.Text.Encoding.UTF8, "application/json");
+                //return response;
+
+                DemoUser.result = "Fail";
+                DemoUser.message = "Server Error";
+                return DemoUser;
             }
           
         }
