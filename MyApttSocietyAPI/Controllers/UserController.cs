@@ -397,17 +397,17 @@ namespace MyApttSocietyAPI.Controllers
 
         [Route("Add/SocietyUser")]
         [HttpPost]
-        public ValidUser AddUserFlat([FromBody]SocietyUser User)
+        public ValidUser AddUserFlat([FromBody]SocietyUser socUser)
         {
-            String resp;
+         
             ValidUser DemoUser = new ValidUser();
             try
             {
                 var context = new SocietyDBEntities();
                 using (var dbContextTransaction = context.Database.BeginTransaction())
                 {
-                    var users = (from USER in context.ViewSocietyUsers
-                                 where USER.UserID == User.UserID && USER.SocietyID == User.SocietyID
+                    var users = (from USER in context.TotalUsers
+                                 where USER.UserID == socUser.UserID
                                  select USER).First();
                     if (users == null)
                     {
@@ -419,52 +419,22 @@ namespace MyApttSocietyAPI.Controllers
                     else
                     {
                        
-                        Flat newFlat = new Flat
-                        {
-                            FlatNumber = User.Fl,
-                            BHK = 3,
-                            //Block = User.FirstName.Substring(0, 1),
-                            //FlatArea = "1200",
-                            //Floor = Convert.ToInt32(User.MobileNo.Substring(9, 1)),
-                            //IntercomNumber = Convert.ToInt32(User.MobileNo.Substring(5, 5)),
-                            SocietyID = 1,
-                            UserID = User.UserID
-                        };
-                        // Add Flat
-                        context.Flats.Add(newFlat);
-                        context.SaveChanges();
-
-                        SocietyUser demoSocietyUser = new SocietyUser
-                        {
-                            UserID = User.UserID,
-                            SocietyID = 1,
-                            ActiveDate = DateTime.UtcNow,
-                            CompanyName = "",
-                            DeActiveDate = DateTime.UtcNow.AddDays(15),
-                            FlatID = newFlat.ID,
-                            ModifiedDate = DateTime.UtcNow,
-                            ServiceType = 0,
-                            Type = "Owner"
-                        };
-
-
-
-                        context.SocietyUsers.Add(demoSocietyUser);
+                        context.SocietyUsers.Add(socUser);
 
                         context.SaveChanges();
                         dbContextTransaction.Commit();
-                        var socUser = context.ViewSocietyUsers.Where(x => x.ResID == demoSocietyUser.ResID).First();
-                        DemoUser.UserData = User;
+                        var viewSocUser = context.ViewSocietyUsers.Where(x => x.ResID == socUser.ResID).First();
+                        DemoUser.UserData = users;
                         DemoUser.result = "Ok";
-                        DemoUser.SocietyUser.Add(socUser);
+                        DemoUser.SocietyUser.Add(viewSocUser);
 
-                        var sub = "Your Demo ID is created";
-                        var EmailBody = "Dear User \n You have successfully Registered with Nestin.Online For Demo. You demo will run for 15 days. Please" +
+                        var sub = "Your Role is created";
+                        var EmailBody = "Dear User \n You have successfully Registered with Nestin.Online For Demo." +
                                         "Explore the application and contact us for any further query";
                         var smsBody = "Welcome to Nestin.online. your demo login is valid for 15 days.";
 
-                        Utility.SendMail(User.EmailId, sub, EmailBody);
-                        Utility.sendSMS2Resident(smsBody, User.MobileNo);
+                        Utility.SendMail(users.EmailId, sub, EmailBody);
+                        Utility.sendSMS2Resident(smsBody, users.MobileNo);
                         //return Ok();
                         //resp = "{\"Response\":\"Ok\"}";
                         //var response = Request.CreateResponse(HttpStatusCode.OK);
