@@ -211,6 +211,7 @@
     <Compile Include="Models\Forum.cs" />
     <Compile Include="Models\GCMRegister.cs" />
     <Compile Include="Models\MessageType.cs" />
+    <Compile Include="Models\Role.cs" />
     <Compile Include="Models\Utility.cs" />
     <Compile Include="Models\ValidateUser.cs" />
     <Compile Include="Models\ValidUser.cs" />
