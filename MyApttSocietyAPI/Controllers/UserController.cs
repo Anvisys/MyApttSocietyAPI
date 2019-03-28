@@ -423,10 +423,10 @@ namespace MyApttSocietyAPI.Controllers
                         {
                             FlatNumber = User.Fl,
                             BHK = 3,
-                            Block = User.FirstName.Substring(0, 1),
-                            FlatArea = "1200",
-                            Floor = Convert.ToInt32(User.MobileNo.Substring(9, 1)),
-                            IntercomNumber = Convert.ToInt32(User.MobileNo.Substring(5, 5)),
+                            //Block = User.FirstName.Substring(0, 1),
+                            //FlatArea = "1200",
+                            //Floor = Convert.ToInt32(User.MobileNo.Substring(9, 1)),
+                            //IntercomNumber = Convert.ToInt32(User.MobileNo.Substring(5, 5)),
                             SocietyID = 1,
                             UserID = User.UserID
                         };
