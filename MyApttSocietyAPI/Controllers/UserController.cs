@@ -318,6 +318,82 @@ namespace MyApttSocietyAPI.Controllers
 
 
 
+        [Route("Add/Register")]
+        [HttpPost]
+        public ValidUser AddNewUser([FromBody]TotalUser User)
+        {
+            String resp;
+            ValidUser DemoUser = new ValidUser();
+            try
+            {
+                var context = new SocietyDBEntities();
+                using (var dbContextTransaction = context.Database.BeginTransaction())
+                {
+                    var users = (from USER in context.ViewSocietyUsers
+                                 where USER.MobileNo == User.MobileNo || USER.EmailId == User.EmailId
+                                 select USER);
+                    if (users.Count() > 0)
+                    {
+                        DemoUser.result = "Fail";
+                        DemoUser.message = "No Valid User";
+
+                        //return BadRequest();
+
+                        //resp = "{\"Response\":\"Fail\"}";
+                        //var response = Request.CreateResponse(HttpStatusCode.BadRequest);
+                        //response.Content = new StringContent(resp, System.Text.Encoding.UTF8, "application/json");
+                        //return response;
+
+                        return DemoUser;
+
+                    }
+                    else
+                    {
+                        String encryptPwd = ValidateUser.EncryptPassword(User.EmailId, User.Password);
+                        User.Password = encryptPwd;
+
+                        // Add User
+                        context.TotalUsers.Add(User
+                            );
+                        context.SaveChanges();
+
+                        context.SaveChanges();
+                        dbContextTransaction.Commit();
+                        DemoUser.UserData = User;
+                        DemoUser.result = "Ok";
+
+                        var sub = "Your User Login is created";
+                        var EmailBody = "Dear User \n You have successfully Registered with Nestin.Online. Please select your Role from Role Page";
+                        var smsBody = "Welcome to Nestin.online. your Registration is succesfull.";
+
+                        Utility.SendMail(User.EmailId, sub, EmailBody);
+                        Utility.sendSMS2Resident(smsBody, User.MobileNo);
+                        //return Ok();
+                        //resp = "{\"Response\":\"Ok\"}";
+                        //var response = Request.CreateResponse(HttpStatusCode.OK);
+                        //response.Content = new StringContent(resp, System.Text.Encoding.UTF8, "application/json");
+                        return DemoUser;
+
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                //return InternalServerError(ex.InnerException);
+                //resp = "{\"Response\":\"Fail\"}";
+                //var response = Request.CreateResponse(HttpStatusCode.InternalServerError);
+                //response.Content = new StringContent(resp, System.Text.Encoding.UTF8, "application/json");
+                //return response;
+
+                DemoUser.result = "Fail";
+                DemoUser.message = "Server Error";
+                return DemoUser;
+            }
+
+        }
+
+
         [Route("Add/House/{UserId}")]
         [HttpPost]
         public IHttpActionResult AddHouse([FromBody]House newHouse, int UserId)
