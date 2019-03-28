@@ -368,6 +368,7 @@ namespace MyApttSocietyAPI.Controllers
 
                         Utility.SendMail(User.EmailId, sub, EmailBody);
                         Utility.sendSMS2Resident(smsBody, User.MobileNo);
+
                         //return Ok();
                         //resp = "{\"Response\":\"Ok\"}";
                         //var response = Request.CreateResponse(HttpStatusCode.OK);
@@ -392,6 +393,103 @@ namespace MyApttSocietyAPI.Controllers
             }
 
         }
+
+
+        [Route("Add/SocietyUser")]
+        [HttpPost]
+        public ValidUser AddUserFlat([FromBody]SocietyUser User)
+        {
+            String resp;
+            ValidUser DemoUser = new ValidUser();
+            try
+            {
+                var context = new SocietyDBEntities();
+                using (var dbContextTransaction = context.Database.BeginTransaction())
+                {
+                    var users = (from USER in context.ViewSocietyUsers
+                                 where USER.UserID == User.UserID && USER.SocietyID == User.SocietyID
+                                 select USER).First();
+                    if (users == null)
+                    {
+                        DemoUser.result = "Fail";
+                        DemoUser.message = "No Valid User";
+                        return DemoUser;
+
+                    }
+                    else
+                    {
+                       
+                        Flat newFlat = new Flat
+                        {
+                            FlatNumber = User.Fl,
+                            BHK = 3,
+                            Block = User.FirstName.Substring(0, 1),
+                            FlatArea = "1200",
+                            Floor = Convert.ToInt32(User.MobileNo.Substring(9, 1)),
+                            IntercomNumber = Convert.ToInt32(User.MobileNo.Substring(5, 5)),
+                            SocietyID = 1,
+                            UserID = User.UserID
+                        };
+                        // Add Flat
+                        context.Flats.Add(newFlat);
+                        context.SaveChanges();
+
+                        SocietyUser demoSocietyUser = new SocietyUser
+                        {
+                            UserID = User.UserID,
+                            SocietyID = 1,
+                            ActiveDate = DateTime.UtcNow,
+                            CompanyName = "",
+                            DeActiveDate = DateTime.UtcNow.AddDays(15),
+                            FlatID = newFlat.ID,
+                            ModifiedDate = DateTime.UtcNow,
+                            ServiceType = 0,
+                            Type = "Owner"
+                        };
+
+
+
+                        context.SocietyUsers.Add(demoSocietyUser);
+
+                        context.SaveChanges();
+                        dbContextTransaction.Commit();
+                        var socUser = context.ViewSocietyUsers.Where(x => x.ResID == demoSocietyUser.ResID).First();
+                        DemoUser.UserData = User;
+                        DemoUser.result = "Ok";
+                        DemoUser.SocietyUser.Add(socUser);
+
+                        var sub = "Your Demo ID is created";
+                        var EmailBody = "Dear User \n You have successfully Registered with Nestin.Online For Demo. You demo will run for 15 days. Please" +
+                                        "Explore the application and contact us for any further query";
+                        var smsBody = "Welcome to Nestin.online. your demo login is valid for 15 days.";
+
+                        Utility.SendMail(User.EmailId, sub, EmailBody);
+                        Utility.sendSMS2Resident(smsBody, User.MobileNo);
+                        //return Ok();
+                        //resp = "{\"Response\":\"Ok\"}";
+                        //var response = Request.CreateResponse(HttpStatusCode.OK);
+                        //response.Content = new StringContent(resp, System.Text.Encoding.UTF8, "application/json");
+                        return DemoUser;
+
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                //return InternalServerError(ex.InnerException);
+                //resp = "{\"Response\":\"Fail\"}";
+                //var response = Request.CreateResponse(HttpStatusCode.InternalServerError);
+                //response.Content = new StringContent(resp, System.Text.Encoding.UTF8, "application/json");
+                //return response;
+
+                DemoUser.result = "Fail";
+                DemoUser.message = "Server Error";
+                return DemoUser;
+            }
+
+        }
+
 
 
         [Route("Add/House/{UserId}")]
