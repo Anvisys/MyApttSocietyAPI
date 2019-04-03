@@ -252,6 +252,16 @@ warning 6002: The table/view 'SocietyDB.dbo.Notifications' does not have a prima
           <Property Name="LastUpdated" Type="datetime" />
           <Property Name="SocietyID" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="RentEngagemment">
+          <Key>
+            <PropertyRef Name="RentingID" />
+          </Key>
+          <Property Name="RentingID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="InventoryID" Type="int" Nullable="false" />
+          <Property Name="InterestedResId" Type="int" Nullable="false" />
+          <Property Name="DealStatus" Type="int" Nullable="false" />
+          <Property Name="Comments" Type="varchar" MaxLength="1024" />
+        </EntityType>
         <EntityType Name="RentInventory">
           <Key>
             <PropertyRef Name="RentInventoryID" />
@@ -273,12 +283,14 @@ warning 6002: The table/view 'SocietyDB.dbo.Notifications' does not have a prima
             <PropertyRef Name="SocietyID" />
           </Key>
           <Property Name="SocietyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ConnectionString" Type="varchar" MaxLength="1000" Nullable="false" />
           <Property Name="SocietyName" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="TotalFlats" Type="int" Nullable="false" />
           <Property Name="Sector" Type="varchar" MaxLength="20" />
           <Property Name="City" Type="varchar" MaxLength="20" />
           <Property Name="PinCode" Type="int" />
+          <Property Name="State" Type="varchar" MaxLength="50" />
+          <Property Name="ContactUserId" Type="int" />
+          <Property Name="Status" Type="int" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'SocietyDB.dbo.Societybillplans' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -359,6 +371,36 @@ warning 6002: The table/view 'SocietyDB.dbo.Societybillplans' does not have a pr
           <Property Name="NoticeMail" Type="bit" />
           <Property Name="NoticeSMS" Type="bit" />
           <Property Name="UserId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VehiclePool">
+          <Key>
+            <PropertyRef Name="VehiclePoolID" />
+          </Key>
+          <Property Name="VehiclePoolID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OneWay" Type="bit" Nullable="false" />
+          <Property Name="PoolTypeID" Type="int" Nullable="false" />
+          <Property Name="Destination" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="InitiatedDateTime" Type="datetime" Nullable="false" />
+          <Property Name="JourneyDateTime" Type="datetime" Nullable="false" />
+          <Property Name="ReturnDateTime" Type="datetime" Nullable="false" />
+          <Property Name="VehicleType" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="AvailableSeats" Type="int" Nullable="false" />
+          <Property Name="SharedCost" Type="int" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="1024" Nullable="false" />
+          <Property Name="ResID" Type="int" Nullable="false" />
+          <Property Name="SocietyID" Type="int" Nullable="false" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VehiclePoolEngagemment">
+          <Key>
+            <PropertyRef Name="PoolID" />
+          </Key>
+          <Property Name="PoolID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VehiclePoolId" Type="int" Nullable="false" />
+          <Property Name="InterestedResId" Type="int" Nullable="false" />
+          <Property Name="Seats" Type="int" Nullable="false" />
+          <Property Name="DealStatus" Type="int" Nullable="false" />
+          <Property Name="Comments" Type="varchar" MaxLength="1024" />
         </EntityType>
         <EntityType Name="Vendors">
           <Key>
@@ -558,6 +600,42 @@ warning 6002: The table/view 'SocietyDB.dbo.ViewFlats' does not have a primary k
           <Property Name="OwnerMobile" Type="varchar" MaxLength="50" />
           <Property Name="OwnerAddress" Type="varchar" MaxLength="100" />
           <Property Name="TenantResID" Type="int" />
+          <Property Name="TenantUserID" Type="int" />
+          <Property Name="TenantFirstName" Type="varchar" MaxLength="50" />
+          <Property Name="TenantLastName" Type="varchar" MaxLength="50" />
+          <Property Name="TenantEmail" Type="varchar" MaxLength="50" />
+          <Property Name="TenantMobile" Type="varchar" MaxLength="50" />
+          <Property Name="TenantAddress" Type="varchar" MaxLength="100" />
+          <Property Name="TenantFrom" Type="date" />
+          <Property Name="TenantTo" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'SocietyDB.dbo.ViewFlatsUser' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ViewFlatsUser">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="FlatNumber" />
+            <PropertyRef Name="SocietyId" />
+            <PropertyRef Name="BHK" />
+            <PropertyRef Name="Floor" />
+            <PropertyRef Name="Block" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="FlatNumber" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="SocietyId" Type="int" Nullable="false" />
+          <Property Name="BHK" Type="int" Nullable="false" />
+          <Property Name="Floor" Type="int" Nullable="false" />
+          <Property Name="Block" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="IntercomNumber" Type="int" />
+          <Property Name="FlatArea" Type="varchar" MaxLength="50" />
+          <Property Name="OwnerUserID" Type="int" />
+          <Property Name="OwnerFirstName" Type="varchar" MaxLength="50" />
+          <Property Name="OwnerLastName" Type="varchar" MaxLength="50" />
+          <Property Name="OwnerEmail" Type="varchar" MaxLength="50" />
+          <Property Name="Ownermobile" Type="varchar" MaxLength="50" />
+          <Property Name="OwnerAddress" Type="varchar" MaxLength="100" />
+          <Property Name="OwnerFrom" Type="date" />
+          <Property Name="OwnerTo" Type="datetime" />
           <Property Name="TenantUserID" Type="int" />
           <Property Name="TenantFirstName" Type="varchar" MaxLength="50" />
           <Property Name="TenantLastName" Type="varchar" MaxLength="50" />
@@ -892,6 +970,27 @@ warning 6002: The table/view 'SocietyDB.dbo.ViewRentInventory' does not have a p
           <Property Name="HouseNumber" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
+warning 6002: The table/view 'SocietyDB.dbo.ViewSocieties' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ViewSocieties">
+          <Key>
+            <PropertyRef Name="SocietyID" />
+            <PropertyRef Name="SocietyName" />
+          </Key>
+          <Property Name="SocietyID" Type="int" Nullable="false" />
+          <Property Name="SocietyName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Sector" Type="varchar" MaxLength="20" />
+          <Property Name="City" Type="varchar" MaxLength="20" />
+          <Property Name="PinCode" Type="int" />
+          <Property Name="State" Type="varchar" MaxLength="50" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" />
+          <Property Name="EmailId" Type="varchar" MaxLength="50" />
+          <Property Name="MobileNo" Type="varchar" MaxLength="50" />
+          <Property Name="Address" Type="varchar" MaxLength="100" />
+          <Property Name="Status" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <!--Errors Found During Generation:
 warning 6002: The table/view 'SocietyDB.dbo.ViewSocietyUsers' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="ViewSocietyUsers">
           <Key>
@@ -1021,6 +1120,50 @@ warning 6002: The table/view 'SocietyDB.dbo.ViewUserSetting' does not have a pri
           <Property Name="NoticeSMS" Type="bit" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
+warning 6002: The table/view 'SocietyDB.dbo.ViewVehiclePool' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ViewVehiclePool">
+          <Key>
+            <PropertyRef Name="VehiclePoolID" />
+            <PropertyRef Name="OneWay" />
+            <PropertyRef Name="PoolTypeID" />
+            <PropertyRef Name="Destination" />
+            <PropertyRef Name="InitiatedDateTime" />
+            <PropertyRef Name="JourneyDateTime" />
+            <PropertyRef Name="ReturnDateTime" />
+            <PropertyRef Name="VehicleType" />
+            <PropertyRef Name="AvailableSeats" />
+            <PropertyRef Name="SharedCost" />
+            <PropertyRef Name="Description" />
+            <PropertyRef Name="ResID" />
+            <PropertyRef Name="SocietyID" />
+            <PropertyRef Name="Active" />
+            <PropertyRef Name="DealStatus" />
+            <PropertyRef Name="InterestedCount" />
+            <PropertyRef Name="InterestedSeatsCount" />
+          </Key>
+          <Property Name="VehiclePoolID" Type="int" Nullable="false" />
+          <Property Name="OneWay" Type="bit" Nullable="false" />
+          <Property Name="PoolTypeID" Type="int" Nullable="false" />
+          <Property Name="Destination" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="InitiatedDateTime" Type="datetime" Nullable="false" />
+          <Property Name="JourneyDateTime" Type="datetime" Nullable="false" />
+          <Property Name="ReturnDateTime" Type="datetime" Nullable="false" />
+          <Property Name="VehicleType" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="AvailableSeats" Type="int" Nullable="false" />
+          <Property Name="SharedCost" Type="int" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="1024" Nullable="false" />
+          <Property Name="ResID" Type="int" Nullable="false" />
+          <Property Name="SocietyID" Type="int" Nullable="false" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="DealStatus" Type="int" Nullable="false" />
+          <Property Name="InterestedCount" Type="int" Nullable="false" />
+          <Property Name="InterestedSeatsCount" Type="int" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" />
+          <Property Name="FlatNumber" Type="varchar" MaxLength="50" />
+          <Property Name="MobileNo" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
 warning 6002: The table/view 'SocietyDB.dbo.viewVisitorData' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="viewVisitorData">
           <Key>
@@ -1096,12 +1239,15 @@ warning 6002: The table/view 'SocietyDB.dbo.WatchViewFirstThreadNoImage' does no
           <EntitySet Name="Offers" EntityType="Self.Offers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PollingAnswer" EntityType="Self.PollingAnswer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PollingData" EntityType="Self.PollingData" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RentEngagemment" EntityType="Self.RentEngagemment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RentInventory" EntityType="Self.RentInventory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Societies" EntityType="Self.Societies" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SocietyUser" EntityType="Self.SocietyUser" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TotalUsers" EntityType="Self.TotalUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserImage" EntityType="Self.UserImage" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserSettings" EntityType="Self.UserSettings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VehiclePool" EntityType="Self.VehiclePool" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VehiclePoolEngagemment" EntityType="Self.VehiclePoolEngagemment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Vendors" EntityType="Self.Vendors" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VisitorDetails" EntityType="Self.VisitorDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VisitorRequest" EntityType="Self.VisitorRequest" Schema="dbo" store:Type="Tables" />
@@ -1255,6 +1401,34 @@ warning 6002: The table/view 'SocietyDB.dbo.WatchViewFirstThreadNoImage' does no
     [ViewFlats].[TenantFrom] AS [TenantFrom], 
     [ViewFlats].[TenantTo] AS [TenantTo]
     FROM [dbo].[ViewFlats] AS [ViewFlats]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ViewFlatsUser" EntityType="Self.ViewFlatsUser" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ViewFlatsUser].[ID] AS [ID], 
+    [ViewFlatsUser].[FlatNumber] AS [FlatNumber], 
+    [ViewFlatsUser].[SocietyId] AS [SocietyId], 
+    [ViewFlatsUser].[BHK] AS [BHK], 
+    [ViewFlatsUser].[Floor] AS [Floor], 
+    [ViewFlatsUser].[Block] AS [Block], 
+    [ViewFlatsUser].[IntercomNumber] AS [IntercomNumber], 
+    [ViewFlatsUser].[FlatArea] AS [FlatArea], 
+    [ViewFlatsUser].[OwnerUserID] AS [OwnerUserID], 
+    [ViewFlatsUser].[OwnerFirstName] AS [OwnerFirstName], 
+    [ViewFlatsUser].[OwnerLastName] AS [OwnerLastName], 
+    [ViewFlatsUser].[OwnerEmail] AS [OwnerEmail], 
+    [ViewFlatsUser].[Ownermobile] AS [Ownermobile], 
+    [ViewFlatsUser].[OwnerAddress] AS [OwnerAddress], 
+    [ViewFlatsUser].[OwnerFrom] AS [OwnerFrom], 
+    [ViewFlatsUser].[OwnerTo] AS [OwnerTo], 
+    [ViewFlatsUser].[TenantUserID] AS [TenantUserID], 
+    [ViewFlatsUser].[TenantFirstName] AS [TenantFirstName], 
+    [ViewFlatsUser].[TenantLastName] AS [TenantLastName], 
+    [ViewFlatsUser].[TenantEmail] AS [TenantEmail], 
+    [ViewFlatsUser].[TenantMobile] AS [TenantMobile], 
+    [ViewFlatsUser].[TenantAddress] AS [TenantAddress], 
+    [ViewFlatsUser].[TenantFrom] AS [TenantFrom], 
+    [ViewFlatsUser].[TenantTo] AS [TenantTo]
+    FROM [dbo].[ViewFlatsUser] AS [ViewFlatsUser]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="ViewForumNoImage" EntityType="Self.ViewForumNoImage" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -1476,6 +1650,23 @@ warning 6002: The table/view 'SocietyDB.dbo.WatchViewFirstThreadNoImage' does no
     [ViewRentInventory].[HouseNumber] AS [HouseNumber]
     FROM [dbo].[ViewRentInventory] AS [ViewRentInventory]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="ViewSocieties" EntityType="Self.ViewSocieties" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ViewSocieties].[SocietyID] AS [SocietyID], 
+    [ViewSocieties].[SocietyName] AS [SocietyName], 
+    [ViewSocieties].[Sector] AS [Sector], 
+    [ViewSocieties].[City] AS [City], 
+    [ViewSocieties].[PinCode] AS [PinCode], 
+    [ViewSocieties].[State] AS [State], 
+    [ViewSocieties].[UserID] AS [UserID], 
+    [ViewSocieties].[FirstName] AS [FirstName], 
+    [ViewSocieties].[LastName] AS [LastName], 
+    [ViewSocieties].[EmailId] AS [EmailId], 
+    [ViewSocieties].[MobileNo] AS [MobileNo], 
+    [ViewSocieties].[Address] AS [Address], 
+    [ViewSocieties].[Status] AS [Status]
+    FROM [dbo].[ViewSocieties] AS [ViewSocieties]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="ViewSocietyUsers" EntityType="Self.ViewSocietyUsers" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [ViewSocietyUsers].[ResID] AS [ResID], 
@@ -1556,6 +1747,31 @@ warning 6002: The table/view 'SocietyDB.dbo.WatchViewFirstThreadNoImage' does no
     [ViewUserSetting].[NoticeMail] AS [NoticeMail], 
     [ViewUserSetting].[NoticeSMS] AS [NoticeSMS]
     FROM [dbo].[ViewUserSetting] AS [ViewUserSetting]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ViewVehiclePool" EntityType="Self.ViewVehiclePool" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ViewVehiclePool].[VehiclePoolID] AS [VehiclePoolID], 
+    [ViewVehiclePool].[OneWay] AS [OneWay], 
+    [ViewVehiclePool].[PoolTypeID] AS [PoolTypeID], 
+    [ViewVehiclePool].[Destination] AS [Destination], 
+    [ViewVehiclePool].[InitiatedDateTime] AS [InitiatedDateTime], 
+    [ViewVehiclePool].[JourneyDateTime] AS [JourneyDateTime], 
+    [ViewVehiclePool].[ReturnDateTime] AS [ReturnDateTime], 
+    [ViewVehiclePool].[VehicleType] AS [VehicleType], 
+    [ViewVehiclePool].[AvailableSeats] AS [AvailableSeats], 
+    [ViewVehiclePool].[SharedCost] AS [SharedCost], 
+    [ViewVehiclePool].[Description] AS [Description], 
+    [ViewVehiclePool].[ResID] AS [ResID], 
+    [ViewVehiclePool].[SocietyID] AS [SocietyID], 
+    [ViewVehiclePool].[Active] AS [Active], 
+    [ViewVehiclePool].[DealStatus] AS [DealStatus], 
+    [ViewVehiclePool].[InterestedCount] AS [InterestedCount], 
+    [ViewVehiclePool].[InterestedSeatsCount] AS [InterestedSeatsCount], 
+    [ViewVehiclePool].[FirstName] AS [FirstName], 
+    [ViewVehiclePool].[LastName] AS [LastName], 
+    [ViewVehiclePool].[FlatNumber] AS [FlatNumber], 
+    [ViewVehiclePool].[MobileNo] AS [MobileNo]
+    FROM [dbo].[ViewVehiclePool] AS [ViewVehiclePool]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="viewVisitorData" EntityType="Self.viewVisitorData" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -1638,18 +1854,24 @@ warning 6002: The table/view 'SocietyDB.dbo.WatchViewFirstThreadNoImage' does no
           <EntitySet Name="lukInventories" EntityType="SocietyDBModel.lukInventory" />
           <EntitySet Name="lukRentTypes" EntityType="SocietyDBModel.lukRentType" />
           <EntitySet Name="Offers" EntityType="SocietyDBModel.Offer" />
-          <EntitySet Name="Societies" EntityType="SocietyDBModel.Society" />
-          <EntitySet Name="SocietyUsers" EntityType="SocietyDBModel.SocietyUser" />
           <EntitySet Name="TotalUsers" EntityType="SocietyDBModel.TotalUser" />
           <EntitySet Name="UserImages" EntityType="SocietyDBModel.UserImage" />
           <EntitySet Name="UserSettings" EntityType="SocietyDBModel.UserSetting" />
           <EntitySet Name="ViewOffers" EntityType="SocietyDBModel.ViewOffer" />
-          <EntitySet Name="ViewSocietyUsers" EntityType="SocietyDBModel.ViewSocietyUser" />
           <EntitySet Name="ViewUserImages" EntityType="SocietyDBModel.ViewUserImage" />
           <EntitySet Name="ViewUserSettings" EntityType="SocietyDBModel.ViewUserSetting" />
           <EntitySet Name="Houses" EntityType="SocietyDBModel.House" />
           <EntitySet Name="RentInventories" EntityType="SocietyDBModel.RentInventory" />
           <EntitySet Name="ViewRentInventories" EntityType="SocietyDBModel.ViewRentInventory" />
+          <EntitySet Name="VehiclePoolEngagemments" EntityType="SocietyDBModel.VehiclePoolEngagemment" />
+          <EntitySet Name="ViewFlatsUsers" EntityType="SocietyDBModel.ViewFlatsUser" />
+          <EntitySet Name="ViewSocieties" EntityType="SocietyDBModel.ViewSociety" />
+          <EntitySet Name="ViewSocietyUsers" EntityType="SocietyDBModel.ViewSocietyUser" />
+          <EntitySet Name="RentEngagemments" EntityType="SocietyDBModel.RentEngagemment" />
+          <EntitySet Name="Societies" EntityType="SocietyDBModel.Society" />
+          <EntitySet Name="SocietyUsers" EntityType="SocietyDBModel.SocietyUser" />
+          <EntitySet Name="VehiclePools" EntityType="SocietyDBModel.VehiclePool" />
+          <EntitySet Name="ViewVehiclePools" EntityType="SocietyDBModel.ViewVehiclePool" />
         </EntityContainer>
         <EntityType Name="Complaint">
           <Key>
@@ -2427,35 +2649,6 @@ warning 6002: The table/view 'SocietyDB.dbo.WatchViewFirstThreadNoImage' does no
           <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="SocietyID" Type="Int32" Nullable="false" />
         </EntityType>
-        <EntityType Name="Society">
-          <Key>
-            <PropertyRef Name="SocietyID" />
-          </Key>
-          <Property Name="SocietyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ConnectionString" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="false" />
-          <Property Name="SocietyName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="TotalFlats" Type="Int32" Nullable="false" />
-          <Property Name="Sector" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="City" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="PinCode" Type="Int32" />
-        </EntityType>
-        <EntityType Name="SocietyUser">
-          <Key>
-            <PropertyRef Name="ResID" />
-          </Key>
-          <Property Name="ResID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserID" Type="Int32" Nullable="false" />
-          <Property Name="FlatID" Type="Int32" Nullable="false" />
-          <Property Name="Type" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ServiceType" Type="Int32" Nullable="false" />
-          <Property Name="CompanyName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ActiveDate" Type="DateTime" Precision="0" />
-          <Property Name="DeActiveDate" Type="DateTime" Precision="3" />
-          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
-          <Property Name="SocietyID" Type="Int32" Nullable="false" />
-          <Property Name="Status" Type="Int32" />
-          <Property Name="HouseID" Type="Int32" />
-        </EntityType>
         <EntityType Name="TotalUser">
           <Key>
             <PropertyRef Name="UserID" />
@@ -2513,47 +2706,6 @@ warning 6002: The table/view 'SocietyDB.dbo.WatchViewFirstThreadNoImage' does no
           <Property Name="VendorName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="VendorID" Type="Int32" Nullable="false" />
           <Property Name="SocietyID" Type="Int32" Nullable="false" />
-        </EntityType>
-        <EntityType Name="ViewSocietyUser">
-          <Key>
-            <PropertyRef Name="ResID" />
-            <PropertyRef Name="UserID" />
-            <PropertyRef Name="FlatID" />
-            <PropertyRef Name="Type" />
-            <PropertyRef Name="SocietyID" />
-            <PropertyRef Name="ServiceType" />
-            <PropertyRef Name="CompanyName" />
-            <PropertyRef Name="FlatNumber" />
-            <PropertyRef Name="HouseNUmber" />
-          </Key>
-          <Property Name="ResID" Type="Int32" Nullable="false" />
-          <Property Name="UserID" Type="Int32" Nullable="false" />
-          <Property Name="FlatID" Type="Int32" Nullable="false" />
-          <Property Name="Type" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ActiveDate" Type="DateTime" Precision="0" />
-          <Property Name="DeActiveDate" Type="DateTime" Precision="3" />
-          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
-          <Property Name="SocietyID" Type="Int32" Nullable="false" />
-          <Property Name="ServiceType" Type="Int32" Nullable="false" />
-          <Property Name="CompanyName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="HouseID" Type="Int32" />
-          <Property Name="Status" Type="Int32" />
-          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="MobileNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="EmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Gender" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
-          <Property Name="ParentName" Type="String" MaxLength="25" FixedLength="true" Unicode="false" />
-          <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="SocietyName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="FlatNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="CompType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="intercomNumber" Type="Int32" />
-          <Property Name="HouseNUmber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Sector" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="City" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="State" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="PinCode" Type="Int32" />
         </EntityType>
         <EntityType Name="ViewUserImage">
           <Key>
@@ -2667,6 +2819,213 @@ warning 6002: The table/view 'SocietyDB.dbo.WatchViewFirstThreadNoImage' does no
           <Property Name="MobileNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="HouseID" Type="Int32" Nullable="false" />
           <Property Name="HouseNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="VehiclePoolEngagemment">
+          <Key>
+            <PropertyRef Name="PoolID" />
+          </Key>
+          <Property Name="PoolID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VehiclePoolId" Type="Int32" Nullable="false" />
+          <Property Name="InterestedResId" Type="Int32" Nullable="false" />
+          <Property Name="Seats" Type="Int32" Nullable="false" />
+          <Property Name="DealStatus" Type="Int32" Nullable="false" />
+          <Property Name="Comments" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ViewFlatsUser">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="FlatNumber" />
+            <PropertyRef Name="SocietyId" />
+            <PropertyRef Name="BHK" />
+            <PropertyRef Name="Floor" />
+            <PropertyRef Name="Block" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="FlatNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SocietyId" Type="Int32" Nullable="false" />
+          <Property Name="BHK" Type="Int32" Nullable="false" />
+          <Property Name="Floor" Type="Int32" Nullable="false" />
+          <Property Name="Block" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IntercomNumber" Type="Int32" />
+          <Property Name="FlatArea" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OwnerUserID" Type="Int32" />
+          <Property Name="OwnerFirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OwnerLastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OwnerEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Ownermobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OwnerAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="OwnerFrom" Type="DateTime" Precision="0" />
+          <Property Name="OwnerTo" Type="DateTime" Precision="3" />
+          <Property Name="TenantUserID" Type="Int32" />
+          <Property Name="TenantFirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TenantLastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TenantEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TenantMobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TenantAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TenantFrom" Type="DateTime" Precision="0" />
+          <Property Name="TenantTo" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="ViewSociety">
+          <Key>
+            <PropertyRef Name="SocietyID" />
+            <PropertyRef Name="SocietyName" />
+          </Key>
+          <Property Name="SocietyID" Type="Int32" Nullable="false" />
+          <Property Name="SocietyName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Sector" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="PinCode" Type="Int32" />
+          <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MobileNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ViewSocietyUser">
+          <Key>
+            <PropertyRef Name="ResID" />
+            <PropertyRef Name="UserID" />
+            <PropertyRef Name="FlatID" />
+            <PropertyRef Name="Type" />
+            <PropertyRef Name="SocietyID" />
+            <PropertyRef Name="ServiceType" />
+            <PropertyRef Name="CompanyName" />
+            <PropertyRef Name="FlatNumber" />
+            <PropertyRef Name="HouseNUmber" />
+          </Key>
+          <Property Name="ResID" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="FlatID" Type="Int32" Nullable="false" />
+          <Property Name="Type" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ActiveDate" Type="DateTime" Precision="0" />
+          <Property Name="DeActiveDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="SocietyID" Type="Int32" Nullable="false" />
+          <Property Name="ServiceType" Type="Int32" Nullable="false" />
+          <Property Name="CompanyName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="HouseID" Type="Int32" />
+          <Property Name="Status" Type="Int32" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MobileNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Gender" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="ParentName" Type="String" MaxLength="25" FixedLength="true" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SocietyName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FlatNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CompType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="intercomNumber" Type="Int32" />
+          <Property Name="HouseNUmber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Sector" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="State" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="PinCode" Type="Int32" />
+        </EntityType>
+        <EntityType Name="RentEngagemment">
+          <Key>
+            <PropertyRef Name="RentingID" />
+          </Key>
+          <Property Name="RentingID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="InventoryID" Type="Int32" Nullable="false" />
+          <Property Name="InterestedResId" Type="Int32" Nullable="false" />
+          <Property Name="DealStatus" Type="Int32" Nullable="false" />
+          <Property Name="Comments" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Society">
+          <Key>
+            <PropertyRef Name="SocietyID" />
+          </Key>
+          <Property Name="SocietyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SocietyName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TotalFlats" Type="Int32" Nullable="false" />
+          <Property Name="Sector" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="PinCode" Type="Int32" />
+          <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ContactUserId" Type="Int32" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SocietyUser">
+          <Key>
+            <PropertyRef Name="ResID" />
+          </Key>
+          <Property Name="ResID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="FlatID" Type="Int32" Nullable="false" />
+          <Property Name="Type" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ServiceType" Type="Int32" Nullable="false" />
+          <Property Name="CompanyName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ActiveDate" Type="DateTime" Precision="0" />
+          <Property Name="DeActiveDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="SocietyID" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="Int32" />
+          <Property Name="HouseID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="VehiclePool">
+          <Key>
+            <PropertyRef Name="VehiclePoolID" />
+          </Key>
+          <Property Name="VehiclePoolID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OneWay" Type="Boolean" Nullable="false" />
+          <Property Name="PoolTypeID" Type="Int32" Nullable="false" />
+          <Property Name="Destination" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="InitiatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="JourneyDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ReturnDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="VehicleType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AvailableSeats" Type="Int32" Nullable="false" />
+          <Property Name="SharedCost" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="1024" FixedLength="false" Unicode="false" />
+          <Property Name="ResID" Type="Int32" Nullable="false" />
+          <Property Name="SocietyID" Type="Int32" Nullable="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ViewVehiclePool">
+          <Key>
+            <PropertyRef Name="VehiclePoolID" />
+            <PropertyRef Name="OneWay" />
+            <PropertyRef Name="PoolTypeID" />
+            <PropertyRef Name="Destination" />
+            <PropertyRef Name="InitiatedDateTime" />
+            <PropertyRef Name="JourneyDateTime" />
+            <PropertyRef Name="ReturnDateTime" />
+            <PropertyRef Name="VehicleType" />
+            <PropertyRef Name="AvailableSeats" />
+            <PropertyRef Name="SharedCost" />
+            <PropertyRef Name="Description" />
+            <PropertyRef Name="ResID" />
+            <PropertyRef Name="SocietyID" />
+            <PropertyRef Name="Active" />
+            <PropertyRef Name="DealStatus" />
+            <PropertyRef Name="InterestedCount" />
+            <PropertyRef Name="InterestedSeatsCount" />
+          </Key>
+          <Property Name="VehiclePoolID" Type="Int32" Nullable="false" />
+          <Property Name="OneWay" Type="Boolean" Nullable="false" />
+          <Property Name="PoolTypeID" Type="Int32" Nullable="false" />
+          <Property Name="Destination" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="InitiatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="JourneyDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ReturnDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="VehicleType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AvailableSeats" Type="Int32" Nullable="false" />
+          <Property Name="SharedCost" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="1024" FixedLength="false" Unicode="false" />
+          <Property Name="ResID" Type="Int32" Nullable="false" />
+          <Property Name="SocietyID" Type="Int32" Nullable="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <Property Name="DealStatus" Type="Int32" Nullable="false" />
+          <Property Name="InterestedCount" Type="Int32" Nullable="false" />
+          <Property Name="InterestedSeatsCount" Type="Int32" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FlatNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MobileNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -3357,37 +3716,6 @@ warning 6002: The table/view 'SocietyDB.dbo.WatchViewFirstThreadNoImage' does no
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Societies">
-            <EntityTypeMapping TypeName="SocietyDBModel.Society">
-              <MappingFragment StoreEntitySet="Societies">
-                <ScalarProperty Name="PinCode" ColumnName="PinCode" />
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="Sector" ColumnName="Sector" />
-                <ScalarProperty Name="TotalFlats" ColumnName="TotalFlats" />
-                <ScalarProperty Name="SocietyName" ColumnName="SocietyName" />
-                <ScalarProperty Name="ConnectionString" ColumnName="ConnectionString" />
-                <ScalarProperty Name="SocietyID" ColumnName="SocietyID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SocietyUsers">
-            <EntityTypeMapping TypeName="SocietyDBModel.SocietyUser">
-              <MappingFragment StoreEntitySet="SocietyUser">
-                <ScalarProperty Name="HouseID" ColumnName="HouseID" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="SocietyID" ColumnName="SocietyID" />
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-                <ScalarProperty Name="DeActiveDate" ColumnName="DeActiveDate" />
-                <ScalarProperty Name="ActiveDate" ColumnName="ActiveDate" />
-                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
-                <ScalarProperty Name="ServiceType" ColumnName="ServiceType" />
-                <ScalarProperty Name="Type" ColumnName="Type" />
-                <ScalarProperty Name="FlatID" ColumnName="FlatID" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="ResID" ColumnName="ResID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="TotalUsers">
             <EntityTypeMapping TypeName="SocietyDBModel.TotalUser">
               <MappingFragment StoreEntitySet="TotalUsers">
@@ -3443,40 +3771,6 @@ warning 6002: The table/view 'SocietyDB.dbo.WatchViewFirstThreadNoImage' does no
                 <ScalarProperty Name="EndDate" ColumnName="EndDate" />
                 <ScalarProperty Name="StartDate" ColumnName="StartDate" />
                 <ScalarProperty Name="Offer" ColumnName="Offer" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ViewSocietyUsers">
-            <EntityTypeMapping TypeName="SocietyDBModel.ViewSocietyUser">
-              <MappingFragment StoreEntitySet="ViewSocietyUsers">
-                <ScalarProperty Name="PinCode" ColumnName="PinCode" />
-                <ScalarProperty Name="State" ColumnName="State" />
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="Sector" ColumnName="Sector" />
-                <ScalarProperty Name="HouseNUmber" ColumnName="HouseNUmber" />
-                <ScalarProperty Name="intercomNumber" ColumnName="intercomNumber" />
-                <ScalarProperty Name="CompType" ColumnName="CompType" />
-                <ScalarProperty Name="FlatNumber" ColumnName="FlatNumber" />
-                <ScalarProperty Name="SocietyName" ColumnName="SocietyName" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="ParentName" ColumnName="ParentName" />
-                <ScalarProperty Name="Gender" ColumnName="Gender" />
-                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
-                <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="HouseID" ColumnName="HouseID" />
-                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
-                <ScalarProperty Name="ServiceType" ColumnName="ServiceType" />
-                <ScalarProperty Name="SocietyID" ColumnName="SocietyID" />
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-                <ScalarProperty Name="DeActiveDate" ColumnName="DeActiveDate" />
-                <ScalarProperty Name="ActiveDate" ColumnName="ActiveDate" />
-                <ScalarProperty Name="Type" ColumnName="Type" />
-                <ScalarProperty Name="FlatID" ColumnName="FlatID" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="ResID" ColumnName="ResID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3569,6 +3863,192 @@ warning 6002: The table/view 'SocietyDB.dbo.WatchViewFirstThreadNoImage' does no
                 <ScalarProperty Name="Inventory" ColumnName="Inventory" />
                 <ScalarProperty Name="InventoryID" ColumnName="InventoryID" />
                 <ScalarProperty Name="RentInventoryID" ColumnName="RentInventoryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VehiclePoolEngagemments">
+            <EntityTypeMapping TypeName="SocietyDBModel.VehiclePoolEngagemment">
+              <MappingFragment StoreEntitySet="VehiclePoolEngagemment">
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="DealStatus" ColumnName="DealStatus" />
+                <ScalarProperty Name="Seats" ColumnName="Seats" />
+                <ScalarProperty Name="InterestedResId" ColumnName="InterestedResId" />
+                <ScalarProperty Name="VehiclePoolId" ColumnName="VehiclePoolId" />
+                <ScalarProperty Name="PoolID" ColumnName="PoolID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ViewFlatsUsers">
+            <EntityTypeMapping TypeName="SocietyDBModel.ViewFlatsUser">
+              <MappingFragment StoreEntitySet="ViewFlatsUser">
+                <ScalarProperty Name="TenantTo" ColumnName="TenantTo" />
+                <ScalarProperty Name="TenantFrom" ColumnName="TenantFrom" />
+                <ScalarProperty Name="TenantAddress" ColumnName="TenantAddress" />
+                <ScalarProperty Name="TenantMobile" ColumnName="TenantMobile" />
+                <ScalarProperty Name="TenantEmail" ColumnName="TenantEmail" />
+                <ScalarProperty Name="TenantLastName" ColumnName="TenantLastName" />
+                <ScalarProperty Name="TenantFirstName" ColumnName="TenantFirstName" />
+                <ScalarProperty Name="TenantUserID" ColumnName="TenantUserID" />
+                <ScalarProperty Name="OwnerTo" ColumnName="OwnerTo" />
+                <ScalarProperty Name="OwnerFrom" ColumnName="OwnerFrom" />
+                <ScalarProperty Name="OwnerAddress" ColumnName="OwnerAddress" />
+                <ScalarProperty Name="Ownermobile" ColumnName="Ownermobile" />
+                <ScalarProperty Name="OwnerEmail" ColumnName="OwnerEmail" />
+                <ScalarProperty Name="OwnerLastName" ColumnName="OwnerLastName" />
+                <ScalarProperty Name="OwnerFirstName" ColumnName="OwnerFirstName" />
+                <ScalarProperty Name="OwnerUserID" ColumnName="OwnerUserID" />
+                <ScalarProperty Name="FlatArea" ColumnName="FlatArea" />
+                <ScalarProperty Name="IntercomNumber" ColumnName="IntercomNumber" />
+                <ScalarProperty Name="Block" ColumnName="Block" />
+                <ScalarProperty Name="Floor" ColumnName="Floor" />
+                <ScalarProperty Name="BHK" ColumnName="BHK" />
+                <ScalarProperty Name="SocietyId" ColumnName="SocietyId" />
+                <ScalarProperty Name="FlatNumber" ColumnName="FlatNumber" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ViewSocieties">
+            <EntityTypeMapping TypeName="SocietyDBModel.ViewSociety">
+              <MappingFragment StoreEntitySet="ViewSocieties">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="PinCode" ColumnName="PinCode" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Sector" ColumnName="Sector" />
+                <ScalarProperty Name="SocietyName" ColumnName="SocietyName" />
+                <ScalarProperty Name="SocietyID" ColumnName="SocietyID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ViewSocietyUsers">
+            <EntityTypeMapping TypeName="SocietyDBModel.ViewSocietyUser">
+              <MappingFragment StoreEntitySet="ViewSocietyUsers">
+                <ScalarProperty Name="PinCode" ColumnName="PinCode" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Sector" ColumnName="Sector" />
+                <ScalarProperty Name="HouseNUmber" ColumnName="HouseNUmber" />
+                <ScalarProperty Name="intercomNumber" ColumnName="intercomNumber" />
+                <ScalarProperty Name="CompType" ColumnName="CompType" />
+                <ScalarProperty Name="FlatNumber" ColumnName="FlatNumber" />
+                <ScalarProperty Name="SocietyName" ColumnName="SocietyName" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="ParentName" ColumnName="ParentName" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+                <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="HouseID" ColumnName="HouseID" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="ServiceType" ColumnName="ServiceType" />
+                <ScalarProperty Name="SocietyID" ColumnName="SocietyID" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="DeActiveDate" ColumnName="DeActiveDate" />
+                <ScalarProperty Name="ActiveDate" ColumnName="ActiveDate" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="FlatID" ColumnName="FlatID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="ResID" ColumnName="ResID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RentEngagemments">
+            <EntityTypeMapping TypeName="SocietyDBModel.RentEngagemment">
+              <MappingFragment StoreEntitySet="RentEngagemment">
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="DealStatus" ColumnName="DealStatus" />
+                <ScalarProperty Name="InterestedResId" ColumnName="InterestedResId" />
+                <ScalarProperty Name="InventoryID" ColumnName="InventoryID" />
+                <ScalarProperty Name="RentingID" ColumnName="RentingID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Societies">
+            <EntityTypeMapping TypeName="SocietyDBModel.Society">
+              <MappingFragment StoreEntitySet="Societies">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ContactUserId" ColumnName="ContactUserId" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="PinCode" ColumnName="PinCode" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Sector" ColumnName="Sector" />
+                <ScalarProperty Name="TotalFlats" ColumnName="TotalFlats" />
+                <ScalarProperty Name="SocietyName" ColumnName="SocietyName" />
+                <ScalarProperty Name="SocietyID" ColumnName="SocietyID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SocietyUsers">
+            <EntityTypeMapping TypeName="SocietyDBModel.SocietyUser">
+              <MappingFragment StoreEntitySet="SocietyUser">
+                <ScalarProperty Name="HouseID" ColumnName="HouseID" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="SocietyID" ColumnName="SocietyID" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="DeActiveDate" ColumnName="DeActiveDate" />
+                <ScalarProperty Name="ActiveDate" ColumnName="ActiveDate" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="ServiceType" ColumnName="ServiceType" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="FlatID" ColumnName="FlatID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="ResID" ColumnName="ResID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VehiclePools">
+            <EntityTypeMapping TypeName="SocietyDBModel.VehiclePool">
+              <MappingFragment StoreEntitySet="VehiclePool">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="SocietyID" ColumnName="SocietyID" />
+                <ScalarProperty Name="ResID" ColumnName="ResID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="SharedCost" ColumnName="SharedCost" />
+                <ScalarProperty Name="AvailableSeats" ColumnName="AvailableSeats" />
+                <ScalarProperty Name="VehicleType" ColumnName="VehicleType" />
+                <ScalarProperty Name="ReturnDateTime" ColumnName="ReturnDateTime" />
+                <ScalarProperty Name="JourneyDateTime" ColumnName="JourneyDateTime" />
+                <ScalarProperty Name="InitiatedDateTime" ColumnName="InitiatedDateTime" />
+                <ScalarProperty Name="Destination" ColumnName="Destination" />
+                <ScalarProperty Name="PoolTypeID" ColumnName="PoolTypeID" />
+                <ScalarProperty Name="OneWay" ColumnName="OneWay" />
+                <ScalarProperty Name="VehiclePoolID" ColumnName="VehiclePoolID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ViewVehiclePools">
+            <EntityTypeMapping TypeName="SocietyDBModel.ViewVehiclePool">
+              <MappingFragment StoreEntitySet="ViewVehiclePool">
+                <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+                <ScalarProperty Name="FlatNumber" ColumnName="FlatNumber" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="InterestedSeatsCount" ColumnName="InterestedSeatsCount" />
+                <ScalarProperty Name="InterestedCount" ColumnName="InterestedCount" />
+                <ScalarProperty Name="DealStatus" ColumnName="DealStatus" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="SocietyID" ColumnName="SocietyID" />
+                <ScalarProperty Name="ResID" ColumnName="ResID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="SharedCost" ColumnName="SharedCost" />
+                <ScalarProperty Name="AvailableSeats" ColumnName="AvailableSeats" />
+                <ScalarProperty Name="VehicleType" ColumnName="VehicleType" />
+                <ScalarProperty Name="ReturnDateTime" ColumnName="ReturnDateTime" />
+                <ScalarProperty Name="JourneyDateTime" ColumnName="JourneyDateTime" />
+                <ScalarProperty Name="InitiatedDateTime" ColumnName="InitiatedDateTime" />
+                <ScalarProperty Name="Destination" ColumnName="Destination" />
+                <ScalarProperty Name="PoolTypeID" ColumnName="PoolTypeID" />
+                <ScalarProperty Name="OneWay" ColumnName="OneWay" />
+                <ScalarProperty Name="VehiclePoolID" ColumnName="VehiclePoolID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

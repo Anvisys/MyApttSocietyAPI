@@ -12,16 +12,20 @@ namespace MyApttSocietyAPI
     using System;
     using System.Collections.Generic;
     
-    public partial class Society
+    public partial class ViewSociety
     {
         public int SocietyID { get; set; }
         public string SocietyName { get; set; }
-        public int TotalFlats { get; set; }
         public string Sector { get; set; }
         public string City { get; set; }
         public Nullable<int> PinCode { get; set; }
         public string State { get; set; }
-        public Nullable<int> ContactUserId { get; set; }
-        public int Status { get; set; }
+        public Nullable<int> UserID { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string EmailId { get; set; }
+        public string MobileNo { get; set; }
+        public string Address { get; set; }
+        public string Status { get; set; }
     }
 }

@@ -47,18 +47,24 @@
         <EntityTypeShape EntityType="SocietyDBModel.lukInventory" Width="1.5" PointX="9" PointY="20.25" />
         <EntityTypeShape EntityType="SocietyDBModel.lukRentType" Width="1.5" PointX="9" PointY="21.875" />
         <EntityTypeShape EntityType="SocietyDBModel.Offer" Width="1.5" PointX="17.375" PointY="0.75" />
-        <EntityTypeShape EntityType="SocietyDBModel.Society" Width="1.5" PointX="17.375" PointY="7.75" />
-        <EntityTypeShape EntityType="SocietyDBModel.SocietyUser" Width="1.5" PointX="17.375" PointY="11.75" />
         <EntityTypeShape EntityType="SocietyDBModel.TotalUser" Width="1.5" PointX="17.375" PointY="16.75" />
         <EntityTypeShape EntityType="SocietyDBModel.UserImage" Width="1.5" PointX="19.375" PointY="0.75" />
         <EntityTypeShape EntityType="SocietyDBModel.UserSetting" Width="1.5" PointX="17.25" PointY="3.375" />
         <EntityTypeShape EntityType="SocietyDBModel.ViewOffer" Width="1.5" PointX="19.375" PointY="8.75" />
-        <EntityTypeShape EntityType="SocietyDBModel.ViewSocietyUser" Width="1.5" PointX="19.375" PointY="16.75" />
         <EntityTypeShape EntityType="SocietyDBModel.ViewUserImage" Width="1.5" PointX="11.375" PointY="20.75" />
         <EntityTypeShape EntityType="SocietyDBModel.ViewUserSetting" Width="1.5" PointX="13.375" PointY="20.75" />
         <EntityTypeShape EntityType="SocietyDBModel.House" Width="1.5" PointX="15.375" PointY="20.75" />
         <EntityTypeShape EntityType="SocietyDBModel.RentInventory" Width="1.5" PointX="19.375" PointY="3.75" />
         <EntityTypeShape EntityType="SocietyDBModel.ViewRentInventory" Width="1.5" PointX="21.375" PointY="0.75" />
+        <EntityTypeShape EntityType="SocietyDBModel.VehiclePoolEngagemment" Width="1.5" PointX="21.375" PointY="12.75" />
+        <EntityTypeShape EntityType="SocietyDBModel.ViewFlatsUser" Width="1.5" PointX="17.375" PointY="20.75" />
+        <EntityTypeShape EntityType="SocietyDBModel.ViewSociety" Width="1.5" PointX="17.375" PointY="11.75" />
+        <EntityTypeShape EntityType="SocietyDBModel.ViewSocietyUser" Width="1.5" PointX="19.375" PointY="21.75" />
+        <EntityTypeShape EntityType="SocietyDBModel.RentEngagemment" Width="1.5" PointX="21.375" PointY="21.75" />
+        <EntityTypeShape EntityType="SocietyDBModel.Society" Width="1.5" PointX="23.375" PointY="0.75" />
+        <EntityTypeShape EntityType="SocietyDBModel.SocietyUser" Width="1.5" PointX="3.375" PointY="23.75" />
+        <EntityTypeShape EntityType="SocietyDBModel.VehiclePool" Width="1.5" PointX="19.375" PointY="15.75" />
+        <EntityTypeShape EntityType="SocietyDBModel.ViewVehiclePool" Width="1.5" PointX="21.375" PointY="15.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

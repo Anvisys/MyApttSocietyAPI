@@ -48,6 +48,28 @@ namespace MyApttSocietyAPI.Controllers
             }
         }
 
+
+        [Route("{SocietyId}")]
+        [HttpGet]
+        public IHttpActionResult GetSocietyInventory(int SocietyId)
+        {
+            try
+            {
+                var context = new SocietyDBEntities();
+                var inventory = context.ViewRentInventories.Where(X => (X.SocietyID == SocietyId )
+                                                                  && X.Available == true).ToList();
+                return Ok(inventory);
+
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError();
+
+            }
+        }
+
+
+
         [Route("Find")]
         [HttpPost]
         public IHttpActionResult GetInventory([FromBody]ViewRentInventory value)
