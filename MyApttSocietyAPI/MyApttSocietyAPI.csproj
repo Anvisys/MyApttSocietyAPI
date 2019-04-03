@@ -140,6 +140,7 @@
     </Compile>
     <Compile Include="Controllers\AdsController.cs" />
     <Compile Include="Controllers\BillingController.cs" />
+    <Compile Include="Controllers\CarPoolController.cs" />
     <Compile Include="Controllers\ComplaintController.cs" />
     <Compile Include="Controllers\ComplaintDiffController.cs" />
     <Compile Include="Controllers\DomainController.cs" />
@@ -148,6 +149,7 @@
     <Compile Include="Controllers\ForumDiffController.cs" />
     <Compile Include="Controllers\GCMRegisterController.cs" />
     <Compile Include="Controllers\RentInventoryController.cs" />
+    <Compile Include="Controllers\SocietyController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\VisitorController.cs" />
     <Compile Include="Controllers\ImageController.cs" />
@@ -239,6 +241,9 @@
       <DependentUpon>SocietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RentEngagemment.cs">
+      <DependentUpon>SocietyDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="RentInventory.cs">
       <DependentUpon>SocietyDB.tt</DependentUpon>
     </Compile>
@@ -275,6 +280,12 @@
     <Compile Include="UserSetting.cs">
       <DependentUpon>SocietyDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="VehiclePool.cs">
+      <DependentUpon>SocietyDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VehiclePoolEngagemment.cs">
+      <DependentUpon>SocietyDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Vendor.cs">
       <DependentUpon>SocietyDB.tt</DependentUpon>
     </Compile>
@@ -297,6 +308,9 @@
       <DependentUpon>SocietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewFlat.cs">
+      <DependentUpon>SocietyDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewFlatsUser.cs">
       <DependentUpon>SocietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewForumNoImage.cs">
@@ -332,6 +346,9 @@
     <Compile Include="ViewRentInventory.cs">
       <DependentUpon>SocietyDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewSociety.cs">
+      <DependentUpon>SocietyDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="ViewSocietyUser.cs">
       <DependentUpon>SocietyDB.tt</DependentUpon>
     </Compile>
@@ -342,6 +359,9 @@
       <DependentUpon>SocietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewUserSetting.cs">
+      <DependentUpon>SocietyDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewVehiclePool.cs">
       <DependentUpon>SocietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="viewVisitorData.cs">
