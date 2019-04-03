@@ -22,10 +22,22 @@ namespace MyApttSocietyAPI.Controllers
             return new string[] { "value1", "value2" };
         }
 
-        // GET: api/Society/5
-        public string Get(int id)
+        [Route("{UserId}")]
+        [HttpGet]
+        public IEnumerable<ViewSociety> MyRequests(int UserId)
         {
-            return "value";
+            var context = new SocietyDBEntities();
+            var socReq = context.ViewSocieties.Where(x=> x.UserID == UserId).ToList();
+            return socReq;
+        }
+
+        [Route("House/{UserId}")]
+        [HttpGet]
+        public IEnumerable<ViewSocietyUser> MyHouses(int UserId)
+        {
+            var context = new SocietyDBEntities();
+            var socReq = context.ViewSocietyUsers.Where(x => x.UserID == UserId && x.Type == "Individual").ToList();
+            return socReq;
         }
 
         [Route("Add")]
