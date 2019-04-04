@@ -20,6 +20,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="bin/App_global.asax.dll">
       <publishTime>04/03/2019 20:43:41</publishTime>
+      <publishTime>04/02/2019 15:05:20</publishTime>
+    </File>
+    <File Include="bin/App_global.asax.dll">
+      <publishTime>04/02/2019 15:05:20</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>03/13/2019 10:12:42</publishTime>
@@ -38,6 +42,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="bin/MyApttSocietyAPI.pdb">
       <publishTime>04/03/2019 20:43:30</publishTime>
+      <publishTime>04/02/2019 15:05:08</publishTime>
+    </File>
+    <File Include="bin/MyApttSocietyAPI.pdb">
+      <publishTime>04/02/2019 15:05:08</publishTime>
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
       <publishTime>03/13/2019 10:12:44</publishTime>
@@ -131,6 +139,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="PrecompiledApp.config">
       <publishTime>04/03/2019 20:43:34</publishTime>
+      <publishTime>04/02/2019 15:05:11</publishTime>
     </File>
     <File Include="ResidentImage.cs">
       <publishTime>09/28/2018 16:02:04</publishTime>
@@ -155,6 +164,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="SocietyDB.edmx.diagram">
       <publishTime>04/03/2019 14:56:09</publishTime>
+      <publishTime>04/02/2019 14:07:57</publishTime>
     </File>
     <File Include="SocietyDB.tt">
       <publishTime>09/28/2018 16:02:04</publishTime>
