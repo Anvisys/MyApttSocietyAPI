@@ -20,6 +20,8 @@ namespace MyApttSocietyAPI
         public string City { get; set; }
         public Nullable<int> PinCode { get; set; }
         public string State { get; set; }
+        public System.DateTime RequestDate { get; set; }
+        public System.DateTime ModifiedDate { get; set; }
         public Nullable<int> UserID { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }

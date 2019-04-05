@@ -39,5 +39,6 @@ namespace MyApttSocietyAPI
         public string MobileNo { get; set; }
         public int HouseID { get; set; }
         public string HouseNumber { get; set; }
+        public int InterestedCount { get; set; }
     }
 }

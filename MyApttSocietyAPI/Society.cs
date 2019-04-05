@@ -23,5 +23,7 @@ namespace MyApttSocietyAPI
         public string State { get; set; }
         public Nullable<int> ContactUserId { get; set; }
         public int Status { get; set; }
+        public System.DateTime RequestDate { get; set; }
+        public System.DateTime ModifiedDate { get; set; }
     }
 }

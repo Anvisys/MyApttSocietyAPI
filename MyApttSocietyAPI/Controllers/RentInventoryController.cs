@@ -175,6 +175,44 @@ namespace MyApttSocietyAPI.Controllers
         }
 
 
+        [Route("Add/Interest")]
+        [HttpPost]
+        public HttpResponseMessage AddRentInterest([FromBody]RentEngagemment interest)
+        {
+            String resp;
+            try
+            {
+                var context = new SocietyDBEntities();
+
+                var exist = context.RentEngagemments.Where(x => x.InventoryID == interest.InventoryID && x.InterestedUserId == interest.InterestedUserId).ToList();
+                if(exist.Count>0)
+                {
+                    resp = "{\"Response\":\"Fail\"}";
+                    var response = Request.CreateResponse(HttpStatusCode.BadRequest);
+                    response.Content = new StringContent(resp, System.Text.Encoding.UTF8, "application/json");
+                    return response;
+                }
+                else
+                {
+                    context.RentEngagemments.Add(interest);
+                    context.SaveChanges();
+
+                    resp = "{\"Response\":\"Ok\"}";
+                    var response = Request.CreateResponse(HttpStatusCode.OK);
+                    response.Content = new StringContent(resp, System.Text.Encoding.UTF8, "application/json");
+                    return response;
+                }
+
+                
+            }
+            catch (Exception ex)
+            {
+                resp = "{\"Response\":\"Fail\"}";
+                var response = Request.CreateResponse(HttpStatusCode.InternalServerError);
+                response.Content = new StringContent(resp, System.Text.Encoding.UTF8, "application/json");
+                return response;
+            }
+        }
 
         // PUT: api/RentInventory/5
         public void Put(int id, [FromBody]string value)

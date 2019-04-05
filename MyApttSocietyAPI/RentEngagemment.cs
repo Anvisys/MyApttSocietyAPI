@@ -16,7 +16,7 @@ namespace MyApttSocietyAPI
     {
         public int RentingID { get; set; }
         public int InventoryID { get; set; }
-        public int InterestedResId { get; set; }
+        public int InterestedUserId { get; set; }
         public int DealStatus { get; set; }
         public string Comments { get; set; }
     }

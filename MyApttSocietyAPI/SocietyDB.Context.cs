@@ -75,15 +75,15 @@ namespace MyApttSocietyAPI
         public virtual DbSet<ViewUserSetting> ViewUserSettings { get; set; }
         public virtual DbSet<House> Houses { get; set; }
         public virtual DbSet<RentInventory> RentInventories { get; set; }
-        public virtual DbSet<ViewRentInventory> ViewRentInventories { get; set; }
         public virtual DbSet<VehiclePoolEngagemment> VehiclePoolEngagemments { get; set; }
         public virtual DbSet<ViewFlatsUser> ViewFlatsUsers { get; set; }
-        public virtual DbSet<ViewSociety> ViewSocieties { get; set; }
         public virtual DbSet<ViewSocietyUser> ViewSocietyUsers { get; set; }
-        public virtual DbSet<RentEngagemment> RentEngagemments { get; set; }
-        public virtual DbSet<Society> Societies { get; set; }
         public virtual DbSet<SocietyUser> SocietyUsers { get; set; }
         public virtual DbSet<VehiclePool> VehiclePools { get; set; }
         public virtual DbSet<ViewVehiclePool> ViewVehiclePools { get; set; }
+        public virtual DbSet<Society> Societies { get; set; }
+        public virtual DbSet<ViewSociety> ViewSocieties { get; set; }
+        public virtual DbSet<RentEngagemment> RentEngagemments { get; set; }
+        public virtual DbSet<ViewRentInventory> ViewRentInventories { get; set; }
     }
 }

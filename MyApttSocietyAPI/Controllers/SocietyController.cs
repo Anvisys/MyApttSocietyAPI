@@ -40,6 +40,16 @@ namespace MyApttSocietyAPI.Controllers
             return socReq;
         }
 
+        [Route("Flats/{UserId}")]
+        [HttpGet]
+        public IEnumerable<ViewSocietyUser> MyFlats(int UserId)
+        {
+            var context = new SocietyDBEntities();
+            var socReq = context.ViewSocietyUsers.Where(x => x.UserID == UserId && (x.Type == "Owner" || x.Type == "Tenant")).ToList();
+            return socReq;
+        }
+
+
         [Route("Add")]
         [HttpPost]
         public IHttpActionResult Post([FromBody]Society society)

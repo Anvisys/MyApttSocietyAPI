@@ -90,13 +90,25 @@ namespace MyApttSocietyAPI.Controllers
             {
                 var context = new SocietyDBEntities();
 
-                context.VehiclePoolEngagemments.Add(value);
-                context.SaveChanges();
+                var exist = context.VehiclePoolEngagemments.Where(x => x.PoolID == value.PoolID && x.InterestedResId == value.InterestedResId).ToList();
 
-                resp = "{\"Response\":\"Fail\"}";
-                var response = Request.CreateResponse(HttpStatusCode.OK);
-                response.Content = new StringContent(resp, System.Text.Encoding.UTF8, "application/json");
-                return response;
+                if (exist.Count > 0)
+                {
+                    resp = "{\"Response\":\"Fail\"}";
+                    var response = Request.CreateResponse(HttpStatusCode.Conflict);
+                    response.Content = new StringContent(resp, System.Text.Encoding.UTF8, "application/json");
+                    return response;
+                }
+                else
+                {
+                    context.VehiclePoolEngagemments.Add(value);
+                    context.SaveChanges();
+
+                    resp = "{\"Response\":\"Ok\"}";
+                    var response = Request.CreateResponse(HttpStatusCode.OK);
+                    response.Content = new StringContent(resp, System.Text.Encoding.UTF8, "application/json");
+                    return response;
+                }
             }
             catch (Exception ex)
             {
@@ -129,7 +141,7 @@ namespace MyApttSocietyAPI.Controllers
                     p.Active = value.Active;
                     context.SaveChanges();
 
-                    resp = "{\"Response\":\"Fail\"}";
+                    resp = "{\"Response\":\"Ok\"}";
                     var response = Request.CreateResponse(HttpStatusCode.OK);
                     response.Content = new StringContent(resp, System.Text.Encoding.UTF8, "application/json");
                     return response;
