@@ -12,9 +12,10 @@ namespace MyApttSocietyAPI
     using System;
     using System.Collections.Generic;
     
-    public partial class lukRentType
+    public partial class lukInventoryAccomodation
     {
-        public int RentTypeID { get; set; }
-        public string RentType { get; set; }
+        public int ID { get; set; }
+        public int InventoryTypeId { get; set; }
+        public int AccomodationTypeId { get; set; }
     }
 }

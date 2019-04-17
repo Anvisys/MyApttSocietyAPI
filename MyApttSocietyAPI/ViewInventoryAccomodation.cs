@@ -12,18 +12,11 @@ namespace MyApttSocietyAPI
     using System;
     using System.Collections.Generic;
     
-    public partial class RentInventory
+    public partial class ViewInventoryAccomodation
     {
-        public int RentInventoryID { get; set; }
         public int InventoryTypeID { get; set; }
+        public string InventoryType { get; set; }
         public int AccomodationTypeID { get; set; }
-        public int RentValue { get; set; }
-        public Nullable<bool> Available { get; set; }
-        public string Description { get; set; }
-        public string ContactName { get; set; }
-        public string ContactNumber { get; set; }
-        public int UserID { get; set; }
-        public int FlatID { get; set; }
-        public int HouseID { get; set; }
+        public string AccomodationType { get; set; }
     }
 }

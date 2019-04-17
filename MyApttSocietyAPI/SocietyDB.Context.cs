@@ -64,8 +64,6 @@ namespace MyApttSocietyAPI
         public virtual DbSet<ViewNotification> ViewNotifications { get; set; }
         public virtual DbSet<ViewThreadSummaryNoImageCount> ViewThreadSummaryNoImageCounts { get; set; }
         public virtual DbSet<Flat> Flats { get; set; }
-        public virtual DbSet<lukInventory> lukInventories { get; set; }
-        public virtual DbSet<lukRentType> lukRentTypes { get; set; }
         public virtual DbSet<Offer> Offers { get; set; }
         public virtual DbSet<TotalUser> TotalUsers { get; set; }
         public virtual DbSet<UserImage> UserImages { get; set; }
@@ -74,7 +72,6 @@ namespace MyApttSocietyAPI
         public virtual DbSet<ViewUserImage> ViewUserImages { get; set; }
         public virtual DbSet<ViewUserSetting> ViewUserSettings { get; set; }
         public virtual DbSet<House> Houses { get; set; }
-        public virtual DbSet<RentInventory> RentInventories { get; set; }
         public virtual DbSet<VehiclePoolEngagemment> VehiclePoolEngagemments { get; set; }
         public virtual DbSet<ViewFlatsUser> ViewFlatsUsers { get; set; }
         public virtual DbSet<ViewSocietyUser> ViewSocietyUsers { get; set; }
@@ -84,6 +81,11 @@ namespace MyApttSocietyAPI
         public virtual DbSet<Society> Societies { get; set; }
         public virtual DbSet<ViewSociety> ViewSocieties { get; set; }
         public virtual DbSet<RentEngagemment> RentEngagemments { get; set; }
+        public virtual DbSet<lukAccomodationType> lukAccomodationTypes { get; set; }
+        public virtual DbSet<lukInventoryAccomodation> lukInventoryAccomodations { get; set; }
+        public virtual DbSet<ViewInventoryAccomodation> ViewInventoryAccomodations { get; set; }
+        public virtual DbSet<RentInventory> RentInventories { get; set; }
         public virtual DbSet<ViewRentInventory> ViewRentInventories { get; set; }
+        public virtual DbSet<lukInventoryType> lukInventoryTypes { get; set; }
     }
 }

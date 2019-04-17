@@ -73,58 +73,19 @@ namespace MyApttSocietyAPI.Controllers
             }
         }
 
-
-
-        [Route("Setting")]
+        [Route("IsValid")]
         [HttpPost]
-        public HttpResponseMessage UpdateSetting(UserSetting UserSetting)
+        public ValidUser IsValid([FromBody]ValidateUser ValUser)
         {
-            String resp;
+            Log.log("Reached Validate At " + DateTime.Now.ToString());
+            var ValidUser = new ValidUser();
             try
             {
                 using (var context = new SocietyDBEntities())
                 {
-                    var L2EQuery = context.UserSettings.Where(f => f.UserId == UserSetting.UserId);
-
-                    if (L2EQuery.Count() > 0)
+                    if (ValUser.Email == null && ValUser.Mobile == null)
                     {
-                      
-                          context.UserSettings.Remove(L2EQuery.FirstOrDefault());
-                    }
-                           
-                   context.UserSettings.Add(UserSetting);
-                   context.SaveChanges();
-                    var newSetting = context.ViewUserSettings.Where(f => f.UserID == UserSetting.UserId).ToList() ;
-
-                    resp = "{\"Response\":\"OK\"}";
-                    var response = Request.CreateResponse(HttpStatusCode.OK);
-                    response.Content = new StringContent(resp, System.Text.Encoding.UTF8, "application/json");
-                    return response;
-
-                }
-            }
-            catch (Exception ex)
-            {
-                Log.log("Error in Update User Setting at: " + DateTime.Now.ToString());
-                resp = "{\"Response\":\"Fail\"}";
-                var response = Request.CreateResponse(HttpStatusCode.InternalServerError);
-                response.Content = new StringContent(resp, System.Text.Encoding.UTF8, "application/json");
-                return response;
-            }
-        }
-
-        [Route("Validate")]
-        [HttpPost]
-        public ValidUser Post([FromBody]ValidateUser ValUser)
-        {
-            var ValidUser = new ValidUser();
-            try
-            {
-               using (var context = new SocietyDBEntities())
-                {
-                   if (ValUser.Email == null && ValUser.Mobile == null)
-                    {
-                       
+                        Log.log("Both are null " + DateTime.Now.ToString());
                         ValidUser.result = "Fail";
                         ValidUser.message = "Email and Maobile are null";
                         return ValidUser;
@@ -133,32 +94,34 @@ namespace MyApttSocietyAPI.Controllers
 
                     else if (ValUser.Email == null || ValUser.Email == "")
                     {
-                       
+                        Log.log("one is valid " + DateTime.Now.ToString());
                         var users = (from USER in context.ViewSocietyUsers
                                      where USER.MobileNo == ValUser.Mobile
                                      select USER);
-                        if (users.Count() >0)
+                        if (users.Count() > 0)
                         {
                             ValUser.Email = users.First().EmailId;
                         }
-                        else {
+                        else
+                        {
                             ValidUser.result = "Fail";
                             ValidUser.message = "Mobile Number is incorrect";
                             return ValidUser;
                         }
 
-                       
+
                     }
-                    String encPwd = ValidateUser.EncryptPassword(ValUser.Email, ValUser.Password);
+                    String encPwd = ValidateUser.EncryptPassword(ValUser.Email.ToLower(), ValUser.Password);
 
                     Log.log("Encrypted Password is :" + encPwd + " At " + DateTime.Now.ToString());
 
                     var L2EQuery = context.TotalUsers.Where(u => (u.UserLogin == ValUser.Email || u.MobileNo == ValUser.Mobile) && u.Password == encPwd);
                     var user = L2EQuery.FirstOrDefault();
 
-                    
+
                     if (user != null)
                     {
+                        Log.log(user.FirstName);
                         if (ValUser.RegistrationID != null || ValUser.RegistrationID != "")
                         {
                             var GCM = context.GCMLists;
@@ -194,18 +157,59 @@ namespace MyApttSocietyAPI.Controllers
                         ValidUser.UserData.FirstName = "";
                         ValidUser.UserData.LastName = "";
                     }
-                   
+
                 }
             }
             catch (Exception ex)
             {
-               ValidUser.UserData.FirstName = "";
-               ValidUser.UserData.LastName = "";
+                Log.log(ex.Message);
+                ValidUser.UserData.FirstName = "";
+                ValidUser.UserData.LastName = "";
             }
             return ValidUser;
         }
 
 
+
+        [Route("Setting")]
+        [HttpPost]
+        public HttpResponseMessage UpdateSetting([FromBody]UserSetting UserSetting)
+        {
+            String resp;
+            try
+            {
+                using (var context = new SocietyDBEntities())
+                {
+                    var L2EQuery = context.UserSettings.Where(f => f.UserId == UserSetting.UserId);
+
+                    if (L2EQuery.Count() > 0)
+                    {
+                      
+                          context.UserSettings.Remove(L2EQuery.FirstOrDefault());
+                    }
+                           
+                   context.UserSettings.Add(UserSetting);
+                   context.SaveChanges();
+                    var newSetting = context.ViewUserSettings.Where(f => f.UserID == UserSetting.UserId).ToList() ;
+
+                    resp = "{\"Response\":\"OK\"}";
+                    var response = Request.CreateResponse(HttpStatusCode.OK);
+                    response.Content = new StringContent(resp, System.Text.Encoding.UTF8, "application/json");
+                    return response;
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.log("Error in Update User Setting at: " + DateTime.Now.ToString());
+                resp = "{\"Response\":\"Fail\"}";
+                var response = Request.CreateResponse(HttpStatusCode.InternalServerError);
+                response.Content = new StringContent(resp, System.Text.Encoding.UTF8, "application/json");
+                return response;
+            }
+        }
+
+      
         [Route("Add/Demo")]
         [HttpPost]
         public ValidUser AddUser([FromBody]TotalUser User)

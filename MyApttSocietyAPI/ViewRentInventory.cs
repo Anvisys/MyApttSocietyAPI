@@ -15,10 +15,10 @@ namespace MyApttSocietyAPI
     public partial class ViewRentInventory
     {
         public int RentInventoryID { get; set; }
-        public int InventoryID { get; set; }
-        public string Inventory { get; set; }
-        public int RentTypeID { get; set; }
-        public string RentType { get; set; }
+        public int InventoryTypeID { get; set; }
+        public string InventoryType { get; set; }
+        public int AccomodationTypeID { get; set; }
+        public string AccomodationType { get; set; }
         public int RentValue { get; set; }
         public Nullable<bool> Available { get; set; }
         public string Description { get; set; }

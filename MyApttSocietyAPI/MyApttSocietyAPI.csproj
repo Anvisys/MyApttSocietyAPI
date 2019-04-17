@@ -148,7 +148,8 @@
     <Compile Include="Controllers\ForumController.cs" />
     <Compile Include="Controllers\ForumDiffController.cs" />
     <Compile Include="Controllers\GCMRegisterController.cs" />
-    <Compile Include="Controllers\RentInventoryController.cs" />
+    <Compile Include="Controllers\Rent\RentInventoryController.cs" />
+    <Compile Include="Controllers\Rent\RentLookupController.cs" />
     <Compile Include="Controllers\SocietyController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\VisitorController.cs" />
@@ -183,6 +184,9 @@
     <Compile Include="ImageCheck.cs">
       <DependentUpon>SocietyDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="lukAccomodationType.cs">
+      <DependentUpon>SocietyDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="lukBillType.cs">
       <DependentUpon>SocietyDB.tt</DependentUpon>
     </Compile>
@@ -195,10 +199,10 @@
     <Compile Include="lukComplaintType.cs">
       <DependentUpon>SocietyDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="lukInventory.cs">
+    <Compile Include="lukInventoryAccomodation.cs">
       <DependentUpon>SocietyDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="lukRentType.cs">
+    <Compile Include="lukInventoryType.cs">
       <DependentUpon>SocietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="lukVendorCategory.cs">
@@ -212,6 +216,7 @@
     <Compile Include="Models\Domain.cs" />
     <Compile Include="Models\Forum.cs" />
     <Compile Include="Models\GCMRegister.cs" />
+    <Compile Include="Models\InventoryAccomodation.cs" />
     <Compile Include="Models\MessageType.cs" />
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\Utility.cs" />
@@ -317,6 +322,9 @@
       <DependentUpon>SocietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewGeneratedBill.cs">
+      <DependentUpon>SocietyDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewInventoryAccomodation.cs">
       <DependentUpon>SocietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewLatestBillCycle.cs">

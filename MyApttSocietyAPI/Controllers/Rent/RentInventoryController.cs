@@ -12,7 +12,7 @@ using System.Diagnostics;
 using System.Globalization;
 
 
-namespace MyApttSocietyAPI.Controllers
+namespace MyApttSocietyAPI.Controllers.Rent
 {
 
     [EnableCors(origins: "*", headers: "*", methods: "*")]
@@ -78,7 +78,7 @@ namespace MyApttSocietyAPI.Controllers
 
                 var context = new SocietyDBEntities();
 
-                var inventory = context.ViewRentInventories.Where(X => X.InventoryID == value.InventoryID && X.RentTypeID == value.RentTypeID
+                var inventory = context.ViewRentInventories.Where(X => X.InventoryTypeID == value.InventoryTypeID && X.AccomodationTypeID == value.AccomodationTypeID
                                                                 && X.FlatCity == value.FlatCity && X.Available == true
                                                                && X.RentValue > 0.8 * value.RentValue && X.RentValue < 1.2 * value.RentValue).ToList();
                 return Ok(inventory);
