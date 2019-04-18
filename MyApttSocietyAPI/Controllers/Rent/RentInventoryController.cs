@@ -106,8 +106,6 @@ namespace MyApttSocietyAPI.Controllers.Rent
 
                 if (inv.Count > 0)
                 {
-                    context.RentInventories.Add(value);
-                    context.SaveChanges();
                     resp = "{\"Response\":\"Duplicate\"}";
                     var response = Request.CreateResponse(HttpStatusCode.Conflict);
                     response.Content = new StringContent(resp, System.Text.Encoding.UTF8, "application/json");
