@@ -39,7 +39,6 @@ namespace MyApttSocietyAPI
         public virtual DbSet<ViewLatestGeneratedBill> ViewLatestGeneratedBills { get; set; }
         public virtual DbSet<ViewLatestThread> ViewLatestThreads { get; set; }
         public virtual DbSet<ViewPollCount> ViewPollCounts { get; set; }
-        public virtual DbSet<WatchViewFirstThreadNoImage> WatchViewFirstThreadNoImages { get; set; }
         public virtual DbSet<PollingData> PollingDatas { get; set; }
         public virtual DbSet<ViewPollDataWithCount> ViewPollDataWithCounts { get; set; }
         public virtual DbSet<lukBillType> lukBillTypes { get; set; }
@@ -47,7 +46,6 @@ namespace MyApttSocietyAPI
         public virtual DbSet<lukComplaintStatu> lukComplaintStatus { get; set; }
         public virtual DbSet<lukComplaintType> lukComplaintTypes { get; set; }
         public virtual DbSet<lukVendorCategory> lukVendorCategories { get; set; }
-        public virtual DbSet<ViewComplaintHistory> ViewComplaintHistories { get; set; }
         public virtual DbSet<ViewComplaintInitiated> ViewComplaintInitiateds { get; set; }
         public virtual DbSet<ViewComplaintLatest> ViewComplaintLatests { get; set; }
         public virtual DbSet<Advertisement> Advertisements { get; set; }
@@ -56,7 +54,6 @@ namespace MyApttSocietyAPI
         public virtual DbSet<ViewGeneratedBill> ViewGeneratedBills { get; set; }
         public virtual DbSet<Notification> Notifications { get; set; }
         public virtual DbSet<ViewComplaintSummary> ViewComplaintSummaries { get; set; }
-        public virtual DbSet<ViewLatestBillCycle> ViewLatestBillCycles { get; set; }
         public virtual DbSet<viewVisitorData> viewVisitorDatas { get; set; }
         public virtual DbSet<ViewLatestGeneratedBill_Resident> ViewLatestGeneratedBill_Resident { get; set; }
         public virtual DbSet<ViewFlat> ViewFlats { get; set; }
@@ -87,5 +84,7 @@ namespace MyApttSocietyAPI
         public virtual DbSet<RentInventory> RentInventories { get; set; }
         public virtual DbSet<ViewRentInventory> ViewRentInventories { get; set; }
         public virtual DbSet<lukInventoryType> lukInventoryTypes { get; set; }
+        public virtual DbSet<ViewVehiclePoolEngagement> ViewVehiclePoolEngagements { get; set; }
+        public virtual DbSet<ViewComplaintHistory> ViewComplaintHistories { get; set; }
     }
 }

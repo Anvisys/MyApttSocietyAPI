@@ -49,6 +49,7 @@ namespace MyApttSocietyAPI.Controllers
                            && x.JourneyDateTime > DateTime.Now && x.ResID == ResID && x.Active == true)
                             .OrderByDescending(p => p.VehiclePoolID)
                             .Skip(Index).Take(Count);
+
                 return pools;
             }
             catch (Exception ex)
@@ -57,6 +58,27 @@ namespace MyApttSocietyAPI.Controllers
 
             }
         }
+
+        [Route("self/{VehiclePollID}")]
+        [HttpGet]
+        public IEnumerable<ViewVehiclePoolEngagement> GetMyPoolEngagement(int VehiclePollID)
+        {
+            try
+            {
+                var context = new SocietyDBEntities();
+                var pools = context.ViewVehiclePoolEngagements.Where(x => x.VehiclePoolId == VehiclePollID)
+                    .OrderBy(p => p.FirstName).ToList();
+                           
+                return pools;
+            }
+            catch (Exception ex)
+            {
+                return null;
+
+            }
+        }
+
+
 
         [Route("Add")]
         [HttpPost]

@@ -12,13 +12,14 @@ namespace MyApttSocietyAPI
     using System;
     using System.Collections.Generic;
     
-    public partial class WatchViewFirstThreadNoImage
+    public partial class ViewVehiclePoolEngagement
     {
-        public int ThreadID { get; set; }
+        public int VehiclePoolId { get; set; }
+        public int Seats { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string MobileNo { get; set; }
+        public string FlatNumber { get; set; }
         public int ResID { get; set; }
-        public int SocietyID { get; set; }
-        public string Topic { get; set; }
-        public string FirstThread { get; set; }
-        public System.DateTime InitiatedAt { get; set; }
     }
 }
