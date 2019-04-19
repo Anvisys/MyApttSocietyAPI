@@ -101,7 +101,7 @@ namespace MyApttSocietyAPI.Controllers.Rent
 
                 var context = new SocietyDBEntities();
 
-                var inv = context.ViewRentInventories.Where(X => (X.HouseID == value.HouseID || X.FlatID == value.FlatID)
+                var inv = context.ViewRentInventories.Where(X => (X.HouseID == value.HouseID && X.FlatID == value.FlatID)
                                                                   && X.Available == true).ToList();
 
                 if (inv.Count > 0)

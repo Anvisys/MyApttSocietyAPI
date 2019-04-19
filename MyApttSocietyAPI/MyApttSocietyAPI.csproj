@@ -141,8 +141,8 @@
     <Compile Include="Controllers\AdsController.cs" />
     <Compile Include="Controllers\BillingController.cs" />
     <Compile Include="Controllers\CarPoolController.cs" />
-    <Compile Include="Controllers\ComplaintController.cs" />
-    <Compile Include="Controllers\ComplaintDiffController.cs" />
+    <Compile Include="Controllers\Complaints\ComplaintController.cs" />
+    <Compile Include="Controllers\Complaints\ComplaintDiffController.cs" />
     <Compile Include="Controllers\DomainController.cs" />
     <Compile Include="Controllers\FlatController.cs" />
     <Compile Include="Controllers\ForumController.cs" />

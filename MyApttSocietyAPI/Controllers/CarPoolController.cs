@@ -18,14 +18,15 @@ namespace MyApttSocietyAPI.Controllers
             return new string[] { "value1", "value2" };
         }
 
-        [Route("{SocietyId}/{Index}/{Count}")]
+        [Route("All/{SocietyId}/{ResID}/{Index}/{Count}")]
         [HttpGet]
-        public IEnumerable<ViewVehiclePool> GetPoolOffer(int SocietyId, int Index, int Count)
+        public IEnumerable<ViewVehiclePool> GetPoolOffer(int SocietyId, int ResID, int Index, int Count)
         {
             try
             {
                 var context = new SocietyDBEntities();
-                var pools = context.ViewVehiclePools.Where(x => x.SocietyID == SocietyId && x.JourneyDateTime > DateTime.Now && x.Active == true)
+                var pools = context.ViewVehiclePools.Where(x => x.SocietyID == SocietyId && x.ResID != ResID
+                            && x.JourneyDateTime > DateTime.Now && x.Active == true)
                             .OrderByDescending(p=>p.VehiclePoolID)
                             .Skip(Index).Take(Count); 
                 return pools;
@@ -65,12 +66,29 @@ namespace MyApttSocietyAPI.Controllers
             try
             {
                 var context = new SocietyDBEntities();
-                context.VehiclePools.Add(value);
-                context.SaveChanges();
-                resp = "{\"Response\":\"Ok\"}";
-                var response = Request.CreateResponse(HttpStatusCode.OK);
-                response.Content = new StringContent(resp, System.Text.Encoding.UTF8, "application/json");
-                return response;
+                
+                var existing = context.VehiclePools.Where(x => x.Active == true && x.ResID == value.ResID
+                                && (x.ReturnDateTime > value.JourneyDateTime && x.ReturnDateTime < value.ReturnDateTime) 
+                                || (x.JourneyDateTime > value.JourneyDateTime && x.ReturnDateTime < value.ReturnDateTime)).ToList();
+
+                if (existing.Count > 0)
+                {
+                    context.VehiclePools.Add(value);
+                    context.SaveChanges();
+                    resp = "{\"Response\":\"Duplicate\"}";
+                    var response = Request.CreateResponse(HttpStatusCode.Conflict);
+                    response.Content = new StringContent(resp, System.Text.Encoding.UTF8, "application/json");
+                    return response;
+                }
+                else
+                {
+                    context.VehiclePools.Add(value);
+                    context.SaveChanges();
+                    resp = "{\"Response\":\"Ok\"}";
+                    var response = Request.CreateResponse(HttpStatusCode.OK);
+                    response.Content = new StringContent(resp, System.Text.Encoding.UTF8, "application/json");
+                    return response;
+                }
             }
             catch (Exception ex)
             {
@@ -94,7 +112,7 @@ namespace MyApttSocietyAPI.Controllers
 
                 if (exist.Count > 0)
                 {
-                    resp = "{\"Response\":\"Fail\"}";
+                    resp = "{\"Response\":\"Duplicate\"}";
                     var response = Request.CreateResponse(HttpStatusCode.Conflict);
                     response.Content = new StringContent(resp, System.Text.Encoding.UTF8, "application/json");
                     return response;
@@ -131,7 +149,7 @@ namespace MyApttSocietyAPI.Controllers
 
                 if (p == null)
                 {
-                    resp = "{\"Response\":\"Fail\"}";
+                    resp = "{\"Response\":\"NotExist\"}";
                     var response = Request.CreateResponse(HttpStatusCode.BadRequest);
                     response.Content = new StringContent(resp, System.Text.Encoding.UTF8, "application/json");
                     return response;
