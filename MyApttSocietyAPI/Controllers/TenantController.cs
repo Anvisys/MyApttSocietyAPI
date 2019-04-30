@@ -52,6 +52,8 @@ namespace MyApttSocietyAPI.Controllers
                         ActiveDate = DateTime.ParseExact(Res.ActiveDate, "dd/MM/yyyy", CultureInfo.InvariantCulture),
                         DeActiveDate = DateTime.ParseExact(Res.DeActiveDate, "dd/MM/yyyy", CultureInfo.InvariantCulture),
                         CompanyName = "NA",
+                        Status = 2,
+                        HouseID = Res.HouseID,
                         ServiceType =0,
                         ModifiedDate = DateTime.Now.ToUniversalTime()
                     });

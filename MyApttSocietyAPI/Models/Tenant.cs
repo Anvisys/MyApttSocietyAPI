@@ -19,5 +19,6 @@ namespace MyApttSocietyAPI.Models
         public  String ActiveDate;
         public String DeActiveDate;
         public int SocietyID;
+        public int HouseID;
     }
 }
