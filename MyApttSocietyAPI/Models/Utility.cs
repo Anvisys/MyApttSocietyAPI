@@ -12,6 +12,7 @@ namespace MyApttSocietyAPI.Models
     public class Utility
     {
         public static string sendSMS(String textMessage)
+
         {
             String message = HttpUtility.UrlEncode(textMessage);
             using (var wb = new WebClient())
@@ -51,6 +52,7 @@ namespace MyApttSocietyAPI.Models
                 });
                 string result = System.Text.Encoding.UTF8.GetString(response);
                 return result;
+
             }
         }
 

@@ -593,6 +593,10 @@ warning 6002: The table/view 'NestinDB.dbo.ViewFlats' does not have a primary ke
             <PropertyRef Name="BHK" />
             <PropertyRef Name="Floor" />
             <PropertyRef Name="Block" />
+            <PropertyRef Name="OwnerResID" />
+            <PropertyRef Name="OwnerUserID" />
+            <PropertyRef Name="TenantResID" />
+            <PropertyRef Name="TenantUserID" />
           </Key>
           <Property Name="ID" Type="int" Nullable="false" />
           <Property Name="FlatNumber" Type="varchar" MaxLength="50" Nullable="false" />
@@ -602,15 +606,15 @@ warning 6002: The table/view 'NestinDB.dbo.ViewFlats' does not have a primary ke
           <Property Name="Block" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="IntercomNumber" Type="int" />
           <Property Name="FlatArea" Type="varchar" MaxLength="50" />
-          <Property Name="OwnerResID" Type="int" />
-          <Property Name="OwnerUserID" Type="int" />
+          <Property Name="OwnerResID" Type="int" Nullable="false" />
+          <Property Name="OwnerUserID" Type="int" Nullable="false" />
           <Property Name="OwnerFirstName" Type="varchar" MaxLength="50" />
           <Property Name="OwnerLastName" Type="varchar" MaxLength="50" />
           <Property Name="OwnerEmail" Type="varchar" MaxLength="50" />
           <Property Name="OwnerMobile" Type="varchar" MaxLength="50" />
           <Property Name="OwnerAddress" Type="varchar" MaxLength="100" />
-          <Property Name="TenantResID" Type="int" />
-          <Property Name="TenantUserID" Type="int" />
+          <Property Name="TenantResID" Type="int" Nullable="false" />
+          <Property Name="TenantUserID" Type="int" Nullable="false" />
           <Property Name="TenantFirstName" Type="varchar" MaxLength="50" />
           <Property Name="TenantLastName" Type="varchar" MaxLength="50" />
           <Property Name="TenantEmail" Type="varchar" MaxLength="50" />
@@ -1017,7 +1021,8 @@ warning 6002: The table/view 'NestinDB.dbo.ViewSocietyUsers' does not have a pri
           <Property Name="ServiceType" Type="int" Nullable="false" />
           <Property Name="CompanyName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="HouseID" Type="int" />
-          <Property Name="Status" Type="int" />
+          <Property Name="statusID" Type="int" />
+          <Property Name="Status" Type="varchar" MaxLength="20" />
           <Property Name="FirstName" Type="varchar" MaxLength="50" />
           <Property Name="LastName" Type="varchar" MaxLength="50" />
           <Property Name="MobileNo" Type="varchar" MaxLength="50" />
@@ -1676,6 +1681,7 @@ warning 6002: The table/view 'NestinDB.dbo.viewVisitorData' does not have a prim
     [ViewSocietyUsers].[ServiceType] AS [ServiceType], 
     [ViewSocietyUsers].[CompanyName] AS [CompanyName], 
     [ViewSocietyUsers].[HouseID] AS [HouseID], 
+    [ViewSocietyUsers].[statusID] AS [statusID], 
     [ViewSocietyUsers].[Status] AS [Status], 
     [ViewSocietyUsers].[FirstName] AS [FirstName], 
     [ViewSocietyUsers].[LastName] AS [LastName], 
@@ -1840,7 +1846,6 @@ warning 6002: The table/view 'NestinDB.dbo.viewVisitorData' does not have a prim
           <EntitySet Name="ViewComplaintSummaries" EntityType="SocietyDBModel.ViewComplaintSummary" />
           <EntitySet Name="viewVisitorDatas" EntityType="SocietyDBModel.viewVisitorData" />
           <EntitySet Name="ViewLatestGeneratedBill_Resident" EntityType="SocietyDBModel.ViewLatestGeneratedBill_Resident" />
-          <EntitySet Name="ViewFlats" EntityType="SocietyDBModel.ViewFlat" />
           <EntitySet Name="ViewForumNoImages" EntityType="SocietyDBModel.ViewForumNoImage" />
           <EntitySet Name="ViewNotifications" EntityType="SocietyDBModel.ViewNotification" />
           <EntitySet Name="ViewThreadSummaryNoImageCounts" EntityType="SocietyDBModel.ViewThreadSummaryNoImageCount" />
@@ -1855,7 +1860,6 @@ warning 6002: The table/view 'NestinDB.dbo.viewVisitorData' does not have a prim
           <EntitySet Name="Houses" EntityType="SocietyDBModel.House" />
           <EntitySet Name="VehiclePoolEngagemments" EntityType="SocietyDBModel.VehiclePoolEngagemment" />
           <EntitySet Name="ViewFlatsUsers" EntityType="SocietyDBModel.ViewFlatsUser" />
-          <EntitySet Name="ViewSocietyUsers" EntityType="SocietyDBModel.ViewSocietyUser" />
           <EntitySet Name="SocietyUsers" EntityType="SocietyDBModel.SocietyUser" />
           <EntitySet Name="VehiclePools" EntityType="SocietyDBModel.VehiclePool" />
           <EntitySet Name="ViewVehiclePools" EntityType="SocietyDBModel.ViewVehiclePool" />
@@ -1870,6 +1874,8 @@ warning 6002: The table/view 'NestinDB.dbo.viewVisitorData' does not have a prim
           <EntitySet Name="lukInventoryTypes" EntityType="SocietyDBModel.lukInventoryType" />
           <EntitySet Name="ViewVehiclePoolEngagements" EntityType="SocietyDBModel.ViewVehiclePoolEngagement" />
           <EntitySet Name="ViewComplaintHistories" EntityType="SocietyDBModel.ViewComplaintHistory" />
+          <EntitySet Name="ViewFlats" EntityType="SocietyDBModel.ViewFlat" />
+          <EntitySet Name="ViewSocietyUsers" EntityType="SocietyDBModel.ViewSocietyUser" />
         </EntityContainer>
         <EntityType Name="Complaint">
           <Key>
@@ -2433,40 +2439,6 @@ warning 6002: The table/view 'NestinDB.dbo.viewVisitorData' does not have a prim
           <Property Name="TenantEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="TenantMobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityType Name="ViewFlat">
-          <Key>
-            <PropertyRef Name="ID" />
-            <PropertyRef Name="FlatNumber" />
-            <PropertyRef Name="SocietyId" />
-            <PropertyRef Name="BHK" />
-            <PropertyRef Name="Floor" />
-            <PropertyRef Name="Block" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="FlatNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="SocietyId" Type="Int32" Nullable="false" />
-          <Property Name="BHK" Type="Int32" Nullable="false" />
-          <Property Name="Floor" Type="Int32" Nullable="false" />
-          <Property Name="Block" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="IntercomNumber" Type="Int32" />
-          <Property Name="FlatArea" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="OwnerResID" Type="Int32" />
-          <Property Name="OwnerUserID" Type="Int32" />
-          <Property Name="OwnerFirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="OwnerLastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="OwnerEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="OwnerMobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="OwnerAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="TenantResID" Type="Int32" />
-          <Property Name="TenantUserID" Type="Int32" />
-          <Property Name="TenantFirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="TenantLastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="TenantEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="TenantMobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="TenantAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="TenantFrom" Type="DateTime" Precision="0" />
-          <Property Name="TenantTo" Type="DateTime" Precision="3" />
-        </EntityType>
         <EntityType Name="ViewForumNoImage">
           <Key>
             <PropertyRef Name="ID" />
@@ -2730,47 +2702,6 @@ warning 6002: The table/view 'NestinDB.dbo.viewVisitorData' does not have a prim
           <Property Name="TenantFrom" Type="DateTime" Precision="0" />
           <Property Name="TenantTo" Type="DateTime" Precision="3" />
         </EntityType>
-        <EntityType Name="ViewSocietyUser">
-          <Key>
-            <PropertyRef Name="ResID" />
-            <PropertyRef Name="UserID" />
-            <PropertyRef Name="FlatID" />
-            <PropertyRef Name="Type" />
-            <PropertyRef Name="SocietyID" />
-            <PropertyRef Name="ServiceType" />
-            <PropertyRef Name="CompanyName" />
-            <PropertyRef Name="FlatNumber" />
-            <PropertyRef Name="HouseNUmber" />
-          </Key>
-          <Property Name="ResID" Type="Int32" Nullable="false" />
-          <Property Name="UserID" Type="Int32" Nullable="false" />
-          <Property Name="FlatID" Type="Int32" Nullable="false" />
-          <Property Name="Type" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ActiveDate" Type="DateTime" Precision="0" />
-          <Property Name="DeActiveDate" Type="DateTime" Precision="3" />
-          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
-          <Property Name="SocietyID" Type="Int32" Nullable="false" />
-          <Property Name="ServiceType" Type="Int32" Nullable="false" />
-          <Property Name="CompanyName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="HouseID" Type="Int32" />
-          <Property Name="Status" Type="Int32" />
-          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="MobileNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="EmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Gender" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
-          <Property Name="ParentName" Type="String" MaxLength="25" FixedLength="true" Unicode="false" />
-          <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="SocietyName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="FlatNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="CompType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="intercomNumber" Type="Int32" />
-          <Property Name="HouseNUmber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Sector" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="City" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="State" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="PinCode" Type="Int32" />
-        </EntityType>
         <EntityType Name="SocietyUser">
           <Key>
             <PropertyRef Name="ResID" />
@@ -3026,6 +2957,86 @@ warning 6002: The table/view 'NestinDB.dbo.viewVisitorData' does not have a prim
           <Property Name="Severity" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="AssignedTo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ModifiedAt" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="ViewFlat">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="FlatNumber" />
+            <PropertyRef Name="SocietyId" />
+            <PropertyRef Name="BHK" />
+            <PropertyRef Name="Floor" />
+            <PropertyRef Name="Block" />
+            <PropertyRef Name="OwnerResID" />
+            <PropertyRef Name="OwnerUserID" />
+            <PropertyRef Name="TenantResID" />
+            <PropertyRef Name="TenantUserID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="FlatNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SocietyId" Type="Int32" Nullable="false" />
+          <Property Name="BHK" Type="Int32" Nullable="false" />
+          <Property Name="Floor" Type="Int32" Nullable="false" />
+          <Property Name="Block" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IntercomNumber" Type="Int32" />
+          <Property Name="FlatArea" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OwnerResID" Type="Int32" Nullable="false" />
+          <Property Name="OwnerUserID" Type="Int32" Nullable="false" />
+          <Property Name="OwnerFirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OwnerLastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OwnerEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OwnerMobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OwnerAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TenantResID" Type="Int32" Nullable="false" />
+          <Property Name="TenantUserID" Type="Int32" Nullable="false" />
+          <Property Name="TenantFirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TenantLastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TenantEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TenantMobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TenantAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TenantFrom" Type="DateTime" Precision="0" />
+          <Property Name="TenantTo" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="ViewSocietyUser">
+          <Key>
+            <PropertyRef Name="ResID" />
+            <PropertyRef Name="UserID" />
+            <PropertyRef Name="FlatID" />
+            <PropertyRef Name="Type" />
+            <PropertyRef Name="SocietyID" />
+            <PropertyRef Name="ServiceType" />
+            <PropertyRef Name="CompanyName" />
+            <PropertyRef Name="FlatNumber" />
+            <PropertyRef Name="HouseNUmber" />
+          </Key>
+          <Property Name="ResID" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="FlatID" Type="Int32" Nullable="false" />
+          <Property Name="Type" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ActiveDate" Type="DateTime" Precision="0" />
+          <Property Name="DeActiveDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="SocietyID" Type="Int32" Nullable="false" />
+          <Property Name="ServiceType" Type="Int32" Nullable="false" />
+          <Property Name="CompanyName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="HouseID" Type="Int32" />
+          <Property Name="statusID" Type="Int32" />
+          <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MobileNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Gender" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="ParentName" Type="String" MaxLength="25" FixedLength="true" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SocietyName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FlatNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CompType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="intercomNumber" Type="Int32" />
+          <Property Name="HouseNUmber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Sector" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="State" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="PinCode" Type="Int32" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -3536,36 +3547,6 @@ warning 6002: The table/view 'NestinDB.dbo.viewVisitorData' does not have a prim
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ViewFlats">
-            <EntityTypeMapping TypeName="SocietyDBModel.ViewFlat">
-              <MappingFragment StoreEntitySet="ViewFlats">
-                <ScalarProperty Name="TenantTo" ColumnName="TenantTo" />
-                <ScalarProperty Name="TenantFrom" ColumnName="TenantFrom" />
-                <ScalarProperty Name="TenantAddress" ColumnName="TenantAddress" />
-                <ScalarProperty Name="TenantMobile" ColumnName="TenantMobile" />
-                <ScalarProperty Name="TenantEmail" ColumnName="TenantEmail" />
-                <ScalarProperty Name="TenantLastName" ColumnName="TenantLastName" />
-                <ScalarProperty Name="TenantFirstName" ColumnName="TenantFirstName" />
-                <ScalarProperty Name="TenantUserID" ColumnName="TenantUserID" />
-                <ScalarProperty Name="TenantResID" ColumnName="TenantResID" />
-                <ScalarProperty Name="OwnerAddress" ColumnName="OwnerAddress" />
-                <ScalarProperty Name="OwnerMobile" ColumnName="OwnerMobile" />
-                <ScalarProperty Name="OwnerEmail" ColumnName="OwnerEmail" />
-                <ScalarProperty Name="OwnerLastName" ColumnName="OwnerLastName" />
-                <ScalarProperty Name="OwnerFirstName" ColumnName="OwnerFirstName" />
-                <ScalarProperty Name="OwnerUserID" ColumnName="OwnerUserID" />
-                <ScalarProperty Name="OwnerResID" ColumnName="OwnerResID" />
-                <ScalarProperty Name="FlatArea" ColumnName="FlatArea" />
-                <ScalarProperty Name="IntercomNumber" ColumnName="IntercomNumber" />
-                <ScalarProperty Name="Block" ColumnName="Block" />
-                <ScalarProperty Name="Floor" ColumnName="Floor" />
-                <ScalarProperty Name="BHK" ColumnName="BHK" />
-                <ScalarProperty Name="SocietyId" ColumnName="SocietyId" />
-                <ScalarProperty Name="FlatNumber" ColumnName="FlatNumber" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="ViewForumNoImages">
             <EntityTypeMapping TypeName="SocietyDBModel.ViewForumNoImage">
               <MappingFragment StoreEntitySet="ViewForumNoImage">
@@ -3791,40 +3772,6 @@ warning 6002: The table/view 'NestinDB.dbo.viewVisitorData' does not have a prim
                 <ScalarProperty Name="SocietyId" ColumnName="SocietyId" />
                 <ScalarProperty Name="FlatNumber" ColumnName="FlatNumber" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ViewSocietyUsers">
-            <EntityTypeMapping TypeName="SocietyDBModel.ViewSocietyUser">
-              <MappingFragment StoreEntitySet="ViewSocietyUsers">
-                <ScalarProperty Name="PinCode" ColumnName="PinCode" />
-                <ScalarProperty Name="State" ColumnName="State" />
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="Sector" ColumnName="Sector" />
-                <ScalarProperty Name="HouseNUmber" ColumnName="HouseNUmber" />
-                <ScalarProperty Name="intercomNumber" ColumnName="intercomNumber" />
-                <ScalarProperty Name="CompType" ColumnName="CompType" />
-                <ScalarProperty Name="FlatNumber" ColumnName="FlatNumber" />
-                <ScalarProperty Name="SocietyName" ColumnName="SocietyName" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="ParentName" ColumnName="ParentName" />
-                <ScalarProperty Name="Gender" ColumnName="Gender" />
-                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
-                <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="HouseID" ColumnName="HouseID" />
-                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
-                <ScalarProperty Name="ServiceType" ColumnName="ServiceType" />
-                <ScalarProperty Name="SocietyID" ColumnName="SocietyID" />
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-                <ScalarProperty Name="DeActiveDate" ColumnName="DeActiveDate" />
-                <ScalarProperty Name="ActiveDate" ColumnName="ActiveDate" />
-                <ScalarProperty Name="Type" ColumnName="Type" />
-                <ScalarProperty Name="FlatID" ColumnName="FlatID" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="ResID" ColumnName="ResID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -4054,6 +4001,71 @@ warning 6002: The table/view 'NestinDB.dbo.viewVisitorData' does not have a prim
                 <ScalarProperty Name="CompID" ColumnName="CompID" />
                 <ScalarProperty Name="SocietyID" ColumnName="SocietyID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ViewFlats">
+            <EntityTypeMapping TypeName="SocietyDBModel.ViewFlat">
+              <MappingFragment StoreEntitySet="ViewFlats">
+                <ScalarProperty Name="TenantTo" ColumnName="TenantTo" />
+                <ScalarProperty Name="TenantFrom" ColumnName="TenantFrom" />
+                <ScalarProperty Name="TenantAddress" ColumnName="TenantAddress" />
+                <ScalarProperty Name="TenantMobile" ColumnName="TenantMobile" />
+                <ScalarProperty Name="TenantEmail" ColumnName="TenantEmail" />
+                <ScalarProperty Name="TenantLastName" ColumnName="TenantLastName" />
+                <ScalarProperty Name="TenantFirstName" ColumnName="TenantFirstName" />
+                <ScalarProperty Name="TenantUserID" ColumnName="TenantUserID" />
+                <ScalarProperty Name="TenantResID" ColumnName="TenantResID" />
+                <ScalarProperty Name="OwnerAddress" ColumnName="OwnerAddress" />
+                <ScalarProperty Name="OwnerMobile" ColumnName="OwnerMobile" />
+                <ScalarProperty Name="OwnerEmail" ColumnName="OwnerEmail" />
+                <ScalarProperty Name="OwnerLastName" ColumnName="OwnerLastName" />
+                <ScalarProperty Name="OwnerFirstName" ColumnName="OwnerFirstName" />
+                <ScalarProperty Name="OwnerUserID" ColumnName="OwnerUserID" />
+                <ScalarProperty Name="OwnerResID" ColumnName="OwnerResID" />
+                <ScalarProperty Name="FlatArea" ColumnName="FlatArea" />
+                <ScalarProperty Name="IntercomNumber" ColumnName="IntercomNumber" />
+                <ScalarProperty Name="Block" ColumnName="Block" />
+                <ScalarProperty Name="Floor" ColumnName="Floor" />
+                <ScalarProperty Name="BHK" ColumnName="BHK" />
+                <ScalarProperty Name="SocietyId" ColumnName="SocietyId" />
+                <ScalarProperty Name="FlatNumber" ColumnName="FlatNumber" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ViewSocietyUsers">
+            <EntityTypeMapping TypeName="SocietyDBModel.ViewSocietyUser">
+              <MappingFragment StoreEntitySet="ViewSocietyUsers">
+                <ScalarProperty Name="PinCode" ColumnName="PinCode" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Sector" ColumnName="Sector" />
+                <ScalarProperty Name="HouseNUmber" ColumnName="HouseNUmber" />
+                <ScalarProperty Name="intercomNumber" ColumnName="intercomNumber" />
+                <ScalarProperty Name="CompType" ColumnName="CompType" />
+                <ScalarProperty Name="FlatNumber" ColumnName="FlatNumber" />
+                <ScalarProperty Name="SocietyName" ColumnName="SocietyName" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="ParentName" ColumnName="ParentName" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+                <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="statusID" ColumnName="statusID" />
+                <ScalarProperty Name="HouseID" ColumnName="HouseID" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="ServiceType" ColumnName="ServiceType" />
+                <ScalarProperty Name="SocietyID" ColumnName="SocietyID" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="DeActiveDate" ColumnName="DeActiveDate" />
+                <ScalarProperty Name="ActiveDate" ColumnName="ActiveDate" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="FlatID" ColumnName="FlatID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="ResID" ColumnName="ResID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

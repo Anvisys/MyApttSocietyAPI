@@ -327,9 +327,6 @@
     <Compile Include="ViewInventoryAccomodation.cs">
       <DependentUpon>SocietyDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="ViewLatestBillCycle.cs">
-      <DependentUpon>SocietyDB.tt</DependentUpon>
-    </Compile>
     <Compile Include="ViewLatestGeneratedBill.cs">
       <DependentUpon>SocietyDB.tt</DependentUpon>
     </Compile>
@@ -372,6 +369,9 @@
     <Compile Include="ViewVehiclePool.cs">
       <DependentUpon>SocietyDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewVehiclePoolEngagement.cs">
+      <DependentUpon>SocietyDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="viewVisitorData.cs">
       <DependentUpon>SocietyDB.tt</DependentUpon>
     </Compile>
@@ -379,9 +379,6 @@
       <DependentUpon>SocietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="VisitorRequest.cs">
-      <DependentUpon>SocietyDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="WatchViewFirstThreadNoImage.cs">
       <DependentUpon>SocietyDB.tt</DependentUpon>
     </Compile>
   </ItemGroup>

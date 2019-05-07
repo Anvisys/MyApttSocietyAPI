@@ -25,7 +25,8 @@ namespace MyApttSocietyAPI
         public int ServiceType { get; set; }
         public string CompanyName { get; set; }
         public Nullable<int> HouseID { get; set; }
-        public Nullable<int> Status { get; set; }
+        public Nullable<int> statusID { get; set; }
+        public string Status { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string MobileNo { get; set; }

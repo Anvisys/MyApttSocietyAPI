@@ -56,7 +56,6 @@ namespace MyApttSocietyAPI
         public virtual DbSet<ViewComplaintSummary> ViewComplaintSummaries { get; set; }
         public virtual DbSet<viewVisitorData> viewVisitorDatas { get; set; }
         public virtual DbSet<ViewLatestGeneratedBill_Resident> ViewLatestGeneratedBill_Resident { get; set; }
-        public virtual DbSet<ViewFlat> ViewFlats { get; set; }
         public virtual DbSet<ViewForumNoImage> ViewForumNoImages { get; set; }
         public virtual DbSet<ViewNotification> ViewNotifications { get; set; }
         public virtual DbSet<ViewThreadSummaryNoImageCount> ViewThreadSummaryNoImageCounts { get; set; }
@@ -71,7 +70,6 @@ namespace MyApttSocietyAPI
         public virtual DbSet<House> Houses { get; set; }
         public virtual DbSet<VehiclePoolEngagemment> VehiclePoolEngagemments { get; set; }
         public virtual DbSet<ViewFlatsUser> ViewFlatsUsers { get; set; }
-        public virtual DbSet<ViewSocietyUser> ViewSocietyUsers { get; set; }
         public virtual DbSet<SocietyUser> SocietyUsers { get; set; }
         public virtual DbSet<VehiclePool> VehiclePools { get; set; }
         public virtual DbSet<ViewVehiclePool> ViewVehiclePools { get; set; }
@@ -86,5 +84,7 @@ namespace MyApttSocietyAPI
         public virtual DbSet<lukInventoryType> lukInventoryTypes { get; set; }
         public virtual DbSet<ViewVehiclePoolEngagement> ViewVehiclePoolEngagements { get; set; }
         public virtual DbSet<ViewComplaintHistory> ViewComplaintHistories { get; set; }
+        public virtual DbSet<ViewFlat> ViewFlats { get; set; }
+        public virtual DbSet<ViewSocietyUser> ViewSocietyUsers { get; set; }
     }
 }

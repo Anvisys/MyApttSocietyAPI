@@ -16,6 +16,7 @@ namespace MyApttSocietyAPI.Models
          UserIdentification = UserIdentification;
          //InitParams();
         }
+
         public string UserIdentification { get; protected set; }
         public string UserEmail { get; protected set; }
         public string UserPhone { get; protected set; }
