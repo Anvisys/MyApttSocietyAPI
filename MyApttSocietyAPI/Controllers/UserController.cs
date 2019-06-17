@@ -95,9 +95,9 @@ namespace MyApttSocietyAPI.Controllers
                     else if (ValUser.Email == null || ValUser.Email == "")
                     {
                         Log.log("one is valid " + DateTime.Now.ToString());
-                        var users = (from USER in context.ViewSocietyUsers
+                        var users = (from USER in context.TotalUsers
                                      where USER.MobileNo == ValUser.Mobile
-                                     select USER);
+                                     select USER).ToList();
                         if (users.Count() > 0)
                         {
                             ValUser.Email = users.First().EmailId;
@@ -115,7 +115,8 @@ namespace MyApttSocietyAPI.Controllers
 
                     Log.log("Encrypted Password is :" + encPwd + " At " + DateTime.Now.ToString());
 
-                    var L2EQuery = context.TotalUsers.Where(u => (u.UserLogin == ValUser.Email || u.MobileNo == ValUser.Mobile) && u.Password == encPwd);
+                    var L2EQuery = context.TotalUsers.Where(u => (u.UserLogin.ToLower() == ValUser.Email.ToLower()
+                    || u.MobileNo == ValUser.Mobile) && u.Password == encPwd);
                     var user = L2EQuery.FirstOrDefault();
 
 
@@ -190,7 +191,7 @@ namespace MyApttSocietyAPI.Controllers
                            
                    context.UserSettings.Add(UserSetting);
                    context.SaveChanges();
-                    var newSetting = context.ViewUserSettings.Where(f => f.UserID == UserSetting.UserId).ToList() ;
+                      var newSetting = context.ViewUserSettings.Where(f => f.UserID == UserSetting.UserId).ToList() ;
 
                     resp = "{\"Response\":\"OK\"}";
                     var response = Request.CreateResponse(HttpStatusCode.OK);
@@ -330,10 +331,11 @@ namespace MyApttSocietyAPI.Controllers
             ValidUser DemoUser = new ValidUser();
             try
             {
+                //ViewSocietyUsers
                 var context = new SocietyDBEntities();
                 using (var dbContextTransaction = context.Database.BeginTransaction())
                 {
-                    var users = (from USER in context.ViewSocietyUsers
+                    var users = (from USER in context.TotalUsers
                                  where USER.MobileNo == User.MobileNo || USER.EmailId == User.EmailId
                                  select USER);
                     if (users.Count() > 0)

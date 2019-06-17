@@ -7,6 +7,7 @@ using System.Web.Http;
 
 using MyApttSocietyAPI.Models;
 using System.Web.Http.Cors;
+using System.Data.Entity.Validation;
 
 namespace MyApttSocietyAPI.Controllers
 {
@@ -130,6 +131,7 @@ namespace MyApttSocietyAPI.Controllers
         public HttpResponseMessage Post([FromBody]VisitorEntry value)
         {
             String resp = "{\"Response\":\"Undefine\"}";
+            
             var   ctx = new SocietyDBEntities();
             using (var dbContextTransaction = ctx.Database.BeginTransaction())
             {
@@ -137,13 +139,12 @@ namespace MyApttSocietyAPI.Controllers
                 {
 
                     Random r = new Random();
-                    var code =0;
+                    var code = 0;
 
                     do
                     {
-                        code = r.Next(0, 1000000);
+                        code = r.Next(1000, 9999);
                     } while (IsCodeInUse(code.ToString()));
-
 
 
                     if (value.VisitorId == 0)
@@ -163,32 +164,54 @@ namespace MyApttSocietyAPI.Controllers
 
                     if (value.VisitorId > 0)
                     {
-                        ctx.VisitorRequests.Add(new VisitorRequest {
-                        VisitorId = value.VisitorId,
-                        VisitPurpose = value.VisitPurpose,
-                        StartTime =   DateTime.ParseExact(value.StartTime, "yyyy-MM-ddTHH:mm:ss", System.Globalization.CultureInfo.CurrentUICulture),
-                        EndTime = DateTime.ParseExact(value.EndTime, "yyyy-MM-ddTHH:mm:ss", System.Globalization.CultureInfo.CurrentUICulture),
-                   
-                        SecurityCode = code.ToString(),
-                        SocietyId = value.SocietyId,
-                        ResId = value.ResID,
-                        Flat = value.FlatNumber
+                        ctx.VisitorRequests.Add(new VisitorRequest
+                        {
+                            VisitorId = value.VisitorId,
+                            VisitPurpose = value.VisitPurpose,
+                            StartTime = DateTime.ParseExact(value.StartTime, "yyyy-MM-ddTHH:mm:ss", System.Globalization.CultureInfo.CurrentUICulture),
+                            EndTime = DateTime.ParseExact(value.EndTime, "yyyy-MM-ddTHH:mm:ss", System.Globalization.CultureInfo.CurrentUICulture),
+
+                            SecurityCode = code.ToString(),
+                            SocietyId = value.SocietyId,
+                            ResId = value.ResID,
+                            Flat = value.FlatNumber
                         });
 
-                     }
+                    }
 
                     ctx.SaveChanges();
 
                     dbContextTransaction.Commit();
                     var strMessage = "Code for Entry in Flat : " + value.FlatNumber + " is " + code.ToString();
                     VisitorNotification visitorNotification = new VisitorNotification(ctx, value.HostMobile);
-                   var result =  visitorNotification.NotifyVisitor(strMessage, value.VisitorMobile);
+                    var result = visitorNotification.NotifyVisitor(strMessage, value.VisitorMobile);
 
 
-                    resp = "{\"Response\":\""+ result + "\"}";
+                    resp = "{\"Response\":\"Ok\"}";
+                }
+                //Exception ex
+                catch (DbEntityValidationException dbEx)
+                {
+
+                    foreach (var validationErrors in dbEx.EntityValidationErrors)
+                    {
+                        foreach (var validationError in validationErrors.ValidationErrors)
+                        {
+
+                            Log.log("api/Profile Failed to Add User : Property-" + validationError.PropertyName + "  Error- " + validationError.ErrorMessage + "  At " + DateTime.Now.ToString());
+
+
+                        }
+                    }
+                    dbContextTransaction.Rollback();
+                    resp = "{\"Response\":\"Fail\"}";
                 }
                 catch (Exception ex)
                 {
+                   
+
+                            Log.log("api/Profile Failed to Add User Error- " + ex.Message + "  At " + DateTime.Now.ToString());
+
                     dbContextTransaction.Rollback();
                     resp = "{\"Response\":\"Fail\"}";
                 }

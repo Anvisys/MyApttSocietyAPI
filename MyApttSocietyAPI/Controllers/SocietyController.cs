@@ -16,11 +16,16 @@ namespace MyApttSocietyAPI.Controllers
     [RoutePrefix("api/Society")]
     public class SocietyController : ApiController
     {
-        // GET: api/Society
-        public IEnumerable<string> Get()
+        [Route("All")]
+        [HttpGet]
+        public IEnumerable<ViewSociety> AllSocieties()
         {
-            return new string[] { "value1", "value2" };
+            var context = new SocietyDBEntities();
+            var socList = (from s in context.ViewSocieties
+                           select s).ToList();
+            return socList;
         }
+
 
         [Route("{UserId}")]
         [HttpGet]
@@ -62,11 +67,7 @@ namespace MyApttSocietyAPI.Controllers
             return Ok();
         }
 
-        // PUT: api/Society/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
+       
         // DELETE: api/Society/5
         public void Delete(int id)
         {
