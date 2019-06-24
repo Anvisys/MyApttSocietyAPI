@@ -16,12 +16,12 @@ namespace MyApttSocietyAPI.Controllers
         [HttpGet]
         [Route("society/{societyid}")]
         // GET: api/Admin
-        public IEnumerable<ViewSocietyUser> GetAdminDetails(int societyid)
+        public ViewSocietyUser GetAdminDetails(int societyid)
         {
             var context = new SocietyDBEntities();
             var admindetails = (from s in context.ViewSocietyUsers
                                 where s.SocietyID==societyid && s.Type=="Admin"
-                                select s).ToList();
+                                select s).First();
             return admindetails;
         }
 

@@ -275,6 +275,7 @@ namespace MyApttSocietyAPI.Controllers
                             FlatID = newFlat.ID,
                             ModifiedDate = DateTime.UtcNow,
                             ServiceType = 0,
+                            Status = 2,
                             Type = "Owner"
                         };
 
@@ -365,6 +366,7 @@ namespace MyApttSocietyAPI.Controllers
 
                         context.SaveChanges();
                         dbContextTransaction.Commit();
+                        User.Password = "";
                         DemoUser.UserData = User;
                         DemoUser.result = "Ok";
 
@@ -430,8 +432,13 @@ namespace MyApttSocietyAPI.Controllers
                         context.SaveChanges();
                         dbContextTransaction.Commit();
                         var viewSocUser = context.ViewSocietyUsers.Where(x => x.ResID == socUser.ResID).First();
+                        users.Password = "";
                         DemoUser.UserData = users;
                         DemoUser.result = "Ok";
+                        if (DemoUser.SocietyUser == null)
+                        {
+                            DemoUser.SocietyUser = new List<ViewSocietyUser>();
+                        }
                         DemoUser.SocietyUser.Add(viewSocUser);
 
                         var sub = "Your Role is created";
@@ -472,6 +479,7 @@ namespace MyApttSocietyAPI.Controllers
         [HttpPost]
         public IHttpActionResult AddHouse([FromBody]House newHouse, int UserId)
         {
+            
             try
             {
                 var context = new SocietyDBEntities();
@@ -488,7 +496,7 @@ namespace MyApttSocietyAPI.Controllers
                         CompanyName = "NA",
                         ServiceType = 0,
                         SocietyID = 0,
-                        Status =0,
+                        Status =2,
                         Type= "Individual",                       
                         ActiveDate = DateTime.UtcNow,
                         DeActiveDate = DateTime.UtcNow.AddYears(1),
@@ -500,14 +508,16 @@ namespace MyApttSocietyAPI.Controllers
 
                     var User = context.ViewSocietyUsers.Where(x => x.UserID == UserId).First();
 
-                    var sub = "Your Demo ID is created";
+                    var sub = "Your House is added";
                     var EmailBody = "Dear User \n You have successfully Registered with Nestin.Online For Demo. You demo will run for 15 days. Please" +
                                     "Explore the application and contact us for any further query";
-                    var smsBody = "Welcome to Nestin.online. your demo login is valid for 15 days.";
+                    var smsBody = "Welcome to Nestin.online. your house is added to Nestin.";
 
                     Utility.SendMail(User.EmailId, sub, EmailBody);
                     Utility.sendSMS2Resident(smsBody, User.MobileNo);
-                    return Ok();
+                    CustomMessage messase = new CustomMessage();
+                    messase.Response = "Ok";
+                    return Ok(messase);
                 }
             }
             catch (Exception ex)

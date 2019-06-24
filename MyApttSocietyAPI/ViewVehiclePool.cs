@@ -35,5 +35,6 @@ namespace MyApttSocietyAPI
         public string LastName { get; set; }
         public string FlatNumber { get; set; }
         public string MobileNo { get; set; }
+        public Nullable<int> UserID { get; set; }
     }
 }

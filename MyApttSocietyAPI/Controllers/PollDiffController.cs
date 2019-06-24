@@ -41,7 +41,7 @@ namespace MyApttSocietyAPI.Controllers
                     DateTime updatedDateTime = DateTime.ParseExact(value.LastRefreshTime, "dd/MM/yyyy HH:mm:ss", System.Globalization.CultureInfo.CurrentUICulture);
 
                     polldata = (from poll in context.ViewPollDataWithCounts
-                                where poll.StartDate > updatedDateTime
+                                where poll.StartDate > updatedDateTime && poll.SocietyID==value.SocietyID
                                 orderby poll.EndDate descending
                                 select poll).Take(10);
    
@@ -88,7 +88,9 @@ namespace MyApttSocietyAPI.Controllers
                     newPoll.Answer3Count = (Int32)p.Answer3Count;
                     newPoll.Answer4 = p.Answer4;
                     newPoll.Answer4Count = (Int32)p.Answer4Count;
+                    newPoll.SocietyId = p.SocietyID;
                     pollList.Add(newPoll);
+
                 }
                 return pollList;
 

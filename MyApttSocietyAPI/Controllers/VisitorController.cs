@@ -94,15 +94,15 @@ namespace MyApttSocietyAPI.Controllers
          }
           
         // GET: api/Guest/5
-         [Route("Code/{code}")]
-         [HttpGet]
-        public viewVisitorData GetByCode(String code)
+         [Route("Code")]
+         [HttpPost]
+        public viewVisitorData VerifyByCode([FromBody]Visitor value)
         {
             try
             {
                 var context = new SocietyDBEntities();
                 var guest = (from g in context.viewVisitorDatas
-                             where g.SecurityCode == code
+                             where g.SecurityCode == value.VisitorCode && g.SocietyId == value.SocietyID
                              select g).FirstOrDefault();
 
                 if (guest == null)
