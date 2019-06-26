@@ -62,7 +62,31 @@ namespace MyApttSocietyAPI.Controllers
             }
         }
 
-         [Route("{NewForum}")]
+        [Route("Get/{societyid}/{pagenumber}/{count}")]
+        [HttpGet]
+        public IEnumerable<ViewThreadSummaryNoImageCount> PostFindForumData(int societyid ,int pagenumber ,int count)
+        {
+           // int count = 10;
+            try
+            {
+                var context = new SocietyDBEntities();
+
+                var forum = (from f in context.ViewThreadSummaryNoImageCounts
+                             where f.SocietyID == societyid
+                             orderby f.UpdatedAt descending
+                             select f).ToList();
+                   return forum.Skip((pagenumber - 1) * count).Take(count);
+
+            }
+            catch (Exception ex)
+            {
+                Log.log(" Get Forum has error at: " + DateTime.Now.ToString() + " " + ex.Message);
+                return null;
+            }
+        }
+
+
+        [Route("{NewForum}")]
          [HttpPost]
         public HttpResponseMessage Post([FromBody]MyApttSocietyAPI.Models.Forum frm)
         {

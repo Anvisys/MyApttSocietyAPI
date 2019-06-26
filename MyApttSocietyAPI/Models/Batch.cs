@@ -21,5 +21,9 @@ namespace MyApttSocietyAPI.Models
         public int SocietyID { get; set; }
 
         public String FlatNumber { get; set; }
+
+        public int PageNumber { get; set; }
+
+        
     }
 }

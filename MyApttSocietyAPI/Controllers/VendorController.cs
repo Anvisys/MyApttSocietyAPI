@@ -29,7 +29,7 @@ namespace MyApttSocietyAPI.Controllers
                     Vendor tempVendor = new Vendor();
                     tempVendor.ID = 9999;
                     tempVendor.Address = "Nothing";
-                    tempVendor.ContactNum = "11111111";
+                    tempVendor.ContactNumber = "11111111";
                     tempVendor.ShopCategory = "Water";
                     tempVendor.VendorName = "NA";
                     List<Vendor> temp = new List<Vendor> { tempVendor };
@@ -48,6 +48,44 @@ namespace MyApttSocietyAPI.Controllers
                 return null;
             }
         }
+
+        [Route("Get/{SocietyID}/{Category}/{PageNumber}/{Count}")]
+        [HttpGet]
+        public IEnumerable<ViewVendor> Get(int SocietyID,String Category, int PageNumber, int Count)
+        {   
+            try
+            {
+                var context = new SocietyDBEntities();
+                
+                if (Category == "All")
+                {
+                  var   vendor = (from vend in context.ViewVendors
+                                  where vend.SocietyID == SocietyID
+                                  orderby vend.VendorName
+                                  select vend);
+
+                    return vendor.Skip((PageNumber - 1) * Count).Take(Count);
+                }
+                else {
+                    var vendor = (from vend in context.ViewVendors
+                                  where vend.SocietyID == SocietyID && vend.ShopCategory == Category
+                                  orderby vend.VendorName
+                                  select vend);
+
+                    return vendor.Skip((PageNumber - 1) * Count).Take(Count);
+                }
+              
+
+
+            }
+            catch (Exception ex)
+            {
+                Log.log("Exception Occured at : " + DateTime.Now.ToString() + "----" + ex.Message);
+                return null;
+            }
+        }
+
+
 
         [Route("Society/{SocID}/Date/{date}")]
         [HttpGet]
@@ -74,7 +112,7 @@ namespace MyApttSocietyAPI.Controllers
                     Vendor tempVendor = new Vendor();
                     tempVendor.ID = 9999;
                     tempVendor.Address = "No Data";
-                    tempVendor.ContactNum = "11111111";
+                    tempVendor.ContactNumber = "11111111";
                     tempVendor.ShopCategory = "Water";
                     tempVendor.VendorName = "NA";
                     List<Vendor> temp = new List<Vendor> { tempVendor };
@@ -119,7 +157,7 @@ namespace MyApttSocietyAPI.Controllers
                 var context = new SocietyDBEntities();
                 var vendor = (from vend in context.Vendors
                               where vend.Date > lastDateTime && vend.SocietyID == dateTime.SocietyID
-                              select new Shop() { ID = vend.ID, VendorName = vend.VendorName, ContactNum = vend.ContactNum, Address = vend.Address, ShopCategory = vend.ShopCategory }
+                              select new Shop() { ID = vend.ID, VendorName = vend.VendorName, ContactNum = vend.ContactNumber, Address = vend.Address, ShopCategory = vend.ShopCategory }
                              );
                                
                     return vendor;

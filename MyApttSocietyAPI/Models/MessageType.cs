@@ -13,7 +13,7 @@ namespace MyApttSocietyAPI.Models
         public NotificationType(SocietyDBEntities dbContext, string userIdentification)
         {
          DbContext = dbContext;
-         UserIdentification = UserIdentification;
+         UserIdentification = userIdentification;
          //InitParams();
         }
 

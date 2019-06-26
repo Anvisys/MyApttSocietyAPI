@@ -49,18 +49,36 @@ namespace MyApttSocietyAPI.Controllers
             
         }
 
-        [Route("{SocietyID}")]
+        [Route("{SocietyID}/{Status}/{PageNumber}/{count}")]
         [HttpGet]
 
-        public IEnumerable<Notification> GetNotice(int SocietyID)
+        public IEnumerable<Notification> GetNotice(int SocietyID, String Status, int PageNumber ,int count)
         {
-            using (var context = new SocietyDBEntities())
+            //int count = 10;
+            try
             {
-                var notification = (from  notes in context.Notifications
-                                    where notes.SocietyID == SocietyID && notes.EndDate > DateTime.UtcNow
-                                                select notes).Take(10);
+                using (var context = new SocietyDBEntities())
+                {
+                    if (Status == "Open")
+                    {
+                        var notification = (from notes in context.Notifications
+                                            where notes.SocietyID == SocietyID && notes.EndDate > DateTime.UtcNow
+                                            select notes).ToList();
 
-                return notification.ToList();
+                        return notification.Skip((PageNumber - 1) * count).Take(count);
+                    }
+                    else {
+                        var notification = (from notes in context.Notifications
+                                            where notes.SocietyID == SocietyID && notes.EndDate < DateTime.UtcNow
+                                            select notes).ToList();
+
+                        return notification.Skip((PageNumber - 1) * count).Take(count);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
             }
           
                

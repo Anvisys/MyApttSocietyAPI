@@ -31,6 +31,7 @@ namespace MyApttSocietyAPI
         public string LastComment { get; set; }
         public int Assignedto { get; set; }
         public string EmployeeName { get; set; }
+        public string EmployeeContact { get; set; }
         public int LastStatusID { get; set; }
         public string LastStatus { get; set; }
         public Nullable<System.DateTime> LastAt { get; set; }

@@ -15,17 +15,30 @@ namespace MyApttSocietyAPI.Controllers
 
 
     [EnableCors(origins: "*", headers: "*", methods: "*")]
+   [RoutePrefix("api/Complaint")]
     public class ComplaintController : ApiController
     {
         // GET: api/Complaint
+       [Route("All")]
+        [HttpGet]
         public IEnumerable<ViewComplaintHistory> Get()
         {
-            var context = new SocietyDBEntities();
-            var Complaints = (from comp in context.ViewComplaintHistories
-                              orderby comp.ModifiedAt descending
-                              select comp);
-            Log.log(" Get Complaint Results found are: Dhanajay" + DateTime.Now.ToString());
-            return Complaints;
+          
+            try
+            {
+                var context = new SocietyDBEntities();
+                var Complaints = (from comp in context.ViewComplaintHistories
+                                  orderby comp.ModifiedAt descending
+                                  select comp).ToList();
+                Log.log(" Get Complaint Results found are: Dhanajay" + DateTime.Now.ToString());
+                return Complaints;
+            }
+            catch (Exception e)
+            {
+
+                throw;
+            }
+          
         }
 
         // GET: api/Complaint/5
@@ -40,8 +53,68 @@ namespace MyApttSocietyAPI.Controllers
             return Complaints;
         }
 
+        [Route("Get/{status}/{societyid}/{flatnumber}/{pagenumber}/{count}")]
+        [HttpGet]
+        public IEnumerable<ViewComplaintSummary> GetFindData(string status, int societyid ,string flatnumber ,int pagenumber ,int count)
+        {
+            //var count = 10;
+            try
+            {
+                String[] ints1 = new String[0];
+
+                if (status == "Open")
+                {
+                    ints1 = new String[5];
+                    ints1[0] = "New";
+                    ints1[1] = "Assigned";
+                    ints1[2] = "InProgress";
+                    ints1[3] = "Complete";
+                    ints1[4] = "Re-open";
+
+                }
+                else if (status == "Closed")
+                {
+
+                    ints1 = new String[1];
+                    ints1[0] = "Closed";
+                }
+                else if (status == "All")
+                {
+                    ints1 = new String[6];
+                    ints1[0] = "New";
+                    ints1[1] = "Assigned";
+                    ints1[2] = "InProgress";
+                    ints1[3] = "Complete";
+                    ints1[4] = "Closed";
+                    ints1[5] = "Re-open";
+                }
+
+
+                var context = new SocietyDBEntities();
+
+
+               
+                var Complaints = (from comp in context.ViewComplaintSummaries
+                                  where comp.FlatNumber == flatnumber && comp.SocietyID == societyid && ints1.Contains(comp.LastStatus)
+                                  orderby comp.LastAt descending
+                                  select comp).ToList();
+
+
+                return Complaints.Skip((pagenumber-1)*count).Take(count);
+
+
+
+            }
+            catch (Exception ex)
+            {
+                Log.log(" Get Complaint has error at: " + DateTime.Now.ToString() + " " + ex.Message);
+                return null;
+            }
+
+        }
+
         // POST: api/Complaint
-         [HttpPost]
+        [HttpPost]
         public HttpResponseMessage Post([FromBody]MyApttSocietyAPI.Models.Complaint comp)
         {
 
@@ -116,7 +189,7 @@ namespace MyApttSocietyAPI.Controllers
                         notification.NotifyResidents(smsMessage, strSubject);
                     }
 
-                    String resp = "{\"Response\":\"OK\"}";
+                    String resp = "{\"Response\":\"Ok\"}";
                     var response = Request.CreateResponse(HttpStatusCode.OK);
                     response.Content = new StringContent(resp, System.Text.Encoding.UTF8, "application/json");
                     return response;
@@ -125,7 +198,7 @@ namespace MyApttSocietyAPI.Controllers
             }
             catch (Exception ex)
             {
-                String resp = "{\"Response\":\"FAIL\",\"Error\":\"" + ex.Message + "\"}";
+                String resp = "{\"Response\":\"Fail\",\"Error\":\"" + ex.Message + "\"}";
                 var response = Request.CreateResponse(HttpStatusCode.BadRequest);
                 response.Content = new StringContent(resp, System.Text.Encoding.UTF8, "application/json");
                 return response;

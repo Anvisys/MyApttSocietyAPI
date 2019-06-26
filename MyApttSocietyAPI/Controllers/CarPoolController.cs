@@ -18,17 +18,18 @@ namespace MyApttSocietyAPI.Controllers
             return new string[] { "value1", "value2" };
         }
 
-        [Route("All/{SocietyId}/{ResID}/{Index}/{Count}")]
+        [Route("All/{SocietyId}/{ResID}/{PageNumber}/{count}")]
         [HttpGet]
-        public IEnumerable<ViewVehiclePool> GetPoolOffer(int SocietyId, int ResID, int Index, int Count)
+        public IEnumerable<ViewVehiclePool> GetPoolOffer(int SocietyId, int ResID, int PageNumber ,int count)
         {
+           // int Count = 10;
             try
             {
                 var context = new SocietyDBEntities();
                 var pools = context.ViewVehiclePools.Where(x => x.SocietyID == SocietyId && x.ResID != ResID
                             && x.JourneyDateTime > DateTime.Now && x.Active == true)
-                            .OrderByDescending(p=>p.VehiclePoolID)
-                            .Skip(Index).Take(Count); 
+                            .OrderByDescending(p=>p.VehiclePoolID).ToList()
+                            .Skip((PageNumber-1)* count).Take(count); 
                 return pools;
             }
             catch (Exception ex)
@@ -38,17 +39,18 @@ namespace MyApttSocietyAPI.Controllers
             }
         }
 
-        [Route("self/{SocietyId}/{ResID}/{Index}/{Count}")]
+        [Route("self/{SocietyId}/{ResID}/{PageNumber}/{count}")]
         [HttpGet]
-        public IEnumerable<ViewVehiclePool> GetMyPoolOffer(int SocietyId, int ResID, int Index, int Count)
+        public IEnumerable<ViewVehiclePool> GetMyPoolOffer(int SocietyId, int ResID, int PageNumber ,int count)
         {
+           // int Count = 10;
             try
             {
                 var context = new SocietyDBEntities();
                 var pools = context.ViewVehiclePools.Where(x => x.SocietyID == SocietyId 
                            && x.JourneyDateTime > DateTime.Now && x.ResID == ResID && x.Active == true)
-                            .OrderByDescending(p => p.VehiclePoolID)
-                            .Skip(Index).Take(Count);
+                            .OrderByDescending(p => p.VehiclePoolID).ToList()
+                            .Skip((PageNumber-1)* count).Take(count);
 
                 return pools;
             }

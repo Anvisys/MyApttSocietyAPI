@@ -5,9 +5,12 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using MyApttSocietyAPI.Models;
+using System.Web.Http.Cors;
 
 namespace MyApttSocietyAPI.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
+    [RoutePrefix("api/Poll")]
     public class PollController : ApiController
     {
 
@@ -65,6 +68,74 @@ namespace MyApttSocietyAPI.Controllers
                 return null;
             }
         }
+
+
+
+        [Route("Get/{SocietyID}/{ResID}/{PageNumber}/{count}")]
+        [HttpGet]
+        // POST: api/PollDiff
+        public IEnumerable<Poll> GetForum(int SocietyID, int ResID, int PageNumber ,int count)
+        {
+
+            try
+            {
+                var context = new SocietyDBEntities();
+               
+                  //  var count = 10;
+
+                   var polldata = (from poll in context.ViewPollDataWithCounts
+                                where poll.SocietyID == SocietyID && poll.EndDate >= DateTime.UtcNow
+                                orderby poll.EndDate descending
+                                select poll).ToList().Skip((PageNumber-1)*count).Take(count);
+                   
+
+                List<Poll> pollList = new List<Poll>();
+
+                foreach (ViewPollDataWithCount p in polldata)
+                {
+
+                    var selectedAnswer = (from ans in context.PollingAnswers
+                                          where ans.PollID == p.PollID && ans.ResID == ResID
+                                          select ans.SelectedAnswer);
+
+                    Poll newPoll = new Poll();
+                    Log.log(" Get answer for : " + p.PollID.ToString());
+
+                    if (selectedAnswer.Count() >= 1)
+                    {
+                        newPoll.previousSelected = selectedAnswer.First();
+                    }
+                    else
+                    {
+                        newPoll.previousSelected = 0;
+                    }
+                    newPoll.PollID = p.PollID;
+                    newPoll.Question = p.Question;
+                    newPoll.StartDate = (DateTime)p.StartDate;
+                    newPoll.EndDate = (DateTime)p.EndDate;
+                    newPoll.Answer1 = p.Answer1;
+                    newPoll.Answer1Count = (Int32)p.Answer1Count;
+                    newPoll.Answer2 = p.Answer2;
+                    newPoll.Answer2Count = (Int32)p.Answer2Count;
+                    newPoll.Answer3 = p.Answer3;
+                    newPoll.Answer3Count = (Int32)p.Answer3Count;
+                    newPoll.Answer4 = p.Answer4;
+                    newPoll.Answer4Count = (Int32)p.Answer4Count;
+                    newPoll.SocietyId = p.SocietyID;
+                    pollList.Add(newPoll);
+
+                }
+                return pollList;
+
+            }
+            catch (Exception ex)
+            {
+                Log.log(" Get Forum has error at: " + DateTime.Now.ToString() + " " + ex.Message);
+                return null;
+            }
+
+        }
+
 
         // POST: api/Poll
         public HttpResponseMessage Post([FromBody]Poll poll)
