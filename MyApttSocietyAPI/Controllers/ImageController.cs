@@ -8,6 +8,9 @@ using System.Web.Http.Cors;
 using MyApttSocietyAPI.Models;
 using System.Data.Entity.Validation;
 using System.Diagnostics;
+using System.IO;
+using System.Web;
+using System.Drawing.Imaging;
 
 namespace MyApttSocietyAPI.Controllers
 {
@@ -73,6 +76,12 @@ namespace MyApttSocietyAPI.Controllers
         public HttpResponseMessage Post([FromBody]Profile value)
         {
             String resp;
+            string imagestring = value.ImageString;
+            if(imagestring.Length%4 != 0)
+            {
+                while(imagestring.Length%4>0)
+                imagestring = imagestring + "=";
+            }
             try
             {
                         if (value.UserID == 0 || value.ImageString == null)
@@ -97,7 +106,7 @@ namespace MyApttSocietyAPI.Controllers
                                                 {
                                                   
                                                     UserID = value.UserID,
-                                                    Profile_image = Convert.FromBase64String(value.ImageString),
+                                                    Profile_image = Convert.FromBase64String(imagestring),
 
                                                 });
 
@@ -107,7 +116,8 @@ namespace MyApttSocietyAPI.Controllers
                                                 Log.log("Image updated for user : " + value.ResID + " " + value.UserID);
                                                 foreach (UserImage user in users)
                                                 {
-                                                    user.Profile_image = Convert.FromBase64String(value.ImageString);
+                                                    user.Profile_image = Convert.FromBase64String(imagestring);
+                                                 SavetoFileServer( value,  user);
 
                                                 }
                                             }
@@ -143,6 +153,29 @@ namespace MyApttSocietyAPI.Controllers
             }
         }
 
+        protected bool SavetoFileServer(Profile value , UserImage user)
+        {
+            bool success = false;
+            try
+            {
+                ImageFormat format = ImageFormat.Png;
+                String imagename = value.UserID.ToString();
+                string imagepath = @"http://www.nestin.online/ImageServer/User/" + imagename+"."+format;
+                using (FileStream stream =new FileStream(imagepath, FileMode.Create))
+                {
+                    stream.Write(user.Profile_image, 0, user.Profile_image.Length);
+                    stream.Flush();
+                }
+                success = true;
+            }
+
+            catch ( Exception ex)
+            {
+
+            }
+            return success;
+        }
+        
         // PUT: api/Image/5
         public void Put(int id, [FromBody]string value)
         {
