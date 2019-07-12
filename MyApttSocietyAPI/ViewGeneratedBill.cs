@@ -15,28 +15,29 @@ namespace MyApttSocietyAPI
     public partial class ViewGeneratedBill
     {
         public int PayID { get; set; }
-        public string FlatNumber { get; set; }
+        public int FlatID { get; set; }
         public int SocietyID { get; set; }
-        public Nullable<System.DateTime> BillStartDate { get; set; }
-        public Nullable<System.DateTime> BillEndDate { get; set; }
-        public int BillID { get; set; }
+        public System.DateTime BillStartDate { get; set; }
+        public System.DateTime BillEndDate { get; set; }
+        public int SocietyBillID { get; set; }
         public string BillType { get; set; }
         public string Rate { get; set; }
         public string BillDescription { get; set; }
         public string ChargeType { get; set; }
         public string FlatArea { get; set; }
-        public Nullable<int> CurrentBillAmount { get; set; }
+        public int CurrentBillAmount { get; set; }
         public string CycleType { get; set; }
-        public Nullable<System.DateTime> PaymentDueDate { get; set; }
+        public System.DateTime PaymentDueDate { get; set; }
         public System.DateTime BillMonth { get; set; }
         public Nullable<int> AmountTobePaid { get; set; }
-        public Nullable<int> PreviousMonthBalance { get; set; }
-        public Nullable<System.DateTime> AmountPaidDate { get; set; }
-        public Nullable<int> AmountPaid { get; set; }
+        public int PreviousMonthBalance { get; set; }
+        public System.DateTime AmountPaidDate { get; set; }
+        public int AmountPaid { get; set; }
         public Nullable<int> CurrentMonthBalance { get; set; }
         public string PaymentMode { get; set; }
         public string TransactionID { get; set; }
         public string InvoiceID { get; set; }
-        public Nullable<System.DateTime> ModifiedAt { get; set; }
+        public System.DateTime ModifiedAt { get; set; }
+        public string FlatNumber { get; set; }
     }
 }

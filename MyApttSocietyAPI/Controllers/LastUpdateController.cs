@@ -85,7 +85,7 @@ namespace MyApttSocietyAPI.Controllers
                 update.TotalNoticeCount = (from notice in context.Notifications
                                       select notice).Count();
 
-                update.BillCount = context.GeneratedBills.Where(gb => gb.FlatNumber == value.flatNo && (gb.AmountPaidDate > BillingDateTime || gb.ModifiedAt > BillingDateTime)).Count();
+                update.BillCount = context.GeneratedBills.Where(gb => gb.FlatID == value.FlatId && (gb.AmountPaidDate > BillingDateTime || gb.ModifiedAt > BillingDateTime)).Count();
 
                 return update;
             }

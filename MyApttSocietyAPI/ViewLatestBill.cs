@@ -12,29 +12,28 @@ namespace MyApttSocietyAPI
     using System;
     using System.Collections.Generic;
     
-    public partial class GeneratedBill
+    public partial class ViewLatestBill
     {
         public int PayID { get; set; }
+        public string ActionType { get; set; }
+        public int Activated { get; set; }
         public int FlatID { get; set; }
+        public int SocietyID { get; set; }
+        public System.DateTime BillStartDate { get; set; }
+        public System.DateTime BillEndDate { get; set; }
         public int SocietyBillID { get; set; }
+        public string BillDescription { get; set; }
         public int CurrentBillAmount { get; set; }
-        public string CycleType { get; set; }
         public System.DateTime PaymentDueDate { get; set; }
+        public System.DateTime BillMonth { get; set; }
         public Nullable<int> AmountTobePaid { get; set; }
         public int PreviousMonthBalance { get; set; }
         public System.DateTime AmountPaidDate { get; set; }
         public int AmountPaid { get; set; }
+        public Nullable<int> CurrentMonthBalance { get; set; }
         public string PaymentMode { get; set; }
         public string TransactionID { get; set; }
         public string InvoiceID { get; set; }
-        public Nullable<int> CurrentMonthBalance { get; set; }
         public System.DateTime ModifiedAt { get; set; }
-        public string BillDescription { get; set; }
-        public System.DateTime BillStartDate { get; set; }
-        public System.DateTime BillEndDate { get; set; }
-        public System.DateTime BillMonth { get; set; }
-        public int SocietyID { get; set; }
-        public string ActionType { get; set; }
-        public int Activated { get; set; }
     }
 }

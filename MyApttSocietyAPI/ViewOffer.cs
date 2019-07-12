@@ -14,11 +14,11 @@ namespace MyApttSocietyAPI
     
     public partial class ViewOffer
     {
-        public string Offer { get; set; }
-        public System.DateTime StartDate { get; set; }
-        public System.DateTime EndDate { get; set; }
-        public string VendorName { get; set; }
+        public Nullable<int> OfferID { get; set; }
         public int VendorID { get; set; }
-        public int SocietyID { get; set; }
+        public string offerdescription { get; set; }
+        public Nullable<System.DateTime> startDate { get; set; }
+        public Nullable<System.DateTime> EndDate { get; set; }
+        public Nullable<int> SocietyID { get; set; }
     }
 }
