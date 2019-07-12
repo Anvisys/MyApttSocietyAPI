@@ -29,7 +29,7 @@ namespace MyApttSocietyAPI
 
             var json = config.Formatters.JsonFormatter;
             //json.UseDataContractJsonSerializer = true;
-            json.SerializerSettings.PreserveReferencesHandling = Newtonsoft.Json.PreserveReferencesHandling.All;
+            //json.SerializerSettings.PreserveReferencesHandling = Newtonsoft.Json.PreserveReferencesHandling.All;
             json.SerializerSettings.DateFormatHandling = Newtonsoft.Json.DateFormatHandling.IsoDateFormat;
             //json.SerializerSettings.DateFormatString = DateTimeKind.Utc;
             //json.SerializerSettings.DateTimeZoneHandling = Newtonsoft.Json.DateTimeZoneHandling.Local;
