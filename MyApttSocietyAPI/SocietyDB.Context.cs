@@ -78,14 +78,14 @@ namespace MyApttSocietyAPI
         public virtual DbSet<ViewSocietyUser> ViewSocietyUsers { get; set; }
         public virtual DbSet<ViewVendor> ViewVendors { get; set; }
         public virtual DbSet<Vendor> Vendors { get; set; }
-        public virtual DbSet<GeneratedBill> GeneratedBills { get; set; }
         public virtual DbSet<Societybillplan> Societybillplans { get; set; }
-        public virtual DbSet<ViewLatestBill> ViewLatestBills { get; set; }
-        public virtual DbSet<viewLatestFlatBill> viewLatestFlatBills { get; set; }
         public virtual DbSet<Offer> Offers { get; set; }
         public virtual DbSet<ViewOffer> ViewOffers { get; set; }
         public virtual DbSet<ViewLatestOffer> ViewLatestOffers { get; set; }
-        public virtual DbSet<ViewGeneratedBill> ViewGeneratedBills { get; set; }
         public virtual DbSet<ViewUserSetting> ViewUserSettings { get; set; }
+        public virtual DbSet<GeneratedBill> GeneratedBills { get; set; }
+        public virtual DbSet<ViewGeneratedBill> ViewGeneratedBills { get; set; }
+        public virtual DbSet<ViewLatestBill> ViewLatestBills { get; set; }
+        public virtual DbSet<viewLatestFlatBill> viewLatestFlatBills { get; set; }
     }
 }

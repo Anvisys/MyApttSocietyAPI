@@ -15,18 +15,23 @@ namespace MyApttSocietyAPI
     public partial class ViewGeneratedBill
     {
         public int PayID { get; set; }
+        public string ActionType { get; set; }
+        public int BillTypeID { get; set; }
+        public string BillType { get; set; }
+        public string ChargeType { get; set; }
+        public int Applyto { get; set; }
+        public string Rate { get; set; }
+        public string CycleType { get; set; }
+        public int Activated { get; set; }
         public int FlatID { get; set; }
         public int SocietyID { get; set; }
+        public Nullable<int> ResID { get; set; }
         public System.DateTime BillStartDate { get; set; }
         public System.DateTime BillEndDate { get; set; }
         public int SocietyBillID { get; set; }
-        public string BillType { get; set; }
-        public string Rate { get; set; }
         public string BillDescription { get; set; }
-        public string ChargeType { get; set; }
         public string FlatArea { get; set; }
         public int CurrentBillAmount { get; set; }
-        public string CycleType { get; set; }
         public System.DateTime PaymentDueDate { get; set; }
         public System.DateTime BillMonth { get; set; }
         public Nullable<int> AmountTobePaid { get; set; }

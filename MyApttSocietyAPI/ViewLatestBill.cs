@@ -15,6 +15,7 @@ namespace MyApttSocietyAPI
     public partial class ViewLatestBill
     {
         public int PayID { get; set; }
+        public int ResID { get; set; }
         public string ActionType { get; set; }
         public int Activated { get; set; }
         public int FlatID { get; set; }

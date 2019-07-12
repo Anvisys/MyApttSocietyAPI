@@ -36,5 +36,6 @@ namespace MyApttSocietyAPI
         public int SocietyID { get; set; }
         public string ActionType { get; set; }
         public int Activated { get; set; }
+        public Nullable<int> ResID { get; set; }
     }
 }

@@ -27,6 +27,10 @@ namespace MyApttSocietyAPI
         public int Applyto { get; set; }
         public string ActionType { get; set; }
         public int Activated { get; set; }
+        public int ResID { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string UserType { get; set; }
         public int PayID { get; set; }
         public System.DateTime BillStartDate { get; set; }
         public System.DateTime BillEndDate { get; set; }

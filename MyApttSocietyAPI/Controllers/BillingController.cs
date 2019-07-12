@@ -47,16 +47,18 @@ namespace MyApttSocietyAPI.Controllers
         }
 
         // GET: api/Billing/5
-        [Route("All/{SocietyID}/{FlatID}/{PageNumber}")]
+        [Route("Details/{SocietyID}/{FlatID}/{SocietyBillID}/{PageNumber}")]
         [HttpGet]
-        public IEnumerable<ViewGeneratedBill> Get(int SocietyID, int FlatID, int PageNumber)
+        public IEnumerable<ViewGeneratedBill> Get(int SocietyID, int FlatID, int SocietyBillID, int PageNumber)
         {
             try
             {
                 DateTime date = System.DateTime.Now;
                 String dueFor = String.Format("{0:MMMM, yyyy}", date);
                     var context = new SocietyDBEntities();
-                    var L2EQuery = context.ViewGeneratedBills.Where(gb => gb.FlatID  == FlatID && gb.SocietyID == SocietyID)
+                    var L2EQuery = context.ViewGeneratedBills
+                                    .Where(gb => gb.FlatID  == FlatID && gb.SocietyID == SocietyID && gb.SocietyBillID == SocietyBillID)
+                                    .OrderByDescending(gb=> gb.PayID)
                                     .Skip((PageNumber-1)*10)
                                     .Take(10);
 
