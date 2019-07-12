@@ -16,7 +16,7 @@ namespace MyApttSocietyAPI
     {
         public int ID { get; set; }
         public int VendorID { get; set; }
-        public string Offer1 { get; set; }
+        public string offerdescription { get; set; }
         public System.DateTime StartDate { get; set; }
         public System.DateTime EndDate { get; set; }
         public int SocietyID { get; set; }

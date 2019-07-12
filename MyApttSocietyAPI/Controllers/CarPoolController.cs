@@ -97,7 +97,8 @@ namespace MyApttSocietyAPI.Controllers
 
                 if (existing.Count > 0)
                 {
-                    
+                    //context.VehiclePools.Add(value);
+                    //context.SaveChanges();
                     resp = "{\"Response\":\"Duplicate\"}";
                     var response = Request.CreateResponse(HttpStatusCode.OK);
                     response.Content = new StringContent(resp, System.Text.Encoding.UTF8, "application/json");
