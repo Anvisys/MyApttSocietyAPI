@@ -21,6 +21,6 @@ namespace MyApttSocietyAPI.Models
      
         public int resID { get; set; }
 
-        public String flatNo { get; set; }
+        public int FlatId { get; set; }
     }
 }

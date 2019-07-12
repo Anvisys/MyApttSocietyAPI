@@ -12,29 +12,36 @@ namespace MyApttSocietyAPI
     using System;
     using System.Collections.Generic;
     
-    public partial class GeneratedBill
+    public partial class viewLatestFlatBill
     {
-        public int PayID { get; set; }
-        public int FlatID { get; set; }
+        public Nullable<int> SocietyID { get; set; }
+        public Nullable<int> FlatID { get; set; }
+        public string FlatNumber { get; set; }
+        public string FlatArea { get; set; }
         public int SocietyBillID { get; set; }
+        public int BillTypeID { get; set; }
+        public string BillType { get; set; }
+        public string ChargeType { get; set; }
+        public string Rate { get; set; }
+        public string CycleTYpe { get; set; }
+        public int Applyto { get; set; }
+        public string ActionType { get; set; }
+        public int Activated { get; set; }
+        public int PayID { get; set; }
+        public System.DateTime BillStartDate { get; set; }
+        public System.DateTime BillEndDate { get; set; }
+        public string BillDescription { get; set; }
         public int CurrentBillAmount { get; set; }
-        public string CycleType { get; set; }
         public System.DateTime PaymentDueDate { get; set; }
-        public Nullable<int> AmountTobePaid { get; set; }
+        public System.DateTime BillMonth { get; set; }
+        public int AmountTobePaid { get; set; }
         public int PreviousMonthBalance { get; set; }
         public System.DateTime AmountPaidDate { get; set; }
         public int AmountPaid { get; set; }
+        public int CurrentMonthBalance { get; set; }
         public string PaymentMode { get; set; }
         public string TransactionID { get; set; }
         public string InvoiceID { get; set; }
-        public Nullable<int> CurrentMonthBalance { get; set; }
         public System.DateTime ModifiedAt { get; set; }
-        public string BillDescription { get; set; }
-        public System.DateTime BillStartDate { get; set; }
-        public System.DateTime BillEndDate { get; set; }
-        public System.DateTime BillMonth { get; set; }
-        public int SocietyID { get; set; }
-        public string ActionType { get; set; }
-        public int Activated { get; set; }
     }
 }

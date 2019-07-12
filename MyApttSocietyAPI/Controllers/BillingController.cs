@@ -25,19 +25,40 @@ namespace MyApttSocietyAPI.Controllers
             return new string[] { "value1", "value2" };
         }
 
+        [Route("{SocietyID}/Flat/{FlatID}")]
+        [HttpGet]
+        public IEnumerable<viewLatestFlatBill> Get(int SocietyID, int FlatID)
+        {
+            try
+            {
+                DateTime date = System.DateTime.Now;
+                String dueFor = String.Format("{0:MMMM, yyyy}", date);
+                var context = new SocietyDBEntities();
+                var L2EQuery = context.viewLatestFlatBills.Where(gb => gb.FlatID == FlatID && gb.SocietyID == SocietyID);
 
+                return L2EQuery;
+
+            }
+            catch (Exception ex)
+            {
+                Log.log(" Get thread by ID has error at: " + DateTime.Now.ToString() + " " + ex.Message);
+                return null;
+            }
+        }
 
         // GET: api/Billing/5
-        [Route("{SocietyID}/Flat/{FlatNo}")]
+        [Route("All/{SocietyID}/{FlatID}/{PageNumber}")]
         [HttpGet]
-        public IEnumerable<ViewLatestGeneratedBill> Get(int SocietyID, String FlatNo)
+        public IEnumerable<ViewGeneratedBill> Get(int SocietyID, int FlatID, int PageNumber)
         {
             try
             {
                 DateTime date = System.DateTime.Now;
                 String dueFor = String.Format("{0:MMMM, yyyy}", date);
                     var context = new SocietyDBEntities();
-                    var L2EQuery = context.ViewLatestGeneratedBills.Where(gb => gb.FlatNumber == FlatNo && gb.SocietyID == SocietyID);
+                    var L2EQuery = context.ViewGeneratedBills.Where(gb => gb.FlatID  == FlatID && gb.SocietyID == SocietyID)
+                                    .Skip((PageNumber-1)*10)
+                                    .Take(10);
 
                     return L2EQuery;
               
@@ -51,9 +72,9 @@ namespace MyApttSocietyAPI.Controllers
 
 
         // GET: api/Billing/5
-        [Route("{SocietyID}/Flat/{FlatNo}/{year}/{month}")]
+        [Route("{SocietyID}/Flat/{FlatID}/{year}/{month}")]
         [HttpGet]
-        public IEnumerable<ViewGeneratedBill> GetBillForMonth(int SocietyID, String FlatNo, int year, int month)
+        public IEnumerable<ViewGeneratedBill> GetBillForMonth(int SocietyID, int FlatID, int year, int month)
         {
             try
             {
@@ -62,7 +83,8 @@ namespace MyApttSocietyAPI.Controllers
               
 
                 var context = new SocietyDBEntities();
-                var L2EQuery = context.ViewGeneratedBills.Where(gb => gb.FlatNumber == FlatNo && gb.SocietyID== SocietyID && gb.BillMonth.Year == year && gb.BillMonth.Month == month);
+                var L2EQuery = context.ViewGeneratedBills.Where(gb => gb.FlatID == FlatID && gb.SocietyID== SocietyID && 
+                gb.BillMonth.Year == year && gb.BillMonth.Month == month);
 
                
                 return L2EQuery;
@@ -75,10 +97,65 @@ namespace MyApttSocietyAPI.Controllers
             }
         }
 
+        /*
+                [Route("NewBill")]
+                [HttpPost]
+                public HttpResponseMessage Post([FromBody]Billing value)
+                {
+                    try
+                    {
+                        lock (thisLock)
+                        {
+                            using (var context = new SocietyDBEntities())
+                            {
+                                var c = context.PollingDatas;
+
+                                List<GeneratedBill> Bills = (from bill in context.GeneratedBills
+                                                           where bill.PayID == value.PayID
+                                                           select bill).ToList();
+
+                                Log.log(" Poll for given ID : " + Bills.Count);
+                                foreach (GeneratedBill b in Bills)
+                                {
+                                    if ((b.AmountPaid == 0) && b.AmountPaidDate == null)
+                                    {
+                                        b.AmountPaid = value.PaidAmount;
+                                        b.AmountPaidDate = DateTime.Now;
+                                        b.TransactionID = value.TransactionID;
+                                        b.InvoiceID = value.PayID.ToString();
+                                        b.PaymentMode = value.PaymentMode;
+                                    }
+
+                                }
+
+                                context.SaveChanges();
+
+                                Log.log(" Payment Data Updated : " + DateTime.Now.ToString());
+
+                                String resp = "{\"Response\":\"OK\"}";
+                                var response = Request.CreateResponse(HttpStatusCode.OK);
+                                response.Content = new StringContent(resp, System.Text.Encoding.UTF8, "application/json");
+                                return response;
+
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Log.log(" Payment Data Updated error : " + ex.Message);
+                        String resp = "{\"Response\":\"FAIL\",\"Error\":\"" + ex.Message + "\"}";
+                        var response = Request.CreateResponse(HttpStatusCode.BadRequest);
+                        response.Content = new StringContent(resp, System.Text.Encoding.UTF8, "application/json");
+                        return response;
+                    }
+                }
+
+                */
+
 
         [Route("NewBill")]
         [HttpPost]
-        public HttpResponseMessage Post([FromBody]Billing value)
+        public HttpResponseMessage Post([FromBody]GeneratedBill value)
         {
             try
             {
@@ -87,25 +164,7 @@ namespace MyApttSocietyAPI.Controllers
                     using (var context = new SocietyDBEntities())
                     {
                         var c = context.PollingDatas;
-
-                        List<GeneratedBill> Bills = (from bill in context.GeneratedBills
-                                                   where bill.PayID == value.PayID
-                                                   select bill).ToList();
-
-                        Log.log(" Poll for given ID : " + Bills.Count);
-                        foreach (GeneratedBill b in Bills)
-                        {
-                            if ((b.AmountPaid == 0) && b.AmountPaidDate == null)
-                            {
-                                b.AmountPaid = value.PaidAmount;
-                                b.AmountPaidDate = DateTime.Now;
-                                b.TransactionID = value.TransactionID;
-                                b.InvoiceID = value.PayID.ToString();
-                                b.PaymentMode = value.PaymentMode;
-                            }
-
-                        }
-
+                        context.GeneratedBills.Add(value);
                         context.SaveChanges();
 
                         Log.log(" Payment Data Updated : " + DateTime.Now.ToString());
@@ -126,18 +185,6 @@ namespace MyApttSocietyAPI.Controllers
                 response.Content = new StringContent(resp, System.Text.Encoding.UTF8, "application/json");
                 return response;
             }
-
-
-        }
-
-        // PUT: api/Billing/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE: api/Billing/5
-        public void Delete(int id)
-        {
         }
     }
 }

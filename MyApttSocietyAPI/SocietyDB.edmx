@@ -18,25 +18,6 @@
           <Property Name="EndDate" Type="date" Nullable="false" />
           <Property Name="AdImage" Type="image" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'NestinDB.dbo.BillCycle' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="BillCycle">
-          <Key>
-            <PropertyRef Name="ID" />
-            <PropertyRef Name="FlatID" />
-            <PropertyRef Name="BillID" />
-            <PropertyRef Name="created_date" />
-            <PropertyRef Name="SocietyID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="FlatID" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="BillID" Type="int" Nullable="false" />
-          <Property Name="CycleStart" Type="datetime" />
-          <Property Name="CycleEnD" Type="datetime" />
-          <Property Name="created_date" Type="datetime" Nullable="false" />
-          <Property Name="comments" Type="varchar" MaxLength="50" />
-          <Property Name="SocietyID" Type="int" Nullable="false" />
-        </EntityType>
         <EntityType Name="Complaints">
           <Key>
             <PropertyRef Name="ID" />
@@ -94,25 +75,27 @@ warning 6002: The table/view 'NestinDB.dbo.BillCycle' does not have a primary ke
             <PropertyRef Name="PayID" />
           </Key>
           <Property Name="PayID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="FlatNumber" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="BillID" Type="int" Nullable="false" />
-          <Property Name="CurrentBillAmount" Type="int" />
+          <Property Name="FlatID" Type="int" Nullable="false" />
+          <Property Name="SocietyBillID" Type="int" Nullable="false" />
+          <Property Name="CurrentBillAmount" Type="int" Nullable="false" />
           <Property Name="CycleType" Type="varchar" MaxLength="50" />
-          <Property Name="PaymentDueDate" Type="date" />
+          <Property Name="PaymentDueDate" Type="date" Nullable="false" />
           <Property Name="AmountTobePaid" Type="int" StoreGeneratedPattern="Computed" />
-          <Property Name="PreviousMonthBalance" Type="int" />
-          <Property Name="AmountPaidDate" Type="date" />
-          <Property Name="AmountPaid" Type="int" />
+          <Property Name="PreviousMonthBalance" Type="int" Nullable="false" />
+          <Property Name="AmountPaidDate" Type="date" Nullable="false" />
+          <Property Name="AmountPaid" Type="int" Nullable="false" />
           <Property Name="PaymentMode" Type="varchar" MaxLength="50" />
-          <Property Name="TransactionID" Type="varchar" MaxLength="100" />
-          <Property Name="InvoiceID" Type="varchar" MaxLength="100" />
+          <Property Name="TransactionID" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="InvoiceID" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="CurrentMonthBalance" Type="int" StoreGeneratedPattern="Computed" />
-          <Property Name="ModifiedAt" Type="datetime" />
-          <Property Name="BillDescription" Type="varchar" MaxLength="250" />
-          <Property Name="BillStartDate" Type="datetime" />
-          <Property Name="BillEndDate" Type="datetime" />
+          <Property Name="ModifiedAt" Type="datetime" Nullable="false" />
+          <Property Name="BillDescription" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="BillStartDate" Type="datetime" Nullable="false" />
+          <Property Name="BillEndDate" Type="datetime" Nullable="false" />
           <Property Name="BillMonth" Type="date" Nullable="false" />
           <Property Name="SocietyID" Type="int" Nullable="false" />
+          <Property Name="ActionType" Type="varchar" MaxLength="16" Nullable="false" />
+          <Property Name="Activated" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="House">
           <Key>
@@ -220,7 +203,7 @@ warning 6002: The table/view 'NestinDB.dbo.Notifications' does not have a primar
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="VendorID" Type="int" Nullable="false" />
-          <Property Name="Offer" Type="varchar" MaxLength="50" />
+          <Property Name="offerdescription" Type="varchar" MaxLength="250" />
           <Property Name="StartDate" Type="smalldatetime" Nullable="false" />
           <Property Name="EndDate" Type="smalldatetime" Nullable="false" />
           <Property Name="SocietyID" Type="int" Nullable="false" />
@@ -306,7 +289,8 @@ warning 6002: The table/view 'NestinDB.dbo.Notifications' does not have a primar
 warning 6002: The table/view 'NestinDB.dbo.Societybillplans' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Societybillplans">
           <Key>
-            <PropertyRef Name="BillID" />
+            <PropertyRef Name="SocietyBillID" />
+            <PropertyRef Name="BillTypeID" />
             <PropertyRef Name="BillType" />
             <PropertyRef Name="ChargeType" />
             <PropertyRef Name="Rate" />
@@ -314,7 +298,8 @@ warning 6002: The table/view 'NestinDB.dbo.Societybillplans' does not have a pri
             <PropertyRef Name="Applyto" />
             <PropertyRef Name="SocietyID" />
           </Key>
-          <Property Name="BillID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SocietyBillID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BillTypeID" Type="int" Nullable="false" />
           <Property Name="BillType" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="ChargeType" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Rate" Type="varchar" MaxLength="50" Nullable="false" />
@@ -419,14 +404,14 @@ warning 6002: The table/view 'NestinDB.dbo.Societybillplans' does not have a pri
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ShopCategory" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="VendorName" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="ContactNum" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="ContactNumber" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="Address" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="VendorIcon" Type="image" />
           <Property Name="VendorIconFormat" Type="varchar" MaxLength="50" />
           <Property Name="CmdType" Type="varchar" MaxLength="25" />
           <Property Name="Date" Type="smalldatetime" />
           <Property Name="SocietyID" Type="int" Nullable="false" />
-          <Property Name="ContantNumber2" Type="varchar" MaxLength="10" />
+          <Property Name="ContactNumber2" Type="varchar" MaxLength="10" />
           <Property Name="Address2" Type="varchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="VisitorDetails">
@@ -560,6 +545,7 @@ warning 6002: The table/view 'NestinDB.dbo.ViewComplaintSummary' does not have a
           <Property Name="LastComment" Type="varchar" MaxLength="250" />
           <Property Name="Assignedto" Type="int" Nullable="false" />
           <Property Name="EmployeeName" Type="varchar" MaxLength="50" />
+          <Property Name="EmployeeContact" Type="varchar" MaxLength="50" />
           <Property Name="LastStatusID" Type="int" Nullable="false" />
           <Property Name="LastStatus" Type="varchar" MaxLength="20" />
           <Property Name="LastAt" Type="datetime" />
@@ -690,39 +676,52 @@ warning 6002: The table/view 'NestinDB.dbo.ViewGeneratedBill' does not have a pr
         <EntityType Name="ViewGeneratedBill">
           <Key>
             <PropertyRef Name="PayID" />
-            <PropertyRef Name="FlatNumber" />
+            <PropertyRef Name="FlatID" />
             <PropertyRef Name="SocietyID" />
-            <PropertyRef Name="BillID" />
+            <PropertyRef Name="BillStartDate" />
+            <PropertyRef Name="BillEndDate" />
+            <PropertyRef Name="SocietyBillID" />
             <PropertyRef Name="BillType" />
             <PropertyRef Name="Rate" />
+            <PropertyRef Name="BillDescription" />
             <PropertyRef Name="ChargeType" />
+            <PropertyRef Name="CurrentBillAmount" />
             <PropertyRef Name="CycleType" />
+            <PropertyRef Name="PaymentDueDate" />
             <PropertyRef Name="BillMonth" />
+            <PropertyRef Name="PreviousMonthBalance" />
+            <PropertyRef Name="AmountPaidDate" />
+            <PropertyRef Name="AmountPaid" />
+            <PropertyRef Name="TransactionID" />
+            <PropertyRef Name="InvoiceID" />
+            <PropertyRef Name="ModifiedAt" />
+            <PropertyRef Name="FlatNumber" />
           </Key>
           <Property Name="PayID" Type="int" Nullable="false" />
-          <Property Name="FlatNumber" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FlatID" Type="int" Nullable="false" />
           <Property Name="SocietyID" Type="int" Nullable="false" />
-          <Property Name="BillStartDate" Type="datetime" />
-          <Property Name="BillEndDate" Type="datetime" />
-          <Property Name="BillID" Type="int" Nullable="false" />
+          <Property Name="BillStartDate" Type="datetime" Nullable="false" />
+          <Property Name="BillEndDate" Type="datetime" Nullable="false" />
+          <Property Name="SocietyBillID" Type="int" Nullable="false" />
           <Property Name="BillType" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Rate" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="BillDescription" Type="varchar" MaxLength="250" />
+          <Property Name="BillDescription" Type="varchar" MaxLength="250" Nullable="false" />
           <Property Name="ChargeType" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="FlatArea" Type="varchar" MaxLength="50" />
-          <Property Name="CurrentBillAmount" Type="int" />
+          <Property Name="CurrentBillAmount" Type="int" Nullable="false" />
           <Property Name="CycleType" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="PaymentDueDate" Type="date" />
+          <Property Name="PaymentDueDate" Type="date" Nullable="false" />
           <Property Name="BillMonth" Type="date" Nullable="false" />
           <Property Name="AmountTobePaid" Type="int" />
-          <Property Name="PreviousMonthBalance" Type="int" />
-          <Property Name="AmountPaidDate" Type="date" />
-          <Property Name="AmountPaid" Type="int" />
+          <Property Name="PreviousMonthBalance" Type="int" Nullable="false" />
+          <Property Name="AmountPaidDate" Type="date" Nullable="false" />
+          <Property Name="AmountPaid" Type="int" Nullable="false" />
           <Property Name="CurrentMonthBalance" Type="int" />
           <Property Name="PaymentMode" Type="varchar" MaxLength="50" />
-          <Property Name="TransactionID" Type="varchar" MaxLength="100" />
-          <Property Name="InvoiceID" Type="varchar" MaxLength="100" />
-          <Property Name="ModifiedAt" Type="datetime" />
+          <Property Name="TransactionID" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="InvoiceID" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ModifiedAt" Type="datetime" Nullable="false" />
+          <Property Name="FlatNumber" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'NestinDB.dbo.ViewInventoryAccomodation' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -739,96 +738,122 @@ warning 6002: The table/view 'NestinDB.dbo.ViewInventoryAccomodation' does not h
           <Property Name="AccomodationType" Type="varchar" MaxLength="20" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'NestinDB.dbo.ViewLatestGeneratedBill' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="ViewLatestGeneratedBill">
+warning 6002: The table/view 'NestinDB.dbo.ViewLatestBill' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ViewLatestBill">
           <Key>
             <PropertyRef Name="PayID" />
-            <PropertyRef Name="FlatNumber" />
+            <PropertyRef Name="ActionType" />
+            <PropertyRef Name="Activated" />
+            <PropertyRef Name="FlatID" />
             <PropertyRef Name="SocietyID" />
-            <PropertyRef Name="BillID" />
-            <PropertyRef Name="BillType" />
-            <PropertyRef Name="Rate" />
-            <PropertyRef Name="ChargeType" />
-            <PropertyRef Name="CycleType" />
+            <PropertyRef Name="BillStartDate" />
+            <PropertyRef Name="BillEndDate" />
+            <PropertyRef Name="SocietyBillID" />
+            <PropertyRef Name="BillDescription" />
+            <PropertyRef Name="CurrentBillAmount" />
+            <PropertyRef Name="PaymentDueDate" />
             <PropertyRef Name="BillMonth" />
+            <PropertyRef Name="PreviousMonthBalance" />
+            <PropertyRef Name="AmountPaidDate" />
+            <PropertyRef Name="AmountPaid" />
+            <PropertyRef Name="TransactionID" />
+            <PropertyRef Name="InvoiceID" />
+            <PropertyRef Name="ModifiedAt" />
           </Key>
           <Property Name="PayID" Type="int" Nullable="false" />
-          <Property Name="FlatNumber" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ActionType" Type="varchar" MaxLength="16" Nullable="false" />
+          <Property Name="Activated" Type="int" Nullable="false" />
+          <Property Name="FlatID" Type="int" Nullable="false" />
           <Property Name="SocietyID" Type="int" Nullable="false" />
-          <Property Name="BillStartDate" Type="datetime" />
-          <Property Name="BillEndDate" Type="datetime" />
-          <Property Name="BillID" Type="int" Nullable="false" />
-          <Property Name="BillType" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="BillDate" Type="datetime" />
-          <Property Name="Rate" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="BillDescription" Type="varchar" MaxLength="250" />
-          <Property Name="ChargeType" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="FlatArea" Type="varchar" MaxLength="50" />
-          <Property Name="CurrentBillAmount" Type="int" />
-          <Property Name="CycleType" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="PaymentDueDate" Type="date" />
+          <Property Name="BillStartDate" Type="datetime" Nullable="false" />
+          <Property Name="BillEndDate" Type="datetime" Nullable="false" />
+          <Property Name="SocietyBillID" Type="int" Nullable="false" />
+          <Property Name="BillDescription" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="CurrentBillAmount" Type="int" Nullable="false" />
+          <Property Name="PaymentDueDate" Type="date" Nullable="false" />
           <Property Name="BillMonth" Type="date" Nullable="false" />
           <Property Name="AmountTobePaid" Type="int" />
-          <Property Name="PreviousMonthBalance" Type="int" />
-          <Property Name="AmountPaidDate" Type="date" />
-          <Property Name="AmountPaid" Type="int" />
+          <Property Name="PreviousMonthBalance" Type="int" Nullable="false" />
+          <Property Name="AmountPaidDate" Type="date" Nullable="false" />
+          <Property Name="AmountPaid" Type="int" Nullable="false" />
           <Property Name="CurrentMonthBalance" Type="int" />
           <Property Name="PaymentMode" Type="varchar" MaxLength="50" />
-          <Property Name="TransactionID" Type="varchar" MaxLength="100" />
-          <Property Name="InvoiceID" Type="varchar" MaxLength="100" />
-          <Property Name="ModifiedAt" Type="datetime" />
+          <Property Name="TransactionID" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="InvoiceID" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ModifiedAt" Type="datetime" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'NestinDB.dbo.ViewLatestGeneratedBill_Resident' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="ViewLatestGeneratedBill_Resident">
+warning 6002: The table/view 'NestinDB.dbo.viewLatestFlatBill' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="viewLatestFlatBill">
           <Key>
-            <PropertyRef Name="PayID" />
-            <PropertyRef Name="FlatNumber" />
-            <PropertyRef Name="SocietyID" />
-            <PropertyRef Name="BillID" />
+            <PropertyRef Name="SocietyBillID" />
+            <PropertyRef Name="BillTypeID" />
             <PropertyRef Name="BillType" />
-            <PropertyRef Name="Rate" />
             <PropertyRef Name="ChargeType" />
-            <PropertyRef Name="CycleType" />
+            <PropertyRef Name="Rate" />
+            <PropertyRef Name="CycleTYpe" />
+            <PropertyRef Name="Applyto" />
+            <PropertyRef Name="ActionType" />
+            <PropertyRef Name="Activated" />
+            <PropertyRef Name="PayID" />
+            <PropertyRef Name="BillStartDate" />
+            <PropertyRef Name="BillEndDate" />
+            <PropertyRef Name="BillDescription" />
+            <PropertyRef Name="CurrentBillAmount" />
+            <PropertyRef Name="PaymentDueDate" />
             <PropertyRef Name="BillMonth" />
-            <PropertyRef Name="FlatID" />
+            <PropertyRef Name="AmountTobePaid" />
+            <PropertyRef Name="PreviousMonthBalance" />
+            <PropertyRef Name="AmountPaidDate" />
+            <PropertyRef Name="AmountPaid" />
+            <PropertyRef Name="CurrentMonthBalance" />
+            <PropertyRef Name="PaymentMode" />
+            <PropertyRef Name="TransactionID" />
+            <PropertyRef Name="InvoiceID" />
+            <PropertyRef Name="ModifiedAt" />
           </Key>
-          <Property Name="PayID" Type="int" Nullable="false" />
-          <Property Name="FlatNumber" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="SocietyID" Type="int" Nullable="false" />
-          <Property Name="BillStartDate" Type="datetime" />
-          <Property Name="BillEndDate" Type="datetime" />
-          <Property Name="BillID" Type="int" Nullable="false" />
-          <Property Name="BillType" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="BillDate" Type="datetime" />
-          <Property Name="Rate" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="BillDescription" Type="varchar" MaxLength="250" />
-          <Property Name="ChargeType" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="CurrentBillAmount" Type="int" />
-          <Property Name="CycleType" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="PaymentDueDate" Type="date" />
-          <Property Name="BillMonth" Type="date" Nullable="false" />
-          <Property Name="AmountTobePaid" Type="int" />
-          <Property Name="PreviousMonthBalance" Type="int" />
-          <Property Name="AmountPaidDate" Type="date" />
-          <Property Name="AmountPaid" Type="int" />
-          <Property Name="CurrentMonthBalance" Type="int" />
-          <Property Name="PaymentMode" Type="varchar" MaxLength="50" />
-          <Property Name="TransactionID" Type="varchar" MaxLength="100" />
-          <Property Name="InvoiceID" Type="varchar" MaxLength="100" />
-          <Property Name="ModifiedAt" Type="datetime" />
+          <Property Name="SocietyID" Type="int" />
+          <Property Name="FlatID" Type="int" />
+          <Property Name="FlatNumber" Type="varchar" MaxLength="50" />
           <Property Name="FlatArea" Type="varchar" MaxLength="50" />
-          <Property Name="FlatID" Type="int" Nullable="false" />
-          <Property Name="OwnerUserID" Type="int" />
-          <Property Name="OwnerFirstName" Type="varchar" MaxLength="50" />
-          <Property Name="OwnerLastName" Type="varchar" MaxLength="50" />
-          <Property Name="OwnerEmail" Type="varchar" MaxLength="50" />
-          <Property Name="OwnerMobile" Type="varchar" MaxLength="50" />
-          <Property Name="TenantUserID" Type="int" />
-          <Property Name="TenantFirstName" Type="varchar" MaxLength="50" />
-          <Property Name="TenantLastName" Type="varchar" MaxLength="50" />
-          <Property Name="TenantEmail" Type="varchar" MaxLength="50" />
-          <Property Name="TenantMobile" Type="varchar" MaxLength="50" />
+          <Property Name="SocietyBillID" Type="int" Nullable="false" />
+          <Property Name="BillTypeID" Type="int" Nullable="false" />
+          <Property Name="BillType" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ChargeType" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Rate" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CycleTYpe" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Applyto" Type="int" Nullable="false" />
+          <Property Name="ActionType" Type="varchar" MaxLength="16" Nullable="false" />
+          <Property Name="Activated" Type="int" Nullable="false" />
+          <Property Name="PayID" Type="int" Nullable="false" />
+          <Property Name="BillStartDate" Type="datetime" Nullable="false" />
+          <Property Name="BillEndDate" Type="datetime" Nullable="false" />
+          <Property Name="BillDescription" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="CurrentBillAmount" Type="int" Nullable="false" />
+          <Property Name="PaymentDueDate" Type="date" Nullable="false" />
+          <Property Name="BillMonth" Type="date" Nullable="false" />
+          <Property Name="AmountTobePaid" Type="int" Nullable="false" />
+          <Property Name="PreviousMonthBalance" Type="int" Nullable="false" />
+          <Property Name="AmountPaidDate" Type="date" Nullable="false" />
+          <Property Name="AmountPaid" Type="int" Nullable="false" />
+          <Property Name="CurrentMonthBalance" Type="int" Nullable="false" />
+          <Property Name="PaymentMode" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TransactionID" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="InvoiceID" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ModifiedAt" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'NestinDB.dbo.ViewLatestOffer' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ViewLatestOffer">
+          <Key>
+            <PropertyRef Name="VendorID" />
+          </Key>
+          <Property Name="OfferID" Type="int" />
+          <Property Name="VendorID" Type="int" Nullable="false" />
+          <Property Name="offerdescription" Type="varchar" MaxLength="250" />
+          <Property Name="startDate" Type="smalldatetime" />
+          <Property Name="EndDate" Type="smalldatetime" />
+          <Property Name="SocietyID" Type="int" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'NestinDB.dbo.ViewLatestThread' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -873,18 +898,14 @@ warning 6002: The table/view 'NestinDB.dbo.ViewNotifications' does not have a pr
 warning 6002: The table/view 'NestinDB.dbo.ViewOffers' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="ViewOffers">
           <Key>
-            <PropertyRef Name="StartDate" />
-            <PropertyRef Name="EndDate" />
-            <PropertyRef Name="VendorName" />
             <PropertyRef Name="VendorID" />
-            <PropertyRef Name="SocietyID" />
           </Key>
-          <Property Name="Offer" Type="varchar" MaxLength="50" />
-          <Property Name="StartDate" Type="smalldatetime" Nullable="false" />
-          <Property Name="EndDate" Type="smalldatetime" Nullable="false" />
-          <Property Name="VendorName" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="OfferID" Type="int" />
           <Property Name="VendorID" Type="int" Nullable="false" />
-          <Property Name="SocietyID" Type="int" Nullable="false" />
+          <Property Name="offerdescription" Type="varchar" MaxLength="250" />
+          <Property Name="startDate" Type="smalldatetime" />
+          <Property Name="EndDate" Type="smalldatetime" />
+          <Property Name="SocietyID" Type="int" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'NestinDB.dbo.ViewPollCount' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -1169,6 +1190,7 @@ warning 6002: The table/view 'NestinDB.dbo.ViewVehiclePool' does not have a prim
           <Property Name="LastName" Type="varchar" MaxLength="50" />
           <Property Name="FlatNumber" Type="varchar" MaxLength="50" />
           <Property Name="MobileNo" Type="varchar" MaxLength="50" />
+          <Property Name="UserID" Type="int" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'NestinDB.dbo.ViewVehiclePoolEngagement' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -1186,6 +1208,34 @@ warning 6002: The table/view 'NestinDB.dbo.ViewVehiclePoolEngagement' does not h
           <Property Name="MobileNo" Type="varchar" MaxLength="50" />
           <Property Name="FlatNumber" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="ResID" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'NestinDB.dbo.ViewVendor' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ViewVendor">
+          <Key>
+            <PropertyRef Name="VendorID" />
+            <PropertyRef Name="ShopCategory" />
+            <PropertyRef Name="VendorName" />
+            <PropertyRef Name="ContactNumber" />
+            <PropertyRef Name="Address" />
+            <PropertyRef Name="SocietyID" />
+            <PropertyRef Name="OfferID" />
+            <PropertyRef Name="offer" />
+            <PropertyRef Name="OfferStartDate" />
+            <PropertyRef Name="OfferEndDate" />
+          </Key>
+          <Property Name="VendorID" Type="int" Nullable="false" />
+          <Property Name="ShopCategory" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="VendorName" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="ContactNumber" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Address" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="SocietyID" Type="int" Nullable="false" />
+          <Property Name="ContactNumber2" Type="varchar" MaxLength="10" />
+          <Property Name="Address2" Type="varchar" MaxLength="20" />
+          <Property Name="OfferID" Type="int" Nullable="false" />
+          <Property Name="offer" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="OfferStartDate" Type="smalldatetime" Nullable="false" />
+          <Property Name="OfferEndDate" Type="smalldatetime" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'NestinDB.dbo.viewVisitorData' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -1259,18 +1309,6 @@ warning 6002: The table/view 'NestinDB.dbo.viewVisitorData' does not have a prim
           <EntitySet Name="Vendors" EntityType="Self.Vendors" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VisitorDetails" EntityType="Self.VisitorDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VisitorRequest" EntityType="Self.VisitorRequest" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="BillCycle" EntityType="Self.BillCycle" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [BillCycle].[ID] AS [ID], 
-    [BillCycle].[FlatID] AS [FlatID], 
-    [BillCycle].[BillID] AS [BillID], 
-    [BillCycle].[CycleStart] AS [CycleStart], 
-    [BillCycle].[CycleEnD] AS [CycleEnD], 
-    [BillCycle].[created_date] AS [created_date], 
-    [BillCycle].[comments] AS [comments], 
-    [BillCycle].[SocietyID] AS [SocietyID]
-    FROM [dbo].[BillCycle] AS [BillCycle]</DefiningQuery>
-          </EntitySet>
           <EntitySet Name="ImageCheck" EntityType="Self.ImageCheck" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [ImageCheck].[Name] AS [Name], 
@@ -1291,7 +1329,8 @@ warning 6002: The table/view 'NestinDB.dbo.viewVisitorData' does not have a prim
           </EntitySet>
           <EntitySet Name="Societybillplans" EntityType="Self.Societybillplans" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
-    [Societybillplans].[BillID] AS [BillID], 
+    [Societybillplans].[SocietyBillID] AS [SocietyBillID], 
+    [Societybillplans].[BillTypeID] AS [BillTypeID], 
     [Societybillplans].[BillType] AS [BillType], 
     [Societybillplans].[ChargeType] AS [ChargeType], 
     [Societybillplans].[Rate] AS [Rate], 
@@ -1366,6 +1405,7 @@ warning 6002: The table/view 'NestinDB.dbo.viewVisitorData' does not have a prim
     [ViewComplaintSummary].[LastComment] AS [LastComment], 
     [ViewComplaintSummary].[Assignedto] AS [Assignedto], 
     [ViewComplaintSummary].[EmployeeName] AS [EmployeeName], 
+    [ViewComplaintSummary].[EmployeeContact] AS [EmployeeContact], 
     [ViewComplaintSummary].[LastStatusID] AS [LastStatusID], 
     [ViewComplaintSummary].[LastStatus] AS [LastStatus], 
     [ViewComplaintSummary].[LastAt] AS [LastAt]
@@ -1456,11 +1496,11 @@ warning 6002: The table/view 'NestinDB.dbo.viewVisitorData' does not have a prim
           <EntitySet Name="ViewGeneratedBill" EntityType="Self.ViewGeneratedBill" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [ViewGeneratedBill].[PayID] AS [PayID], 
-    [ViewGeneratedBill].[FlatNumber] AS [FlatNumber], 
+    [ViewGeneratedBill].[FlatID] AS [FlatID], 
     [ViewGeneratedBill].[SocietyID] AS [SocietyID], 
     [ViewGeneratedBill].[BillStartDate] AS [BillStartDate], 
     [ViewGeneratedBill].[BillEndDate] AS [BillEndDate], 
-    [ViewGeneratedBill].[BillID] AS [BillID], 
+    [ViewGeneratedBill].[SocietyBillID] AS [SocietyBillID], 
     [ViewGeneratedBill].[BillType] AS [BillType], 
     [ViewGeneratedBill].[Rate] AS [Rate], 
     [ViewGeneratedBill].[BillDescription] AS [BillDescription], 
@@ -1478,7 +1518,8 @@ warning 6002: The table/view 'NestinDB.dbo.viewVisitorData' does not have a prim
     [ViewGeneratedBill].[PaymentMode] AS [PaymentMode], 
     [ViewGeneratedBill].[TransactionID] AS [TransactionID], 
     [ViewGeneratedBill].[InvoiceID] AS [InvoiceID], 
-    [ViewGeneratedBill].[ModifiedAt] AS [ModifiedAt]
+    [ViewGeneratedBill].[ModifiedAt] AS [ModifiedAt], 
+    [ViewGeneratedBill].[FlatNumber] AS [FlatNumber]
     FROM [dbo].[ViewGeneratedBill] AS [ViewGeneratedBill]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="ViewInventoryAccomodation" EntityType="Self.ViewInventoryAccomodation" store:Type="Views" store:Schema="dbo">
@@ -1489,74 +1530,73 @@ warning 6002: The table/view 'NestinDB.dbo.viewVisitorData' does not have a prim
     [ViewInventoryAccomodation].[AccomodationType] AS [AccomodationType]
     FROM [dbo].[ViewInventoryAccomodation] AS [ViewInventoryAccomodation]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="ViewLatestGeneratedBill" EntityType="Self.ViewLatestGeneratedBill" store:Type="Views" store:Schema="dbo">
+          <EntitySet Name="ViewLatestBill" EntityType="Self.ViewLatestBill" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
-    [ViewLatestGeneratedBill].[PayID] AS [PayID], 
-    [ViewLatestGeneratedBill].[FlatNumber] AS [FlatNumber], 
-    [ViewLatestGeneratedBill].[SocietyID] AS [SocietyID], 
-    [ViewLatestGeneratedBill].[BillStartDate] AS [BillStartDate], 
-    [ViewLatestGeneratedBill].[BillEndDate] AS [BillEndDate], 
-    [ViewLatestGeneratedBill].[BillID] AS [BillID], 
-    [ViewLatestGeneratedBill].[BillType] AS [BillType], 
-    [ViewLatestGeneratedBill].[BillDate] AS [BillDate], 
-    [ViewLatestGeneratedBill].[Rate] AS [Rate], 
-    [ViewLatestGeneratedBill].[BillDescription] AS [BillDescription], 
-    [ViewLatestGeneratedBill].[ChargeType] AS [ChargeType], 
-    [ViewLatestGeneratedBill].[FlatArea] AS [FlatArea], 
-    [ViewLatestGeneratedBill].[CurrentBillAmount] AS [CurrentBillAmount], 
-    [ViewLatestGeneratedBill].[CycleType] AS [CycleType], 
-    [ViewLatestGeneratedBill].[PaymentDueDate] AS [PaymentDueDate], 
-    [ViewLatestGeneratedBill].[BillMonth] AS [BillMonth], 
-    [ViewLatestGeneratedBill].[AmountTobePaid] AS [AmountTobePaid], 
-    [ViewLatestGeneratedBill].[PreviousMonthBalance] AS [PreviousMonthBalance], 
-    [ViewLatestGeneratedBill].[AmountPaidDate] AS [AmountPaidDate], 
-    [ViewLatestGeneratedBill].[AmountPaid] AS [AmountPaid], 
-    [ViewLatestGeneratedBill].[CurrentMonthBalance] AS [CurrentMonthBalance], 
-    [ViewLatestGeneratedBill].[PaymentMode] AS [PaymentMode], 
-    [ViewLatestGeneratedBill].[TransactionID] AS [TransactionID], 
-    [ViewLatestGeneratedBill].[InvoiceID] AS [InvoiceID], 
-    [ViewLatestGeneratedBill].[ModifiedAt] AS [ModifiedAt]
-    FROM [dbo].[ViewLatestGeneratedBill] AS [ViewLatestGeneratedBill]</DefiningQuery>
+    [ViewLatestBill].[PayID] AS [PayID], 
+    [ViewLatestBill].[ActionType] AS [ActionType], 
+    [ViewLatestBill].[Activated] AS [Activated], 
+    [ViewLatestBill].[FlatID] AS [FlatID], 
+    [ViewLatestBill].[SocietyID] AS [SocietyID], 
+    [ViewLatestBill].[BillStartDate] AS [BillStartDate], 
+    [ViewLatestBill].[BillEndDate] AS [BillEndDate], 
+    [ViewLatestBill].[SocietyBillID] AS [SocietyBillID], 
+    [ViewLatestBill].[BillDescription] AS [BillDescription], 
+    [ViewLatestBill].[CurrentBillAmount] AS [CurrentBillAmount], 
+    [ViewLatestBill].[PaymentDueDate] AS [PaymentDueDate], 
+    [ViewLatestBill].[BillMonth] AS [BillMonth], 
+    [ViewLatestBill].[AmountTobePaid] AS [AmountTobePaid], 
+    [ViewLatestBill].[PreviousMonthBalance] AS [PreviousMonthBalance], 
+    [ViewLatestBill].[AmountPaidDate] AS [AmountPaidDate], 
+    [ViewLatestBill].[AmountPaid] AS [AmountPaid], 
+    [ViewLatestBill].[CurrentMonthBalance] AS [CurrentMonthBalance], 
+    [ViewLatestBill].[PaymentMode] AS [PaymentMode], 
+    [ViewLatestBill].[TransactionID] AS [TransactionID], 
+    [ViewLatestBill].[InvoiceID] AS [InvoiceID], 
+    [ViewLatestBill].[ModifiedAt] AS [ModifiedAt]
+    FROM [dbo].[ViewLatestBill] AS [ViewLatestBill]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="ViewLatestGeneratedBill_Resident" EntityType="Self.ViewLatestGeneratedBill_Resident" store:Type="Views" store:Schema="dbo">
+          <EntitySet Name="viewLatestFlatBill" EntityType="Self.viewLatestFlatBill" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
-    [ViewLatestGeneratedBill_Resident].[PayID] AS [PayID], 
-    [ViewLatestGeneratedBill_Resident].[FlatNumber] AS [FlatNumber], 
-    [ViewLatestGeneratedBill_Resident].[SocietyID] AS [SocietyID], 
-    [ViewLatestGeneratedBill_Resident].[BillStartDate] AS [BillStartDate], 
-    [ViewLatestGeneratedBill_Resident].[BillEndDate] AS [BillEndDate], 
-    [ViewLatestGeneratedBill_Resident].[BillID] AS [BillID], 
-    [ViewLatestGeneratedBill_Resident].[BillType] AS [BillType], 
-    [ViewLatestGeneratedBill_Resident].[BillDate] AS [BillDate], 
-    [ViewLatestGeneratedBill_Resident].[Rate] AS [Rate], 
-    [ViewLatestGeneratedBill_Resident].[BillDescription] AS [BillDescription], 
-    [ViewLatestGeneratedBill_Resident].[ChargeType] AS [ChargeType], 
-    [ViewLatestGeneratedBill_Resident].[CurrentBillAmount] AS [CurrentBillAmount], 
-    [ViewLatestGeneratedBill_Resident].[CycleType] AS [CycleType], 
-    [ViewLatestGeneratedBill_Resident].[PaymentDueDate] AS [PaymentDueDate], 
-    [ViewLatestGeneratedBill_Resident].[BillMonth] AS [BillMonth], 
-    [ViewLatestGeneratedBill_Resident].[AmountTobePaid] AS [AmountTobePaid], 
-    [ViewLatestGeneratedBill_Resident].[PreviousMonthBalance] AS [PreviousMonthBalance], 
-    [ViewLatestGeneratedBill_Resident].[AmountPaidDate] AS [AmountPaidDate], 
-    [ViewLatestGeneratedBill_Resident].[AmountPaid] AS [AmountPaid], 
-    [ViewLatestGeneratedBill_Resident].[CurrentMonthBalance] AS [CurrentMonthBalance], 
-    [ViewLatestGeneratedBill_Resident].[PaymentMode] AS [PaymentMode], 
-    [ViewLatestGeneratedBill_Resident].[TransactionID] AS [TransactionID], 
-    [ViewLatestGeneratedBill_Resident].[InvoiceID] AS [InvoiceID], 
-    [ViewLatestGeneratedBill_Resident].[ModifiedAt] AS [ModifiedAt], 
-    [ViewLatestGeneratedBill_Resident].[FlatArea] AS [FlatArea], 
-    [ViewLatestGeneratedBill_Resident].[FlatID] AS [FlatID], 
-    [ViewLatestGeneratedBill_Resident].[OwnerUserID] AS [OwnerUserID], 
-    [ViewLatestGeneratedBill_Resident].[OwnerFirstName] AS [OwnerFirstName], 
-    [ViewLatestGeneratedBill_Resident].[OwnerLastName] AS [OwnerLastName], 
-    [ViewLatestGeneratedBill_Resident].[OwnerEmail] AS [OwnerEmail], 
-    [ViewLatestGeneratedBill_Resident].[OwnerMobile] AS [OwnerMobile], 
-    [ViewLatestGeneratedBill_Resident].[TenantUserID] AS [TenantUserID], 
-    [ViewLatestGeneratedBill_Resident].[TenantFirstName] AS [TenantFirstName], 
-    [ViewLatestGeneratedBill_Resident].[TenantLastName] AS [TenantLastName], 
-    [ViewLatestGeneratedBill_Resident].[TenantEmail] AS [TenantEmail], 
-    [ViewLatestGeneratedBill_Resident].[TenantMobile] AS [TenantMobile]
-    FROM [dbo].[ViewLatestGeneratedBill_Resident] AS [ViewLatestGeneratedBill_Resident]</DefiningQuery>
+    [viewLatestFlatBill].[SocietyID] AS [SocietyID], 
+    [viewLatestFlatBill].[FlatID] AS [FlatID], 
+    [viewLatestFlatBill].[FlatNumber] AS [FlatNumber], 
+    [viewLatestFlatBill].[FlatArea] AS [FlatArea], 
+    [viewLatestFlatBill].[SocietyBillID] AS [SocietyBillID], 
+    [viewLatestFlatBill].[BillTypeID] AS [BillTypeID], 
+    [viewLatestFlatBill].[BillType] AS [BillType], 
+    [viewLatestFlatBill].[ChargeType] AS [ChargeType], 
+    [viewLatestFlatBill].[Rate] AS [Rate], 
+    [viewLatestFlatBill].[CycleTYpe] AS [CycleTYpe], 
+    [viewLatestFlatBill].[Applyto] AS [Applyto], 
+    [viewLatestFlatBill].[ActionType] AS [ActionType], 
+    [viewLatestFlatBill].[Activated] AS [Activated], 
+    [viewLatestFlatBill].[PayID] AS [PayID], 
+    [viewLatestFlatBill].[BillStartDate] AS [BillStartDate], 
+    [viewLatestFlatBill].[BillEndDate] AS [BillEndDate], 
+    [viewLatestFlatBill].[BillDescription] AS [BillDescription], 
+    [viewLatestFlatBill].[CurrentBillAmount] AS [CurrentBillAmount], 
+    [viewLatestFlatBill].[PaymentDueDate] AS [PaymentDueDate], 
+    [viewLatestFlatBill].[BillMonth] AS [BillMonth], 
+    [viewLatestFlatBill].[AmountTobePaid] AS [AmountTobePaid], 
+    [viewLatestFlatBill].[PreviousMonthBalance] AS [PreviousMonthBalance], 
+    [viewLatestFlatBill].[AmountPaidDate] AS [AmountPaidDate], 
+    [viewLatestFlatBill].[AmountPaid] AS [AmountPaid], 
+    [viewLatestFlatBill].[CurrentMonthBalance] AS [CurrentMonthBalance], 
+    [viewLatestFlatBill].[PaymentMode] AS [PaymentMode], 
+    [viewLatestFlatBill].[TransactionID] AS [TransactionID], 
+    [viewLatestFlatBill].[InvoiceID] AS [InvoiceID], 
+    [viewLatestFlatBill].[ModifiedAt] AS [ModifiedAt]
+    FROM [dbo].[viewLatestFlatBill] AS [viewLatestFlatBill]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ViewLatestOffer" EntityType="Self.ViewLatestOffer" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ViewLatestOffer].[OfferID] AS [OfferID], 
+    [ViewLatestOffer].[VendorID] AS [VendorID], 
+    [ViewLatestOffer].[offerdescription] AS [offerdescription], 
+    [ViewLatestOffer].[startDate] AS [startDate], 
+    [ViewLatestOffer].[EndDate] AS [EndDate], 
+    [ViewLatestOffer].[SocietyID] AS [SocietyID]
+    FROM [dbo].[ViewLatestOffer] AS [ViewLatestOffer]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="ViewLatestThread" EntityType="Self.ViewLatestThread" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -1585,11 +1625,11 @@ warning 6002: The table/view 'NestinDB.dbo.viewVisitorData' does not have a prim
           </EntitySet>
           <EntitySet Name="ViewOffers" EntityType="Self.ViewOffers" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
-    [ViewOffers].[Offer] AS [Offer], 
-    [ViewOffers].[StartDate] AS [StartDate], 
-    [ViewOffers].[EndDate] AS [EndDate], 
-    [ViewOffers].[VendorName] AS [VendorName], 
+    [ViewOffers].[OfferID] AS [OfferID], 
     [ViewOffers].[VendorID] AS [VendorID], 
+    [ViewOffers].[offerdescription] AS [offerdescription], 
+    [ViewOffers].[startDate] AS [startDate], 
+    [ViewOffers].[EndDate] AS [EndDate], 
     [ViewOffers].[SocietyID] AS [SocietyID]
     FROM [dbo].[ViewOffers] AS [ViewOffers]</DefiningQuery>
           </EntitySet>
@@ -1772,7 +1812,8 @@ warning 6002: The table/view 'NestinDB.dbo.viewVisitorData' does not have a prim
     [ViewVehiclePool].[FirstName] AS [FirstName], 
     [ViewVehiclePool].[LastName] AS [LastName], 
     [ViewVehiclePool].[FlatNumber] AS [FlatNumber], 
-    [ViewVehiclePool].[MobileNo] AS [MobileNo]
+    [ViewVehiclePool].[MobileNo] AS [MobileNo], 
+    [ViewVehiclePool].[UserID] AS [UserID]
     FROM [dbo].[ViewVehiclePool] AS [ViewVehiclePool]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="ViewVehiclePoolEngagement" EntityType="Self.ViewVehiclePoolEngagement" store:Type="Views" store:Schema="dbo">
@@ -1785,6 +1826,22 @@ warning 6002: The table/view 'NestinDB.dbo.viewVisitorData' does not have a prim
     [ViewVehiclePoolEngagement].[FlatNumber] AS [FlatNumber], 
     [ViewVehiclePoolEngagement].[ResID] AS [ResID]
     FROM [dbo].[ViewVehiclePoolEngagement] AS [ViewVehiclePoolEngagement]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ViewVendor" EntityType="Self.ViewVendor" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ViewVendor].[VendorID] AS [VendorID], 
+    [ViewVendor].[ShopCategory] AS [ShopCategory], 
+    [ViewVendor].[VendorName] AS [VendorName], 
+    [ViewVendor].[ContactNumber] AS [ContactNumber], 
+    [ViewVendor].[Address] AS [Address], 
+    [ViewVendor].[SocietyID] AS [SocietyID], 
+    [ViewVendor].[ContactNumber2] AS [ContactNumber2], 
+    [ViewVendor].[Address2] AS [Address2], 
+    [ViewVendor].[OfferID] AS [OfferID], 
+    [ViewVendor].[offer] AS [offer], 
+    [ViewVendor].[OfferStartDate] AS [OfferStartDate], 
+    [ViewVendor].[OfferEndDate] AS [OfferEndDate]
+    FROM [dbo].[ViewVendor] AS [ViewVendor]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="viewVisitorData" EntityType="Self.viewVisitorData" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -1818,15 +1875,10 @@ warning 6002: The table/view 'NestinDB.dbo.viewVisitorData' does not have a prim
           <EntitySet Name="Complaints" EntityType="SocietyDBModel.Complaint" />
           <EntitySet Name="Fora" EntityType="SocietyDBModel.Forum" />
           <EntitySet Name="GCMLists" EntityType="SocietyDBModel.GCMList" />
-          <EntitySet Name="GeneratedBills" EntityType="SocietyDBModel.GeneratedBill" />
           <EntitySet Name="PollingAnswers" EntityType="SocietyDBModel.PollingAnswer" />
-          <EntitySet Name="Vendors" EntityType="SocietyDBModel.Vendor" />
-          <EntitySet Name="BillCycles" EntityType="SocietyDBModel.BillCycle" />
           <EntitySet Name="ImageChecks" EntityType="SocietyDBModel.ImageCheck" />
-          <EntitySet Name="Societybillplans" EntityType="SocietyDBModel.Societybillplan" />
           <EntitySet Name="ViewComplaintAges" EntityType="SocietyDBModel.ViewComplaintAge" />
           <EntitySet Name="ViewFirstThreadwithCounts" EntityType="SocietyDBModel.ViewFirstThreadwithCount" />
-          <EntitySet Name="ViewLatestGeneratedBills" EntityType="SocietyDBModel.ViewLatestGeneratedBill" />
           <EntitySet Name="ViewLatestThreads" EntityType="SocietyDBModel.ViewLatestThread" />
           <EntitySet Name="ViewPollCounts" EntityType="SocietyDBModel.ViewPollCount" />
           <EntitySet Name="PollingDatas" EntityType="SocietyDBModel.PollingData" />
@@ -1841,22 +1893,17 @@ warning 6002: The table/view 'NestinDB.dbo.viewVisitorData' does not have a prim
           <EntitySet Name="Advertisements" EntityType="SocietyDBModel.Advertisement" />
           <EntitySet Name="VisitorDetails" EntityType="SocietyDBModel.VisitorDetail" />
           <EntitySet Name="VisitorRequests" EntityType="SocietyDBModel.VisitorRequest" />
-          <EntitySet Name="ViewGeneratedBills" EntityType="SocietyDBModel.ViewGeneratedBill" />
           <EntitySet Name="Notifications" EntityType="SocietyDBModel.Notification" />
           <EntitySet Name="ViewComplaintSummaries" EntityType="SocietyDBModel.ViewComplaintSummary" />
           <EntitySet Name="viewVisitorDatas" EntityType="SocietyDBModel.viewVisitorData" />
-          <EntitySet Name="ViewLatestGeneratedBill_Resident" EntityType="SocietyDBModel.ViewLatestGeneratedBill_Resident" />
           <EntitySet Name="ViewForumNoImages" EntityType="SocietyDBModel.ViewForumNoImage" />
           <EntitySet Name="ViewNotifications" EntityType="SocietyDBModel.ViewNotification" />
           <EntitySet Name="ViewThreadSummaryNoImageCounts" EntityType="SocietyDBModel.ViewThreadSummaryNoImageCount" />
           <EntitySet Name="Flats" EntityType="SocietyDBModel.Flat" />
-          <EntitySet Name="Offers" EntityType="SocietyDBModel.Offer" />
           <EntitySet Name="TotalUsers" EntityType="SocietyDBModel.TotalUser" />
           <EntitySet Name="UserImages" EntityType="SocietyDBModel.UserImage" />
           <EntitySet Name="UserSettings" EntityType="SocietyDBModel.UserSetting" />
-          <EntitySet Name="ViewOffers" EntityType="SocietyDBModel.ViewOffer" />
           <EntitySet Name="ViewUserImages" EntityType="SocietyDBModel.ViewUserImage" />
-          <EntitySet Name="ViewUserSettings" EntityType="SocietyDBModel.ViewUserSetting" />
           <EntitySet Name="Houses" EntityType="SocietyDBModel.House" />
           <EntitySet Name="VehiclePoolEngagemments" EntityType="SocietyDBModel.VehiclePoolEngagemment" />
           <EntitySet Name="ViewFlatsUsers" EntityType="SocietyDBModel.ViewFlatsUser" />
@@ -1876,6 +1923,17 @@ warning 6002: The table/view 'NestinDB.dbo.viewVisitorData' does not have a prim
           <EntitySet Name="ViewComplaintHistories" EntityType="SocietyDBModel.ViewComplaintHistory" />
           <EntitySet Name="ViewFlats" EntityType="SocietyDBModel.ViewFlat" />
           <EntitySet Name="ViewSocietyUsers" EntityType="SocietyDBModel.ViewSocietyUser" />
+          <EntitySet Name="ViewVendors" EntityType="SocietyDBModel.ViewVendor" />
+          <EntitySet Name="Vendors" EntityType="SocietyDBModel.Vendor" />
+          <EntitySet Name="GeneratedBills" EntityType="SocietyDBModel.GeneratedBill" />
+          <EntitySet Name="Societybillplans" EntityType="SocietyDBModel.Societybillplan" />
+          <EntitySet Name="ViewLatestBills" EntityType="SocietyDBModel.ViewLatestBill" />
+          <EntitySet Name="viewLatestFlatBills" EntityType="SocietyDBModel.viewLatestFlatBill" />
+          <EntitySet Name="Offers" EntityType="SocietyDBModel.Offer" />
+          <EntitySet Name="ViewOffers" EntityType="SocietyDBModel.ViewOffer" />
+          <EntitySet Name="ViewLatestOffers" EntityType="SocietyDBModel.ViewLatestOffer" />
+          <EntitySet Name="ViewGeneratedBills" EntityType="SocietyDBModel.ViewGeneratedBill" />
+          <EntitySet Name="ViewUserSettings" EntityType="SocietyDBModel.ViewUserSetting" />
         </EntityContainer>
         <EntityType Name="Complaint">
           <Key>
@@ -1915,31 +1973,6 @@ warning 6002: The table/view 'NestinDB.dbo.viewVisitorData' does not have a prim
           <Property Name="DeviceID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Topic" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityType Name="GeneratedBill">
-          <Key>
-            <PropertyRef Name="PayID" />
-          </Key>
-          <Property Name="PayID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FlatNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="BillID" Type="Int32" Nullable="false" />
-          <Property Name="CurrentBillAmount" Type="Int32" />
-          <Property Name="CycleType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="PaymentDueDate" Type="DateTime" Precision="0" />
-          <Property Name="AmountTobePaid" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
-          <Property Name="PreviousMonthBalance" Type="Int32" />
-          <Property Name="AmountPaidDate" Type="DateTime" Precision="0" />
-          <Property Name="AmountPaid" Type="Int32" />
-          <Property Name="PaymentMode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="TransactionID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="InvoiceID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="CurrentMonthBalance" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
-          <Property Name="ModifiedAt" Type="DateTime" Precision="3" />
-          <Property Name="BillDescription" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Name="BillStartDate" Type="DateTime" Precision="3" />
-          <Property Name="BillEndDate" Type="DateTime" Precision="3" />
-          <Property Name="BillMonth" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="SocietyID" Type="Int32" Nullable="false" />
-        </EntityType>
         <EntityType Name="PollingAnswer">
           <Key>
             <PropertyRef Name="ID" />
@@ -1951,40 +1984,6 @@ warning 6002: The table/view 'NestinDB.dbo.viewVisitorData' does not have a prim
           <Property Name="LastUpdated" Type="DateTime" Precision="3" />
           <Property Name="SocietyID" Type="Int32" Nullable="false" />
         </EntityType>
-        <EntityType Name="Vendor">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ShopCategory" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="VendorName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="ContactNum" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="Address" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="VendorIcon" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="VendorIconFormat" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="CmdType" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
-          <Property Name="Date" Type="DateTime" Precision="0" />
-          <Property Name="SocietyID" Type="Int32" Nullable="false" />
-          <Property Name="ContantNumber2" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="Address2" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="BillCycle">
-          <Key>
-            <PropertyRef Name="ID" />
-            <PropertyRef Name="FlatID" />
-            <PropertyRef Name="BillID" />
-            <PropertyRef Name="created_date" />
-            <PropertyRef Name="SocietyID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FlatID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="BillID" Type="Int32" Nullable="false" />
-          <Property Name="CycleStart" Type="DateTime" Precision="3" />
-          <Property Name="CycleEnD" Type="DateTime" Precision="3" />
-          <Property Name="created_date" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="comments" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="SocietyID" Type="Int32" Nullable="false" />
-        </EntityType>
         <EntityType Name="ImageCheck">
           <Key>
             <PropertyRef Name="Name" />
@@ -1993,24 +1992,6 @@ warning 6002: The table/view 'NestinDB.dbo.viewVisitorData' does not have a prim
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Address" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Testimage" Type="Binary" MaxLength="Max" FixedLength="false" />
-        </EntityType>
-        <EntityType Name="Societybillplan">
-          <Key>
-            <PropertyRef Name="BillID" />
-            <PropertyRef Name="BillType" />
-            <PropertyRef Name="ChargeType" />
-            <PropertyRef Name="Rate" />
-            <PropertyRef Name="CycleType" />
-            <PropertyRef Name="Applyto" />
-            <PropertyRef Name="SocietyID" />
-          </Key>
-          <Property Name="BillID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="BillType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ChargeType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Rate" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="CycleType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Applyto" Type="Int32" Nullable="false" />
-          <Property Name="SocietyID" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="ViewComplaintAge">
           <Key>
@@ -2037,44 +2018,6 @@ warning 6002: The table/view 'NestinDB.dbo.viewVisitorData' does not have a prim
           <Property Name="FirstThread" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="false" />
           <Property Name="InitiatedAt" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="commentsCount" Type="Int32" />
-        </EntityType>
-        <EntityType Name="ViewLatestGeneratedBill">
-          <Key>
-            <PropertyRef Name="PayID" />
-            <PropertyRef Name="FlatNumber" />
-            <PropertyRef Name="BillID" />
-            <PropertyRef Name="BillType" />
-            <PropertyRef Name="Rate" />
-            <PropertyRef Name="ChargeType" />
-            <PropertyRef Name="CycleType" />
-            <PropertyRef Name="BillMonth" />
-            <PropertyRef Name="SocietyID" />
-          </Key>
-          <Property Name="PayID" Type="Int32" Nullable="false" />
-          <Property Name="FlatNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="BillStartDate" Type="DateTime" Precision="3" />
-          <Property Name="BillEndDate" Type="DateTime" Precision="3" />
-          <Property Name="BillID" Type="Int32" Nullable="false" />
-          <Property Name="BillType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="BillDate" Type="DateTime" Precision="3" />
-          <Property Name="Rate" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="BillDescription" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Name="ChargeType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="FlatArea" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="CurrentBillAmount" Type="Int32" />
-          <Property Name="CycleType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="PaymentDueDate" Type="DateTime" Precision="0" />
-          <Property Name="BillMonth" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="AmountTobePaid" Type="Int32" />
-          <Property Name="PreviousMonthBalance" Type="Int32" />
-          <Property Name="AmountPaidDate" Type="DateTime" Precision="0" />
-          <Property Name="AmountPaid" Type="Int32" />
-          <Property Name="CurrentMonthBalance" Type="Int32" />
-          <Property Name="PaymentMode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="TransactionID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="InvoiceID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="ModifiedAt" Type="DateTime" Precision="3" />
-          <Property Name="SocietyID" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="ViewLatestThread">
           <Key>
@@ -2264,43 +2207,6 @@ warning 6002: The table/view 'NestinDB.dbo.viewVisitorData' does not have a prim
           <Property Name="ResId" Type="Int32" Nullable="false" />
           <Property Name="SocietyId" Type="Int32" />
         </EntityType>
-        <EntityType Name="ViewGeneratedBill">
-          <Key>
-            <PropertyRef Name="PayID" />
-            <PropertyRef Name="FlatNumber" />
-            <PropertyRef Name="SocietyID" />
-            <PropertyRef Name="BillID" />
-            <PropertyRef Name="BillType" />
-            <PropertyRef Name="Rate" />
-            <PropertyRef Name="ChargeType" />
-            <PropertyRef Name="CycleType" />
-            <PropertyRef Name="BillMonth" />
-          </Key>
-          <Property Name="PayID" Type="Int32" Nullable="false" />
-          <Property Name="FlatNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="SocietyID" Type="Int32" Nullable="false" />
-          <Property Name="BillStartDate" Type="DateTime" Precision="3" />
-          <Property Name="BillEndDate" Type="DateTime" Precision="3" />
-          <Property Name="BillID" Type="Int32" Nullable="false" />
-          <Property Name="BillType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Rate" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="BillDescription" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Name="ChargeType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="FlatArea" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="CurrentBillAmount" Type="Int32" />
-          <Property Name="CycleType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="PaymentDueDate" Type="DateTime" Precision="0" />
-          <Property Name="BillMonth" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="AmountTobePaid" Type="Int32" />
-          <Property Name="PreviousMonthBalance" Type="Int32" />
-          <Property Name="AmountPaidDate" Type="DateTime" Precision="0" />
-          <Property Name="AmountPaid" Type="Int32" />
-          <Property Name="CurrentMonthBalance" Type="Int32" />
-          <Property Name="PaymentMode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="TransactionID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="InvoiceID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="ModifiedAt" Type="DateTime" Precision="3" />
-        </EntityType>
         <EntityType Name="Notification">
           <Key>
             <PropertyRef Name="ID" />
@@ -2349,6 +2255,7 @@ warning 6002: The table/view 'NestinDB.dbo.viewVisitorData' does not have a prim
           <Property Name="LastStatusID" Type="Int32" Nullable="false" />
           <Property Name="LastStatus" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="LastAt" Type="DateTime" Precision="3" />
+          <Property Name="EmployeeContact" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="viewVisitorData">
           <Key>
@@ -2388,56 +2295,6 @@ warning 6002: The table/view 'NestinDB.dbo.viewVisitorData' does not have a prim
           <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ResidentMobile" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Type" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="ViewLatestGeneratedBill_Resident">
-          <Key>
-            <PropertyRef Name="PayID" />
-            <PropertyRef Name="FlatNumber" />
-            <PropertyRef Name="SocietyID" />
-            <PropertyRef Name="BillID" />
-            <PropertyRef Name="BillType" />
-            <PropertyRef Name="Rate" />
-            <PropertyRef Name="ChargeType" />
-            <PropertyRef Name="CycleType" />
-            <PropertyRef Name="BillMonth" />
-            <PropertyRef Name="FlatID" />
-          </Key>
-          <Property Name="PayID" Type="Int32" Nullable="false" />
-          <Property Name="FlatNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="SocietyID" Type="Int32" Nullable="false" />
-          <Property Name="BillStartDate" Type="DateTime" Precision="3" />
-          <Property Name="BillEndDate" Type="DateTime" Precision="3" />
-          <Property Name="BillID" Type="Int32" Nullable="false" />
-          <Property Name="BillType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="BillDate" Type="DateTime" Precision="3" />
-          <Property Name="Rate" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="BillDescription" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Name="ChargeType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="CurrentBillAmount" Type="Int32" />
-          <Property Name="CycleType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="PaymentDueDate" Type="DateTime" Precision="0" />
-          <Property Name="BillMonth" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="AmountTobePaid" Type="Int32" />
-          <Property Name="PreviousMonthBalance" Type="Int32" />
-          <Property Name="AmountPaidDate" Type="DateTime" Precision="0" />
-          <Property Name="AmountPaid" Type="Int32" />
-          <Property Name="CurrentMonthBalance" Type="Int32" />
-          <Property Name="PaymentMode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="TransactionID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="InvoiceID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="ModifiedAt" Type="DateTime" Precision="3" />
-          <Property Name="FlatArea" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="FlatID" Type="Int32" Nullable="false" />
-          <Property Name="OwnerUserID" Type="Int32" />
-          <Property Name="OwnerFirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="OwnerLastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="OwnerEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="OwnerMobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="TenantUserID" Type="Int32" />
-          <Property Name="TenantFirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="TenantLastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="TenantEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="TenantMobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="ViewForumNoImage">
           <Key>
@@ -2532,17 +2389,6 @@ warning 6002: The table/view 'NestinDB.dbo.viewVisitorData' does not have a prim
           <Property Name="FlatArea" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="SocietyID" Type="Int32" Nullable="false" />
         </EntityType>
-        <EntityType Name="Offer">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="VendorID" Type="Int32" Nullable="false" />
-          <Property Name="Offer1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="SocietyID" Type="Int32" Nullable="false" />
-        </EntityType>
         <EntityType Name="TotalUser">
           <Key>
             <PropertyRef Name="UserID" />
@@ -2586,21 +2432,6 @@ warning 6002: The table/view 'NestinDB.dbo.viewVisitorData' does not have a prim
           <Property Name="NoticeSMS" Type="Boolean" />
           <Property Name="UserId" Type="Int32" Nullable="false" />
         </EntityType>
-        <EntityType Name="ViewOffer">
-          <Key>
-            <PropertyRef Name="StartDate" />
-            <PropertyRef Name="EndDate" />
-            <PropertyRef Name="VendorName" />
-            <PropertyRef Name="VendorID" />
-            <PropertyRef Name="SocietyID" />
-          </Key>
-          <Property Name="Offer" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="VendorName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="VendorID" Type="Int32" Nullable="false" />
-          <Property Name="SocietyID" Type="Int32" Nullable="false" />
-        </EntityType>
         <EntityType Name="ViewUserImage">
           <Key>
             <PropertyRef Name="ResID" />
@@ -2609,42 +2440,6 @@ warning 6002: The table/view 'NestinDB.dbo.viewVisitorData' does not have a prim
           <Property Name="ResID" Type="Int32" Nullable="false" />
           <Property Name="UserID" Type="Int32" Nullable="false" />
           <Property Name="Profile_image" Type="Binary" MaxLength="Max" FixedLength="false" />
-        </EntityType>
-        <EntityType Name="ViewUserSetting">
-          <Key>
-            <PropertyRef Name="UserID" />
-            <PropertyRef Name="FirstName" />
-            <PropertyRef Name="MobileNo" />
-            <PropertyRef Name="BillingNotification" />
-            <PropertyRef Name="BillingMail" />
-            <PropertyRef Name="BillingSMS" />
-            <PropertyRef Name="ComplaintNotification" />
-            <PropertyRef Name="ComplaintMail" />
-            <PropertyRef Name="ComplaintSMS" />
-            <PropertyRef Name="forumNotification" />
-            <PropertyRef Name="forumMail" />
-            <PropertyRef Name="forumSMS" />
-            <PropertyRef Name="NoticeNotification" />
-            <PropertyRef Name="NoticeMail" />
-            <PropertyRef Name="NoticeSMS" />
-          </Key>
-          <Property Name="UserID" Type="Int32" Nullable="false" />
-          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="MobileNo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="EmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="RegID" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Name="BillingNotification" Type="Boolean" Nullable="false" />
-          <Property Name="BillingMail" Type="Boolean" Nullable="false" />
-          <Property Name="BillingSMS" Type="Boolean" Nullable="false" />
-          <Property Name="ComplaintNotification" Type="Boolean" Nullable="false" />
-          <Property Name="ComplaintMail" Type="Boolean" Nullable="false" />
-          <Property Name="ComplaintSMS" Type="Boolean" Nullable="false" />
-          <Property Name="forumNotification" Type="Boolean" Nullable="false" />
-          <Property Name="forumMail" Type="Boolean" Nullable="false" />
-          <Property Name="forumSMS" Type="Boolean" Nullable="false" />
-          <Property Name="NoticeNotification" Type="Boolean" Nullable="false" />
-          <Property Name="NoticeMail" Type="Boolean" Nullable="false" />
-          <Property Name="NoticeSMS" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="House">
           <Key>
@@ -2779,6 +2574,7 @@ warning 6002: The table/view 'NestinDB.dbo.viewVisitorData' does not have a prim
           <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="FlatNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="MobileNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UserID" Type="Int32" />
         </EntityType>
         <EntityType Name="Society">
           <Key>
@@ -3038,6 +2834,316 @@ warning 6002: The table/view 'NestinDB.dbo.viewVisitorData' does not have a prim
           <Property Name="State" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="PinCode" Type="Int32" />
         </EntityType>
+        <EntityType Name="ViewVendor">
+          <Key>
+            <PropertyRef Name="VendorID" />
+            <PropertyRef Name="ShopCategory" />
+            <PropertyRef Name="VendorName" />
+            <PropertyRef Name="ContactNumber" />
+            <PropertyRef Name="Address" />
+            <PropertyRef Name="SocietyID" />
+            <PropertyRef Name="OfferID" />
+            <PropertyRef Name="offer" />
+            <PropertyRef Name="OfferStartDate" />
+            <PropertyRef Name="OfferEndDate" />
+          </Key>
+          <Property Name="VendorID" Type="Int32" Nullable="false" />
+          <Property Name="ShopCategory" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="VendorName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ContactNumber" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="SocietyID" Type="Int32" Nullable="false" />
+          <Property Name="ContactNumber2" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Address2" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="OfferID" Type="Int32" Nullable="false" />
+          <Property Name="offer" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="OfferStartDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="OfferEndDate" Type="DateTime" Nullable="false" Precision="0" />
+        </EntityType>
+        <EntityType Name="Vendor">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ShopCategory" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="VendorName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ContactNumber" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="VendorIcon" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="VendorIconFormat" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CmdType" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <Property Name="SocietyID" Type="Int32" Nullable="false" />
+          <Property Name="ContactNumber2" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Address2" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="GeneratedBill">
+          <Key>
+            <PropertyRef Name="PayID" />
+          </Key>
+          <Property Name="PayID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FlatID" Type="Int32" Nullable="false" />
+          <Property Name="SocietyBillID" Type="Int32" Nullable="false" />
+          <Property Name="CurrentBillAmount" Type="Int32" Nullable="false" />
+          <Property Name="CycleType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PaymentDueDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="AmountTobePaid" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="PreviousMonthBalance" Type="Int32" Nullable="false" />
+          <Property Name="AmountPaidDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="AmountPaid" Type="Int32" Nullable="false" />
+          <Property Name="PaymentMode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TransactionID" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="InvoiceID" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CurrentMonthBalance" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="ModifiedAt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="BillDescription" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="BillStartDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="BillEndDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="BillMonth" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="SocietyID" Type="Int32" Nullable="false" />
+          <Property Name="ActionType" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="Activated" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Societybillplan">
+          <Key>
+            <PropertyRef Name="SocietyBillID" />
+            <PropertyRef Name="BillTypeID" />
+            <PropertyRef Name="BillType" />
+            <PropertyRef Name="ChargeType" />
+            <PropertyRef Name="Rate" />
+            <PropertyRef Name="CycleType" />
+            <PropertyRef Name="Applyto" />
+            <PropertyRef Name="SocietyID" />
+          </Key>
+          <Property Name="SocietyBillID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BillTypeID" Type="Int32" Nullable="false" />
+          <Property Name="BillType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ChargeType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Rate" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CycleType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Applyto" Type="Int32" Nullable="false" />
+          <Property Name="SocietyID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ViewLatestBill">
+          <Key>
+            <PropertyRef Name="PayID" />
+            <PropertyRef Name="ActionType" />
+            <PropertyRef Name="Activated" />
+            <PropertyRef Name="FlatID" />
+            <PropertyRef Name="SocietyID" />
+            <PropertyRef Name="BillStartDate" />
+            <PropertyRef Name="BillEndDate" />
+            <PropertyRef Name="SocietyBillID" />
+            <PropertyRef Name="BillDescription" />
+            <PropertyRef Name="CurrentBillAmount" />
+            <PropertyRef Name="PaymentDueDate" />
+            <PropertyRef Name="BillMonth" />
+            <PropertyRef Name="PreviousMonthBalance" />
+            <PropertyRef Name="AmountPaidDate" />
+            <PropertyRef Name="AmountPaid" />
+            <PropertyRef Name="TransactionID" />
+            <PropertyRef Name="InvoiceID" />
+            <PropertyRef Name="ModifiedAt" />
+          </Key>
+          <Property Name="PayID" Type="Int32" Nullable="false" />
+          <Property Name="ActionType" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="Activated" Type="Int32" Nullable="false" />
+          <Property Name="FlatID" Type="Int32" Nullable="false" />
+          <Property Name="SocietyID" Type="Int32" Nullable="false" />
+          <Property Name="BillStartDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="BillEndDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SocietyBillID" Type="Int32" Nullable="false" />
+          <Property Name="BillDescription" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="CurrentBillAmount" Type="Int32" Nullable="false" />
+          <Property Name="PaymentDueDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="BillMonth" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="AmountTobePaid" Type="Int32" />
+          <Property Name="PreviousMonthBalance" Type="Int32" Nullable="false" />
+          <Property Name="AmountPaidDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="AmountPaid" Type="Int32" Nullable="false" />
+          <Property Name="CurrentMonthBalance" Type="Int32" />
+          <Property Name="PaymentMode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TransactionID" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="InvoiceID" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedAt" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="viewLatestFlatBill">
+          <Key>
+            <PropertyRef Name="SocietyBillID" />
+            <PropertyRef Name="BillTypeID" />
+            <PropertyRef Name="BillType" />
+            <PropertyRef Name="ChargeType" />
+            <PropertyRef Name="Rate" />
+            <PropertyRef Name="CycleTYpe" />
+            <PropertyRef Name="Applyto" />
+            <PropertyRef Name="ActionType" />
+            <PropertyRef Name="Activated" />
+            <PropertyRef Name="PayID" />
+            <PropertyRef Name="BillStartDate" />
+            <PropertyRef Name="BillEndDate" />
+            <PropertyRef Name="BillDescription" />
+            <PropertyRef Name="CurrentBillAmount" />
+            <PropertyRef Name="PaymentDueDate" />
+            <PropertyRef Name="BillMonth" />
+            <PropertyRef Name="AmountTobePaid" />
+            <PropertyRef Name="PreviousMonthBalance" />
+            <PropertyRef Name="AmountPaidDate" />
+            <PropertyRef Name="AmountPaid" />
+            <PropertyRef Name="CurrentMonthBalance" />
+            <PropertyRef Name="PaymentMode" />
+            <PropertyRef Name="TransactionID" />
+            <PropertyRef Name="InvoiceID" />
+            <PropertyRef Name="ModifiedAt" />
+          </Key>
+          <Property Name="SocietyID" Type="Int32" />
+          <Property Name="FlatID" Type="Int32" />
+          <Property Name="FlatNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FlatArea" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SocietyBillID" Type="Int32" Nullable="false" />
+          <Property Name="BillTypeID" Type="Int32" Nullable="false" />
+          <Property Name="BillType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ChargeType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Rate" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CycleTYpe" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Applyto" Type="Int32" Nullable="false" />
+          <Property Name="ActionType" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="Activated" Type="Int32" Nullable="false" />
+          <Property Name="PayID" Type="Int32" Nullable="false" />
+          <Property Name="BillStartDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="BillEndDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="BillDescription" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="CurrentBillAmount" Type="Int32" Nullable="false" />
+          <Property Name="PaymentDueDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="BillMonth" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="AmountTobePaid" Type="Int32" Nullable="false" />
+          <Property Name="PreviousMonthBalance" Type="Int32" Nullable="false" />
+          <Property Name="AmountPaidDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="AmountPaid" Type="Int32" Nullable="false" />
+          <Property Name="CurrentMonthBalance" Type="Int32" Nullable="false" />
+          <Property Name="PaymentMode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TransactionID" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="InvoiceID" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedAt" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Offer">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VendorID" Type="Int32" Nullable="false" />
+          <Property Name="offerdescription" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="SocietyID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ViewOffer">
+          <Key>
+            <PropertyRef Name="VendorID" />
+          </Key>
+          <Property Name="OfferID" Type="Int32" />
+          <Property Name="VendorID" Type="Int32" Nullable="false" />
+          <Property Name="offerdescription" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="startDate" Type="DateTime" Precision="0" />
+          <Property Name="EndDate" Type="DateTime" Precision="0" />
+          <Property Name="SocietyID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="ViewLatestOffer">
+          <Key>
+            <PropertyRef Name="VendorID" />
+          </Key>
+          <Property Name="OfferID" Type="Int32" />
+          <Property Name="VendorID" Type="Int32" Nullable="false" />
+          <Property Name="offerdescription" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="startDate" Type="DateTime" Precision="0" />
+          <Property Name="EndDate" Type="DateTime" Precision="0" />
+          <Property Name="SocietyID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="ViewGeneratedBill">
+          <Key>
+            <PropertyRef Name="PayID" />
+            <PropertyRef Name="FlatID" />
+            <PropertyRef Name="SocietyID" />
+            <PropertyRef Name="BillStartDate" />
+            <PropertyRef Name="BillEndDate" />
+            <PropertyRef Name="SocietyBillID" />
+            <PropertyRef Name="BillType" />
+            <PropertyRef Name="Rate" />
+            <PropertyRef Name="BillDescription" />
+            <PropertyRef Name="ChargeType" />
+            <PropertyRef Name="CurrentBillAmount" />
+            <PropertyRef Name="CycleType" />
+            <PropertyRef Name="PaymentDueDate" />
+            <PropertyRef Name="BillMonth" />
+            <PropertyRef Name="PreviousMonthBalance" />
+            <PropertyRef Name="AmountPaidDate" />
+            <PropertyRef Name="AmountPaid" />
+            <PropertyRef Name="TransactionID" />
+            <PropertyRef Name="InvoiceID" />
+            <PropertyRef Name="ModifiedAt" />
+            <PropertyRef Name="FlatNumber" />
+          </Key>
+          <Property Name="PayID" Type="Int32" Nullable="false" />
+          <Property Name="FlatID" Type="Int32" Nullable="false" />
+          <Property Name="SocietyID" Type="Int32" Nullable="false" />
+          <Property Name="BillStartDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="BillEndDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SocietyBillID" Type="Int32" Nullable="false" />
+          <Property Name="BillType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Rate" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BillDescription" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="ChargeType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FlatArea" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CurrentBillAmount" Type="Int32" Nullable="false" />
+          <Property Name="CycleType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PaymentDueDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="BillMonth" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="AmountTobePaid" Type="Int32" />
+          <Property Name="PreviousMonthBalance" Type="Int32" Nullable="false" />
+          <Property Name="AmountPaidDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="AmountPaid" Type="Int32" Nullable="false" />
+          <Property Name="CurrentMonthBalance" Type="Int32" />
+          <Property Name="PaymentMode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TransactionID" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="InvoiceID" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedAt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FlatNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ViewUserSetting">
+          <Key>
+            <PropertyRef Name="UserID" />
+            <PropertyRef Name="FirstName" />
+            <PropertyRef Name="MobileNo" />
+            <PropertyRef Name="BillingNotification" />
+            <PropertyRef Name="BillingMail" />
+            <PropertyRef Name="BillingSMS" />
+            <PropertyRef Name="ComplaintNotification" />
+            <PropertyRef Name="ComplaintMail" />
+            <PropertyRef Name="ComplaintSMS" />
+            <PropertyRef Name="forumNotification" />
+            <PropertyRef Name="forumMail" />
+            <PropertyRef Name="forumSMS" />
+            <PropertyRef Name="NoticeNotification" />
+            <PropertyRef Name="NoticeMail" />
+            <PropertyRef Name="NoticeSMS" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MobileNo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RegID" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="BillingNotification" Type="Boolean" Nullable="false" />
+          <Property Name="BillingMail" Type="Boolean" Nullable="false" />
+          <Property Name="BillingSMS" Type="Boolean" Nullable="false" />
+          <Property Name="ComplaintNotification" Type="Boolean" Nullable="false" />
+          <Property Name="ComplaintMail" Type="Boolean" Nullable="false" />
+          <Property Name="ComplaintSMS" Type="Boolean" Nullable="false" />
+          <Property Name="forumNotification" Type="Boolean" Nullable="false" />
+          <Property Name="forumMail" Type="Boolean" Nullable="false" />
+          <Property Name="forumSMS" Type="Boolean" Nullable="false" />
+          <Property Name="NoticeNotification" Type="Boolean" Nullable="false" />
+          <Property Name="NoticeMail" Type="Boolean" Nullable="false" />
+          <Property Name="NoticeSMS" Type="Boolean" Nullable="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3085,32 +3191,6 @@ warning 6002: The table/view 'NestinDB.dbo.viewVisitorData' does not have a prim
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="GeneratedBills">
-            <EntityTypeMapping TypeName="SocietyDBModel.GeneratedBill">
-              <MappingFragment StoreEntitySet="GeneratedBill">
-                <ScalarProperty Name="SocietyID" ColumnName="SocietyID" />
-                <ScalarProperty Name="BillMonth" ColumnName="BillMonth" />
-                <ScalarProperty Name="BillEndDate" ColumnName="BillEndDate" />
-                <ScalarProperty Name="BillStartDate" ColumnName="BillStartDate" />
-                <ScalarProperty Name="BillDescription" ColumnName="BillDescription" />
-                <ScalarProperty Name="ModifiedAt" ColumnName="ModifiedAt" />
-                <ScalarProperty Name="CurrentMonthBalance" ColumnName="CurrentMonthBalance" />
-                <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
-                <ScalarProperty Name="TransactionID" ColumnName="TransactionID" />
-                <ScalarProperty Name="PaymentMode" ColumnName="PaymentMode" />
-                <ScalarProperty Name="AmountPaid" ColumnName="AmountPaid" />
-                <ScalarProperty Name="AmountPaidDate" ColumnName="AmountPaidDate" />
-                <ScalarProperty Name="PreviousMonthBalance" ColumnName="PreviousMonthBalance" />
-                <ScalarProperty Name="AmountTobePaid" ColumnName="AmountTobePaid" />
-                <ScalarProperty Name="PaymentDueDate" ColumnName="PaymentDueDate" />
-                <ScalarProperty Name="CycleType" ColumnName="CycleType" />
-                <ScalarProperty Name="CurrentBillAmount" ColumnName="CurrentBillAmount" />
-                <ScalarProperty Name="BillID" ColumnName="BillID" />
-                <ScalarProperty Name="FlatNumber" ColumnName="FlatNumber" />
-                <ScalarProperty Name="PayID" ColumnName="PayID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="PollingAnswers">
             <EntityTypeMapping TypeName="SocietyDBModel.PollingAnswer">
               <MappingFragment StoreEntitySet="PollingAnswer">
@@ -3123,57 +3203,12 @@ warning 6002: The table/view 'NestinDB.dbo.viewVisitorData' does not have a prim
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Vendors">
-            <EntityTypeMapping TypeName="SocietyDBModel.Vendor">
-              <MappingFragment StoreEntitySet="Vendors">
-                <ScalarProperty Name="Address2" ColumnName="Address2" />
-                <ScalarProperty Name="ContantNumber2" ColumnName="ContantNumber2" />
-                <ScalarProperty Name="SocietyID" ColumnName="SocietyID" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="CmdType" ColumnName="CmdType" />
-                <ScalarProperty Name="VendorIconFormat" ColumnName="VendorIconFormat" />
-                <ScalarProperty Name="VendorIcon" ColumnName="VendorIcon" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="ContactNum" ColumnName="ContactNum" />
-                <ScalarProperty Name="VendorName" ColumnName="VendorName" />
-                <ScalarProperty Name="ShopCategory" ColumnName="ShopCategory" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="BillCycles">
-            <EntityTypeMapping TypeName="SocietyDBModel.BillCycle">
-              <MappingFragment StoreEntitySet="BillCycle">
-                <ScalarProperty Name="SocietyID" ColumnName="SocietyID" />
-                <ScalarProperty Name="comments" ColumnName="comments" />
-                <ScalarProperty Name="created_date" ColumnName="created_date" />
-                <ScalarProperty Name="CycleEnD" ColumnName="CycleEnD" />
-                <ScalarProperty Name="CycleStart" ColumnName="CycleStart" />
-                <ScalarProperty Name="BillID" ColumnName="BillID" />
-                <ScalarProperty Name="FlatID" ColumnName="FlatID" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="ImageChecks">
             <EntityTypeMapping TypeName="SocietyDBModel.ImageCheck">
               <MappingFragment StoreEntitySet="ImageCheck">
                 <ScalarProperty Name="Testimage" ColumnName="Testimage" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Societybillplans">
-            <EntityTypeMapping TypeName="SocietyDBModel.Societybillplan">
-              <MappingFragment StoreEntitySet="Societybillplans">
-                <ScalarProperty Name="SocietyID" ColumnName="SocietyID" />
-                <ScalarProperty Name="Applyto" ColumnName="Applyto" />
-                <ScalarProperty Name="CycleType" ColumnName="CycleType" />
-                <ScalarProperty Name="Rate" ColumnName="Rate" />
-                <ScalarProperty Name="ChargeType" ColumnName="ChargeType" />
-                <ScalarProperty Name="BillType" ColumnName="BillType" />
-                <ScalarProperty Name="BillID" ColumnName="BillID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3196,37 +3231,6 @@ warning 6002: The table/view 'NestinDB.dbo.viewVisitorData' does not have a prim
                 <ScalarProperty Name="ResID" ColumnName="ResID" />
                 <ScalarProperty Name="ThreadID" ColumnName="ThreadID" />
                 <ScalarProperty Name="FirstID" ColumnName="FirstID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ViewLatestGeneratedBills">
-            <EntityTypeMapping TypeName="SocietyDBModel.ViewLatestGeneratedBill">
-              <MappingFragment StoreEntitySet="ViewLatestGeneratedBill">
-                <ScalarProperty Name="SocietyID" ColumnName="SocietyID" />
-                <ScalarProperty Name="ModifiedAt" ColumnName="ModifiedAt" />
-                <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
-                <ScalarProperty Name="TransactionID" ColumnName="TransactionID" />
-                <ScalarProperty Name="PaymentMode" ColumnName="PaymentMode" />
-                <ScalarProperty Name="CurrentMonthBalance" ColumnName="CurrentMonthBalance" />
-                <ScalarProperty Name="AmountPaid" ColumnName="AmountPaid" />
-                <ScalarProperty Name="AmountPaidDate" ColumnName="AmountPaidDate" />
-                <ScalarProperty Name="PreviousMonthBalance" ColumnName="PreviousMonthBalance" />
-                <ScalarProperty Name="AmountTobePaid" ColumnName="AmountTobePaid" />
-                <ScalarProperty Name="BillMonth" ColumnName="BillMonth" />
-                <ScalarProperty Name="PaymentDueDate" ColumnName="PaymentDueDate" />
-                <ScalarProperty Name="CycleType" ColumnName="CycleType" />
-                <ScalarProperty Name="CurrentBillAmount" ColumnName="CurrentBillAmount" />
-                <ScalarProperty Name="FlatArea" ColumnName="FlatArea" />
-                <ScalarProperty Name="ChargeType" ColumnName="ChargeType" />
-                <ScalarProperty Name="BillDescription" ColumnName="BillDescription" />
-                <ScalarProperty Name="Rate" ColumnName="Rate" />
-                <ScalarProperty Name="BillDate" ColumnName="BillDate" />
-                <ScalarProperty Name="BillType" ColumnName="BillType" />
-                <ScalarProperty Name="BillID" ColumnName="BillID" />
-                <ScalarProperty Name="BillEndDate" ColumnName="BillEndDate" />
-                <ScalarProperty Name="BillStartDate" ColumnName="BillStartDate" />
-                <ScalarProperty Name="FlatNumber" ColumnName="FlatNumber" />
-                <ScalarProperty Name="PayID" ColumnName="PayID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3411,36 +3415,6 @@ warning 6002: The table/view 'NestinDB.dbo.viewVisitorData' does not have a prim
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ViewGeneratedBills">
-            <EntityTypeMapping TypeName="SocietyDBModel.ViewGeneratedBill">
-              <MappingFragment StoreEntitySet="ViewGeneratedBill">
-                <ScalarProperty Name="ModifiedAt" ColumnName="ModifiedAt" />
-                <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
-                <ScalarProperty Name="TransactionID" ColumnName="TransactionID" />
-                <ScalarProperty Name="PaymentMode" ColumnName="PaymentMode" />
-                <ScalarProperty Name="CurrentMonthBalance" ColumnName="CurrentMonthBalance" />
-                <ScalarProperty Name="AmountPaid" ColumnName="AmountPaid" />
-                <ScalarProperty Name="AmountPaidDate" ColumnName="AmountPaidDate" />
-                <ScalarProperty Name="PreviousMonthBalance" ColumnName="PreviousMonthBalance" />
-                <ScalarProperty Name="AmountTobePaid" ColumnName="AmountTobePaid" />
-                <ScalarProperty Name="BillMonth" ColumnName="BillMonth" />
-                <ScalarProperty Name="PaymentDueDate" ColumnName="PaymentDueDate" />
-                <ScalarProperty Name="CycleType" ColumnName="CycleType" />
-                <ScalarProperty Name="CurrentBillAmount" ColumnName="CurrentBillAmount" />
-                <ScalarProperty Name="FlatArea" ColumnName="FlatArea" />
-                <ScalarProperty Name="ChargeType" ColumnName="ChargeType" />
-                <ScalarProperty Name="BillDescription" ColumnName="BillDescription" />
-                <ScalarProperty Name="Rate" ColumnName="Rate" />
-                <ScalarProperty Name="BillType" ColumnName="BillType" />
-                <ScalarProperty Name="BillID" ColumnName="BillID" />
-                <ScalarProperty Name="BillEndDate" ColumnName="BillEndDate" />
-                <ScalarProperty Name="BillStartDate" ColumnName="BillStartDate" />
-                <ScalarProperty Name="SocietyID" ColumnName="SocietyID" />
-                <ScalarProperty Name="FlatNumber" ColumnName="FlatNumber" />
-                <ScalarProperty Name="PayID" ColumnName="PayID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Notifications">
             <EntityTypeMapping TypeName="SocietyDBModel.Notification">
               <MappingFragment StoreEntitySet="Notifications">
@@ -3457,6 +3431,7 @@ warning 6002: The table/view 'NestinDB.dbo.viewVisitorData' does not have a prim
           <EntitySetMapping Name="ViewComplaintSummaries">
             <EntityTypeMapping TypeName="SocietyDBModel.ViewComplaintSummary">
               <MappingFragment StoreEntitySet="ViewComplaintSummary">
+                <ScalarProperty Name="EmployeeContact" ColumnName="EmployeeContact" />
                 <ScalarProperty Name="LastAt" ColumnName="LastAt" />
                 <ScalarProperty Name="LastStatus" ColumnName="LastStatus" />
                 <ScalarProperty Name="LastStatusID" ColumnName="LastStatusID" />
@@ -3502,48 +3477,6 @@ warning 6002: The table/view 'NestinDB.dbo.viewVisitorData' does not have a prim
                 <ScalarProperty Name="VisitorName" ColumnName="VisitorName" />
                 <ScalarProperty Name="VisitorId" ColumnName="VisitorId" />
                 <ScalarProperty Name="RequestId" ColumnName="RequestId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ViewLatestGeneratedBill_Resident">
-            <EntityTypeMapping TypeName="SocietyDBModel.ViewLatestGeneratedBill_Resident">
-              <MappingFragment StoreEntitySet="ViewLatestGeneratedBill_Resident">
-                <ScalarProperty Name="TenantMobile" ColumnName="TenantMobile" />
-                <ScalarProperty Name="TenantEmail" ColumnName="TenantEmail" />
-                <ScalarProperty Name="TenantLastName" ColumnName="TenantLastName" />
-                <ScalarProperty Name="TenantFirstName" ColumnName="TenantFirstName" />
-                <ScalarProperty Name="TenantUserID" ColumnName="TenantUserID" />
-                <ScalarProperty Name="OwnerMobile" ColumnName="OwnerMobile" />
-                <ScalarProperty Name="OwnerEmail" ColumnName="OwnerEmail" />
-                <ScalarProperty Name="OwnerLastName" ColumnName="OwnerLastName" />
-                <ScalarProperty Name="OwnerFirstName" ColumnName="OwnerFirstName" />
-                <ScalarProperty Name="OwnerUserID" ColumnName="OwnerUserID" />
-                <ScalarProperty Name="FlatID" ColumnName="FlatID" />
-                <ScalarProperty Name="FlatArea" ColumnName="FlatArea" />
-                <ScalarProperty Name="ModifiedAt" ColumnName="ModifiedAt" />
-                <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
-                <ScalarProperty Name="TransactionID" ColumnName="TransactionID" />
-                <ScalarProperty Name="PaymentMode" ColumnName="PaymentMode" />
-                <ScalarProperty Name="CurrentMonthBalance" ColumnName="CurrentMonthBalance" />
-                <ScalarProperty Name="AmountPaid" ColumnName="AmountPaid" />
-                <ScalarProperty Name="AmountPaidDate" ColumnName="AmountPaidDate" />
-                <ScalarProperty Name="PreviousMonthBalance" ColumnName="PreviousMonthBalance" />
-                <ScalarProperty Name="AmountTobePaid" ColumnName="AmountTobePaid" />
-                <ScalarProperty Name="BillMonth" ColumnName="BillMonth" />
-                <ScalarProperty Name="PaymentDueDate" ColumnName="PaymentDueDate" />
-                <ScalarProperty Name="CycleType" ColumnName="CycleType" />
-                <ScalarProperty Name="CurrentBillAmount" ColumnName="CurrentBillAmount" />
-                <ScalarProperty Name="ChargeType" ColumnName="ChargeType" />
-                <ScalarProperty Name="BillDescription" ColumnName="BillDescription" />
-                <ScalarProperty Name="Rate" ColumnName="Rate" />
-                <ScalarProperty Name="BillDate" ColumnName="BillDate" />
-                <ScalarProperty Name="BillType" ColumnName="BillType" />
-                <ScalarProperty Name="BillID" ColumnName="BillID" />
-                <ScalarProperty Name="BillEndDate" ColumnName="BillEndDate" />
-                <ScalarProperty Name="BillStartDate" ColumnName="BillStartDate" />
-                <ScalarProperty Name="SocietyID" ColumnName="SocietyID" />
-                <ScalarProperty Name="FlatNumber" ColumnName="FlatNumber" />
-                <ScalarProperty Name="PayID" ColumnName="PayID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3619,18 +3552,6 @@ warning 6002: The table/view 'NestinDB.dbo.viewVisitorData' does not have a prim
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Offers">
-            <EntityTypeMapping TypeName="SocietyDBModel.Offer">
-              <MappingFragment StoreEntitySet="Offers">
-                <ScalarProperty Name="SocietyID" ColumnName="SocietyID" />
-                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
-                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
-                <ScalarProperty Name="Offer1" ColumnName="Offer" />
-                <ScalarProperty Name="VendorID" ColumnName="VendorID" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="TotalUsers">
             <EntityTypeMapping TypeName="SocietyDBModel.TotalUser">
               <MappingFragment StoreEntitySet="TotalUsers">
@@ -3677,47 +3598,12 @@ warning 6002: The table/view 'NestinDB.dbo.viewVisitorData' does not have a prim
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ViewOffers">
-            <EntityTypeMapping TypeName="SocietyDBModel.ViewOffer">
-              <MappingFragment StoreEntitySet="ViewOffers">
-                <ScalarProperty Name="SocietyID" ColumnName="SocietyID" />
-                <ScalarProperty Name="VendorID" ColumnName="VendorID" />
-                <ScalarProperty Name="VendorName" ColumnName="VendorName" />
-                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
-                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
-                <ScalarProperty Name="Offer" ColumnName="Offer" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="ViewUserImages">
             <EntityTypeMapping TypeName="SocietyDBModel.ViewUserImage">
               <MappingFragment StoreEntitySet="ViewUserImage">
                 <ScalarProperty Name="Profile_image" ColumnName="Profile_image" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="ResID" ColumnName="ResID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ViewUserSettings">
-            <EntityTypeMapping TypeName="SocietyDBModel.ViewUserSetting">
-              <MappingFragment StoreEntitySet="ViewUserSetting">
-                <ScalarProperty Name="NoticeSMS" ColumnName="NoticeSMS" />
-                <ScalarProperty Name="NoticeMail" ColumnName="NoticeMail" />
-                <ScalarProperty Name="NoticeNotification" ColumnName="NoticeNotification" />
-                <ScalarProperty Name="forumSMS" ColumnName="forumSMS" />
-                <ScalarProperty Name="forumMail" ColumnName="forumMail" />
-                <ScalarProperty Name="forumNotification" ColumnName="forumNotification" />
-                <ScalarProperty Name="ComplaintSMS" ColumnName="ComplaintSMS" />
-                <ScalarProperty Name="ComplaintMail" ColumnName="ComplaintMail" />
-                <ScalarProperty Name="ComplaintNotification" ColumnName="ComplaintNotification" />
-                <ScalarProperty Name="BillingSMS" ColumnName="BillingSMS" />
-                <ScalarProperty Name="BillingMail" ColumnName="BillingMail" />
-                <ScalarProperty Name="BillingNotification" ColumnName="BillingNotification" />
-                <ScalarProperty Name="RegID" ColumnName="RegID" />
-                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
-                <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3816,6 +3702,7 @@ warning 6002: The table/view 'NestinDB.dbo.viewVisitorData' does not have a prim
           <EntitySetMapping Name="ViewVehiclePools">
             <EntityTypeMapping TypeName="SocietyDBModel.ViewVehiclePool">
               <MappingFragment StoreEntitySet="ViewVehiclePool">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
                 <ScalarProperty Name="FlatNumber" ColumnName="FlatNumber" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
@@ -4066,6 +3953,236 @@ warning 6002: The table/view 'NestinDB.dbo.viewVisitorData' does not have a prim
                 <ScalarProperty Name="FlatID" ColumnName="FlatID" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="ResID" ColumnName="ResID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ViewVendors">
+            <EntityTypeMapping TypeName="SocietyDBModel.ViewVendor">
+              <MappingFragment StoreEntitySet="ViewVendor">
+                <ScalarProperty Name="OfferEndDate" ColumnName="OfferEndDate" />
+                <ScalarProperty Name="OfferStartDate" ColumnName="OfferStartDate" />
+                <ScalarProperty Name="offer" ColumnName="offer" />
+                <ScalarProperty Name="OfferID" ColumnName="OfferID" />
+                <ScalarProperty Name="Address2" ColumnName="Address2" />
+                <ScalarProperty Name="ContactNumber2" ColumnName="ContactNumber2" />
+                <ScalarProperty Name="SocietyID" ColumnName="SocietyID" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+                <ScalarProperty Name="VendorName" ColumnName="VendorName" />
+                <ScalarProperty Name="ShopCategory" ColumnName="ShopCategory" />
+                <ScalarProperty Name="VendorID" ColumnName="VendorID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vendors">
+            <EntityTypeMapping TypeName="SocietyDBModel.Vendor">
+              <MappingFragment StoreEntitySet="Vendors">
+                <ScalarProperty Name="Address2" ColumnName="Address2" />
+                <ScalarProperty Name="ContactNumber2" ColumnName="ContactNumber2" />
+                <ScalarProperty Name="SocietyID" ColumnName="SocietyID" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="CmdType" ColumnName="CmdType" />
+                <ScalarProperty Name="VendorIconFormat" ColumnName="VendorIconFormat" />
+                <ScalarProperty Name="VendorIcon" ColumnName="VendorIcon" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+                <ScalarProperty Name="VendorName" ColumnName="VendorName" />
+                <ScalarProperty Name="ShopCategory" ColumnName="ShopCategory" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GeneratedBills">
+            <EntityTypeMapping TypeName="SocietyDBModel.GeneratedBill">
+              <MappingFragment StoreEntitySet="GeneratedBill">
+                <ScalarProperty Name="Activated" ColumnName="Activated" />
+                <ScalarProperty Name="ActionType" ColumnName="ActionType" />
+                <ScalarProperty Name="SocietyID" ColumnName="SocietyID" />
+                <ScalarProperty Name="BillMonth" ColumnName="BillMonth" />
+                <ScalarProperty Name="BillEndDate" ColumnName="BillEndDate" />
+                <ScalarProperty Name="BillStartDate" ColumnName="BillStartDate" />
+                <ScalarProperty Name="BillDescription" ColumnName="BillDescription" />
+                <ScalarProperty Name="ModifiedAt" ColumnName="ModifiedAt" />
+                <ScalarProperty Name="CurrentMonthBalance" ColumnName="CurrentMonthBalance" />
+                <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+                <ScalarProperty Name="TransactionID" ColumnName="TransactionID" />
+                <ScalarProperty Name="PaymentMode" ColumnName="PaymentMode" />
+                <ScalarProperty Name="AmountPaid" ColumnName="AmountPaid" />
+                <ScalarProperty Name="AmountPaidDate" ColumnName="AmountPaidDate" />
+                <ScalarProperty Name="PreviousMonthBalance" ColumnName="PreviousMonthBalance" />
+                <ScalarProperty Name="AmountTobePaid" ColumnName="AmountTobePaid" />
+                <ScalarProperty Name="PaymentDueDate" ColumnName="PaymentDueDate" />
+                <ScalarProperty Name="CycleType" ColumnName="CycleType" />
+                <ScalarProperty Name="CurrentBillAmount" ColumnName="CurrentBillAmount" />
+                <ScalarProperty Name="SocietyBillID" ColumnName="SocietyBillID" />
+                <ScalarProperty Name="FlatID" ColumnName="FlatID" />
+                <ScalarProperty Name="PayID" ColumnName="PayID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Societybillplans">
+            <EntityTypeMapping TypeName="SocietyDBModel.Societybillplan">
+              <MappingFragment StoreEntitySet="Societybillplans">
+                <ScalarProperty Name="SocietyID" ColumnName="SocietyID" />
+                <ScalarProperty Name="Applyto" ColumnName="Applyto" />
+                <ScalarProperty Name="CycleType" ColumnName="CycleType" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="ChargeType" ColumnName="ChargeType" />
+                <ScalarProperty Name="BillType" ColumnName="BillType" />
+                <ScalarProperty Name="BillTypeID" ColumnName="BillTypeID" />
+                <ScalarProperty Name="SocietyBillID" ColumnName="SocietyBillID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ViewLatestBills">
+            <EntityTypeMapping TypeName="SocietyDBModel.ViewLatestBill">
+              <MappingFragment StoreEntitySet="ViewLatestBill">
+                <ScalarProperty Name="ModifiedAt" ColumnName="ModifiedAt" />
+                <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+                <ScalarProperty Name="TransactionID" ColumnName="TransactionID" />
+                <ScalarProperty Name="PaymentMode" ColumnName="PaymentMode" />
+                <ScalarProperty Name="CurrentMonthBalance" ColumnName="CurrentMonthBalance" />
+                <ScalarProperty Name="AmountPaid" ColumnName="AmountPaid" />
+                <ScalarProperty Name="AmountPaidDate" ColumnName="AmountPaidDate" />
+                <ScalarProperty Name="PreviousMonthBalance" ColumnName="PreviousMonthBalance" />
+                <ScalarProperty Name="AmountTobePaid" ColumnName="AmountTobePaid" />
+                <ScalarProperty Name="BillMonth" ColumnName="BillMonth" />
+                <ScalarProperty Name="PaymentDueDate" ColumnName="PaymentDueDate" />
+                <ScalarProperty Name="CurrentBillAmount" ColumnName="CurrentBillAmount" />
+                <ScalarProperty Name="BillDescription" ColumnName="BillDescription" />
+                <ScalarProperty Name="SocietyBillID" ColumnName="SocietyBillID" />
+                <ScalarProperty Name="BillEndDate" ColumnName="BillEndDate" />
+                <ScalarProperty Name="BillStartDate" ColumnName="BillStartDate" />
+                <ScalarProperty Name="SocietyID" ColumnName="SocietyID" />
+                <ScalarProperty Name="FlatID" ColumnName="FlatID" />
+                <ScalarProperty Name="Activated" ColumnName="Activated" />
+                <ScalarProperty Name="ActionType" ColumnName="ActionType" />
+                <ScalarProperty Name="PayID" ColumnName="PayID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="viewLatestFlatBills">
+            <EntityTypeMapping TypeName="SocietyDBModel.viewLatestFlatBill">
+              <MappingFragment StoreEntitySet="viewLatestFlatBill">
+                <ScalarProperty Name="ModifiedAt" ColumnName="ModifiedAt" />
+                <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+                <ScalarProperty Name="TransactionID" ColumnName="TransactionID" />
+                <ScalarProperty Name="PaymentMode" ColumnName="PaymentMode" />
+                <ScalarProperty Name="CurrentMonthBalance" ColumnName="CurrentMonthBalance" />
+                <ScalarProperty Name="AmountPaid" ColumnName="AmountPaid" />
+                <ScalarProperty Name="AmountPaidDate" ColumnName="AmountPaidDate" />
+                <ScalarProperty Name="PreviousMonthBalance" ColumnName="PreviousMonthBalance" />
+                <ScalarProperty Name="AmountTobePaid" ColumnName="AmountTobePaid" />
+                <ScalarProperty Name="BillMonth" ColumnName="BillMonth" />
+                <ScalarProperty Name="PaymentDueDate" ColumnName="PaymentDueDate" />
+                <ScalarProperty Name="CurrentBillAmount" ColumnName="CurrentBillAmount" />
+                <ScalarProperty Name="BillDescription" ColumnName="BillDescription" />
+                <ScalarProperty Name="BillEndDate" ColumnName="BillEndDate" />
+                <ScalarProperty Name="BillStartDate" ColumnName="BillStartDate" />
+                <ScalarProperty Name="PayID" ColumnName="PayID" />
+                <ScalarProperty Name="Activated" ColumnName="Activated" />
+                <ScalarProperty Name="ActionType" ColumnName="ActionType" />
+                <ScalarProperty Name="Applyto" ColumnName="Applyto" />
+                <ScalarProperty Name="CycleTYpe" ColumnName="CycleTYpe" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="ChargeType" ColumnName="ChargeType" />
+                <ScalarProperty Name="BillType" ColumnName="BillType" />
+                <ScalarProperty Name="BillTypeID" ColumnName="BillTypeID" />
+                <ScalarProperty Name="SocietyBillID" ColumnName="SocietyBillID" />
+                <ScalarProperty Name="FlatArea" ColumnName="FlatArea" />
+                <ScalarProperty Name="FlatNumber" ColumnName="FlatNumber" />
+                <ScalarProperty Name="FlatID" ColumnName="FlatID" />
+                <ScalarProperty Name="SocietyID" ColumnName="SocietyID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Offers">
+            <EntityTypeMapping TypeName="SocietyDBModel.Offer">
+              <MappingFragment StoreEntitySet="Offers">
+                <ScalarProperty Name="SocietyID" ColumnName="SocietyID" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="offerdescription" ColumnName="offerdescription" />
+                <ScalarProperty Name="VendorID" ColumnName="VendorID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ViewOffers">
+            <EntityTypeMapping TypeName="SocietyDBModel.ViewOffer">
+              <MappingFragment StoreEntitySet="ViewOffers">
+                <ScalarProperty Name="SocietyID" ColumnName="SocietyID" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="startDate" ColumnName="startDate" />
+                <ScalarProperty Name="offerdescription" ColumnName="offerdescription" />
+                <ScalarProperty Name="VendorID" ColumnName="VendorID" />
+                <ScalarProperty Name="OfferID" ColumnName="OfferID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ViewLatestOffers">
+            <EntityTypeMapping TypeName="SocietyDBModel.ViewLatestOffer">
+              <MappingFragment StoreEntitySet="ViewLatestOffer">
+                <ScalarProperty Name="SocietyID" ColumnName="SocietyID" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="startDate" ColumnName="startDate" />
+                <ScalarProperty Name="offerdescription" ColumnName="offerdescription" />
+                <ScalarProperty Name="VendorID" ColumnName="VendorID" />
+                <ScalarProperty Name="OfferID" ColumnName="OfferID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ViewGeneratedBills">
+            <EntityTypeMapping TypeName="SocietyDBModel.ViewGeneratedBill">
+              <MappingFragment StoreEntitySet="ViewGeneratedBill">
+                <ScalarProperty Name="FlatNumber" ColumnName="FlatNumber" />
+                <ScalarProperty Name="ModifiedAt" ColumnName="ModifiedAt" />
+                <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+                <ScalarProperty Name="TransactionID" ColumnName="TransactionID" />
+                <ScalarProperty Name="PaymentMode" ColumnName="PaymentMode" />
+                <ScalarProperty Name="CurrentMonthBalance" ColumnName="CurrentMonthBalance" />
+                <ScalarProperty Name="AmountPaid" ColumnName="AmountPaid" />
+                <ScalarProperty Name="AmountPaidDate" ColumnName="AmountPaidDate" />
+                <ScalarProperty Name="PreviousMonthBalance" ColumnName="PreviousMonthBalance" />
+                <ScalarProperty Name="AmountTobePaid" ColumnName="AmountTobePaid" />
+                <ScalarProperty Name="BillMonth" ColumnName="BillMonth" />
+                <ScalarProperty Name="PaymentDueDate" ColumnName="PaymentDueDate" />
+                <ScalarProperty Name="CycleType" ColumnName="CycleType" />
+                <ScalarProperty Name="CurrentBillAmount" ColumnName="CurrentBillAmount" />
+                <ScalarProperty Name="FlatArea" ColumnName="FlatArea" />
+                <ScalarProperty Name="ChargeType" ColumnName="ChargeType" />
+                <ScalarProperty Name="BillDescription" ColumnName="BillDescription" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="BillType" ColumnName="BillType" />
+                <ScalarProperty Name="SocietyBillID" ColumnName="SocietyBillID" />
+                <ScalarProperty Name="BillEndDate" ColumnName="BillEndDate" />
+                <ScalarProperty Name="BillStartDate" ColumnName="BillStartDate" />
+                <ScalarProperty Name="SocietyID" ColumnName="SocietyID" />
+                <ScalarProperty Name="FlatID" ColumnName="FlatID" />
+                <ScalarProperty Name="PayID" ColumnName="PayID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ViewUserSettings">
+            <EntityTypeMapping TypeName="SocietyDBModel.ViewUserSetting">
+              <MappingFragment StoreEntitySet="ViewUserSetting">
+                <ScalarProperty Name="NoticeSMS" ColumnName="NoticeSMS" />
+                <ScalarProperty Name="NoticeMail" ColumnName="NoticeMail" />
+                <ScalarProperty Name="NoticeNotification" ColumnName="NoticeNotification" />
+                <ScalarProperty Name="forumSMS" ColumnName="forumSMS" />
+                <ScalarProperty Name="forumMail" ColumnName="forumMail" />
+                <ScalarProperty Name="forumNotification" ColumnName="forumNotification" />
+                <ScalarProperty Name="ComplaintSMS" ColumnName="ComplaintSMS" />
+                <ScalarProperty Name="ComplaintMail" ColumnName="ComplaintMail" />
+                <ScalarProperty Name="ComplaintNotification" ColumnName="ComplaintNotification" />
+                <ScalarProperty Name="BillingSMS" ColumnName="BillingSMS" />
+                <ScalarProperty Name="BillingMail" ColumnName="BillingMail" />
+                <ScalarProperty Name="BillingNotification" ColumnName="BillingNotification" />
+                <ScalarProperty Name="RegID" ColumnName="RegID" />
+                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+                <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

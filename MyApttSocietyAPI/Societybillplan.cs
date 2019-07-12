@@ -14,7 +14,8 @@ namespace MyApttSocietyAPI
     
     public partial class Societybillplan
     {
-        public int BillID { get; set; }
+        public int SocietyBillID { get; set; }
+        public int BillTypeID { get; set; }
         public string BillType { get; set; }
         public string ChargeType { get; set; }
         public string Rate { get; set; }
