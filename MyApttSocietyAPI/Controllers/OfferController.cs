@@ -23,6 +23,20 @@ namespace MyApttSocietyAPI.Controllers
             return offers;
         }
 
+        [HttpGet]
+        [Route("Society/{Societyid}")]
+
+        public IEnumerable<ViewVendor> GetNoOffersVendorsBySociety(int societyid)
+        {
+                var context = new SocietyDBEntities();
+                var offers = (from tab in context.ViewVendors
+                              where tab.SocietyID == societyid
+                              && tab.offer.Equals("No Offer")
+                              select tab).ToList();
+           
+           return offers;
+        }
+
         // GET: api/Offer/5
         [HttpGet]
         [Route("Society/{SocietyID}/Vendor/{VendorID}")]
