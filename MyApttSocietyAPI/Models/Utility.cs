@@ -57,53 +57,58 @@ namespace MyApttSocietyAPI.Models
         }
 
 
-        public static void SendGCMNotification(string receiverID, string NotificationText)
+        public static bool SendGCMNotification(string receiverID, string NotificationText)
         {
+            try
+            {
+                string url = "https://android.googleapis.com/gcm/send";
+                String RegID = receiverID;
+                String API_KEY = "AIzaSyBBny4kCJmN1Ep3NlUxImIF7iHz6OC6YWQ";
+                String SENDER_ID = "288809313667";
+                WebRequest tRequest;
 
-            string url = "https://android.googleapis.com/gcm/send";
-            String RegID = receiverID;
-            String API_KEY = "AIzaSyBBny4kCJmN1Ep3NlUxImIF7iHz6OC6YWQ";
-            String SENDER_ID = "288809313667";
-            WebRequest tRequest;
+                tRequest = WebRequest.Create(url);
+                tRequest.Method = "post";
 
-            tRequest = WebRequest.Create(url);
+                // tRequest.ContentType = " application/x-www-form-urlencoded;charset=UTF-8";
 
-            tRequest.Method = "post";
+                tRequest.ContentType = "application/json";
 
-            // tRequest.ContentType = " application/x-www-form-urlencoded;charset=UTF-8";
+                tRequest.Headers.Add(string.Format("Authorization: key={0}", API_KEY));
 
+                tRequest.Headers.Add(string.Format("Sender: id={0}", SENDER_ID));
 
-            tRequest.ContentType = "application/json";
+                string postData = "{\"collapse_key\":\"score_update\",\"time_to_live\":108,\"delay_while_idle\":true,\"data\": { \"msg\" : " + "\"" + NotificationText + "\",\"time\": " + "\"" + System.DateTime.Now.ToString() + "\"},\"registration_ids\":[\"" + receiverID + "\"]}";
 
-            tRequest.Headers.Add(string.Format("Authorization: key={0}", API_KEY));
+                Byte[] byteArray = System.Text.Encoding.UTF8.GetBytes(postData);
 
-            tRequest.Headers.Add(string.Format("Sender: id={0}", SENDER_ID));
+                tRequest.ContentLength = byteArray.Length;
 
-            string postData = "{\"collapse_key\":\"score_update\",\"time_to_live\":108,\"delay_while_idle\":true,\"data\": { \"msg\" : " + "\"" + NotificationText + "\",\"time\": " + "\"" + System.DateTime.Now.ToString() + "\"},\"registration_ids\":[\"" + receiverID + "\"]}";
+                Stream dataStream = tRequest.GetRequestStream();
 
-            Byte[] byteArray = System.Text.Encoding.UTF8.GetBytes(postData);
+                dataStream.Write(byteArray, 0, byteArray.Length);
 
-            tRequest.ContentLength = byteArray.Length;
+                dataStream.Close();
 
-            Stream dataStream = tRequest.GetRequestStream();
+                WebResponse tResponse = tRequest.GetResponse();
 
-            dataStream.Write(byteArray, 0, byteArray.Length);
+                dataStream = tResponse.GetResponseStream();
 
-            dataStream.Close();
+                StreamReader tReader = new StreamReader(dataStream);
 
-            WebResponse tResponse = tRequest.GetResponse();
+                String sResponseFromServer = tReader.ReadToEnd();   //Get response from GCM server.
 
-            dataStream = tResponse.GetResponseStream();
+                //lblnotifResp.Text = sResponseFromServer;      //Assigning GCM response to Label text 
 
-            StreamReader tReader = new StreamReader(dataStream);
-
-            String sResponseFromServer = tReader.ReadToEnd();   //Get response from GCM server.
-
-            //lblnotifResp.Text = sResponseFromServer;      //Assigning GCM response to Label text 
-
-            tReader.Close();
-            dataStream.Close();
-            tResponse.Close();
+                tReader.Close();
+                dataStream.Close();
+                tResponse.Close();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
 
         public static void SendMail(string EmailID, string EmailSubject, string EmailBody)
@@ -128,24 +133,33 @@ namespace MyApttSocietyAPI.Models
                 response.Close();
             }
             catch (Exception ex)
-            { }
+            {
+                int a = 1;
+            }
 
         }
 
         public static string sendSMS2Resident(String textMessage, String MobileNumber)
         {
-            String message = HttpUtility.UrlEncode(textMessage);
-            using (var wb = new WebClient())
+            try
             {
-                byte[] response = wb.UploadValues("https://api.textlocal.in/send/", new NameValueCollection()
+                String message = HttpUtility.UrlEncode(textMessage);
+                using (var wb = new WebClient())
+                {
+                    byte[] response = wb.UploadValues("https://api.textlocal.in/send/", new NameValueCollection()
                 {
                 {"apikey" , "msfOwE8inQk-tKtISb5ZeGF09HkktGreaH64DJlkg3"},
                 {"numbers" , MobileNumber},
                 {"message" , message},
                 {"sender" , "TXTLCL"}
                 });
-                string result = System.Text.Encoding.UTF8.GetString(response);
-                return result;
+                    string result = System.Text.Encoding.UTF8.GetString(response);
+                    return result;
+                }
+            }
+            catch (Exception ex)
+            {
+                return "Error";
             }
         }
 

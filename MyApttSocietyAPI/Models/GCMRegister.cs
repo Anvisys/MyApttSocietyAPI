@@ -13,6 +13,10 @@ namespace MyApttSocietyAPI.Models
 
         public String RegID { get; set; }
 
+        public int UserID { get; set; }
+
         public String Topic { get; set; }
+
+        public String Message { get; set; }
     }
 }

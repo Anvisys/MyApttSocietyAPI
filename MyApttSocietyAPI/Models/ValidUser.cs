@@ -10,7 +10,7 @@ namespace MyApttSocietyAPI.Models
         public String result { get; set; }
         public String message { get; set; }
         public TotalUser UserData { get; set; }
-        public List<ViewSocietyUser> SocietyUser { get; set; }
+        public List<ViewSocietyUser> SocietyUser = new List<ViewSocietyUser>();
     }
 
     

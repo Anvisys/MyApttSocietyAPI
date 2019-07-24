@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
+using Newtonsoft.Json;
 
 namespace MyApttSocietyAPI.Models
 {
@@ -24,9 +25,9 @@ namespace MyApttSocietyAPI.Models
         public bool IsEmail { get; protected set; }
         public bool IsGcm { get; protected set; }
 
-        public bool NotifyResidents(String textMessage, String Heading)
+        public bool NotifyResidents(Message message, String Heading)
         {
-           
+            String textMessage = JsonConvert.SerializeObject(message);
             if (IsEmail)
             {
                 Utility.SendMail(UserEmail, Heading, textMessage);

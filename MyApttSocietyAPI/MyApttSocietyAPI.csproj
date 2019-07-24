@@ -145,6 +145,7 @@
     <Compile Include="Controllers\ForumController.cs" />
     <Compile Include="Controllers\ForumDiffController.cs" />
     <Compile Include="Controllers\GCMRegisterController.cs" />
+    <Compile Include="Controllers\OfferController.cs" />
     <Compile Include="Controllers\Rent\RentInventoryController.cs" />
     <Compile Include="Controllers\Rent\RentLookupController.cs" />
     <Compile Include="Controllers\SocietyController.cs" />
@@ -202,6 +203,12 @@
     <Compile Include="lukInventoryType.cs">
       <DependentUpon>SocietyDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="lukMessageTopic.cs">
+      <DependentUpon>SocietyDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="lukStatu.cs">
+      <DependentUpon>SocietyDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="lukVendorCategory.cs">
       <DependentUpon>SocietyDB.tt</DependentUpon>
     </Compile>
@@ -215,7 +222,10 @@
     <Compile Include="Models\Forum.cs" />
     <Compile Include="Models\GCMRegister.cs" />
     <Compile Include="Models\InventoryAccomodation.cs" />
+    <Compile Include="Models\Message.cs" />
     <Compile Include="Models\MessageType.cs" />
+    <Compile Include="Models\Notifications.cs" />
+    <Compile Include="Models\offerbatch.cs" />
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\Utility.cs" />
     <Compile Include="Models\ValidateUser.cs" />
@@ -232,6 +242,9 @@
     <Compile Include="Models\Tenant.cs" />
     <Compile Include="Models\Update.cs" />
     <Compile Include="Models\UpdateDate.cs" />
+    <Compile Include="NewUserSetting.cs">
+      <DependentUpon>SocietyDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Notification.cs">
       <DependentUpon>SocietyDB.tt</DependentUpon>
     </Compile>
@@ -281,9 +294,6 @@
     <Compile Include="UserImage.cs">
       <DependentUpon>SocietyDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="UserSetting.cs">
-      <DependentUpon>SocietyDB.tt</DependentUpon>
-    </Compile>
     <Compile Include="VehiclePool.cs">
       <DependentUpon>SocietyDB.tt</DependentUpon>
     </Compile>
@@ -320,6 +330,9 @@
     <Compile Include="ViewForumNoImage.cs">
       <DependentUpon>SocietyDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewGCMList.cs">
+      <DependentUpon>SocietyDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="ViewGeneratedBill.cs">
       <DependentUpon>SocietyDB.tt</DependentUpon>
     </Compile>
@@ -336,6 +349,9 @@
       <DependentUpon>SocietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewLatestThread.cs">
+      <DependentUpon>SocietyDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewNewUserSetting.cs">
       <DependentUpon>SocietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewNotification.cs">

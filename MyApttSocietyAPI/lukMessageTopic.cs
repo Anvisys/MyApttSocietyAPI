@@ -12,12 +12,9 @@ namespace MyApttSocietyAPI
     using System;
     using System.Collections.Generic;
     
-    public partial class GCMList
+    public partial class lukMessageTopic
     {
-        public int ID { get; set; }
-        public int UserId { get; set; }
-        public string RegID { get; set; }
-        public string DeviceID { get; set; }
+        public int TopicID { get; set; }
         public string Topic { get; set; }
     }
 }

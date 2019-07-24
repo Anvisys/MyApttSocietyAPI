@@ -146,11 +146,16 @@ namespace MyApttSocietyAPI.Controllers
                         code = r.Next(1000, 9999);
                     } while (IsCodeInUse(code.ToString()));
 
+                    String mobile = value.VisitorMobile;
+                    if (mobile.Length > 10)
+                    {
+                        mobile = mobile.Substring(mobile.Length - 10, mobile.Length);
+                    }
 
                     if (value.VisitorId == 0)
                     {
                         VisitorDetail guest = new VisitorDetail();
-                        guest.VisitorMobileNo = value.VisitorMobile;
+                        guest.VisitorMobileNo = mobile;
                         guest.VisitorName = value.VisitorName;
                         guest.VisitorAddress = value.VisitorAddress;
                         guest.SocietyId = value.SocietyId;
@@ -242,11 +247,14 @@ namespace MyApttSocietyAPI.Controllers
 
                     guest.ActualInTime = DateTime.Now.ToUniversalTime();
                     context.SaveChanges();
-
-                    var strMessage = "Your guest " + value.VisitorName + " has checked in.";
-                    VisitorNotification visitorNotification = new VisitorNotification(context, value.HostMobile);
-                    visitorNotification.NotifyResidents(strMessage, value.VisitorMobile);
-                         
+                    Message message = new Message();
+                    message.Topic = "Visitor";
+                    message.SocietyID = value.SocietyId;
+                    message.TextMessage = "Your guest " + value.VisitorName + " has arrived.";
+                    //VisitorNotification visitorNotification = new VisitorNotification(context, value.HostMobile);
+                     Notifications msg = new Notifications(context);
+                     msg.Notify(Notifications.TO.User, value.ResID, message);
+                        
                     resp = "{\"Response\":\"OK\"}";
                 }
                 catch (Exception ex)

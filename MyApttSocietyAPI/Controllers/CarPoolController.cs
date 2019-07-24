@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Cors;
+using MyApttSocietyAPI.Models;
 
 namespace MyApttSocietyAPI.Controllers
 {
@@ -79,8 +80,7 @@ namespace MyApttSocietyAPI.Controllers
 
             }
         }
-
-
+        
 
         [Route("Add")]
         [HttpPost]
@@ -108,6 +108,16 @@ namespace MyApttSocietyAPI.Controllers
                 {
                     context.VehiclePools.Add(value);
                     context.SaveChanges();
+
+                    Message message = new Message();
+                    message.Topic = "CarPool";
+                    message.SocietyID = value.SocietyID;
+                    message.TextMessage = "A new Car Pool for " + value.Destination.ToString() + " is available is your Society;";
+
+                    Notifications msg = new Notifications(context);
+                    msg.Notify(Notifications.TO.Society, value.SocietyID, message);
+
+
                     resp = "{\"Response\":\"Ok\"}";
                     var response = Request.CreateResponse(HttpStatusCode.OK);
                     response.Content = new StringContent(resp, System.Text.Encoding.UTF8, "application/json");
@@ -134,6 +144,8 @@ namespace MyApttSocietyAPI.Controllers
 
                 var exist = context.VehiclePoolEngagemments.Where(x => x.PoolID == value.PoolID && x.InterestedResId == value.InterestedResId).ToList();
 
+                var user = context.VehiclePools.Where(v => v.VehiclePoolID == value.PoolID).First();
+
                 if (exist.Count > 0)
                 {
                     resp = "{\"Response\":\"Duplicate\"}";
@@ -145,6 +157,14 @@ namespace MyApttSocietyAPI.Controllers
                 {
                     context.VehiclePoolEngagemments.Add(value);
                     context.SaveChanges();
+
+                    Message message = new Message();
+                    message.Topic = "CarPool";
+                    message.SocietyID = user.SocietyID;
+                    message.TextMessage = "Someone is interested in Your Ride Share offer to " + user.Destination;
+
+                    Notifications msg = new Notifications(context);
+                    msg.Notify(Notifications.TO.User, user.ResID, message);
 
                     resp = "{\"Response\":\"Ok\"}";
                     var response = Request.CreateResponse(HttpStatusCode.OK);

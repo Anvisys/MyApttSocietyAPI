@@ -65,7 +65,7 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="MobileNo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
           <Property Name="RegID" Type="varchar" MaxLength="250" Nullable="false" />
           <Property Name="DeviceID" Type="varchar" MaxLength="50" />
           <Property Name="Topic" Type="varchar" MaxLength="50" />
@@ -173,12 +173,36 @@ warning 6002: The table/view 'NestinDB.dbo.ImageCheck' does not have a primary k
           <Property Name="InventoryTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="InventoryType" Type="varchar" MaxLength="20" Nullable="false" />
         </EntityType>
+        <EntityType Name="lukMessageTopic">
+          <Key>
+            <PropertyRef Name="TopicID" />
+          </Key>
+          <Property Name="TopicID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Topic" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="lukStatus">
+          <Key>
+            <PropertyRef Name="StatusID" />
+          </Key>
+          <Property Name="StatusID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="20" />
+        </EntityType>
         <EntityType Name="lukVendorCategory">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ShopCategory" Type="varchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NewUserSettings">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="TopicID" Type="int" Nullable="false" />
+          <Property Name="GCM" Type="bit" Nullable="false" />
+          <Property Name="Mail" Type="bit" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'NestinDB.dbo.Notifications' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -348,25 +372,6 @@ warning 6002: The table/view 'NestinDB.dbo.Societybillplans' does not have a pri
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserID" Type="int" Nullable="false" />
           <Property Name="Profile_image" Type="image" />
-        </EntityType>
-        <EntityType Name="UserSettings">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="BillingNotification" Type="bit" Nullable="false" />
-          <Property Name="BillingMail" Type="bit" Nullable="false" />
-          <Property Name="BillingSMS" Type="bit" Nullable="false" />
-          <Property Name="ComplaintNotification" Type="bit" Nullable="false" />
-          <Property Name="ComplaintMail" Type="bit" Nullable="false" />
-          <Property Name="ComplaintSMS" Type="bit" Nullable="false" />
-          <Property Name="forumNotification" Type="bit" Nullable="false" />
-          <Property Name="forumMail" Type="bit" />
-          <Property Name="forumSMS" Type="bit" />
-          <Property Name="NoticeNotification" Type="bit" Nullable="false" />
-          <Property Name="NoticeMail" Type="bit" />
-          <Property Name="NoticeSMS" Type="bit" />
-          <Property Name="UserId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="VehiclePool">
           <Key>
@@ -673,6 +678,20 @@ warning 6002: The table/view 'NestinDB.dbo.ViewForumNoImage' does not have a pri
           <Property Name="SocietyID" Type="int" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
+warning 6002: The table/view 'NestinDB.dbo.ViewGCMList' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ViewGCMList">
+          <Key>
+            <PropertyRef Name="UserID" />
+            <PropertyRef Name="ResID" />
+          </Key>
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="ResID" Type="int" Nullable="false" />
+          <Property Name="MobileNo" Type="varchar" MaxLength="50" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" />
+          <Property Name="RegID" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <!--Errors Found During Generation:
 warning 6002: The table/view 'NestinDB.dbo.ViewGeneratedBill' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="ViewGeneratedBill">
           <Key>
@@ -891,6 +910,35 @@ warning 6002: The table/view 'NestinDB.dbo.ViewLatestThread' does not have a pri
           <Property Name="Topic" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="latestThread" Type="varchar" MaxLength="2000" />
           <Property Name="UpdatedAt" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'NestinDB.dbo.ViewNewUserSetting' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ViewNewUserSetting">
+          <Key>
+            <PropertyRef Name="UserID" />
+            <PropertyRef Name="ResID" />
+            <PropertyRef Name="FlatID" />
+            <PropertyRef Name="SocietyID" />
+            <PropertyRef Name="RegID" />
+            <PropertyRef Name="TopicID" />
+            <PropertyRef Name="Topic" />
+            <PropertyRef Name="SettingID" />
+            <PropertyRef Name="GCM" />
+            <PropertyRef Name="Mail" />
+          </Key>
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="ResID" Type="int" Nullable="false" />
+          <Property Name="FlatID" Type="int" Nullable="false" />
+          <Property Name="SocietyID" Type="int" Nullable="false" />
+          <Property Name="EmailId" Type="varchar" MaxLength="50" />
+          <Property Name="MobileNo" Type="varchar" MaxLength="50" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" />
+          <Property Name="RegID" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="TopicID" Type="int" Nullable="false" />
+          <Property Name="Topic" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="SettingID" Type="int" Nullable="false" />
+          <Property Name="GCM" Type="bit" Nullable="false" />
+          <Property Name="Mail" Type="bit" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'NestinDB.dbo.ViewNotifications' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -1313,7 +1361,10 @@ warning 6002: The table/view 'NestinDB.dbo.viewVisitorData' does not have a prim
           <EntitySet Name="lukComplaintType" EntityType="Self.lukComplaintType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="lukInventoryAccomodation" EntityType="Self.lukInventoryAccomodation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="lukInventoryType" EntityType="Self.lukInventoryType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="lukMessageTopic" EntityType="Self.lukMessageTopic" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="lukStatus" EntityType="Self.lukStatus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="lukVendorCategory" EntityType="Self.lukVendorCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NewUserSettings" EntityType="Self.NewUserSettings" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Offers" EntityType="Self.Offers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PollingAnswer" EntityType="Self.PollingAnswer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PollingData" EntityType="Self.PollingData" Schema="dbo" store:Type="Tables" />
@@ -1323,7 +1374,6 @@ warning 6002: The table/view 'NestinDB.dbo.viewVisitorData' does not have a prim
           <EntitySet Name="SocietyUser" EntityType="Self.SocietyUser" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TotalUsers" EntityType="Self.TotalUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserImage" EntityType="Self.UserImage" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="UserSettings" EntityType="Self.UserSettings" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VehiclePool" EntityType="Self.VehiclePool" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VehiclePoolEngagemment" EntityType="Self.VehiclePoolEngagemment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Vendors" EntityType="Self.Vendors" Schema="dbo" store:Type="Tables" />
@@ -1513,6 +1563,16 @@ warning 6002: The table/view 'NestinDB.dbo.viewVisitorData' does not have a prim
     [ViewForumNoImage].[SocietyID] AS [SocietyID]
     FROM [dbo].[ViewForumNoImage] AS [ViewForumNoImage]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="ViewGCMList" EntityType="Self.ViewGCMList" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ViewGCMList].[UserID] AS [UserID], 
+    [ViewGCMList].[ResID] AS [ResID], 
+    [ViewGCMList].[MobileNo] AS [MobileNo], 
+    [ViewGCMList].[FirstName] AS [FirstName], 
+    [ViewGCMList].[LastName] AS [LastName], 
+    [ViewGCMList].[RegID] AS [RegID]
+    FROM [dbo].[ViewGCMList] AS [ViewGCMList]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="ViewGeneratedBill" EntityType="Self.ViewGeneratedBill" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [ViewGeneratedBill].[PayID] AS [PayID], 
@@ -1637,6 +1697,23 @@ warning 6002: The table/view 'NestinDB.dbo.viewVisitorData' does not have a prim
     [ViewLatestThread].[latestThread] AS [latestThread], 
     [ViewLatestThread].[UpdatedAt] AS [UpdatedAt]
     FROM [dbo].[ViewLatestThread] AS [ViewLatestThread]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ViewNewUserSetting" EntityType="Self.ViewNewUserSetting" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ViewNewUserSetting].[UserID] AS [UserID], 
+    [ViewNewUserSetting].[ResID] AS [ResID], 
+    [ViewNewUserSetting].[FlatID] AS [FlatID], 
+    [ViewNewUserSetting].[SocietyID] AS [SocietyID], 
+    [ViewNewUserSetting].[EmailId] AS [EmailId], 
+    [ViewNewUserSetting].[MobileNo] AS [MobileNo], 
+    [ViewNewUserSetting].[FirstName] AS [FirstName], 
+    [ViewNewUserSetting].[RegID] AS [RegID], 
+    [ViewNewUserSetting].[TopicID] AS [TopicID], 
+    [ViewNewUserSetting].[Topic] AS [Topic], 
+    [ViewNewUserSetting].[SettingID] AS [SettingID], 
+    [ViewNewUserSetting].[GCM] AS [GCM], 
+    [ViewNewUserSetting].[Mail] AS [Mail]
+    FROM [dbo].[ViewNewUserSetting] AS [ViewNewUserSetting]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="ViewNotifications" EntityType="Self.ViewNotifications" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -1904,7 +1981,6 @@ warning 6002: The table/view 'NestinDB.dbo.viewVisitorData' does not have a prim
         <EntityContainer Name="SocietyDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Complaints" EntityType="SocietyDBModel.Complaint" />
           <EntitySet Name="Fora" EntityType="SocietyDBModel.Forum" />
-          <EntitySet Name="GCMLists" EntityType="SocietyDBModel.GCMList" />
           <EntitySet Name="PollingAnswers" EntityType="SocietyDBModel.PollingAnswer" />
           <EntitySet Name="ImageChecks" EntityType="SocietyDBModel.ImageCheck" />
           <EntitySet Name="ViewComplaintAges" EntityType="SocietyDBModel.ViewComplaintAge" />
@@ -1932,7 +2008,6 @@ warning 6002: The table/view 'NestinDB.dbo.viewVisitorData' does not have a prim
           <EntitySet Name="Flats" EntityType="SocietyDBModel.Flat" />
           <EntitySet Name="TotalUsers" EntityType="SocietyDBModel.TotalUser" />
           <EntitySet Name="UserImages" EntityType="SocietyDBModel.UserImage" />
-          <EntitySet Name="UserSettings" EntityType="SocietyDBModel.UserSetting" />
           <EntitySet Name="ViewUserImages" EntityType="SocietyDBModel.ViewUserImage" />
           <EntitySet Name="Houses" EntityType="SocietyDBModel.House" />
           <EntitySet Name="VehiclePoolEngagemments" EntityType="SocietyDBModel.VehiclePoolEngagemment" />
@@ -1964,6 +2039,12 @@ warning 6002: The table/view 'NestinDB.dbo.viewVisitorData' does not have a prim
           <EntitySet Name="ViewGeneratedBills" EntityType="SocietyDBModel.ViewGeneratedBill" />
           <EntitySet Name="ViewLatestBills" EntityType="SocietyDBModel.ViewLatestBill" />
           <EntitySet Name="viewLatestFlatBills" EntityType="SocietyDBModel.viewLatestFlatBill" />
+          <EntitySet Name="GCMLists" EntityType="SocietyDBModel.GCMList" />
+          <EntitySet Name="ViewGCMLists" EntityType="SocietyDBModel.ViewGCMList" />
+          <EntitySet Name="lukMessageTopics" EntityType="SocietyDBModel.lukMessageTopic" />
+          <EntitySet Name="lukStatus" EntityType="SocietyDBModel.lukStatu" />
+          <EntitySet Name="NewUserSettings" EntityType="SocietyDBModel.NewUserSetting" />
+          <EntitySet Name="ViewNewUserSettings" EntityType="SocietyDBModel.ViewNewUserSetting" />
         </EntityContainer>
         <EntityType Name="Complaint">
           <Key>
@@ -1992,16 +2073,6 @@ warning 6002: The table/view 'NestinDB.dbo.viewVisitorData' does not have a prim
           <Property Name="Thread" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
           <Property Name="UpdatedOn" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="SocietyID" Type="Int32" Nullable="false" />
-        </EntityType>
-        <EntityType Name="GCMList">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="MobileNo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="RegID" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Name="DeviceID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Topic" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="PollingAnswer">
           <Key>
@@ -2442,25 +2513,6 @@ warning 6002: The table/view 'NestinDB.dbo.viewVisitorData' does not have a prim
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UserID" Type="Int32" Nullable="false" />
           <Property Name="Profile_image" Type="Binary" MaxLength="Max" FixedLength="false" />
-        </EntityType>
-        <EntityType Name="UserSetting">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="BillingNotification" Type="Boolean" Nullable="false" />
-          <Property Name="BillingMail" Type="Boolean" Nullable="false" />
-          <Property Name="BillingSMS" Type="Boolean" Nullable="false" />
-          <Property Name="ComplaintNotification" Type="Boolean" Nullable="false" />
-          <Property Name="ComplaintMail" Type="Boolean" Nullable="false" />
-          <Property Name="ComplaintSMS" Type="Boolean" Nullable="false" />
-          <Property Name="forumNotification" Type="Boolean" Nullable="false" />
-          <Property Name="forumMail" Type="Boolean" />
-          <Property Name="forumSMS" Type="Boolean" />
-          <Property Name="NoticeNotification" Type="Boolean" Nullable="false" />
-          <Property Name="NoticeMail" Type="Boolean" />
-          <Property Name="NoticeSMS" Type="Boolean" />
-          <Property Name="UserId" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="ViewUserImage">
           <Key>
@@ -3194,6 +3246,79 @@ warning 6002: The table/view 'NestinDB.dbo.viewVisitorData' does not have a prim
           <Property Name="InvoiceID" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="ModifiedAt" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
+        <EntityType Name="GCMList">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="RegID" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="DeviceID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Topic" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ViewGCMList">
+          <Key>
+            <PropertyRef Name="UserID" />
+            <PropertyRef Name="ResID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="ResID" Type="Int32" Nullable="false" />
+          <Property Name="MobileNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RegID" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="lukMessageTopic">
+          <Key>
+            <PropertyRef Name="TopicID" />
+          </Key>
+          <Property Name="TopicID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Topic" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="lukStatu">
+          <Key>
+            <PropertyRef Name="StatusID" />
+          </Key>
+          <Property Name="StatusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="NewUserSetting">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="TopicID" Type="Int32" Nullable="false" />
+          <Property Name="GCM" Type="Boolean" Nullable="false" />
+          <Property Name="Mail" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ViewNewUserSetting">
+          <Key>
+            <PropertyRef Name="UserID" />
+            <PropertyRef Name="ResID" />
+            <PropertyRef Name="FlatID" />
+            <PropertyRef Name="SocietyID" />
+            <PropertyRef Name="RegID" />
+            <PropertyRef Name="TopicID" />
+            <PropertyRef Name="Topic" />
+            <PropertyRef Name="SettingID" />
+            <PropertyRef Name="GCM" />
+            <PropertyRef Name="Mail" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="ResID" Type="Int32" Nullable="false" />
+          <Property Name="FlatID" Type="Int32" Nullable="false" />
+          <Property Name="SocietyID" Type="Int32" Nullable="false" />
+          <Property Name="EmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MobileNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RegID" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="TopicID" Type="Int32" Nullable="false" />
+          <Property Name="Topic" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SettingID" Type="Int32" Nullable="false" />
+          <Property Name="GCM" Type="Boolean" Nullable="false" />
+          <Property Name="Mail" Type="Boolean" Nullable="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3226,17 +3351,6 @@ warning 6002: The table/view 'NestinDB.dbo.viewVisitorData' does not have a prim
                 <ScalarProperty Name="Topic" ColumnName="Topic" />
                 <ScalarProperty Name="ResID" ColumnName="ResID" />
                 <ScalarProperty Name="ThreadID" ColumnName="ThreadID" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="GCMLists">
-            <EntityTypeMapping TypeName="SocietyDBModel.GCMList">
-              <MappingFragment StoreEntitySet="GCMList">
-                <ScalarProperty Name="Topic" ColumnName="Topic" />
-                <ScalarProperty Name="DeviceID" ColumnName="DeviceID" />
-                <ScalarProperty Name="RegID" ColumnName="RegID" />
-                <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -3624,26 +3738,6 @@ warning 6002: The table/view 'NestinDB.dbo.viewVisitorData' does not have a prim
               <MappingFragment StoreEntitySet="UserImage">
                 <ScalarProperty Name="Profile_image" ColumnName="Profile_image" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="UserSettings">
-            <EntityTypeMapping TypeName="SocietyDBModel.UserSetting">
-              <MappingFragment StoreEntitySet="UserSettings">
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="NoticeSMS" ColumnName="NoticeSMS" />
-                <ScalarProperty Name="NoticeMail" ColumnName="NoticeMail" />
-                <ScalarProperty Name="NoticeNotification" ColumnName="NoticeNotification" />
-                <ScalarProperty Name="forumSMS" ColumnName="forumSMS" />
-                <ScalarProperty Name="forumMail" ColumnName="forumMail" />
-                <ScalarProperty Name="forumNotification" ColumnName="forumNotification" />
-                <ScalarProperty Name="ComplaintSMS" ColumnName="ComplaintSMS" />
-                <ScalarProperty Name="ComplaintMail" ColumnName="ComplaintMail" />
-                <ScalarProperty Name="ComplaintNotification" ColumnName="ComplaintNotification" />
-                <ScalarProperty Name="BillingSMS" ColumnName="BillingSMS" />
-                <ScalarProperty Name="BillingMail" ColumnName="BillingMail" />
-                <ScalarProperty Name="BillingNotification" ColumnName="BillingNotification" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -4244,6 +4338,75 @@ warning 6002: The table/view 'NestinDB.dbo.viewVisitorData' does not have a prim
                 <ScalarProperty Name="FlatNumber" ColumnName="FlatNumber" />
                 <ScalarProperty Name="FlatID" ColumnName="FlatID" />
                 <ScalarProperty Name="SocietyID" ColumnName="SocietyID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GCMLists">
+            <EntityTypeMapping TypeName="SocietyDBModel.GCMList">
+              <MappingFragment StoreEntitySet="GCMList">
+                <ScalarProperty Name="Topic" ColumnName="Topic" />
+                <ScalarProperty Name="DeviceID" ColumnName="DeviceID" />
+                <ScalarProperty Name="RegID" ColumnName="RegID" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ViewGCMLists">
+            <EntityTypeMapping TypeName="SocietyDBModel.ViewGCMList">
+              <MappingFragment StoreEntitySet="ViewGCMList">
+                <ScalarProperty Name="RegID" ColumnName="RegID" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+                <ScalarProperty Name="ResID" ColumnName="ResID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="lukMessageTopics">
+            <EntityTypeMapping TypeName="SocietyDBModel.lukMessageTopic">
+              <MappingFragment StoreEntitySet="lukMessageTopic">
+                <ScalarProperty Name="Topic" ColumnName="Topic" />
+                <ScalarProperty Name="TopicID" ColumnName="TopicID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="lukStatus">
+            <EntityTypeMapping TypeName="SocietyDBModel.lukStatu">
+              <MappingFragment StoreEntitySet="lukStatus">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NewUserSettings">
+            <EntityTypeMapping TypeName="SocietyDBModel.NewUserSetting">
+              <MappingFragment StoreEntitySet="NewUserSettings">
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="GCM" ColumnName="GCM" />
+                <ScalarProperty Name="TopicID" ColumnName="TopicID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ViewNewUserSettings">
+            <EntityTypeMapping TypeName="SocietyDBModel.ViewNewUserSetting">
+              <MappingFragment StoreEntitySet="ViewNewUserSetting">
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="GCM" ColumnName="GCM" />
+                <ScalarProperty Name="SettingID" ColumnName="SettingID" />
+                <ScalarProperty Name="Topic" ColumnName="Topic" />
+                <ScalarProperty Name="TopicID" ColumnName="TopicID" />
+                <ScalarProperty Name="RegID" ColumnName="RegID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+                <ScalarProperty Name="SocietyID" ColumnName="SocietyID" />
+                <ScalarProperty Name="FlatID" ColumnName="FlatID" />
+                <ScalarProperty Name="ResID" ColumnName="ResID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

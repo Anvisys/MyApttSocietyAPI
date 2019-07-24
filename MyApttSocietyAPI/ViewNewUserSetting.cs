@@ -12,12 +12,20 @@ namespace MyApttSocietyAPI
     using System;
     using System.Collections.Generic;
     
-    public partial class GCMList
+    public partial class ViewNewUserSetting
     {
-        public int ID { get; set; }
-        public int UserId { get; set; }
+        public int UserID { get; set; }
+        public int ResID { get; set; }
+        public int FlatID { get; set; }
+        public int SocietyID { get; set; }
+        public string EmailId { get; set; }
+        public string MobileNo { get; set; }
+        public string FirstName { get; set; }
         public string RegID { get; set; }
-        public string DeviceID { get; set; }
+        public int TopicID { get; set; }
         public string Topic { get; set; }
+        public int SettingID { get; set; }
+        public bool GCM { get; set; }
+        public bool Mail { get; set; }
     }
 }

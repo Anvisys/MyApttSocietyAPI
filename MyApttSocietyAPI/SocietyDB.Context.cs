@@ -27,7 +27,6 @@ namespace MyApttSocietyAPI
     
         public virtual DbSet<Complaint> Complaints { get; set; }
         public virtual DbSet<Forum> Fora { get; set; }
-        public virtual DbSet<GCMList> GCMLists { get; set; }
         public virtual DbSet<PollingAnswer> PollingAnswers { get; set; }
         public virtual DbSet<ImageCheck> ImageChecks { get; set; }
         public virtual DbSet<ViewComplaintAge> ViewComplaintAges { get; set; }
@@ -55,7 +54,6 @@ namespace MyApttSocietyAPI
         public virtual DbSet<Flat> Flats { get; set; }
         public virtual DbSet<TotalUser> TotalUsers { get; set; }
         public virtual DbSet<UserImage> UserImages { get; set; }
-        public virtual DbSet<UserSetting> UserSettings { get; set; }
         public virtual DbSet<ViewUserImage> ViewUserImages { get; set; }
         public virtual DbSet<House> Houses { get; set; }
         public virtual DbSet<VehiclePoolEngagemment> VehiclePoolEngagemments { get; set; }
@@ -87,5 +85,11 @@ namespace MyApttSocietyAPI
         public virtual DbSet<ViewGeneratedBill> ViewGeneratedBills { get; set; }
         public virtual DbSet<ViewLatestBill> ViewLatestBills { get; set; }
         public virtual DbSet<viewLatestFlatBill> viewLatestFlatBills { get; set; }
+        public virtual DbSet<GCMList> GCMLists { get; set; }
+        public virtual DbSet<ViewGCMList> ViewGCMLists { get; set; }
+        public virtual DbSet<lukMessageTopic> lukMessageTopics { get; set; }
+        public virtual DbSet<lukStatu> lukStatus { get; set; }
+        public virtual DbSet<NewUserSetting> NewUserSettings { get; set; }
+        public virtual DbSet<ViewNewUserSetting> ViewNewUserSettings { get; set; }
     }
 }

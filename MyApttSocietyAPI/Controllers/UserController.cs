@@ -55,10 +55,10 @@ namespace MyApttSocietyAPI.Controllers
             {
                 using (var context = new SocietyDBEntities())
                 {
-                    var L2EQuery = context.ViewUserSettings.Where(f => f.UserID == UserId);
+                    var L2EQuery = context.ViewNewUserSettings.Where(f => f.UserID == UserId);
                     if (L2EQuery.Count() > 0)
                     {
-                        var userSetting = L2EQuery.FirstOrDefault();
+                        var userSetting = L2EQuery.ToList();
                         return Ok(userSetting);
                     }
                     else {
@@ -126,13 +126,13 @@ namespace MyApttSocietyAPI.Controllers
                         if (ValUser.RegistrationID != null || ValUser.RegistrationID != "")
                         {
                             var GCM = context.GCMLists;
-                            var reg = GCM.Where(g => g.MobileNo == ValUser.Mobile);
+                            var reg = GCM.Where(g => g.UserId == user.UserID);
                             if (reg.Count() == 0)
                             {
 
                                 GCM.Add(new GCMList
                                 {
-                                    MobileNo = ValUser.Mobile,
+                                    UserId = user.UserID,
                                     RegID = ValUser.RegistrationID,
                                     Topic = "",
                                 });
@@ -164,6 +164,8 @@ namespace MyApttSocietyAPI.Controllers
             catch (Exception ex)
             {
                 Log.log(ex.Message);
+                ValidUser.result = "Fail";
+                ValidUser.message = "Server Error";
                 ValidUser.UserData.FirstName = "";
                 ValidUser.UserData.LastName = "";
             }
@@ -174,26 +176,27 @@ namespace MyApttSocietyAPI.Controllers
 
         [Route("Setting")]
         [HttpPost]
-        public HttpResponseMessage UpdateSetting([FromBody]UserSetting UserSetting)
+        public HttpResponseMessage UpdateSetting([FromBody]NewUserSetting[] UserSetting)
         {
             String resp;
+            int UserId = UserSetting[0].UserID;
             try
             {
                 using (var context = new SocietyDBEntities())
                 {
-                    var L2EQuery = context.UserSettings.Where(f => f.UserId == UserSetting.UserId);
+                    var L2EQuery = context.NewUserSettings.Where(f => f.UserID == UserId).ToList();
 
                     if (L2EQuery.Count() > 0)
                     {
                       
-                          context.UserSettings.Remove(L2EQuery.FirstOrDefault());
+                          context.NewUserSettings.RemoveRange(L2EQuery);
                     }
                            
-                   context.UserSettings.Add(UserSetting);
+                   context.NewUserSettings.AddRange(UserSetting);
                    context.SaveChanges();
-                      var newSetting = context.ViewUserSettings.Where(f => f.UserID == UserSetting.UserId).ToList() ;
+                      //var newSetting = context.ViewNewUserSettings.Where(f => f.UserID == UserSetting.UserID).ToList() ;
 
-                    resp = "{\"Response\":\"OK\"}";
+                    resp = "{\"Response\":\"Ok\"}";
                     var response = Request.CreateResponse(HttpStatusCode.OK);
                     response.Content = new StringContent(resp, System.Text.Encoding.UTF8, "application/json");
                     return response;
@@ -227,8 +230,8 @@ namespace MyApttSocietyAPI.Controllers
                                  select USER);
                     if (users.Count() > 0)
                     {
-                        DemoUser.result = "Fail";
-                        DemoUser.message = "No Valid User";
+                        DemoUser.result = "Duplicate";
+                        DemoUser.message = "Mobile or Email Id is in use";
 
                         //return BadRequest();
 
@@ -341,8 +344,8 @@ namespace MyApttSocietyAPI.Controllers
                                  select USER);
                     if (users.Count() > 0)
                     {
-                        DemoUser.result = "Fail";
-                        DemoUser.message = "No Valid User";
+                        DemoUser.result = "Duplicate";
+                        DemoUser.message = "Mobile or Email Id is in use";
 
                         //return BadRequest();
 

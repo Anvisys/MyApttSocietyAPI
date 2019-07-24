@@ -4,3 +4,12 @@
  Complaint Post request received : 25-06-2019 11:47:47
  Complaint Post request received : 25-06-2019 11:50:12
 api/Profile Failed to Add User : Property-VisitorMobileNo  Error- The field VisitorMobileNo must be a string or array type with a maximum length of '10'.  At 28-06-2019 16:00:36
+Register User called At :16-07-2019 16:59:14
+Register User called At :16-07-2019 17:00:52
+Register User called At :16-07-2019 17:27:08
+Register User called At :16-07-2019 17:27:54
+Register User called At :16-07-2019 17:28:52
+api/Profile Failed to Add User : Property-VisitorMobileNo  Error- The field VisitorMobileNo must be a string or array type with a maximum length of '10'.  At 17-07-2019 18:26:39
+ Get Complaint has error at: 18-07-2019 14:45:08 An error occurred while executing the command definition. See the inner exception for details.
+ Complaint Post request received : 18-07-2019 15:08:49
+Error in Update User Setting at: 19-07-2019 15:57:49

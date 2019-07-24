@@ -60,6 +60,21 @@ namespace MyApttSocietyAPI.Controllers
                 var context = new SocietyDBEntities();
                 context.Offers.Add(value);
                 context.SaveChanges();
+
+                String textOffer = value.offerdescription;
+
+                if (textOffer.Length > 10) {
+                    textOffer = textOffer.Substring(0, 10);
+                }
+
+                Message message = new Message();
+                message.Topic = "Offer";
+                message.SocietyID = value.SocietyID;
+                message.TextMessage = "New Offer : " + textOffer;
+                //VisitorNotification visitorNotification = new VisitorNotification(context, value.HostMobile);
+                Notifications msg = new Notifications(context);
+                msg.Notify(Notifications.TO.Society, value.SocietyID, message);
+
                 return Ok("ok");
             }
             catch (Exception e)

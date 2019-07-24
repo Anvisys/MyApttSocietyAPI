@@ -165,11 +165,30 @@ namespace MyApttSocietyAPI.Controllers
                 {
                     using (var context = new SocietyDBEntities())
                     {
-                        var c = context.PollingDatas;
+
+                        var lastBill = context.viewLatestFlatBills.Where(gb => gb.FlatID == value.FlatID && gb.SocietyID == value.SocietyID &&
+                                         gb.SocietyBillID == value.SocietyBillID).First();
+
+                        value.PreviousMonthBalance = lastBill.CurrentMonthBalance;
+
                         context.GeneratedBills.Add(value);
                         context.SaveChanges();
 
+                        var user = context.ViewSocietyUsers.Where(u => u.ResID == value.ResID).First();
+
                         Log.log(" Payment Data Updated : " + DateTime.Now.ToString());
+
+                        Message message = new Message();
+                        message.Topic = "Bill";
+                        message.SocietyID = value.SocietyID;
+                        message.TextMessage = "Your bill has been credited with Rs." + value.AmountPaid.ToString();
+
+                        Notifications notifications = new Notifications(context);
+                        notifications.Notify(Notifications.TO.Flat, value.FlatID, message);
+
+                    /*
+                        BillingNotification bill = new BillingNotification(context, user.MobileNo);
+                        bill.NotifyResidents(message, "Bill");*/
 
                         String resp = "{\"Response\":\"OK\"}";
                         var response = Request.CreateResponse(HttpStatusCode.OK);

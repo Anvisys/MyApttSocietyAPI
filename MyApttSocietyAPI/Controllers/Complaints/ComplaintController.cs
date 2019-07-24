@@ -91,9 +91,7 @@ namespace MyApttSocietyAPI.Controllers
 
 
                 var context = new SocietyDBEntities();
-
-
-               
+           
                 var Complaints = (from comp in context.ViewComplaintSummaries
                                   where comp.FlatNumber == flatnumber && comp.SocietyID == societyid && ints1.Contains(comp.LastStatus)
                                   orderby comp.LastAt descending
@@ -170,6 +168,10 @@ namespace MyApttSocietyAPI.Controllers
                     });
                     context.SaveChanges();
 
+                    Message message = new Message();
+                    message.Topic = "Complaint";
+                    message.SocietyID = comp.SocietyID;
+
                     if (isNewComplaint)
                     {
                         smsMessage = "A New Complaint is assigned to you. Flat Number: " + comp.FlatNumber +
@@ -180,13 +182,15 @@ namespace MyApttSocietyAPI.Controllers
                     }
                     else
                     {
-                        smsMessage = "Ticket No: " + comp.CompID + " is assigned to you, Flat : " + comp.FlatNumber + ", Description" + comp.CompDescription;
+                        message.TextMessage = "Ticket No: " + comp.CompID + " is assigned to you, Flat : " + comp.FlatNumber + ", Description" + comp.CompDescription;
                        // bool result = Utility.NotifyEmployee(smsMessage, em.MobileNo);
 
-                        string strSubject = "Ticket no: " + comp.CompID;
-                        string residentMessage = "Your ticket no: " + comp.CompID + " is assigned to " + em.MobileNo;
-                        ComplaintNotification notification = new ComplaintNotification(context, em.MobileNo);
-                        notification.NotifyResidents(smsMessage, strSubject);
+                    //    string strSubject = "Ticket no: " + comp.CompID;
+                     //   string residentMessage = "Your ticket no: " + comp.CompID + " is assigned to " + em.MobileNo;
+
+                        Notifications notification = new Notifications(context);
+                        notification.Notify(Notifications.TO.User, comp.UserID, message);
+
                     }
 
                     String resp = "{\"Response\":\"Ok\"}";
