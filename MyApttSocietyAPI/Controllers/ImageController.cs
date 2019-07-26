@@ -95,9 +95,27 @@ namespace MyApttSocietyAPI.Controllers
                         {
                                     using (var context = new SocietyDBEntities())
                                     {
-                                           List<UserImage> users = (from u in context.UserImages
+
+                                        String ImagePath = HttpContext.Current.Server.MapPath("~/Image/User/");
+
+                                        ImageFormat format = ImageFormat.Png;
+
+                                        String ImageName = value.UserID.ToString();
+                                        string filePath = string.Format(ImagePath + ImageName + ".{0}", format.ToString());
+
+
+                                        byte[] bytesImages = Convert.FromBase64String(value.ImageString);
+
+                                        using (System.IO.FileStream stream = new System.IO.FileStream(filePath, System.IO.FileMode.Create))
+                                        {
+                                            stream.Write(bytesImages, 0, bytesImages.Length);
+                                            stream.Flush();
+                                        }
+
+                                        List<UserImage> users = (from u in context.UserImages
                                                                          where u.UserID == value.UserID
                                                                          select u).ToList();
+
                                             if (users.Count == 0)
                                             {
 
