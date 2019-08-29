@@ -29,10 +29,19 @@ namespace MyApttSocietyAPI.Controllers
 
         [Route("{UserId}")]
         [HttpGet]
-        public IEnumerable<ViewSociety> MyRequests(int UserId)
+        public IEnumerable<ViewSociety> MySocietyRequests(int UserId)
         {
             var context = new SocietyDBEntities();
             var socReq = context.ViewSocieties.Where(x=> x.UserID == UserId).ToList();
+            return socReq;
+        }
+
+        [Route("All/{UserId}")]
+        [HttpGet]
+        public IEnumerable<ViewSocietyUser> MyAllRequests(int UserId)
+        {
+            var context = new SocietyDBEntities();
+            var socReq = context.ViewSocietyUsers.Where(x => x.UserID == UserId).ToList();
             return socReq;
         }
 
