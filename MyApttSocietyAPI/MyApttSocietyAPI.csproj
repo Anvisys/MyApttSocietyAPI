@@ -135,6 +135,7 @@
     <Compile Include="Complaint.cs">
       <DependentUpon>SocietyDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\AdsController.cs" />
     <Compile Include="Controllers\BillingController.cs" />
     <Compile Include="Controllers\CarPoolController.cs" />
@@ -324,9 +325,6 @@
     <Compile Include="ViewFlat.cs">
       <DependentUpon>SocietyDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="ViewFlatsUser.cs">
-      <DependentUpon>SocietyDB.tt</DependentUpon>
-    </Compile>
     <Compile Include="ViewForumNoImage.cs">
       <DependentUpon>SocietyDB.tt</DependentUpon>
     </Compile>
@@ -379,9 +377,6 @@
       <DependentUpon>SocietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewUserImage.cs">
-      <DependentUpon>SocietyDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ViewUserSetting.cs">
       <DependentUpon>SocietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewVehiclePool.cs">

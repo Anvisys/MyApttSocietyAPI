@@ -49,14 +49,14 @@ namespace MyApttSocietyAPI.Controllers.Rent
         }
 
 
-        [Route("{SocietyId}/{PageNumber}/{count}")]
+        [Route("{SocietyId}/{FlatId}/{PageNumber}/{count}")]
         [HttpGet]
-        public IHttpActionResult GetSocietyInventory(int SocietyId , int PageNumber ,int count)
+        public IHttpActionResult GetSocietyInventory(int SocietyId, int FlatId , int PageNumber ,int count)
         {
             try
             {
                 var context = new SocietyDBEntities();
-                var inventory = context.ViewRentInventories.Where(X => (X.SocietyID == SocietyId )
+                var inventory = context.ViewRentInventories.Where(X => (X.SocietyID == SocietyId ) && X.FlatID != FlatId
                                                                   && X.Available == true).ToList();
                 return Ok(inventory.Skip((PageNumber-1)*count).Take(count));
 

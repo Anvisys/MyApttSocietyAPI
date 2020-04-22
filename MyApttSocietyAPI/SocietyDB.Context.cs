@@ -57,8 +57,6 @@ namespace MyApttSocietyAPI
         public virtual DbSet<ViewUserImage> ViewUserImages { get; set; }
         public virtual DbSet<House> Houses { get; set; }
         public virtual DbSet<VehiclePoolEngagemment> VehiclePoolEngagemments { get; set; }
-        public virtual DbSet<ViewFlatsUser> ViewFlatsUsers { get; set; }
-        public virtual DbSet<SocietyUser> SocietyUsers { get; set; }
         public virtual DbSet<VehiclePool> VehiclePools { get; set; }
         public virtual DbSet<ViewVehiclePool> ViewVehiclePools { get; set; }
         public virtual DbSet<Society> Societies { get; set; }
@@ -72,15 +70,12 @@ namespace MyApttSocietyAPI
         public virtual DbSet<lukInventoryType> lukInventoryTypes { get; set; }
         public virtual DbSet<ViewVehiclePoolEngagement> ViewVehiclePoolEngagements { get; set; }
         public virtual DbSet<ViewComplaintHistory> ViewComplaintHistories { get; set; }
-        public virtual DbSet<ViewFlat> ViewFlats { get; set; }
-        public virtual DbSet<ViewSocietyUser> ViewSocietyUsers { get; set; }
         public virtual DbSet<ViewVendor> ViewVendors { get; set; }
         public virtual DbSet<Vendor> Vendors { get; set; }
         public virtual DbSet<Societybillplan> Societybillplans { get; set; }
         public virtual DbSet<Offer> Offers { get; set; }
         public virtual DbSet<ViewOffer> ViewOffers { get; set; }
         public virtual DbSet<ViewLatestOffer> ViewLatestOffers { get; set; }
-        public virtual DbSet<ViewUserSetting> ViewUserSettings { get; set; }
         public virtual DbSet<GeneratedBill> GeneratedBills { get; set; }
         public virtual DbSet<ViewGeneratedBill> ViewGeneratedBills { get; set; }
         public virtual DbSet<ViewLatestBill> ViewLatestBills { get; set; }
@@ -91,5 +86,8 @@ namespace MyApttSocietyAPI
         public virtual DbSet<lukStatu> lukStatus { get; set; }
         public virtual DbSet<NewUserSetting> NewUserSettings { get; set; }
         public virtual DbSet<ViewNewUserSetting> ViewNewUserSettings { get; set; }
+        public virtual DbSet<SocietyUser> SocietyUsers { get; set; }
+        public virtual DbSet<ViewFlat> ViewFlats { get; set; }
+        public virtual DbSet<ViewSocietyUser> ViewSocietyUsers { get; set; }
     }
 }

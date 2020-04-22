@@ -20,11 +20,11 @@ namespace MyApttSocietyAPI
         public string Type { get; set; }
         public int ServiceType { get; set; }
         public string CompanyName { get; set; }
-        public Nullable<System.DateTime> ActiveDate { get; set; }
         public Nullable<System.DateTime> DeActiveDate { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
         public int SocietyID { get; set; }
         public Nullable<int> Status { get; set; }
         public Nullable<int> HouseID { get; set; }
+        public Nullable<System.DateTime> ActiveDate { get; set; }
     }
 }

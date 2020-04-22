@@ -24,6 +24,8 @@ namespace MyApttSocietyAPI
         public string FlatArea { get; set; }
         public int OwnerResID { get; set; }
         public int OwnerUserID { get; set; }
+        public int OwnerStatusID { get; set; }
+        public string OwnerStatus { get; set; }
         public string OwnerFirstName { get; set; }
         public string OwnerLastName { get; set; }
         public string OwnerEmail { get; set; }
@@ -31,6 +33,8 @@ namespace MyApttSocietyAPI
         public string OwnerAddress { get; set; }
         public int TenantResID { get; set; }
         public int TenantUserID { get; set; }
+        public int TenantStatusID { get; set; }
+        public string TenantStatus { get; set; }
         public string TenantFirstName { get; set; }
         public string TenantLastName { get; set; }
         public string TenantEmail { get; set; }

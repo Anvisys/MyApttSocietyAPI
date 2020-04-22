@@ -110,7 +110,7 @@
           <Property Name="PinCode" Type="int" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'NestinDB.dbo.ImageCheck' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'Nestin.dbo.ImageCheck' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="ImageCheck">
           <Key>
             <PropertyRef Name="Name" />
@@ -205,7 +205,7 @@ warning 6002: The table/view 'NestinDB.dbo.ImageCheck' does not have a primary k
           <Property Name="Mail" Type="bit" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'NestinDB.dbo.Notifications' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'Nestin.dbo.Notifications' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Notifications">
           <Key>
             <PropertyRef Name="ID" />
@@ -311,7 +311,7 @@ warning 6002: The table/view 'NestinDB.dbo.Notifications' does not have a primar
           <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'NestinDB.dbo.Societybillplans' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'Nestin.dbo.Societybillplans' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Societybillplans">
           <Key>
             <PropertyRef Name="SocietyBillID" />
@@ -342,12 +342,12 @@ warning 6002: The table/view 'NestinDB.dbo.Societybillplans' does not have a pri
           <Property Name="Type" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="ServiceType" Type="int" Nullable="false" />
           <Property Name="CompanyName" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="ActiveDate" Type="date" />
           <Property Name="DeActiveDate" Type="datetime" />
           <Property Name="ModifiedDate" Type="datetime" />
           <Property Name="SocietyID" Type="int" Nullable="false" />
           <Property Name="Status" Type="int" />
           <Property Name="HouseID" Type="int" />
+          <Property Name="ActiveDate" Type="datetime" />
         </EntityType>
         <EntityType Name="TotalUsers">
           <Key>
@@ -448,7 +448,7 @@ warning 6002: The table/view 'NestinDB.dbo.Societybillplans' does not have a pri
           <Property Name="SocietyId" Type="int" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'NestinDB.dbo.ViewComplaintAge' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'Nestin.dbo.ViewComplaintAge' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="ViewComplaintAge">
           <Key>
             <PropertyRef Name="SocietyID" />
@@ -459,7 +459,7 @@ warning 6002: The table/view 'NestinDB.dbo.ViewComplaintAge' does not have a pri
           <Property Name="Age" Type="int" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'NestinDB.dbo.ViewComplaintHistory' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'Nestin.dbo.ViewComplaintHistory' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="ViewComplaintHistory">
           <Key>
             <PropertyRef Name="ID" />
@@ -482,7 +482,7 @@ warning 6002: The table/view 'NestinDB.dbo.ViewComplaintHistory' does not have a
           <Property Name="ModifiedAt" Type="datetime" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'NestinDB.dbo.ViewComplaintInitiated' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'Nestin.dbo.ViewComplaintInitiated' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="ViewComplaintInitiated">
           <Key>
             <PropertyRef Name="ID" />
@@ -505,7 +505,7 @@ warning 6002: The table/view 'NestinDB.dbo.ViewComplaintInitiated' does not have
           <Property Name="statusCount" Type="int" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'NestinDB.dbo.ViewComplaintLatest' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'Nestin.dbo.ViewComplaintLatest' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="ViewComplaintLatest">
           <Key>
             <PropertyRef Name="SocietyID" />
@@ -521,7 +521,7 @@ warning 6002: The table/view 'NestinDB.dbo.ViewComplaintLatest' does not have a 
           <Property Name="LastAt" Type="datetime" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'NestinDB.dbo.ViewComplaintSummary' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'Nestin.dbo.ViewComplaintSummary' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="ViewComplaintSummary">
           <Key>
             <PropertyRef Name="FirstID" />
@@ -557,7 +557,7 @@ warning 6002: The table/view 'NestinDB.dbo.ViewComplaintSummary' does not have a
           <Property Name="LastAt" Type="datetime" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'NestinDB.dbo.ViewFirstThreadwithCount' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'Nestin.dbo.ViewFirstThreadwithCount' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="ViewFirstThreadwithCount">
           <Key>
             <PropertyRef Name="FirstID" />
@@ -576,7 +576,7 @@ warning 6002: The table/view 'NestinDB.dbo.ViewFirstThreadwithCount' does not ha
           <Property Name="commentsCount" Type="int" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'NestinDB.dbo.ViewFlats' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'Nestin.dbo.ViewFlats' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="ViewFlats">
           <Key>
             <PropertyRef Name="ID" />
@@ -587,8 +587,12 @@ warning 6002: The table/view 'NestinDB.dbo.ViewFlats' does not have a primary ke
             <PropertyRef Name="Block" />
             <PropertyRef Name="OwnerResID" />
             <PropertyRef Name="OwnerUserID" />
+            <PropertyRef Name="OwnerStatusID" />
+            <PropertyRef Name="OwnerStatus" />
             <PropertyRef Name="TenantResID" />
             <PropertyRef Name="TenantUserID" />
+            <PropertyRef Name="TenantStatusID" />
+            <PropertyRef Name="TenantStatus" />
           </Key>
           <Property Name="ID" Type="int" Nullable="false" />
           <Property Name="FlatNumber" Type="varchar" MaxLength="50" Nullable="false" />
@@ -600,6 +604,8 @@ warning 6002: The table/view 'NestinDB.dbo.ViewFlats' does not have a primary ke
           <Property Name="FlatArea" Type="varchar" MaxLength="50" />
           <Property Name="OwnerResID" Type="int" Nullable="false" />
           <Property Name="OwnerUserID" Type="int" Nullable="false" />
+          <Property Name="OwnerStatusID" Type="int" Nullable="false" />
+          <Property Name="OwnerStatus" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="OwnerFirstName" Type="varchar" MaxLength="50" />
           <Property Name="OwnerLastName" Type="varchar" MaxLength="50" />
           <Property Name="OwnerEmail" Type="varchar" MaxLength="50" />
@@ -607,6 +613,8 @@ warning 6002: The table/view 'NestinDB.dbo.ViewFlats' does not have a primary ke
           <Property Name="OwnerAddress" Type="varchar" MaxLength="100" />
           <Property Name="TenantResID" Type="int" Nullable="false" />
           <Property Name="TenantUserID" Type="int" Nullable="false" />
+          <Property Name="TenantStatusID" Type="int" Nullable="false" />
+          <Property Name="TenantStatus" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="TenantFirstName" Type="varchar" MaxLength="50" />
           <Property Name="TenantLastName" Type="varchar" MaxLength="50" />
           <Property Name="TenantEmail" Type="varchar" MaxLength="50" />
@@ -616,43 +624,7 @@ warning 6002: The table/view 'NestinDB.dbo.ViewFlats' does not have a primary ke
           <Property Name="TenantTo" Type="datetime" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'NestinDB.dbo.ViewFlatsUser' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="ViewFlatsUser">
-          <Key>
-            <PropertyRef Name="ID" />
-            <PropertyRef Name="FlatNumber" />
-            <PropertyRef Name="SocietyId" />
-            <PropertyRef Name="BHK" />
-            <PropertyRef Name="Floor" />
-            <PropertyRef Name="Block" />
-          </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
-          <Property Name="FlatNumber" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="SocietyId" Type="int" Nullable="false" />
-          <Property Name="BHK" Type="int" Nullable="false" />
-          <Property Name="Floor" Type="int" Nullable="false" />
-          <Property Name="Block" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="IntercomNumber" Type="int" />
-          <Property Name="FlatArea" Type="varchar" MaxLength="50" />
-          <Property Name="OwnerUserID" Type="int" />
-          <Property Name="OwnerFirstName" Type="varchar" MaxLength="50" />
-          <Property Name="OwnerLastName" Type="varchar" MaxLength="50" />
-          <Property Name="OwnerEmail" Type="varchar" MaxLength="50" />
-          <Property Name="Ownermobile" Type="varchar" MaxLength="50" />
-          <Property Name="OwnerAddress" Type="varchar" MaxLength="100" />
-          <Property Name="OwnerFrom" Type="date" />
-          <Property Name="OwnerTo" Type="datetime" />
-          <Property Name="TenantUserID" Type="int" />
-          <Property Name="TenantFirstName" Type="varchar" MaxLength="50" />
-          <Property Name="TenantLastName" Type="varchar" MaxLength="50" />
-          <Property Name="TenantEmail" Type="varchar" MaxLength="50" />
-          <Property Name="TenantMobile" Type="varchar" MaxLength="50" />
-          <Property Name="TenantAddress" Type="varchar" MaxLength="100" />
-          <Property Name="TenantFrom" Type="date" />
-          <Property Name="TenantTo" Type="datetime" />
-        </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'NestinDB.dbo.ViewForumNoImage' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'Nestin.dbo.ViewForumNoImage' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="ViewForumNoImage">
           <Key>
             <PropertyRef Name="ID" />
@@ -678,7 +650,7 @@ warning 6002: The table/view 'NestinDB.dbo.ViewForumNoImage' does not have a pri
           <Property Name="SocietyID" Type="int" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'NestinDB.dbo.ViewGCMList' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'Nestin.dbo.ViewGCMList' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="ViewGCMList">
           <Key>
             <PropertyRef Name="UserID" />
@@ -692,7 +664,7 @@ warning 6002: The table/view 'NestinDB.dbo.ViewGCMList' does not have a primary 
           <Property Name="RegID" Type="varchar" MaxLength="250" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'NestinDB.dbo.ViewGeneratedBill' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'Nestin.dbo.ViewGeneratedBill' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="ViewGeneratedBill">
           <Key>
             <PropertyRef Name="PayID" />
@@ -753,7 +725,7 @@ warning 6002: The table/view 'NestinDB.dbo.ViewGeneratedBill' does not have a pr
           <Property Name="FlatNumber" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'NestinDB.dbo.ViewInventoryAccomodation' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'Nestin.dbo.ViewInventoryAccomodation' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="ViewInventoryAccomodation">
           <Key>
             <PropertyRef Name="InventoryTypeID" />
@@ -767,7 +739,7 @@ warning 6002: The table/view 'NestinDB.dbo.ViewInventoryAccomodation' does not h
           <Property Name="AccomodationType" Type="varchar" MaxLength="20" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'NestinDB.dbo.ViewLatestBill' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'Nestin.dbo.ViewLatestBill' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="ViewLatestBill">
           <Key>
             <PropertyRef Name="PayID" />
@@ -814,7 +786,7 @@ warning 6002: The table/view 'NestinDB.dbo.ViewLatestBill' does not have a prima
           <Property Name="ModifiedAt" Type="datetime" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'NestinDB.dbo.viewLatestFlatBill' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'Nestin.dbo.viewLatestFlatBill' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="viewLatestFlatBill">
           <Key>
             <PropertyRef Name="SocietyBillID" />
@@ -882,7 +854,7 @@ warning 6002: The table/view 'NestinDB.dbo.viewLatestFlatBill' does not have a p
           <Property Name="ModifiedAt" Type="datetime" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'NestinDB.dbo.ViewLatestOffer' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'Nestin.dbo.ViewLatestOffer' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="ViewLatestOffer">
           <Key>
             <PropertyRef Name="VendorID" />
@@ -895,7 +867,7 @@ warning 6002: The table/view 'NestinDB.dbo.ViewLatestOffer' does not have a prim
           <Property Name="SocietyID" Type="int" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'NestinDB.dbo.ViewLatestThread' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'Nestin.dbo.ViewLatestThread' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="ViewLatestThread">
           <Key>
             <PropertyRef Name="ThreadID" />
@@ -912,7 +884,7 @@ warning 6002: The table/view 'NestinDB.dbo.ViewLatestThread' does not have a pri
           <Property Name="UpdatedAt" Type="datetime" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'NestinDB.dbo.ViewNewUserSetting' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'Nestin.dbo.ViewNewUserSetting' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="ViewNewUserSetting">
           <Key>
             <PropertyRef Name="UserID" />
@@ -941,7 +913,7 @@ warning 6002: The table/view 'NestinDB.dbo.ViewNewUserSetting' does not have a p
           <Property Name="Mail" Type="bit" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'NestinDB.dbo.ViewNotifications' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'Nestin.dbo.ViewNotifications' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="ViewNotifications">
           <Key>
             <PropertyRef Name="ID" />
@@ -963,7 +935,7 @@ warning 6002: The table/view 'NestinDB.dbo.ViewNotifications' does not have a pr
           <Property Name="UserID" Type="int" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'NestinDB.dbo.ViewOffers' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'Nestin.dbo.ViewOffers' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="ViewOffers">
           <Key>
             <PropertyRef Name="VendorID" />
@@ -976,7 +948,7 @@ warning 6002: The table/view 'NestinDB.dbo.ViewOffers' does not have a primary k
           <Property Name="SocietyID" Type="int" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'NestinDB.dbo.ViewPollCount' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'Nestin.dbo.ViewPollCount' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="ViewPollCount">
           <Key>
             <PropertyRef Name="PollID" />
@@ -988,7 +960,7 @@ warning 6002: The table/view 'NestinDB.dbo.ViewPollCount' does not have a primar
           <Property Name="Ans4" Type="int" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'NestinDB.dbo.ViewPollDataWithCount' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'Nestin.dbo.ViewPollDataWithCount' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="ViewPollDataWithCount">
           <Key>
             <PropertyRef Name="PollID" />
@@ -1016,7 +988,7 @@ warning 6002: The table/view 'NestinDB.dbo.ViewPollDataWithCount' does not have 
           <Property Name="Answer4Count" Type="int" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'NestinDB.dbo.ViewRentInventory' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'Nestin.dbo.ViewRentInventory' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="ViewRentInventory">
           <Key>
             <PropertyRef Name="RentInventoryID" />
@@ -1061,7 +1033,7 @@ warning 6002: The table/view 'NestinDB.dbo.ViewRentInventory' does not have a pr
           <Property Name="InterestedCount" Type="int" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'NestinDB.dbo.ViewSocieties' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'Nestin.dbo.ViewSocieties' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="ViewSocieties">
           <Key>
             <PropertyRef Name="SocietyID" />
@@ -1086,7 +1058,7 @@ warning 6002: The table/view 'NestinDB.dbo.ViewSocieties' does not have a primar
           <Property Name="Status" Type="varchar" MaxLength="20" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'NestinDB.dbo.ViewSocietyUsers' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'Nestin.dbo.ViewSocietyUsers' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="ViewSocietyUsers">
           <Key>
             <PropertyRef Name="ResID" />
@@ -1130,7 +1102,7 @@ warning 6002: The table/view 'NestinDB.dbo.ViewSocietyUsers' does not have a pri
           <Property Name="PinCode" Type="int" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'NestinDB.dbo.ViewThreadSummaryNoImageCount' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'Nestin.dbo.ViewThreadSummaryNoImageCount' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="ViewThreadSummaryNoImageCount">
           <Key>
             <PropertyRef Name="FirstID" />
@@ -1167,7 +1139,7 @@ warning 6002: The table/view 'NestinDB.dbo.ViewThreadSummaryNoImageCount' does n
           <Property Name="SocietyID" Type="int" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'NestinDB.dbo.ViewUserImage' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'Nestin.dbo.ViewUserImage' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="ViewUserImage">
           <Key>
             <PropertyRef Name="ResID" />
@@ -1178,45 +1150,7 @@ warning 6002: The table/view 'NestinDB.dbo.ViewUserImage' does not have a primar
           <Property Name="Profile_image" Type="image" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'NestinDB.dbo.ViewUserSetting' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="ViewUserSetting">
-          <Key>
-            <PropertyRef Name="UserID" />
-            <PropertyRef Name="FirstName" />
-            <PropertyRef Name="MobileNo" />
-            <PropertyRef Name="BillingNotification" />
-            <PropertyRef Name="BillingMail" />
-            <PropertyRef Name="BillingSMS" />
-            <PropertyRef Name="ComplaintNotification" />
-            <PropertyRef Name="ComplaintMail" />
-            <PropertyRef Name="ComplaintSMS" />
-            <PropertyRef Name="forumNotification" />
-            <PropertyRef Name="forumMail" />
-            <PropertyRef Name="forumSMS" />
-            <PropertyRef Name="NoticeNotification" />
-            <PropertyRef Name="NoticeMail" />
-            <PropertyRef Name="NoticeSMS" />
-          </Key>
-          <Property Name="UserID" Type="int" Nullable="false" />
-          <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="MobileNo" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="EmailId" Type="varchar" MaxLength="50" />
-          <Property Name="RegID" Type="varchar" MaxLength="250" />
-          <Property Name="BillingNotification" Type="bit" Nullable="false" />
-          <Property Name="BillingMail" Type="bit" Nullable="false" />
-          <Property Name="BillingSMS" Type="bit" Nullable="false" />
-          <Property Name="ComplaintNotification" Type="bit" Nullable="false" />
-          <Property Name="ComplaintMail" Type="bit" Nullable="false" />
-          <Property Name="ComplaintSMS" Type="bit" Nullable="false" />
-          <Property Name="forumNotification" Type="bit" Nullable="false" />
-          <Property Name="forumMail" Type="bit" Nullable="false" />
-          <Property Name="forumSMS" Type="bit" Nullable="false" />
-          <Property Name="NoticeNotification" Type="bit" Nullable="false" />
-          <Property Name="NoticeMail" Type="bit" Nullable="false" />
-          <Property Name="NoticeSMS" Type="bit" Nullable="false" />
-        </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'NestinDB.dbo.ViewVehiclePool' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'Nestin.dbo.ViewVehiclePool' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="ViewVehiclePool">
           <Key>
             <PropertyRef Name="VehiclePoolID" />
@@ -1261,7 +1195,7 @@ warning 6002: The table/view 'NestinDB.dbo.ViewVehiclePool' does not have a prim
           <Property Name="UserID" Type="int" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'NestinDB.dbo.ViewVehiclePoolEngagement' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'Nestin.dbo.ViewVehiclePoolEngagement' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="ViewVehiclePoolEngagement">
           <Key>
             <PropertyRef Name="VehiclePoolId" />
@@ -1278,7 +1212,7 @@ warning 6002: The table/view 'NestinDB.dbo.ViewVehiclePoolEngagement' does not h
           <Property Name="ResID" Type="int" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'NestinDB.dbo.ViewVendor' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'Nestin.dbo.ViewVendor' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="ViewVendor">
           <Key>
             <PropertyRef Name="VendorID" />
@@ -1306,7 +1240,7 @@ warning 6002: The table/view 'NestinDB.dbo.ViewVendor' does not have a primary k
           <Property Name="OfferEndDate" Type="smalldatetime" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'NestinDB.dbo.viewVisitorData' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'Nestin.dbo.viewVisitorData' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="viewVisitorData">
           <Key>
             <PropertyRef Name="RequestId" />
@@ -1504,6 +1438,8 @@ warning 6002: The table/view 'NestinDB.dbo.viewVisitorData' does not have a prim
     [ViewFlats].[FlatArea] AS [FlatArea], 
     [ViewFlats].[OwnerResID] AS [OwnerResID], 
     [ViewFlats].[OwnerUserID] AS [OwnerUserID], 
+    [ViewFlats].[OwnerStatusID] AS [OwnerStatusID], 
+    [ViewFlats].[OwnerStatus] AS [OwnerStatus], 
     [ViewFlats].[OwnerFirstName] AS [OwnerFirstName], 
     [ViewFlats].[OwnerLastName] AS [OwnerLastName], 
     [ViewFlats].[OwnerEmail] AS [OwnerEmail], 
@@ -1511,6 +1447,8 @@ warning 6002: The table/view 'NestinDB.dbo.viewVisitorData' does not have a prim
     [ViewFlats].[OwnerAddress] AS [OwnerAddress], 
     [ViewFlats].[TenantResID] AS [TenantResID], 
     [ViewFlats].[TenantUserID] AS [TenantUserID], 
+    [ViewFlats].[TenantStatusID] AS [TenantStatusID], 
+    [ViewFlats].[TenantStatus] AS [TenantStatus], 
     [ViewFlats].[TenantFirstName] AS [TenantFirstName], 
     [ViewFlats].[TenantLastName] AS [TenantLastName], 
     [ViewFlats].[TenantEmail] AS [TenantEmail], 
@@ -1519,34 +1457,6 @@ warning 6002: The table/view 'NestinDB.dbo.viewVisitorData' does not have a prim
     [ViewFlats].[TenantFrom] AS [TenantFrom], 
     [ViewFlats].[TenantTo] AS [TenantTo]
     FROM [dbo].[ViewFlats] AS [ViewFlats]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="ViewFlatsUser" EntityType="Self.ViewFlatsUser" store:Type="Views" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [ViewFlatsUser].[ID] AS [ID], 
-    [ViewFlatsUser].[FlatNumber] AS [FlatNumber], 
-    [ViewFlatsUser].[SocietyId] AS [SocietyId], 
-    [ViewFlatsUser].[BHK] AS [BHK], 
-    [ViewFlatsUser].[Floor] AS [Floor], 
-    [ViewFlatsUser].[Block] AS [Block], 
-    [ViewFlatsUser].[IntercomNumber] AS [IntercomNumber], 
-    [ViewFlatsUser].[FlatArea] AS [FlatArea], 
-    [ViewFlatsUser].[OwnerUserID] AS [OwnerUserID], 
-    [ViewFlatsUser].[OwnerFirstName] AS [OwnerFirstName], 
-    [ViewFlatsUser].[OwnerLastName] AS [OwnerLastName], 
-    [ViewFlatsUser].[OwnerEmail] AS [OwnerEmail], 
-    [ViewFlatsUser].[Ownermobile] AS [Ownermobile], 
-    [ViewFlatsUser].[OwnerAddress] AS [OwnerAddress], 
-    [ViewFlatsUser].[OwnerFrom] AS [OwnerFrom], 
-    [ViewFlatsUser].[OwnerTo] AS [OwnerTo], 
-    [ViewFlatsUser].[TenantUserID] AS [TenantUserID], 
-    [ViewFlatsUser].[TenantFirstName] AS [TenantFirstName], 
-    [ViewFlatsUser].[TenantLastName] AS [TenantLastName], 
-    [ViewFlatsUser].[TenantEmail] AS [TenantEmail], 
-    [ViewFlatsUser].[TenantMobile] AS [TenantMobile], 
-    [ViewFlatsUser].[TenantAddress] AS [TenantAddress], 
-    [ViewFlatsUser].[TenantFrom] AS [TenantFrom], 
-    [ViewFlatsUser].[TenantTo] AS [TenantTo]
-    FROM [dbo].[ViewFlatsUser] AS [ViewFlatsUser]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="ViewForumNoImage" EntityType="Self.ViewForumNoImage" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -1876,27 +1786,6 @@ warning 6002: The table/view 'NestinDB.dbo.viewVisitorData' does not have a prim
     [ViewUserImage].[Profile_image] AS [Profile_image]
     FROM [dbo].[ViewUserImage] AS [ViewUserImage]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="ViewUserSetting" EntityType="Self.ViewUserSetting" store:Type="Views" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [ViewUserSetting].[UserID] AS [UserID], 
-    [ViewUserSetting].[FirstName] AS [FirstName], 
-    [ViewUserSetting].[MobileNo] AS [MobileNo], 
-    [ViewUserSetting].[EmailId] AS [EmailId], 
-    [ViewUserSetting].[RegID] AS [RegID], 
-    [ViewUserSetting].[BillingNotification] AS [BillingNotification], 
-    [ViewUserSetting].[BillingMail] AS [BillingMail], 
-    [ViewUserSetting].[BillingSMS] AS [BillingSMS], 
-    [ViewUserSetting].[ComplaintNotification] AS [ComplaintNotification], 
-    [ViewUserSetting].[ComplaintMail] AS [ComplaintMail], 
-    [ViewUserSetting].[ComplaintSMS] AS [ComplaintSMS], 
-    [ViewUserSetting].[forumNotification] AS [forumNotification], 
-    [ViewUserSetting].[forumMail] AS [forumMail], 
-    [ViewUserSetting].[forumSMS] AS [forumSMS], 
-    [ViewUserSetting].[NoticeNotification] AS [NoticeNotification], 
-    [ViewUserSetting].[NoticeMail] AS [NoticeMail], 
-    [ViewUserSetting].[NoticeSMS] AS [NoticeSMS]
-    FROM [dbo].[ViewUserSetting] AS [ViewUserSetting]</DefiningQuery>
-          </EntitySet>
           <EntitySet Name="ViewVehiclePool" EntityType="Self.ViewVehiclePool" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [ViewVehiclePool].[VehiclePoolID] AS [VehiclePoolID], 
@@ -2011,8 +1900,6 @@ warning 6002: The table/view 'NestinDB.dbo.viewVisitorData' does not have a prim
           <EntitySet Name="ViewUserImages" EntityType="SocietyDBModel.ViewUserImage" />
           <EntitySet Name="Houses" EntityType="SocietyDBModel.House" />
           <EntitySet Name="VehiclePoolEngagemments" EntityType="SocietyDBModel.VehiclePoolEngagemment" />
-          <EntitySet Name="ViewFlatsUsers" EntityType="SocietyDBModel.ViewFlatsUser" />
-          <EntitySet Name="SocietyUsers" EntityType="SocietyDBModel.SocietyUser" />
           <EntitySet Name="VehiclePools" EntityType="SocietyDBModel.VehiclePool" />
           <EntitySet Name="ViewVehiclePools" EntityType="SocietyDBModel.ViewVehiclePool" />
           <EntitySet Name="Societies" EntityType="SocietyDBModel.Society" />
@@ -2026,15 +1913,12 @@ warning 6002: The table/view 'NestinDB.dbo.viewVisitorData' does not have a prim
           <EntitySet Name="lukInventoryTypes" EntityType="SocietyDBModel.lukInventoryType" />
           <EntitySet Name="ViewVehiclePoolEngagements" EntityType="SocietyDBModel.ViewVehiclePoolEngagement" />
           <EntitySet Name="ViewComplaintHistories" EntityType="SocietyDBModel.ViewComplaintHistory" />
-          <EntitySet Name="ViewFlats" EntityType="SocietyDBModel.ViewFlat" />
-          <EntitySet Name="ViewSocietyUsers" EntityType="SocietyDBModel.ViewSocietyUser" />
           <EntitySet Name="ViewVendors" EntityType="SocietyDBModel.ViewVendor" />
           <EntitySet Name="Vendors" EntityType="SocietyDBModel.Vendor" />
           <EntitySet Name="Societybillplans" EntityType="SocietyDBModel.Societybillplan" />
           <EntitySet Name="Offers" EntityType="SocietyDBModel.Offer" />
           <EntitySet Name="ViewOffers" EntityType="SocietyDBModel.ViewOffer" />
           <EntitySet Name="ViewLatestOffers" EntityType="SocietyDBModel.ViewLatestOffer" />
-          <EntitySet Name="ViewUserSettings" EntityType="SocietyDBModel.ViewUserSetting" />
           <EntitySet Name="GeneratedBills" EntityType="SocietyDBModel.GeneratedBill" />
           <EntitySet Name="ViewGeneratedBills" EntityType="SocietyDBModel.ViewGeneratedBill" />
           <EntitySet Name="ViewLatestBills" EntityType="SocietyDBModel.ViewLatestBill" />
@@ -2045,6 +1929,9 @@ warning 6002: The table/view 'NestinDB.dbo.viewVisitorData' does not have a prim
           <EntitySet Name="lukStatus" EntityType="SocietyDBModel.lukStatu" />
           <EntitySet Name="NewUserSettings" EntityType="SocietyDBModel.NewUserSetting" />
           <EntitySet Name="ViewNewUserSettings" EntityType="SocietyDBModel.ViewNewUserSetting" />
+          <EntitySet Name="SocietyUsers" EntityType="SocietyDBModel.SocietyUser" />
+          <EntitySet Name="ViewFlats" EntityType="SocietyDBModel.ViewFlat" />
+          <EntitySet Name="ViewSocietyUsers" EntityType="SocietyDBModel.ViewSocietyUser" />
         </EntityContainer>
         <EntityType Name="Complaint">
           <Key>
@@ -2545,57 +2432,6 @@ warning 6002: The table/view 'NestinDB.dbo.viewVisitorData' does not have a prim
           <Property Name="DealStatus" Type="Int32" Nullable="false" />
           <Property Name="Comments" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityType Name="ViewFlatsUser">
-          <Key>
-            <PropertyRef Name="ID" />
-            <PropertyRef Name="FlatNumber" />
-            <PropertyRef Name="SocietyId" />
-            <PropertyRef Name="BHK" />
-            <PropertyRef Name="Floor" />
-            <PropertyRef Name="Block" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="FlatNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="SocietyId" Type="Int32" Nullable="false" />
-          <Property Name="BHK" Type="Int32" Nullable="false" />
-          <Property Name="Floor" Type="Int32" Nullable="false" />
-          <Property Name="Block" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="IntercomNumber" Type="Int32" />
-          <Property Name="FlatArea" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="OwnerUserID" Type="Int32" />
-          <Property Name="OwnerFirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="OwnerLastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="OwnerEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Ownermobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="OwnerAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="OwnerFrom" Type="DateTime" Precision="0" />
-          <Property Name="OwnerTo" Type="DateTime" Precision="3" />
-          <Property Name="TenantUserID" Type="Int32" />
-          <Property Name="TenantFirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="TenantLastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="TenantEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="TenantMobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="TenantAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="TenantFrom" Type="DateTime" Precision="0" />
-          <Property Name="TenantTo" Type="DateTime" Precision="3" />
-        </EntityType>
-        <EntityType Name="SocietyUser">
-          <Key>
-            <PropertyRef Name="ResID" />
-          </Key>
-          <Property Name="ResID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserID" Type="Int32" Nullable="false" />
-          <Property Name="FlatID" Type="Int32" Nullable="false" />
-          <Property Name="Type" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ServiceType" Type="Int32" Nullable="false" />
-          <Property Name="CompanyName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ActiveDate" Type="DateTime" Precision="0" />
-          <Property Name="DeActiveDate" Type="DateTime" Precision="3" />
-          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
-          <Property Name="SocietyID" Type="Int32" Nullable="false" />
-          <Property Name="Status" Type="Int32" />
-          <Property Name="HouseID" Type="Int32" />
-        </EntityType>
         <EntityType Name="VehiclePool">
           <Key>
             <PropertyRef Name="VehiclePoolID" />
@@ -2836,86 +2672,6 @@ warning 6002: The table/view 'NestinDB.dbo.viewVisitorData' does not have a prim
           <Property Name="AssignedTo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ModifiedAt" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
-        <EntityType Name="ViewFlat">
-          <Key>
-            <PropertyRef Name="ID" />
-            <PropertyRef Name="FlatNumber" />
-            <PropertyRef Name="SocietyId" />
-            <PropertyRef Name="BHK" />
-            <PropertyRef Name="Floor" />
-            <PropertyRef Name="Block" />
-            <PropertyRef Name="OwnerResID" />
-            <PropertyRef Name="OwnerUserID" />
-            <PropertyRef Name="TenantResID" />
-            <PropertyRef Name="TenantUserID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="FlatNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="SocietyId" Type="Int32" Nullable="false" />
-          <Property Name="BHK" Type="Int32" Nullable="false" />
-          <Property Name="Floor" Type="Int32" Nullable="false" />
-          <Property Name="Block" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="IntercomNumber" Type="Int32" />
-          <Property Name="FlatArea" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="OwnerResID" Type="Int32" Nullable="false" />
-          <Property Name="OwnerUserID" Type="Int32" Nullable="false" />
-          <Property Name="OwnerFirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="OwnerLastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="OwnerEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="OwnerMobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="OwnerAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="TenantResID" Type="Int32" Nullable="false" />
-          <Property Name="TenantUserID" Type="Int32" Nullable="false" />
-          <Property Name="TenantFirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="TenantLastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="TenantEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="TenantMobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="TenantAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="TenantFrom" Type="DateTime" Precision="0" />
-          <Property Name="TenantTo" Type="DateTime" Precision="3" />
-        </EntityType>
-        <EntityType Name="ViewSocietyUser">
-          <Key>
-            <PropertyRef Name="ResID" />
-            <PropertyRef Name="UserID" />
-            <PropertyRef Name="FlatID" />
-            <PropertyRef Name="Type" />
-            <PropertyRef Name="SocietyID" />
-            <PropertyRef Name="ServiceType" />
-            <PropertyRef Name="CompanyName" />
-            <PropertyRef Name="FlatNumber" />
-            <PropertyRef Name="HouseNUmber" />
-          </Key>
-          <Property Name="ResID" Type="Int32" Nullable="false" />
-          <Property Name="UserID" Type="Int32" Nullable="false" />
-          <Property Name="FlatID" Type="Int32" Nullable="false" />
-          <Property Name="Type" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ActiveDate" Type="DateTime" Precision="0" />
-          <Property Name="DeActiveDate" Type="DateTime" Precision="3" />
-          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
-          <Property Name="SocietyID" Type="Int32" Nullable="false" />
-          <Property Name="ServiceType" Type="Int32" Nullable="false" />
-          <Property Name="CompanyName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="HouseID" Type="Int32" />
-          <Property Name="statusID" Type="Int32" />
-          <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="MobileNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="EmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Gender" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
-          <Property Name="ParentName" Type="String" MaxLength="25" FixedLength="true" Unicode="false" />
-          <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="SocietyName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="FlatNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="CompType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="intercomNumber" Type="Int32" />
-          <Property Name="HouseNUmber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Sector" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="City" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="State" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="PinCode" Type="Int32" />
-        </EntityType>
         <EntityType Name="ViewVendor">
           <Key>
             <PropertyRef Name="VendorID" />
@@ -3011,42 +2767,6 @@ warning 6002: The table/view 'NestinDB.dbo.viewVisitorData' does not have a prim
           <Property Name="startDate" Type="DateTime" Precision="0" />
           <Property Name="EndDate" Type="DateTime" Precision="0" />
           <Property Name="SocietyID" Type="Int32" />
-        </EntityType>
-        <EntityType Name="ViewUserSetting">
-          <Key>
-            <PropertyRef Name="UserID" />
-            <PropertyRef Name="FirstName" />
-            <PropertyRef Name="MobileNo" />
-            <PropertyRef Name="BillingNotification" />
-            <PropertyRef Name="BillingMail" />
-            <PropertyRef Name="BillingSMS" />
-            <PropertyRef Name="ComplaintNotification" />
-            <PropertyRef Name="ComplaintMail" />
-            <PropertyRef Name="ComplaintSMS" />
-            <PropertyRef Name="forumNotification" />
-            <PropertyRef Name="forumMail" />
-            <PropertyRef Name="forumSMS" />
-            <PropertyRef Name="NoticeNotification" />
-            <PropertyRef Name="NoticeMail" />
-            <PropertyRef Name="NoticeSMS" />
-          </Key>
-          <Property Name="UserID" Type="Int32" Nullable="false" />
-          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="MobileNo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="EmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="RegID" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Name="BillingNotification" Type="Boolean" Nullable="false" />
-          <Property Name="BillingMail" Type="Boolean" Nullable="false" />
-          <Property Name="BillingSMS" Type="Boolean" Nullable="false" />
-          <Property Name="ComplaintNotification" Type="Boolean" Nullable="false" />
-          <Property Name="ComplaintMail" Type="Boolean" Nullable="false" />
-          <Property Name="ComplaintSMS" Type="Boolean" Nullable="false" />
-          <Property Name="forumNotification" Type="Boolean" Nullable="false" />
-          <Property Name="forumMail" Type="Boolean" Nullable="false" />
-          <Property Name="forumSMS" Type="Boolean" Nullable="false" />
-          <Property Name="NoticeNotification" Type="Boolean" Nullable="false" />
-          <Property Name="NoticeMail" Type="Boolean" Nullable="false" />
-          <Property Name="NoticeSMS" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="GeneratedBill">
           <Key>
@@ -3318,6 +3038,111 @@ warning 6002: The table/view 'NestinDB.dbo.viewVisitorData' does not have a prim
           <Property Name="SettingID" Type="Int32" Nullable="false" />
           <Property Name="GCM" Type="Boolean" Nullable="false" />
           <Property Name="Mail" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SocietyUser">
+          <Key>
+            <PropertyRef Name="ResID" />
+          </Key>
+          <Property Name="ResID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="FlatID" Type="Int32" Nullable="false" />
+          <Property Name="Type" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ServiceType" Type="Int32" Nullable="false" />
+          <Property Name="CompanyName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DeActiveDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="SocietyID" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="Int32" />
+          <Property Name="HouseID" Type="Int32" />
+          <Property Name="ActiveDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="ViewFlat">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="FlatNumber" />
+            <PropertyRef Name="SocietyId" />
+            <PropertyRef Name="BHK" />
+            <PropertyRef Name="Floor" />
+            <PropertyRef Name="Block" />
+            <PropertyRef Name="OwnerResID" />
+            <PropertyRef Name="OwnerUserID" />
+            <PropertyRef Name="OwnerStatusID" />
+            <PropertyRef Name="OwnerStatus" />
+            <PropertyRef Name="TenantResID" />
+            <PropertyRef Name="TenantUserID" />
+            <PropertyRef Name="TenantStatusID" />
+            <PropertyRef Name="TenantStatus" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="FlatNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SocietyId" Type="Int32" Nullable="false" />
+          <Property Name="BHK" Type="Int32" Nullable="false" />
+          <Property Name="Floor" Type="Int32" Nullable="false" />
+          <Property Name="Block" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IntercomNumber" Type="Int32" />
+          <Property Name="FlatArea" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OwnerResID" Type="Int32" Nullable="false" />
+          <Property Name="OwnerUserID" Type="Int32" Nullable="false" />
+          <Property Name="OwnerStatusID" Type="Int32" Nullable="false" />
+          <Property Name="OwnerStatus" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="OwnerFirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OwnerLastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OwnerEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OwnerMobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OwnerAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TenantResID" Type="Int32" Nullable="false" />
+          <Property Name="TenantUserID" Type="Int32" Nullable="false" />
+          <Property Name="TenantStatusID" Type="Int32" Nullable="false" />
+          <Property Name="TenantStatus" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="TenantFirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TenantLastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TenantEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TenantMobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TenantAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TenantFrom" Type="DateTime" Precision="0" />
+          <Property Name="TenantTo" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="ViewSocietyUser">
+          <Key>
+            <PropertyRef Name="ResID" />
+            <PropertyRef Name="UserID" />
+            <PropertyRef Name="FlatID" />
+            <PropertyRef Name="Type" />
+            <PropertyRef Name="SocietyID" />
+            <PropertyRef Name="ServiceType" />
+            <PropertyRef Name="CompanyName" />
+            <PropertyRef Name="FlatNumber" />
+            <PropertyRef Name="HouseNUmber" />
+          </Key>
+          <Property Name="ResID" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="FlatID" Type="Int32" Nullable="false" />
+          <Property Name="Type" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ActiveDate" Type="DateTime" Precision="0" />
+          <Property Name="DeActiveDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="SocietyID" Type="Int32" Nullable="false" />
+          <Property Name="ServiceType" Type="Int32" Nullable="false" />
+          <Property Name="CompanyName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="HouseID" Type="Int32" />
+          <Property Name="statusID" Type="Int32" />
+          <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MobileNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Gender" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="ParentName" Type="String" MaxLength="25" FixedLength="true" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SocietyName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FlatNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CompType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="intercomNumber" Type="Int32" />
+          <Property Name="HouseNUmber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Sector" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="State" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="PinCode" Type="Int32" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -3775,54 +3600,6 @@ warning 6002: The table/view 'NestinDB.dbo.viewVisitorData' does not have a prim
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ViewFlatsUsers">
-            <EntityTypeMapping TypeName="SocietyDBModel.ViewFlatsUser">
-              <MappingFragment StoreEntitySet="ViewFlatsUser">
-                <ScalarProperty Name="TenantTo" ColumnName="TenantTo" />
-                <ScalarProperty Name="TenantFrom" ColumnName="TenantFrom" />
-                <ScalarProperty Name="TenantAddress" ColumnName="TenantAddress" />
-                <ScalarProperty Name="TenantMobile" ColumnName="TenantMobile" />
-                <ScalarProperty Name="TenantEmail" ColumnName="TenantEmail" />
-                <ScalarProperty Name="TenantLastName" ColumnName="TenantLastName" />
-                <ScalarProperty Name="TenantFirstName" ColumnName="TenantFirstName" />
-                <ScalarProperty Name="TenantUserID" ColumnName="TenantUserID" />
-                <ScalarProperty Name="OwnerTo" ColumnName="OwnerTo" />
-                <ScalarProperty Name="OwnerFrom" ColumnName="OwnerFrom" />
-                <ScalarProperty Name="OwnerAddress" ColumnName="OwnerAddress" />
-                <ScalarProperty Name="Ownermobile" ColumnName="Ownermobile" />
-                <ScalarProperty Name="OwnerEmail" ColumnName="OwnerEmail" />
-                <ScalarProperty Name="OwnerLastName" ColumnName="OwnerLastName" />
-                <ScalarProperty Name="OwnerFirstName" ColumnName="OwnerFirstName" />
-                <ScalarProperty Name="OwnerUserID" ColumnName="OwnerUserID" />
-                <ScalarProperty Name="FlatArea" ColumnName="FlatArea" />
-                <ScalarProperty Name="IntercomNumber" ColumnName="IntercomNumber" />
-                <ScalarProperty Name="Block" ColumnName="Block" />
-                <ScalarProperty Name="Floor" ColumnName="Floor" />
-                <ScalarProperty Name="BHK" ColumnName="BHK" />
-                <ScalarProperty Name="SocietyId" ColumnName="SocietyId" />
-                <ScalarProperty Name="FlatNumber" ColumnName="FlatNumber" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SocietyUsers">
-            <EntityTypeMapping TypeName="SocietyDBModel.SocietyUser">
-              <MappingFragment StoreEntitySet="SocietyUser">
-                <ScalarProperty Name="HouseID" ColumnName="HouseID" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="SocietyID" ColumnName="SocietyID" />
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-                <ScalarProperty Name="DeActiveDate" ColumnName="DeActiveDate" />
-                <ScalarProperty Name="ActiveDate" ColumnName="ActiveDate" />
-                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
-                <ScalarProperty Name="ServiceType" ColumnName="ServiceType" />
-                <ScalarProperty Name="Type" ColumnName="Type" />
-                <ScalarProperty Name="FlatID" ColumnName="FlatID" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="ResID" ColumnName="ResID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="VehiclePools">
             <EntityTypeMapping TypeName="SocietyDBModel.VehiclePool">
               <MappingFragment StoreEntitySet="VehiclePool">
@@ -4035,71 +3812,6 @@ warning 6002: The table/view 'NestinDB.dbo.viewVisitorData' does not have a prim
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ViewFlats">
-            <EntityTypeMapping TypeName="SocietyDBModel.ViewFlat">
-              <MappingFragment StoreEntitySet="ViewFlats">
-                <ScalarProperty Name="TenantTo" ColumnName="TenantTo" />
-                <ScalarProperty Name="TenantFrom" ColumnName="TenantFrom" />
-                <ScalarProperty Name="TenantAddress" ColumnName="TenantAddress" />
-                <ScalarProperty Name="TenantMobile" ColumnName="TenantMobile" />
-                <ScalarProperty Name="TenantEmail" ColumnName="TenantEmail" />
-                <ScalarProperty Name="TenantLastName" ColumnName="TenantLastName" />
-                <ScalarProperty Name="TenantFirstName" ColumnName="TenantFirstName" />
-                <ScalarProperty Name="TenantUserID" ColumnName="TenantUserID" />
-                <ScalarProperty Name="TenantResID" ColumnName="TenantResID" />
-                <ScalarProperty Name="OwnerAddress" ColumnName="OwnerAddress" />
-                <ScalarProperty Name="OwnerMobile" ColumnName="OwnerMobile" />
-                <ScalarProperty Name="OwnerEmail" ColumnName="OwnerEmail" />
-                <ScalarProperty Name="OwnerLastName" ColumnName="OwnerLastName" />
-                <ScalarProperty Name="OwnerFirstName" ColumnName="OwnerFirstName" />
-                <ScalarProperty Name="OwnerUserID" ColumnName="OwnerUserID" />
-                <ScalarProperty Name="OwnerResID" ColumnName="OwnerResID" />
-                <ScalarProperty Name="FlatArea" ColumnName="FlatArea" />
-                <ScalarProperty Name="IntercomNumber" ColumnName="IntercomNumber" />
-                <ScalarProperty Name="Block" ColumnName="Block" />
-                <ScalarProperty Name="Floor" ColumnName="Floor" />
-                <ScalarProperty Name="BHK" ColumnName="BHK" />
-                <ScalarProperty Name="SocietyId" ColumnName="SocietyId" />
-                <ScalarProperty Name="FlatNumber" ColumnName="FlatNumber" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ViewSocietyUsers">
-            <EntityTypeMapping TypeName="SocietyDBModel.ViewSocietyUser">
-              <MappingFragment StoreEntitySet="ViewSocietyUsers">
-                <ScalarProperty Name="PinCode" ColumnName="PinCode" />
-                <ScalarProperty Name="State" ColumnName="State" />
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="Sector" ColumnName="Sector" />
-                <ScalarProperty Name="HouseNUmber" ColumnName="HouseNUmber" />
-                <ScalarProperty Name="intercomNumber" ColumnName="intercomNumber" />
-                <ScalarProperty Name="CompType" ColumnName="CompType" />
-                <ScalarProperty Name="FlatNumber" ColumnName="FlatNumber" />
-                <ScalarProperty Name="SocietyName" ColumnName="SocietyName" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="ParentName" ColumnName="ParentName" />
-                <ScalarProperty Name="Gender" ColumnName="Gender" />
-                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
-                <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="statusID" ColumnName="statusID" />
-                <ScalarProperty Name="HouseID" ColumnName="HouseID" />
-                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
-                <ScalarProperty Name="ServiceType" ColumnName="ServiceType" />
-                <ScalarProperty Name="SocietyID" ColumnName="SocietyID" />
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-                <ScalarProperty Name="DeActiveDate" ColumnName="DeActiveDate" />
-                <ScalarProperty Name="ActiveDate" ColumnName="ActiveDate" />
-                <ScalarProperty Name="Type" ColumnName="Type" />
-                <ScalarProperty Name="FlatID" ColumnName="FlatID" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="ResID" ColumnName="ResID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="ViewVendors">
             <EntityTypeMapping TypeName="SocietyDBModel.ViewVendor">
               <MappingFragment StoreEntitySet="ViewVendor">
@@ -4183,29 +3895,6 @@ warning 6002: The table/view 'NestinDB.dbo.viewVisitorData' does not have a prim
                 <ScalarProperty Name="offerdescription" ColumnName="offerdescription" />
                 <ScalarProperty Name="VendorID" ColumnName="VendorID" />
                 <ScalarProperty Name="OfferID" ColumnName="OfferID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ViewUserSettings">
-            <EntityTypeMapping TypeName="SocietyDBModel.ViewUserSetting">
-              <MappingFragment StoreEntitySet="ViewUserSetting">
-                <ScalarProperty Name="NoticeSMS" ColumnName="NoticeSMS" />
-                <ScalarProperty Name="NoticeMail" ColumnName="NoticeMail" />
-                <ScalarProperty Name="NoticeNotification" ColumnName="NoticeNotification" />
-                <ScalarProperty Name="forumSMS" ColumnName="forumSMS" />
-                <ScalarProperty Name="forumMail" ColumnName="forumMail" />
-                <ScalarProperty Name="forumNotification" ColumnName="forumNotification" />
-                <ScalarProperty Name="ComplaintSMS" ColumnName="ComplaintSMS" />
-                <ScalarProperty Name="ComplaintMail" ColumnName="ComplaintMail" />
-                <ScalarProperty Name="ComplaintNotification" ColumnName="ComplaintNotification" />
-                <ScalarProperty Name="BillingSMS" ColumnName="BillingSMS" />
-                <ScalarProperty Name="BillingMail" ColumnName="BillingMail" />
-                <ScalarProperty Name="BillingNotification" ColumnName="BillingNotification" />
-                <ScalarProperty Name="RegID" ColumnName="RegID" />
-                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
-                <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -4407,6 +4096,93 @@ warning 6002: The table/view 'NestinDB.dbo.viewVisitorData' does not have a prim
                 <ScalarProperty Name="FlatID" ColumnName="FlatID" />
                 <ScalarProperty Name="ResID" ColumnName="ResID" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SocietyUsers">
+            <EntityTypeMapping TypeName="SocietyDBModel.SocietyUser">
+              <MappingFragment StoreEntitySet="SocietyUser">
+                <ScalarProperty Name="ActiveDate" ColumnName="ActiveDate" />
+                <ScalarProperty Name="HouseID" ColumnName="HouseID" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="SocietyID" ColumnName="SocietyID" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="DeActiveDate" ColumnName="DeActiveDate" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="ServiceType" ColumnName="ServiceType" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="FlatID" ColumnName="FlatID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="ResID" ColumnName="ResID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ViewFlats">
+            <EntityTypeMapping TypeName="SocietyDBModel.ViewFlat">
+              <MappingFragment StoreEntitySet="ViewFlats">
+                <ScalarProperty Name="TenantTo" ColumnName="TenantTo" />
+                <ScalarProperty Name="TenantFrom" ColumnName="TenantFrom" />
+                <ScalarProperty Name="TenantAddress" ColumnName="TenantAddress" />
+                <ScalarProperty Name="TenantMobile" ColumnName="TenantMobile" />
+                <ScalarProperty Name="TenantEmail" ColumnName="TenantEmail" />
+                <ScalarProperty Name="TenantLastName" ColumnName="TenantLastName" />
+                <ScalarProperty Name="TenantFirstName" ColumnName="TenantFirstName" />
+                <ScalarProperty Name="TenantStatus" ColumnName="TenantStatus" />
+                <ScalarProperty Name="TenantStatusID" ColumnName="TenantStatusID" />
+                <ScalarProperty Name="TenantUserID" ColumnName="TenantUserID" />
+                <ScalarProperty Name="TenantResID" ColumnName="TenantResID" />
+                <ScalarProperty Name="OwnerAddress" ColumnName="OwnerAddress" />
+                <ScalarProperty Name="OwnerMobile" ColumnName="OwnerMobile" />
+                <ScalarProperty Name="OwnerEmail" ColumnName="OwnerEmail" />
+                <ScalarProperty Name="OwnerLastName" ColumnName="OwnerLastName" />
+                <ScalarProperty Name="OwnerFirstName" ColumnName="OwnerFirstName" />
+                <ScalarProperty Name="OwnerStatus" ColumnName="OwnerStatus" />
+                <ScalarProperty Name="OwnerStatusID" ColumnName="OwnerStatusID" />
+                <ScalarProperty Name="OwnerUserID" ColumnName="OwnerUserID" />
+                <ScalarProperty Name="OwnerResID" ColumnName="OwnerResID" />
+                <ScalarProperty Name="FlatArea" ColumnName="FlatArea" />
+                <ScalarProperty Name="IntercomNumber" ColumnName="IntercomNumber" />
+                <ScalarProperty Name="Block" ColumnName="Block" />
+                <ScalarProperty Name="Floor" ColumnName="Floor" />
+                <ScalarProperty Name="BHK" ColumnName="BHK" />
+                <ScalarProperty Name="SocietyId" ColumnName="SocietyId" />
+                <ScalarProperty Name="FlatNumber" ColumnName="FlatNumber" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ViewSocietyUsers">
+            <EntityTypeMapping TypeName="SocietyDBModel.ViewSocietyUser">
+              <MappingFragment StoreEntitySet="ViewSocietyUsers">
+                <ScalarProperty Name="PinCode" ColumnName="PinCode" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Sector" ColumnName="Sector" />
+                <ScalarProperty Name="HouseNUmber" ColumnName="HouseNUmber" />
+                <ScalarProperty Name="intercomNumber" ColumnName="intercomNumber" />
+                <ScalarProperty Name="CompType" ColumnName="CompType" />
+                <ScalarProperty Name="FlatNumber" ColumnName="FlatNumber" />
+                <ScalarProperty Name="SocietyName" ColumnName="SocietyName" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="ParentName" ColumnName="ParentName" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+                <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="statusID" ColumnName="statusID" />
+                <ScalarProperty Name="HouseID" ColumnName="HouseID" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="ServiceType" ColumnName="ServiceType" />
+                <ScalarProperty Name="SocietyID" ColumnName="SocietyID" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="DeActiveDate" ColumnName="DeActiveDate" />
+                <ScalarProperty Name="ActiveDate" ColumnName="ActiveDate" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="FlatID" ColumnName="FlatID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="ResID" ColumnName="ResID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

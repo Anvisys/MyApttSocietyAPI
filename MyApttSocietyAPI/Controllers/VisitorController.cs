@@ -173,8 +173,8 @@ namespace MyApttSocietyAPI.Controllers
                         {
                             VisitorId = value.VisitorId,
                             VisitPurpose = value.VisitPurpose,
-                            StartTime = DateTime.ParseExact(value.StartTime, "yyyy-MM-ddTHH:mm:ss", System.Globalization.CultureInfo.CurrentUICulture),
-                            EndTime = DateTime.ParseExact(value.EndTime, "yyyy-MM-ddTHH:mm:ss", System.Globalization.CultureInfo.CurrentUICulture),
+                            StartTime = DateTime.ParseExact(value.StartTime, "yyyy-MM-ddTHH:mm:ss.SSSZ", System.Globalization.CultureInfo.InvariantCulture),
+                            EndTime = DateTime.ParseExact(value.EndTime, "yyyy-MM-ddTHH:mm:ss.SSSZ", System.Globalization.CultureInfo.InvariantCulture),
 
                             SecurityCode = code.ToString(),
                             SocietyId = value.SocietyId,

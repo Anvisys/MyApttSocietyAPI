@@ -46,7 +46,7 @@ namespace MyApttSocietyAPI.Models
 
         private void InitParams()
         {
-            var userSetting = DbContext.ViewUserSettings.Where(us => us.MobileNo == UserIdentification).First();
+            var userSetting = DbContext.ViewNewUserSettings.Where(us => us.MobileNo == UserIdentification).First();
            
             
         }
@@ -61,10 +61,10 @@ namespace MyApttSocietyAPI.Models
         }
         private void InitParams()
         {
-            var userSetting = DbContext.ViewUserSettings.Where(us => us.MobileNo == UserIdentification).First();
-            IsSms = userSetting.BillingSMS;
-            IsEmail = userSetting.BillingMail;
-            IsGcm = userSetting.BillingNotification;
+            var userSetting = DbContext.ViewNewUserSettings.Where(us => us.MobileNo == UserIdentification).First();
+            //IsSms = userSetting.BillingSMS;
+            //IsEmail = userSetting.BillingMail;
+            //IsGcm = userSetting.BillingNotification;
             UserEmail = userSetting.EmailId;
             UserPhone = userSetting.MobileNo;
         }       
@@ -79,10 +79,10 @@ namespace MyApttSocietyAPI.Models
         }
         private void InitParams()
         {
-            var userSetting = DbContext.ViewUserSettings.Where(us => us.MobileNo == UserIdentification).First();
-            IsSms = userSetting.forumSMS;
-            IsEmail = userSetting.forumMail;
-            IsGcm = userSetting.forumNotification;
+            var userSetting = DbContext.ViewNewUserSettings.Where(us => us.MobileNo == UserIdentification).First();
+            //IsSms = userSetting.forumSMS;
+            //IsEmail = userSetting.forumMail;
+            //IsGcm = userSetting.forumNotification;
         }
     }
 
@@ -95,10 +95,10 @@ namespace MyApttSocietyAPI.Models
         }
         private void InitParams()
         {
-            var userSetting = DbContext.ViewUserSettings.Where(us => us.MobileNo == UserIdentification).First();
-            IsSms = userSetting.ComplaintSMS;
-            IsEmail = userSetting.ComplaintMail;
-            IsGcm = userSetting.ComplaintNotification;
+            var userSetting = DbContext.ViewNewUserSettings.Where(us => us.MobileNo == UserIdentification).First();
+            //IsSms = userSetting.ComplaintSMS;
+            //IsEmail = userSetting.ComplaintMail;
+            //IsGcm = userSetting.ComplaintNotification;
         }
 
         public bool NotifyEmployee(String Message, String MobileNumber)
@@ -126,10 +126,10 @@ namespace MyApttSocietyAPI.Models
         }
         private void InitParams()
         {
-            var userSetting = DbContext.ViewUserSettings.Where(us => us.MobileNo == UserIdentification).First();
-            IsSms = userSetting.NoticeSMS;
-            IsEmail = userSetting.NoticeMail;
-            IsGcm = userSetting.NoticeNotification;
+            var userSetting = DbContext.ViewNewUserSettings.Where(us => us.MobileNo == UserIdentification).First();
+            //IsSms = userSetting.NoticeSMS;
+            //IsEmail = userSetting.NoticeMail;
+            //IsGcm = userSetting.NoticeNotification;
         }
     }
 

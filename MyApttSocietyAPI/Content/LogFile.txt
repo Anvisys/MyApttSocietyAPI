@@ -13,3 +13,18 @@ api/Profile Failed to Add User : Property-VisitorMobileNo  Error- The field Visi
  Get Complaint has error at: 18-07-2019 14:45:08 An error occurred while executing the command definition. See the inner exception for details.
  Complaint Post request received : 18-07-2019 15:08:49
 Error in Update User Setting at: 19-07-2019 15:57:49
+Reached Validate At 29-07-2019 19:05:00
+one is valid 29-07-2019 19:05:10
+Encrypted Password is :56D771BAA3276E2EA545042FF512C970 At 29-07-2019 19:05:22
+Amit
+Reached Validate At 29-07-2019 19:07:34
+one is valid 29-07-2019 19:07:41
+Encrypted Password is :56D771BAA3276E2EA545042FF512C970 At 29-07-2019 19:07:47
+Amit
+Exception Occured at : 13-09-2019 17:25:17----The underlying provider failed on Open.
+Exception Occured at : 13-09-2019 17:30:09----The underlying provider failed on Open.
+Exception Occured at : 13-09-2019 17:32:10----The underlying provider failed on Open.
+Exception Occured at : 13-09-2019 17:36:12----The underlying provider failed on Open.
+api/Profile Failed to Add User Error- String was not recognized as a valid DateTime.  At 02-10-2019 17:14:07
+api/Profile Failed to Add User Error- String was not recognized as a valid DateTime.  At 02-10-2019 17:21:44
+api/Profile Failed to Add User Error- String was not recognized as a valid DateTime.  At 02-10-2019 17:23:47

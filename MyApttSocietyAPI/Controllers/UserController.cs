@@ -35,6 +35,22 @@ namespace MyApttSocietyAPI.Controllers
             return soc;
         }
 
+
+        [Route("{SocID}")]
+        [HttpGet]
+        public IEnumerable<ViewSocietyUser> GetResidents(int SocID)
+        {
+            var context = new SocietyDBEntities();
+            var soc = (from s in context.ViewSocietyUsers
+                       where s.SocietyID == SocID
+                       select s).ToList();
+            return soc;
+        }
+
+
+
+
+
         [Route("Flat/{SocID}/{FlatNumber}")]
         [HttpGet]
         public IEnumerable<ViewFlat> GetFlats(int SocID, String FlatNumber)
@@ -147,7 +163,10 @@ namespace MyApttSocietyAPI.Controllers
                         ValidUser.UserData = user;
 
                         ValidUser.SocietyUser = (from res in context.ViewSocietyUsers
-                                                 where ((res.DeActiveDate == null) || (DbFunctions.TruncateTime(res.DeActiveDate) > DbFunctions.TruncateTime(DateTime.UtcNow))) && res.UserID == user.UserID
+                                                 where (res.UserID == user.UserID
+                                                 && res.statusID == 2 
+                                                 && DbFunctions.TruncateTime(res.DeActiveDate) > DbFunctions.TruncateTime(DateTime.UtcNow)
+                                                 && DbFunctions.TruncateTime(res.ActiveDate) <= DbFunctions.TruncateTime(DateTime.UtcNow))
                                                  select res).ToList();
 
                     }

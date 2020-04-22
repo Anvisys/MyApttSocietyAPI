@@ -62,7 +62,7 @@ namespace MyApttSocietyAPI.Controllers
                   var   vendor = (from vend in context.ViewVendors
                                   where vend.SocietyID == SocietyID
                                   orderby vend.VendorName
-                                  select vend);
+                                  select vend).ToList();
 
                     return vendor.Skip((PageNumber - 1) * Count).Take(Count);
                 }
@@ -70,7 +70,7 @@ namespace MyApttSocietyAPI.Controllers
                     var vendor = (from vend in context.ViewVendors
                                   where vend.SocietyID == SocietyID && vend.ShopCategory == Category
                                   orderby vend.VendorName
-                                  select vend);
+                                  select vend).ToList();
 
                     return vendor.Skip((PageNumber - 1) * Count).Take(Count);
                 }
