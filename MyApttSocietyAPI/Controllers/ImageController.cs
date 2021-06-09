@@ -29,7 +29,7 @@ namespace MyApttSocietyAPI.Controllers
         [HttpGet]
         public ShopImage GetByResID(int ResId)
         {
-            var context = new SocietyDBEntities();
+            var context = new NestinDBEntities();
             var Image = (from res in context.ViewUserImages
                          where (res.ResID == ResId)
                              select new ShopImage() { ID = res.ResID, ImageString = res.Profile_image }).First();
@@ -44,7 +44,7 @@ namespace MyApttSocietyAPI.Controllers
         {
             try
             {
-                var context = new SocietyDBEntities();
+                var context = new NestinDBEntities();
                 var Image = (from res in context.ViewUserImages
                              where (res.UserID == UserId)
                              select new ShopImage() { ID = res.ResID, ImageString = res.Profile_image }).First();
@@ -61,7 +61,7 @@ namespace MyApttSocietyAPI.Controllers
         [HttpGet]
         public ShopImage GetByMobile(String Mobile)
         {
-            var context = new SocietyDBEntities();
+            var context = new NestinDBEntities();
 
             var userID = (from res in context.ViewSocietyUsers
                          where (res.MobileNo == Mobile)
@@ -93,7 +93,7 @@ namespace MyApttSocietyAPI.Controllers
                         }
                         else
                         {
-                                    using (var context = new SocietyDBEntities())
+                                    using (var context = new NestinDBEntities())
                                     {
 
                                         String ImagePath = HttpContext.Current.Server.MapPath("~/Image/User/");

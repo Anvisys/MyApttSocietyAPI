@@ -33,7 +33,7 @@ namespace MyApttSocietyAPI.Controllers.Rent
             try
             {
 
-                var context = new SocietyDBEntities();
+                var context = new NestinDBEntities();
 
                 var inventory = context.ViewRentInventories.Where(X => (X.HouseID == HouseId && X.FlatID == FlatId)
                                                                   && X.Available == true).ToList();
@@ -55,8 +55,8 @@ namespace MyApttSocietyAPI.Controllers.Rent
         {
             try
             {
-                var context = new SocietyDBEntities();
-                var inventory = context.ViewRentInventories.Where(X => (X.SocietyID == SocietyId ) && X.FlatID != FlatId
+                var context = new NestinDBEntities();
+                var inventory = context.ViewRentInventories.Where(X => (X.SocietyID == SocietyId )
                                                                   && X.Available == true).ToList();
                 return Ok(inventory.Skip((PageNumber-1)*count).Take(count));
 
@@ -76,7 +76,7 @@ namespace MyApttSocietyAPI.Controllers.Rent
         {
             try {
 
-                var context = new SocietyDBEntities();
+                var context = new NestinDBEntities();
 
                 var inventory = context.ViewRentInventories.Where(X => X.InventoryTypeID == value.InventoryTypeID && X.AccomodationTypeID == value.AccomodationTypeID
                                                                 && X.FlatCity == value.FlatCity && X.Available == true
@@ -99,7 +99,7 @@ namespace MyApttSocietyAPI.Controllers.Rent
             String resp;
             try {
 
-                var context = new SocietyDBEntities();
+                var context = new NestinDBEntities();
 
                 var inv = context.ViewRentInventories.Where(X => (X.HouseID == value.HouseID && X.FlatID == value.FlatID)
                                                                   && X.Available == true).ToList();
@@ -141,7 +141,7 @@ namespace MyApttSocietyAPI.Controllers.Rent
             try
             {
 
-                var context = new SocietyDBEntities();
+                var context = new NestinDBEntities();
 
                 var inv = context.RentInventories.Where(X => X.RentInventoryID == value.InventoryId).First();
 
@@ -180,7 +180,7 @@ namespace MyApttSocietyAPI.Controllers.Rent
             String resp;
             try
             {
-                var context = new SocietyDBEntities();
+                var context = new NestinDBEntities();
 
                 var exist = context.RentEngagemments.Where(x => x.InventoryID == interest.InventoryID && x.InterestedUserId == interest.InterestedUserId).ToList();
                 if(exist.Count>0)

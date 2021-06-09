@@ -12,14 +12,15 @@ namespace MyApttSocietyAPI
     using System;
     using System.Collections.Generic;
     
-    public partial class Offer
+    public partial class BillCycle
     {
         public int ID { get; set; }
-        public int VendorID { get; set; }
-        public string offerdescription { get; set; }
-        public System.DateTime StartDate { get; set; }
-        public System.DateTime EndDate { get; set; }
+        public string FlatID { get; set; }
+        public int BillID { get; set; }
+        public Nullable<System.DateTime> CycleStart { get; set; }
+        public Nullable<System.DateTime> CycleEnD { get; set; }
+        public System.DateTime created_date { get; set; }
+        public string comments { get; set; }
         public int SocietyID { get; set; }
-        public System.DateTime ModifiedDate { get; set; }
     }
 }

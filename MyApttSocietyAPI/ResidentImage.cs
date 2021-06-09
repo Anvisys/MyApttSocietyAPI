@@ -12,14 +12,11 @@ namespace MyApttSocietyAPI
     using System;
     using System.Collections.Generic;
     
-    public partial class Offer
+    public partial class ResidentImage
     {
-        public int ID { get; set; }
-        public int VendorID { get; set; }
-        public string offerdescription { get; set; }
-        public System.DateTime StartDate { get; set; }
-        public System.DateTime EndDate { get; set; }
-        public int SocietyID { get; set; }
-        public System.DateTime ModifiedDate { get; set; }
+        public int ImageID { get; set; }
+        public string ResID { get; set; }
+        public int UserID { get; set; }
+        public byte[] Profile_image { get; set; }
     }
 }

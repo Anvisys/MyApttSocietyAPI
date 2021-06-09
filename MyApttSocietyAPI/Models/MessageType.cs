@@ -9,9 +9,9 @@ namespace MyApttSocietyAPI.Models
 {
     public abstract class NotificationType
     {
-        protected SocietyDBEntities DbContext { get; private set; }
+        protected NestinDBEntities DbContext { get; private set; }
 
-        public NotificationType(SocietyDBEntities dbContext, string userIdentification)
+        public NotificationType(NestinDBEntities dbContext, string userIdentification)
         {
          DbContext = dbContext;
          UserIdentification = userIdentification;
@@ -55,7 +55,7 @@ namespace MyApttSocietyAPI.Models
     public class BillingNotification : NotificationType
     {
        
-        public BillingNotification(SocietyDBEntities dbContext, string userIdentification) :base(dbContext,userIdentification)
+        public BillingNotification(NestinDBEntities dbContext, string userIdentification) :base(dbContext,userIdentification)
         {
             InitParams();
         }
@@ -73,7 +73,7 @@ namespace MyApttSocietyAPI.Models
     public class FormNotification : NotificationType
     {
         
-        public FormNotification(SocietyDBEntities dbContext, string userIdentification) : base(dbContext, userIdentification)
+        public FormNotification(NestinDBEntities dbContext, string userIdentification) : base(dbContext, userIdentification)
         {
             InitParams();
         }
@@ -89,7 +89,7 @@ namespace MyApttSocietyAPI.Models
     public class ComplaintNotification : NotificationType
     {
         
-        public ComplaintNotification(SocietyDBEntities dbContext, string userIdentification) : base(dbContext,userIdentification)
+        public ComplaintNotification(NestinDBEntities dbContext, string userIdentification) : base(dbContext,userIdentification)
         {
             InitParams();
         }
@@ -120,7 +120,7 @@ namespace MyApttSocietyAPI.Models
     public class NoticeNotification : NotificationType
     {
        
-        public NoticeNotification(SocietyDBEntities dbContext, string userIdentification) : base(dbContext,userIdentification)
+        public NoticeNotification(NestinDBEntities dbContext, string userIdentification) : base(dbContext,userIdentification)
         {
             InitParams();
         }
@@ -135,7 +135,7 @@ namespace MyApttSocietyAPI.Models
 
     public class VisitorNotification : NotificationType
     {
-        public VisitorNotification(SocietyDBEntities dbContext, string userIdentification) : base(dbContext, userIdentification)
+        public VisitorNotification(NestinDBEntities dbContext, string userIdentification) : base(dbContext, userIdentification)
         {
             IsGcm = true;
         }

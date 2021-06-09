@@ -23,7 +23,7 @@ namespace MyApttSocietyAPI.Controllers
         {
             try
             {
-                var context = new SocietyDBEntities();
+                var context = new NestinDBEntities();
                 var Forum = (from thread in context.ViewThreadSummaryNoImageCounts
                              where thread.SocietyID == SocietyID
                              orderby thread.UpdatedAt descending
@@ -45,7 +45,7 @@ namespace MyApttSocietyAPI.Controllers
         {
             try
             {
-                var context = new SocietyDBEntities();
+                var context = new NestinDBEntities();
 
                 var Thread = (from th in context.ViewForumNoImages
                               where th.ThreadID == ThreadID && th.SocietyID == SocietyID
@@ -69,7 +69,7 @@ namespace MyApttSocietyAPI.Controllers
            // int count = 10;
             try
             {
-                var context = new SocietyDBEntities();
+                var context = new NestinDBEntities();
 
                 var forum = (from f in context.ViewThreadSummaryNoImageCounts
                              where f.SocietyID == societyid
@@ -95,7 +95,7 @@ namespace MyApttSocietyAPI.Controllers
 
             try
             {
-                using (var context = new SocietyDBEntities())
+                using (var context = new NestinDBEntities())
                 {
                     var c = context.Fora;
                     Log.log(" log counts are  " + c.Count());

@@ -26,7 +26,7 @@ namespace MyApttSocietyAPI.Controllers
           
             try
             {
-                var context = new SocietyDBEntities();
+                var context = new NestinDBEntities();
                 var Complaints = (from comp in context.ViewComplaintHistories
                                   orderby comp.ModifiedAt descending
                                   select comp).ToList();
@@ -44,7 +44,7 @@ namespace MyApttSocietyAPI.Controllers
         // GET: api/Complaint/5
         public IEnumerable<ViewComplaintHistory> Get(int id)
         {
-            var context = new SocietyDBEntities();
+            var context = new NestinDBEntities();
 
             var Complaints = (from comp in context.ViewComplaintHistories
                               where comp.CompID == id
@@ -90,7 +90,7 @@ namespace MyApttSocietyAPI.Controllers
                 }
 
 
-                var context = new SocietyDBEntities();
+                var context = new NestinDBEntities();
            
                 var Complaints = (from comp in context.ViewComplaintSummaries
                                   where comp.FlatNumber == flatnumber && comp.SocietyID == societyid && ints1.Contains(comp.LastStatus)
@@ -120,7 +120,7 @@ namespace MyApttSocietyAPI.Controllers
 
             try
             {
-                using (var context = new SocietyDBEntities())
+                using (var context = new NestinDBEntities())
                 {
                     bool isNewComplaint = false;
 

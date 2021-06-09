@@ -24,7 +24,7 @@ namespace MyApttSocietyAPI.Controllers
             try
             {
                 int skip = (Page - 1) * Size;
-                var context = new SocietyDBEntities();
+                var context = new NestinDBEntities();
                 var Visitor = (from g in context.viewVisitorDatas
                                where g.SocietyId == SocId orderby g.RequestId descending
                              select g).Skip(skip).Take(Size);
@@ -45,7 +45,7 @@ namespace MyApttSocietyAPI.Controllers
          {
              try
              {
-                 var context = new SocietyDBEntities();
+                 var context = new NestinDBEntities();
                  var guest = (from g in context.VisitorDetails
                               where g.VisitorMobileNo == Mobile && g.SocietyId == SocId
                               select g).FirstOrDefault();
@@ -78,7 +78,7 @@ namespace MyApttSocietyAPI.Controllers
              try
              {
                 int skip = (Page - 1) * Size;
-                var context = new SocietyDBEntities();
+                var context = new NestinDBEntities();
                  var guest = (from g in context.viewVisitorDatas
                               where g.ResId == ResID && g.SocietyId == SocId
                               orderby g.RequestId descending
@@ -100,7 +100,7 @@ namespace MyApttSocietyAPI.Controllers
         {
             try
             {
-                var context = new SocietyDBEntities();
+                var context = new NestinDBEntities();
                 var guest = (from g in context.viewVisitorDatas
                              where g.SecurityCode == value.VisitorCode && g.SocietyId == value.SocietyID
                              select g).FirstOrDefault();
@@ -132,7 +132,7 @@ namespace MyApttSocietyAPI.Controllers
         {
             String resp = "{\"Response\":\"Undefine\"}";
             
-            var   ctx = new SocietyDBEntities();
+            var   ctx = new NestinDBEntities();
             using (var dbContextTransaction = ctx.Database.BeginTransaction())
             {
                 try
@@ -236,11 +236,11 @@ namespace MyApttSocietyAPI.Controllers
         public HttpResponseMessage PostCheckIn([FromBody]VisitorEntry value)
         {
             String resp = "{\"Response\":\"Undefine\"}";
-            var ctx = new SocietyDBEntities();
+            var ctx = new NestinDBEntities();
          
                 try
                 {
-                    var context = new SocietyDBEntities();
+                    var context = new NestinDBEntities();
                     VisitorRequest guest = (from g in context.VisitorRequests
                                  where g.id == value.RequestId
                                  select g).FirstOrDefault();
@@ -274,7 +274,7 @@ namespace MyApttSocietyAPI.Controllers
             bool result = true;
             try
             { 
-            var context = new SocietyDBEntities();
+            var context = new NestinDBEntities();
             var guest = (from g in context.viewVisitorDatas
                          where g.SecurityCode == code && g.ActualInTime < g.StartTime
                          select g);

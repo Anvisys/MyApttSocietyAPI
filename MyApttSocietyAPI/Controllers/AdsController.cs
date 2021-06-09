@@ -16,7 +16,7 @@ namespace MyApttSocietyAPI.Controllers
         {
             try
             {
-                var context = new SocietyDBEntities();
+                var context = new NestinDBEntities();
 
                 var Ad = (from th in context.Advertisements
                              
@@ -42,7 +42,7 @@ namespace MyApttSocietyAPI.Controllers
         {
 
              String resp = "{\"Response\":\"Undefine\"}";
-            var   ctx = new SocietyDBEntities();
+            var   ctx = new NestinDBEntities();
            
                 try
                 {

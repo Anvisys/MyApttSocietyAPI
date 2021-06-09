@@ -13,7 +13,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MyApttSocietyAPI</RootNamespace>
     <AssemblyName>MyApttSocietyAPI</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
@@ -22,6 +22,7 @@
     <IISExpressUseClassicPipelineMode />
     <Use64BitIISExpress />
     <UseGlobalApplicationHostFile />
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -54,6 +55,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -69,8 +71,7 @@
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
@@ -82,9 +83,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
     </Reference>
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
-    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Abstractions" />
     <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml" />
@@ -127,13 +126,17 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.30506.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Advertisement.cs">
-      <DependentUpon>SocietyDB.tt</DependentUpon>
+      <DependentUpon>SpcietyDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BillCycle.cs">
+      <DependentUpon>SpcietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Complaint.cs">
-      <DependentUpon>SocietyDB.tt</DependentUpon>
+      <DependentUpon>SpcietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\AdsController.cs" />
@@ -162,56 +165,59 @@
     <Compile Include="Controllers\TenantController.cs" />
     <Compile Include="Controllers\VendorController.cs" />
     <Compile Include="Flat.cs">
-      <DependentUpon>SocietyDB.tt</DependentUpon>
+      <DependentUpon>SpcietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Forum.cs">
-      <DependentUpon>SocietyDB.tt</DependentUpon>
+      <DependentUpon>SpcietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="GCMList.cs">
-      <DependentUpon>SocietyDB.tt</DependentUpon>
+      <DependentUpon>SpcietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="GeneratedBill.cs">
-      <DependentUpon>SocietyDB.tt</DependentUpon>
+      <DependentUpon>SpcietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="App_Code\Log.cs" />
     <Compile Include="House.cs">
-      <DependentUpon>SocietyDB.tt</DependentUpon>
+      <DependentUpon>SpcietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="ImageCheck.cs">
-      <DependentUpon>SocietyDB.tt</DependentUpon>
+      <DependentUpon>SpcietyDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LatestFlatUser.cs">
+      <DependentUpon>SpcietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="lukAccomodationType.cs">
-      <DependentUpon>SocietyDB.tt</DependentUpon>
+      <DependentUpon>SpcietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="lukBillType.cs">
-      <DependentUpon>SocietyDB.tt</DependentUpon>
+      <DependentUpon>SpcietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="lukComplaintSeverity.cs">
-      <DependentUpon>SocietyDB.tt</DependentUpon>
+      <DependentUpon>SpcietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="lukComplaintStatu.cs">
-      <DependentUpon>SocietyDB.tt</DependentUpon>
+      <DependentUpon>SpcietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="lukComplaintType.cs">
-      <DependentUpon>SocietyDB.tt</DependentUpon>
+      <DependentUpon>SpcietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="lukInventoryAccomodation.cs">
-      <DependentUpon>SocietyDB.tt</DependentUpon>
+      <DependentUpon>SpcietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="lukInventoryType.cs">
-      <DependentUpon>SocietyDB.tt</DependentUpon>
+      <DependentUpon>SpcietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="lukMessageTopic.cs">
-      <DependentUpon>SocietyDB.tt</DependentUpon>
+      <DependentUpon>SpcietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="lukStatu.cs">
-      <DependentUpon>SocietyDB.tt</DependentUpon>
+      <DependentUpon>SpcietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="lukVendorCategory.cs">
-      <DependentUpon>SocietyDB.tt</DependentUpon>
+      <DependentUpon>SpcietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Batch.cs" />
     <Compile Include="Models\Billing.cs" />
@@ -244,158 +250,185 @@
     <Compile Include="Models\Update.cs" />
     <Compile Include="Models\UpdateDate.cs" />
     <Compile Include="NewUserSetting.cs">
-      <DependentUpon>SocietyDB.tt</DependentUpon>
+      <DependentUpon>SpcietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Notification.cs">
-      <DependentUpon>SocietyDB.tt</DependentUpon>
+      <DependentUpon>SpcietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Offer.cs">
-      <DependentUpon>SocietyDB.tt</DependentUpon>
+      <DependentUpon>SpcietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="PollingAnswer.cs">
-      <DependentUpon>SocietyDB.tt</DependentUpon>
+      <DependentUpon>SpcietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="PollingData.cs">
-      <DependentUpon>SocietyDB.tt</DependentUpon>
+      <DependentUpon>SpcietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RentEngagemment.cs">
-      <DependentUpon>SocietyDB.tt</DependentUpon>
+      <DependentUpon>SpcietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="RentInventory.cs">
-      <DependentUpon>SocietyDB.tt</DependentUpon>
+      <DependentUpon>SpcietyDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ResidentImage.cs">
+      <DependentUpon>SpcietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Society.cs">
-      <DependentUpon>SocietyDB.tt</DependentUpon>
+      <DependentUpon>SpcietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Societybillplan.cs">
-      <DependentUpon>SocietyDB.tt</DependentUpon>
+      <DependentUpon>SpcietyDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="SocietyDB.Context.cs">
+    <Compile Include="SocietyUser.cs">
+      <DependentUpon>SpcietyDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SpcietyDB.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SocietyDB.Context.tt</DependentUpon>
+      <DependentUpon>SpcietyDB.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="SocietyDB.cs">
+    <Compile Include="SpcietyDB.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SocietyDB.tt</DependentUpon>
+      <DependentUpon>SpcietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="SocietyDB.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>SocietyDB.edmx</DependentUpon>
     </Compile>
-    <Compile Include="SocietyUser.cs">
-      <DependentUpon>SocietyDB.tt</DependentUpon>
-    </Compile>
     <Compile Include="TotalUser.cs">
-      <DependentUpon>SocietyDB.tt</DependentUpon>
+      <DependentUpon>SpcietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="UserImage.cs">
-      <DependentUpon>SocietyDB.tt</DependentUpon>
+      <DependentUpon>SpcietyDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserSetting.cs">
+      <DependentUpon>SpcietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="VehiclePool.cs">
-      <DependentUpon>SocietyDB.tt</DependentUpon>
+      <DependentUpon>SpcietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="VehiclePoolEngagemment.cs">
-      <DependentUpon>SocietyDB.tt</DependentUpon>
+      <DependentUpon>SpcietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Vendor.cs">
-      <DependentUpon>SocietyDB.tt</DependentUpon>
+      <DependentUpon>SpcietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewComplaintAge.cs">
-      <DependentUpon>SocietyDB.tt</DependentUpon>
+      <DependentUpon>SpcietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewComplaintHistory.cs">
-      <DependentUpon>SocietyDB.tt</DependentUpon>
+      <DependentUpon>SpcietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewComplaintInitiated.cs">
-      <DependentUpon>SocietyDB.tt</DependentUpon>
+      <DependentUpon>SpcietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewComplaintLatest.cs">
-      <DependentUpon>SocietyDB.tt</DependentUpon>
+      <DependentUpon>SpcietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewComplaintSummary.cs">
-      <DependentUpon>SocietyDB.tt</DependentUpon>
+      <DependentUpon>SpcietyDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewEmployeeAssignment.cs">
+      <DependentUpon>SpcietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewFirstThreadwithCount.cs">
-      <DependentUpon>SocietyDB.tt</DependentUpon>
+      <DependentUpon>SpcietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewFlat.cs">
-      <DependentUpon>SocietyDB.tt</DependentUpon>
+      <DependentUpon>SpcietyDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewFlatsBillPlan.cs">
+      <DependentUpon>SpcietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewForumNoImage.cs">
-      <DependentUpon>SocietyDB.tt</DependentUpon>
+      <DependentUpon>SpcietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewGCMList.cs">
-      <DependentUpon>SocietyDB.tt</DependentUpon>
+      <DependentUpon>SpcietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewGeneratedBill.cs">
-      <DependentUpon>SocietyDB.tt</DependentUpon>
+      <DependentUpon>SpcietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewInventoryAccomodation.cs">
-      <DependentUpon>SocietyDB.tt</DependentUpon>
+      <DependentUpon>SpcietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewLatestBill.cs">
-      <DependentUpon>SocietyDB.tt</DependentUpon>
+      <DependentUpon>SpcietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="viewLatestFlatBill.cs">
-      <DependentUpon>SocietyDB.tt</DependentUpon>
+      <DependentUpon>SpcietyDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewLatestGeneratedBill.cs">
+      <DependentUpon>SpcietyDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewLatestGeneratedBill_Resident.cs">
+      <DependentUpon>SpcietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewLatestOffer.cs">
-      <DependentUpon>SocietyDB.tt</DependentUpon>
+      <DependentUpon>SpcietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewLatestThread.cs">
-      <DependentUpon>SocietyDB.tt</DependentUpon>
+      <DependentUpon>SpcietyDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewNewFlat.cs">
+      <DependentUpon>SpcietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewNewUserSetting.cs">
-      <DependentUpon>SocietyDB.tt</DependentUpon>
+      <DependentUpon>SpcietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewNotification.cs">
-      <DependentUpon>SocietyDB.tt</DependentUpon>
+      <DependentUpon>SpcietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewOffer.cs">
-      <DependentUpon>SocietyDB.tt</DependentUpon>
+      <DependentUpon>SpcietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewPollCount.cs">
-      <DependentUpon>SocietyDB.tt</DependentUpon>
+      <DependentUpon>SpcietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewPollDataWithCount.cs">
-      <DependentUpon>SocietyDB.tt</DependentUpon>
+      <DependentUpon>SpcietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewRentInventory.cs">
-      <DependentUpon>SocietyDB.tt</DependentUpon>
+      <DependentUpon>SpcietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewSociety.cs">
-      <DependentUpon>SocietyDB.tt</DependentUpon>
+      <DependentUpon>SpcietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewSocietyUser.cs">
-      <DependentUpon>SocietyDB.tt</DependentUpon>
+      <DependentUpon>SpcietyDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewTempResident.cs">
+      <DependentUpon>SpcietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewThreadSummaryNoImageCount.cs">
-      <DependentUpon>SocietyDB.tt</DependentUpon>
+      <DependentUpon>SpcietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewUserImage.cs">
-      <DependentUpon>SocietyDB.tt</DependentUpon>
+      <DependentUpon>SpcietyDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewUserSetting.cs">
+      <DependentUpon>SpcietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewVehiclePool.cs">
-      <DependentUpon>SocietyDB.tt</DependentUpon>
+      <DependentUpon>SpcietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewVehiclePoolEngagement.cs">
-      <DependentUpon>SocietyDB.tt</DependentUpon>
+      <DependentUpon>SpcietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewVendor.cs">
-      <DependentUpon>SocietyDB.tt</DependentUpon>
+      <DependentUpon>SpcietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="viewVisitorData.cs">
-      <DependentUpon>SocietyDB.tt</DependentUpon>
+      <DependentUpon>SpcietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="VisitorDetail.cs">
-      <DependentUpon>SocietyDB.tt</DependentUpon>
+      <DependentUpon>SpcietyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="VisitorRequest.cs">
-      <DependentUpon>SocietyDB.tt</DependentUpon>
+      <DependentUpon>SpcietyDB.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -404,15 +437,15 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Content Include="Content\LogFile.txt" />
     <Content Include="Global.asax" />
-    <Content Include="SocietyDB.Context.tt">
+    <Content Include="SpcietyDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>SocietyDB.edmx</DependentUpon>
-      <LastGenOutput>SocietyDB.Context.cs</LastGenOutput>
+      <LastGenOutput>SpcietyDB.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="SocietyDB.tt">
+    <Content Include="SpcietyDB.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>SocietyDB.edmx</DependentUpon>
-      <LastGenOutput>SocietyDB.cs</LastGenOutput>
+      <LastGenOutput>SpcietyDB.cs</LastGenOutput>
     </Content>
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -422,6 +455,7 @@
     </Content>
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Views\Web.config" />
   </ItemGroup>
@@ -435,6 +469,7 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Properties\PublishProfiles\Anvisys - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\ApttSocietyService %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\ApttSocietyService %283%29.pubxml" />
     <None Include="Properties\PublishProfiles\ApttSocietyService.pubxml" />

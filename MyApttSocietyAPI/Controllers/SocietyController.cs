@@ -20,7 +20,7 @@ namespace MyApttSocietyAPI.Controllers
         [HttpGet]
         public IEnumerable<ViewSociety> AllSocieties()
         {
-            var context = new SocietyDBEntities();
+            var context = new NestinDBEntities();
             var socList = (from s in context.ViewSocieties
                            select s).ToList();
             return socList;
@@ -31,7 +31,7 @@ namespace MyApttSocietyAPI.Controllers
         [HttpGet]
         public IEnumerable<ViewSociety> MySocietyRequests(int UserId)
         {
-            var context = new SocietyDBEntities();
+            var context = new NestinDBEntities();
             var socReq = context.ViewSocieties.Where(x=> x.UserID == UserId).ToList();
             return socReq;
         }
@@ -40,7 +40,7 @@ namespace MyApttSocietyAPI.Controllers
         [HttpGet]
         public IEnumerable<ViewSocietyUser> MyAllRequests(int UserId)
         {
-            var context = new SocietyDBEntities();
+            var context = new NestinDBEntities();
             var socReq = context.ViewSocietyUsers.Where(x => x.UserID == UserId).ToList();
             return socReq;
         }
@@ -49,7 +49,7 @@ namespace MyApttSocietyAPI.Controllers
         [HttpGet]
         public IEnumerable<ViewSocietyUser> MyHouses(int UserId)
         {
-            var context = new SocietyDBEntities();
+            var context = new NestinDBEntities();
             var socReq = context.ViewSocietyUsers.Where(x => x.UserID == UserId && x.Type == "Individual").ToList();
             return socReq;
         }
@@ -58,7 +58,7 @@ namespace MyApttSocietyAPI.Controllers
         [HttpGet]
         public IEnumerable<ViewSocietyUser> MyFlats(int UserId)
         {
-            var context = new SocietyDBEntities();
+            var context = new NestinDBEntities();
             var socReq = context.ViewSocietyUsers.Where(x => x.UserID == UserId && (x.Type == "Owner" || x.Type == "Tenant")).ToList();
             return socReq;
         }
@@ -68,7 +68,7 @@ namespace MyApttSocietyAPI.Controllers
         [HttpPost]
         public IHttpActionResult Post([FromBody]Society society)
         {
-            var context = new SocietyDBEntities();
+            var context = new NestinDBEntities();
 
             context.Societies.Add(society);
             context.SaveChanges();

@@ -26,7 +26,7 @@ namespace MyApttSocietyAPI.Controllers
            // int Count = 10;
             try
             {
-                var context = new SocietyDBEntities();
+                var context = new NestinDBEntities();
                 var pools = context.ViewVehiclePools.Where(x => x.SocietyID == SocietyId && x.ResID != ResID
                             && x.JourneyDateTime > DateTime.Now && x.Active == true)
                             .OrderByDescending(p=>p.VehiclePoolID).ToList()
@@ -47,7 +47,7 @@ namespace MyApttSocietyAPI.Controllers
            // int Count = 10;
             try
             {
-                var context = new SocietyDBEntities();
+                var context = new NestinDBEntities();
                 var pools = context.ViewVehiclePools.Where(x => x.SocietyID == SocietyId 
                            && x.JourneyDateTime > DateTime.Now && x.ResID == ResID && x.Active == true)
                             .OrderByDescending(p => p.VehiclePoolID).ToList()
@@ -68,7 +68,7 @@ namespace MyApttSocietyAPI.Controllers
         {
             try
             {
-                var context = new SocietyDBEntities();
+                var context = new NestinDBEntities();
                 var pools = context.ViewVehiclePoolEngagements.Where(x => x.VehiclePoolId == VehiclePollID)
                     .OrderBy(p => p.FirstName).ToList();
                            
@@ -89,7 +89,7 @@ namespace MyApttSocietyAPI.Controllers
             String resp;
             try
             {
-                var context = new SocietyDBEntities();
+                var context = new NestinDBEntities();
                 
                 var existing = context.VehiclePools.Where(x => x.Active == true && x.ResID == value.ResID
                                 && (x.ReturnDateTime > value.JourneyDateTime && x.ReturnDateTime < value.ReturnDateTime) 
@@ -140,7 +140,7 @@ namespace MyApttSocietyAPI.Controllers
             String resp;
             try
             {
-                var context = new SocietyDBEntities();
+                var context = new NestinDBEntities();
 
                 var exist = context.VehiclePoolEngagemments.Where(x => x.PoolID == value.PoolID && x.InterestedResId == value.InterestedResId).ToList();
 
@@ -188,7 +188,7 @@ namespace MyApttSocietyAPI.Controllers
             String resp;
             try
             {
-                var context = new SocietyDBEntities();
+                var context = new NestinDBEntities();
                 var p = context.VehiclePools.Where(x => x.VehiclePoolID == value.VehiclePoolID && x.ResID == value.ResID).First();
 
                 if (p == null)

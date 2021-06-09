@@ -57,7 +57,7 @@ namespace MyApttSocietyAPI.Controllers
                 }
                
 
-                var context = new SocietyDBEntities();
+                var context = new NestinDBEntities();
                
                 
                     var count = value.EndIndex - value.StartIndex;

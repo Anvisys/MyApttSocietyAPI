@@ -33,7 +33,7 @@ namespace MyApttSocietyAPI.Controllers
 
             try
             {
-                var context = new SocietyDBEntities();
+                var context = new NestinDBEntities();
                 IQueryable<ViewPollDataWithCount> polldata;
 
                 if (value.LastRefreshTime != "")

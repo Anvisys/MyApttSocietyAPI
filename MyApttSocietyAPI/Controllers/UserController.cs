@@ -27,7 +27,7 @@ namespace MyApttSocietyAPI.Controllers
         [HttpGet]
         public IEnumerable<Society> GetSocieties(String SocName)
         {
-            var context = new SocietyDBEntities();
+            var context = new NestinDBEntities();
              var soc = (from s in context.Societies
                      where s.SocietyName.Contains(SocName)
                      select s).ToList();
@@ -55,7 +55,7 @@ namespace MyApttSocietyAPI.Controllers
         [HttpGet]
         public IEnumerable<ViewFlat> GetFlats(int SocID, String FlatNumber)
         {
-            var context = new SocietyDBEntities();
+            var context = new NestinDBEntities();
             var soc = (from s in context.ViewFlats
                        where s.FlatNumber == FlatNumber && s.SocietyId == SocID
                        select s).ToList();
@@ -69,7 +69,7 @@ namespace MyApttSocietyAPI.Controllers
         {
             try
             {
-                using (var context = new SocietyDBEntities())
+                using (var context = new NestinDBEntities())
                 {
                     var L2EQuery = context.ViewNewUserSettings.Where(f => f.UserID == UserId);
                     if (L2EQuery.Count() > 0)
@@ -97,7 +97,7 @@ namespace MyApttSocietyAPI.Controllers
             var ValidUser = new ValidUser();
             try
             {
-                using (var context = new SocietyDBEntities())
+                using (var context = new NestinDBEntities())
                 {
                     if (ValUser.Email == null && ValUser.Mobile == null)
                     {
@@ -139,7 +139,7 @@ namespace MyApttSocietyAPI.Controllers
                     if (user != null)
                     {
                         Log.log(user.FirstName);
-                        if (ValUser.RegistrationID != null || ValUser.RegistrationID != "")
+                        if (ValUser.RegistrationID != null && ValUser.RegistrationID != "")
                         {
                             var GCM = context.GCMLists;
                             var reg = GCM.Where(g => g.UserId == user.UserID);
@@ -201,7 +201,7 @@ namespace MyApttSocietyAPI.Controllers
             int UserId = UserSetting[0].UserID;
             try
             {
-                using (var context = new SocietyDBEntities())
+                using (var context = new NestinDBEntities())
                 {
                     var L2EQuery = context.NewUserSettings.Where(f => f.UserID == UserId).ToList();
 
@@ -241,7 +241,7 @@ namespace MyApttSocietyAPI.Controllers
             ValidUser DemoUser = new ValidUser();
             try
             {
-                var context = new SocietyDBEntities();
+                var context = new NestinDBEntities();
                 using (var dbContextTransaction = context.Database.BeginTransaction())
                 {
                     var users = (from USER in context.ViewSocietyUsers
@@ -355,7 +355,7 @@ namespace MyApttSocietyAPI.Controllers
             try
             {
                 //ViewSocietyUsers
-                var context = new SocietyDBEntities();
+                var context = new NestinDBEntities();
                 using (var dbContextTransaction = context.Database.BeginTransaction())
                 {
                     var users = (from USER in context.TotalUsers
@@ -433,7 +433,7 @@ namespace MyApttSocietyAPI.Controllers
             ValidUser DemoUser = new ValidUser();
             try
             {
-                var context = new SocietyDBEntities();
+                var context = new NestinDBEntities();
                 using (var dbContextTransaction = context.Database.BeginTransaction())
                 {
                     var users = (from USER in context.TotalUsers
@@ -504,7 +504,7 @@ namespace MyApttSocietyAPI.Controllers
             
             try
             {
-                var context = new SocietyDBEntities();
+                var context = new NestinDBEntities();
                 using (var dbContextTransaction = context.Database.BeginTransaction())
                 {
 

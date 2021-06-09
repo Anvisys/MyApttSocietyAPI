@@ -22,5 +22,6 @@ namespace MyApttSocietyAPI
         public string CycleType { get; set; }
         public int Applyto { get; set; }
         public int SocietyID { get; set; }
+        public System.DateTime BillPlanDate { get; set; }
     }
 }

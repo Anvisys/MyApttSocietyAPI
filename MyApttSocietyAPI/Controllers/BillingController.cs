@@ -33,7 +33,7 @@ namespace MyApttSocietyAPI.Controllers
             {
                 DateTime date = System.DateTime.Now;
                 String dueFor = String.Format("{0:MMMM, yyyy}", date);
-                var context = new SocietyDBEntities();
+                var context = new NestinDBEntities();
                 var L2EQuery = context.viewLatestFlatBills.Where(gb => gb.FlatID == FlatID && gb.SocietyID == SocietyID);
 
                 return L2EQuery;
@@ -55,7 +55,7 @@ namespace MyApttSocietyAPI.Controllers
             {
                 DateTime date = System.DateTime.Now;
                 String dueFor = String.Format("{0:MMMM, yyyy}", date);
-                    var context = new SocietyDBEntities();
+                    var context = new NestinDBEntities();
                     var L2EQuery = context.ViewGeneratedBills
                                     .Where(gb => gb.FlatID  == FlatID && gb.SocietyID == SocietyID && gb.SocietyBillID == SocietyBillID)
                                     .OrderByDescending(gb=> gb.PayID)
@@ -84,7 +84,7 @@ namespace MyApttSocietyAPI.Controllers
                 String dueFor = String.Format("{0:MMMM, yyyy}", date);
               
 
-                var context = new SocietyDBEntities();
+                var context = new NestinDBEntities();
                 var L2EQuery = context.ViewGeneratedBills.Where(gb => gb.FlatID == FlatID && gb.SocietyID== SocietyID && 
                 gb.BillMonth.Year == year && gb.BillMonth.Month == month);
 
@@ -108,7 +108,7 @@ namespace MyApttSocietyAPI.Controllers
                     {
                         lock (thisLock)
                         {
-                            using (var context = new SocietyDBEntities())
+                            using (var context = new NestinDBEntities())
                             {
                                 var c = context.PollingDatas;
 
@@ -163,7 +163,7 @@ namespace MyApttSocietyAPI.Controllers
             {
                 lock (thisLock)
                 {
-                    using (var context = new SocietyDBEntities())
+                    using (var context = new NestinDBEntities())
                     {
 
                         var lastBill = context.viewLatestFlatBills.Where(gb => gb.FlatID == value.FlatID && gb.SocietyID == value.SocietyID &&

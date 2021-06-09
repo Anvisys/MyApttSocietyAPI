@@ -8,12 +8,12 @@ namespace MyApttSocietyAPI.Models
 {
     public class Notifications
     {
-        protected SocietyDBEntities DbContext { get; private set; }
+        protected NestinDBEntities DbContext { get; private set; }
         //protected String Topic { get; private set; }
         // Message message;
         //private int UserID;
 
-        public Notifications(SocietyDBEntities _dbContext)
+        public Notifications(NestinDBEntities _dbContext)
         {
             DbContext = _dbContext;
         }

@@ -20,7 +20,7 @@ namespace MyApttSocietyAPI.Controllers
         {
             try
             {
-                var context = new SocietyDBEntities();
+                var context = new NestinDBEntities();
                 var op = (from poll in context.PollingDatas
                              orderby poll.EndDate descending
                              select poll);
@@ -42,7 +42,7 @@ namespace MyApttSocietyAPI.Controllers
         {
             try
             {
-                var context = new SocietyDBEntities();
+                var context = new NestinDBEntities();
                 var Poll = (from poll in context.ViewPollCounts
                             orderby poll.PollID == id
                             select poll);
@@ -79,7 +79,7 @@ namespace MyApttSocietyAPI.Controllers
 
             try
             {
-                var context = new SocietyDBEntities();
+                var context = new NestinDBEntities();
                
                   //  var count = 10;
 
@@ -142,7 +142,7 @@ namespace MyApttSocietyAPI.Controllers
         {
             try
             {
-                   using (var context = new SocietyDBEntities())
+                   using (var context = new NestinDBEntities())
                     {
                         var c = context.PollingDatas;
 
@@ -198,7 +198,7 @@ namespace MyApttSocietyAPI.Controllers
         {
             try
             {
-                var context = new SocietyDBEntities();
+                var context = new NestinDBEntities();
                 var Poll = (from poll in context.ViewPollCounts
                             where poll.PollID == pValue.PollID
                             select poll).First();

@@ -23,7 +23,7 @@ namespace MyApttSocietyAPI.Controllers
                 // diff Compliant count
                 DateTime lastMonth = DateTime.Today.AddMonths(-1);
                 Summary summary = new Summary();
-                var context = new SocietyDBEntities();
+                var context = new NestinDBEntities();
                 Log.log(" Get Summary found are: 1   " + DateTime.Now.ToString());
                 var Complaints = (from comp in context.ViewComplaintHistories
                                   where comp.CompStatus == "Initiated" & DbFunctions.TruncateTime(comp.ModifiedAt) > DbFunctions.TruncateTime(lastMonth)
@@ -133,7 +133,7 @@ namespace MyApttSocietyAPI.Controllers
                 // diff Compliant count
                 DateTime lastMonth = DateTime.Today.AddMonths(-1);
                 Summary summary = new Summary();
-                var context = new SocietyDBEntities();
+                var context = new NestinDBEntities();
                 var Complaints = (from comp in context.ViewComplaintHistories
                                   where comp.ResidentID == id & comp.CompStatus == "Initiated" & DbFunctions.TruncateTime(comp.ModifiedAt) > DbFunctions.TruncateTime(lastMonth)
                                   select comp);

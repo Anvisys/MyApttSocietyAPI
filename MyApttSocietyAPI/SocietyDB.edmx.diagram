@@ -4,71 +4,82 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="79331fe78b3b4f789513c66c1bd4adf5" Name="Diagram1" ZoomLevel="77">
-        <EntityTypeShape EntityType="SocietyDBModel.Complaint" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="SocietyDBModel.Forum" Width="1.5" PointX="5.25" PointY="0.5" />
-        <EntityTypeShape EntityType="SocietyDBModel.PollingAnswer" Width="1.5" PointX="0.75" PointY="4.25" />
-        <EntityTypeShape EntityType="SocietyDBModel.ImageCheck" Width="1.5" PointX="7" PointY="10.75" />
-        <EntityTypeShape EntityType="SocietyDBModel.ViewComplaintAge" Width="1.5" PointX="7.5" PointY="4.75" />
-        <EntityTypeShape EntityType="SocietyDBModel.ViewFirstThreadwithCount" Width="1.5" PointX="3.25" PointY="8" />
-        <EntityTypeShape EntityType="SocietyDBModel.ViewLatestThread" Width="1.5" PointX="10.75" PointY="13.75" />
-        <EntityTypeShape EntityType="SocietyDBModel.ViewPollCount" Width="1.5" PointX="3.25" PointY="2.5" />
-        <EntityTypeShape EntityType="SocietyDBModel.PollingData" Width="1.5" PointX="8.875" PointY="11.25" />
-        <EntityTypeShape EntityType="SocietyDBModel.ViewPollDataWithCount" Width="1.5" PointX="7.75" PointY="6.75" />
-        <EntityTypeShape EntityType="SocietyDBModel.lukBillType" Width="1.5" PointX="3.125" PointY="0.75" />
-        <EntityTypeShape EntityType="SocietyDBModel.lukComplaintSeverity" Width="1.5" PointX="11.5" PointY="10.5" />
-        <EntityTypeShape EntityType="SocietyDBModel.lukComplaintStatu" Width="1.5" PointX="0.75" PointY="6.875" />
-        <EntityTypeShape EntityType="SocietyDBModel.lukComplaintType" Width="1.5" PointX="8.875" PointY="17.25" />
-        <EntityTypeShape EntityType="SocietyDBModel.lukVendorCategory" Width="1.5" PointX="10.75" PointY="16.25" />
-        <EntityTypeShape EntityType="SocietyDBModel.ViewComplaintInitiated" Width="1.5" PointX="3.25" PointY="4.75" />
-        <EntityTypeShape EntityType="SocietyDBModel.ViewComplaintLatest" Width="1.5" PointX="7" PointY="16.375" />
-        <EntityTypeShape EntityType="SocietyDBModel.Advertisement" Width="1.5" PointX="5.625" PointY="3.5" />
-        <EntityTypeShape EntityType="SocietyDBModel.VisitorDetail" Width="1.5" PointX="3.25" PointY="10.625" />
-        <EntityTypeShape EntityType="SocietyDBModel.VisitorRequest" Width="1.5" PointX="13.25" PointY="9.75" />
-        <EntityTypeShape EntityType="SocietyDBModel.Notification" Width="1.5" PointX="0.75" PointY="8.875" />
-        <EntityTypeShape EntityType="SocietyDBModel.ViewComplaintSummary" Width="1.5" PointX="9.375" PointY="6.125" />
-        <EntityTypeShape EntityType="SocietyDBModel.viewVisitorData" Width="1.5" PointX="0.625" PointY="12" />
-        <EntityTypeShape EntityType="SocietyDBModel.ViewForumNoImage" Width="1.5" PointX="7" PointY="12.75" />
-        <EntityTypeShape EntityType="SocietyDBModel.ViewNotification" Width="1.5" PointX="5.125" PointY="10.375" />
-        <EntityTypeShape EntityType="SocietyDBModel.ViewThreadSummaryNoImageCount" Width="1.5" PointX="5.125" PointY="14" />
-        <EntityTypeShape EntityType="SocietyDBModel.Flat" Width="1.5" PointX="5.625" PointY="6.625" />
-        <EntityTypeShape EntityType="SocietyDBModel.TotalUser" Width="1.5" PointX="11.375" PointY="6.875" />
-        <EntityTypeShape EntityType="SocietyDBModel.UserImage" Width="1.5" PointX="9.25" PointY="0.75" />
-        <EntityTypeShape EntityType="SocietyDBModel.ViewUserImage" Width="1.5" PointX="5.125" PointY="18.625" />
-        <EntityTypeShape EntityType="SocietyDBModel.House" Width="1.5" PointX="10.875" PointY="18.125" />
-        <EntityTypeShape EntityType="SocietyDBModel.VehiclePoolEngagemment" Width="1.5" PointX="13.125" PointY="0.625" />
-        <EntityTypeShape EntityType="SocietyDBModel.VehiclePool" Width="1.5" PointX="13.125" PointY="5.625" />
-        <EntityTypeShape EntityType="SocietyDBModel.ViewVehiclePool" Width="1.5" PointX="15.25" PointY="8.125" />
-        <EntityTypeShape EntityType="SocietyDBModel.Society" Width="1.5" PointX="17.375" PointY="0.75" />
-        <EntityTypeShape EntityType="SocietyDBModel.ViewSociety" Width="1.5" PointX="19.375" PointY="0.75" />
-        <EntityTypeShape EntityType="SocietyDBModel.RentEngagemment" Width="1.5" PointX="13.125" PointY="3.25" />
-        <EntityTypeShape EntityType="SocietyDBModel.lukAccomodationType" Width="1.5" PointX="2.875" PointY="18.5" />
-        <EntityTypeShape EntityType="SocietyDBModel.lukInventoryAccomodation" Width="1.5" PointX="7" PointY="19" />
-        <EntityTypeShape EntityType="SocietyDBModel.ViewInventoryAccomodation" Width="1.5" PointX="15.5" PointY="3.875" />
-        <EntityTypeShape EntityType="SocietyDBModel.RentInventory" Width="1.5" PointX="9.25" PointY="2.75" />
-        <EntityTypeShape EntityType="SocietyDBModel.ViewRentInventory" Width="1.5" PointX="11.25" PointY="0.625" />
-        <EntityTypeShape EntityType="SocietyDBModel.lukInventoryType" Width="1.5" PointX="15.5" PointY="6.375" />
-        <EntityTypeShape EntityType="SocietyDBModel.ViewVehiclePoolEngagement" Width="1.5" PointX="17.125" PointY="12.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="SocietyDBModel.ViewComplaintHistory" Width="1.5" PointX="19.375" PointY="5" />
-        <EntityTypeShape EntityType="SocietyDBModel.ViewVendor" Width="1.5" PointX="19.375" PointY="10.125" />
-        <EntityTypeShape EntityType="SocietyDBModel.Vendor" Width="1.5" PointX="21.375" PointY="6.75" />
-        <EntityTypeShape EntityType="SocietyDBModel.Societybillplan" Width="1.5" PointX="13" PointY="13.75" />
-        <EntityTypeShape EntityType="SocietyDBModel.Offer" Width="1.5" PointX="20" PointY="14.5" />
-        <EntityTypeShape EntityType="SocietyDBModel.ViewOffer" Width="1.5" PointX="17.5" PointY="15.375" />
-        <EntityTypeShape EntityType="SocietyDBModel.ViewLatestOffer" Width="1.5" PointX="23.375" PointY="5.375" />
-        <EntityTypeShape EntityType="SocietyDBModel.GeneratedBill" Width="1.5" PointX="17.75" PointY="18.75" />
-        <EntityTypeShape EntityType="SocietyDBModel.ViewGeneratedBill" Width="1.5" PointX="19.75" PointY="18.75" />
-        <EntityTypeShape EntityType="SocietyDBModel.ViewLatestBill" Width="1.5" PointX="0.75" PointY="20.75" />
-        <EntityTypeShape EntityType="SocietyDBModel.viewLatestFlatBill" Width="1.5" PointX="2.75" PointY="20.75" />
-        <EntityTypeShape EntityType="SocietyDBModel.GCMList" Width="1.5" PointX="13.375" PointY="20.75" />
-        <EntityTypeShape EntityType="SocietyDBModel.ViewGCMList" Width="1.5" PointX="5.375" PointY="21.75" />
-        <EntityTypeShape EntityType="SocietyDBModel.lukMessageTopic" Width="1.5" PointX="7.375" PointY="21.75" />
-        <EntityTypeShape EntityType="SocietyDBModel.lukStatu" Width="1.5" PointX="9.375" PointY="21.75" />
-        <EntityTypeShape EntityType="SocietyDBModel.NewUserSetting" Width="1.5" PointX="22.375" PointY="14.75" />
-        <EntityTypeShape EntityType="SocietyDBModel.ViewNewUserSetting" Width="1.5" PointX="22.375" PointY="17.75" />
-        <EntityTypeShape EntityType="SocietyDBModel.SocietyUser" Width="1.5" PointX="22.375" PointY="22.75" />
-        <EntityTypeShape EntityType="SocietyDBModel.ViewFlat" Width="1.5" PointX="11.375" PointY="23.75" />
-        <EntityTypeShape EntityType="SocietyDBModel.ViewSocietyUser" Width="1.5" PointX="13.375" PointY="23.75" />
+      <Diagram DiagramId="51b49e60d6124cbfb0de96b3a7be3883" Name="Diagram1">
+        <EntityTypeShape EntityType="NestinDBModel.Advertisement" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NestinDBModel.Complaint" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NestinDBModel.Flat" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NestinDBModel.Forum" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NestinDBModel.GCMList" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NestinDBModel.GeneratedBill" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NestinDBModel.House" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NestinDBModel.lukAccomodationType" Width="1.5" PointX="6.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NestinDBModel.lukBillType" Width="1.5" PointX="6.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NestinDBModel.lukComplaintSeverity" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NestinDBModel.lukComplaintStatu" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NestinDBModel.lukComplaintType" Width="1.5" PointX="8.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NestinDBModel.lukInventoryAccomodation" Width="1.5" PointX="8.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NestinDBModel.lukInventoryType" Width="1.5" PointX="6.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NestinDBModel.lukMessageTopic" Width="1.5" PointX="8.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NestinDBModel.lukStatu" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NestinDBModel.lukVendorCategory" Width="1.5" PointX="10.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NestinDBModel.NewUserSetting" Width="1.5" PointX="10.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NestinDBModel.Offer" Width="1.5" PointX="10.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NestinDBModel.PollingAnswer" Width="1.5" PointX="0.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NestinDBModel.PollingData" Width="1.5" PointX="2.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NestinDBModel.RentEngagemment" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NestinDBModel.RentInventory" Width="1.5" PointX="12.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NestinDBModel.ResidentImage" Width="1.5" PointX="4.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NestinDBModel.Society" Width="1.5" PointX="6.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NestinDBModel.SocietyUser" Width="1.5" PointX="12.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NestinDBModel.TotalUser" Width="1.5" PointX="12.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NestinDBModel.UserImage" Width="1.5" PointX="8.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NestinDBModel.UserSetting" Width="1.5" PointX="14.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NestinDBModel.VehiclePool" Width="1.5" PointX="14.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NestinDBModel.VehiclePoolEngagemment" Width="1.5" PointX="14.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NestinDBModel.Vendor" Width="1.5" PointX="14.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NestinDBModel.VisitorDetail" Width="1.5" PointX="16.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NestinDBModel.VisitorRequest" Width="1.5" PointX="16.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NestinDBModel.BillCycle" Width="1.5" PointX="4.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NestinDBModel.ImageCheck" Width="1.5" PointX="6.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NestinDBModel.Notification" Width="1.5" PointX="16.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NestinDBModel.Societybillplan" Width="1.5" PointX="8.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NestinDBModel.LatestFlatUser" Width="1.5" PointX="10.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NestinDBModel.ViewComplaintAge" Width="1.5" PointX="16.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NestinDBModel.ViewComplaintHistory" Width="1.5" PointX="16.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NestinDBModel.ViewComplaintInitiated" Width="1.5" PointX="0.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NestinDBModel.ViewComplaintLatest" Width="1.5" PointX="18.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NestinDBModel.ViewComplaintSummary" Width="1.5" PointX="18.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NestinDBModel.ViewEmployeeAssignment" Width="1.5" PointX="18.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NestinDBModel.ViewFirstThreadwithCount" Width="1.5" PointX="12.75" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NestinDBModel.ViewFlat" Width="1.5" PointX="18.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NestinDBModel.ViewFlatsBillPlan" Width="1.5" PointX="14.75" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NestinDBModel.ViewForumNoImage" Width="1.5" PointX="20.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NestinDBModel.ViewGCMList" Width="1.5" PointX="2.75" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NestinDBModel.ViewGeneratedBill" Width="1.5" PointX="20.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NestinDBModel.ViewInventoryAccomodation" Width="1.5" PointX="4.75" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NestinDBModel.ViewLatestBill" Width="1.5" PointX="6.75" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NestinDBModel.viewLatestFlatBill" Width="1.5" PointX="20.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NestinDBModel.ViewLatestGeneratedBill" Width="1.5" PointX="8.75" PointY="21.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NestinDBModel.ViewLatestGeneratedBill_Resident" Width="1.5" PointX="20.75" PointY="21.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NestinDBModel.ViewLatestOffer" Width="1.5" PointX="22.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NestinDBModel.ViewLatestThread" Width="1.5" PointX="22.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NestinDBModel.ViewNewFlat" Width="1.5" PointX="22.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NestinDBModel.ViewNewUserSetting" Width="1.5" PointX="10.75" PointY="22.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NestinDBModel.ViewNotification" Width="1.5" PointX="22.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NestinDBModel.ViewOffer" Width="1.5" PointX="16.75" PointY="22.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NestinDBModel.ViewPollCount" Width="1.5" PointX="22.75" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NestinDBModel.ViewPollDataWithCount" Width="1.5" PointX="22.75" PointY="22.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NestinDBModel.ViewRentInventory" Width="1.5" PointX="0.75" PointY="23.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NestinDBModel.ViewSociety" Width="1.5" PointX="2.75" PointY="23.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NestinDBModel.ViewSocietyUser" Width="1.5" PointX="24.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NestinDBModel.ViewTempResident" Width="1.5" PointX="24.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NestinDBModel.ViewThreadSummaryNoImageCount" Width="1.5" PointX="12.75" PointY="24.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NestinDBModel.ViewUserImage" Width="1.5" PointX="24.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NestinDBModel.ViewUserSetting" Width="1.5" PointX="24.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NestinDBModel.ViewVehiclePool" Width="1.5" PointX="24.75" PointY="23.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NestinDBModel.ViewVehiclePoolEngagement" Width="1.5" PointX="14.75" PointY="25.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NestinDBModel.ViewVendor" Width="1.5" PointX="16.75" PointY="25.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NestinDBModel.viewVisitorData" Width="1.5" PointX="26.75" PointY="0.75" IsExpanded="true" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

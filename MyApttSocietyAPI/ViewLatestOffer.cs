@@ -20,5 +20,6 @@ namespace MyApttSocietyAPI
         public Nullable<System.DateTime> startDate { get; set; }
         public Nullable<System.DateTime> EndDate { get; set; }
         public Nullable<int> SocietyID { get; set; }
+        public Nullable<System.DateTime> ModifiedDate { get; set; }
     }
 }

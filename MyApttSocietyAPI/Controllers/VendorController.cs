@@ -16,23 +16,23 @@ namespace MyApttSocietyAPI.Controllers
     {
         [Route("All")]
         [HttpGet]
-        public IEnumerable<Vendor> Get()
+        public IEnumerable<ViewVendor> Get()
         {
             try
             {
-                var context = new SocietyDBEntities();
-                var vendor = (from vend in context.Vendors
+                var context = new NestinDBEntities();
+                var vendor = (from vend in context.ViewVendors
                               select vend);
 
                 if (vendor.Count() < 1)
                 {
-                    Vendor tempVendor = new Vendor();
-                    tempVendor.ID = 9999;
+                    ViewVendor tempVendor = new ViewVendor();
+                    tempVendor.VendorID = 9999;
                     tempVendor.Address = "Nothing";
                     tempVendor.ContactNumber = "11111111";
                     tempVendor.ShopCategory = "Water";
                     tempVendor.VendorName = "NA";
-                    List<Vendor> temp = new List<Vendor> { tempVendor };
+                    List<ViewVendor> temp = new List<ViewVendor> { tempVendor };
                     return temp.AsQueryable();
                 }
                 else {
@@ -55,7 +55,7 @@ namespace MyApttSocietyAPI.Controllers
         {   
             try
             {
-                var context = new SocietyDBEntities();
+                var context = new NestinDBEntities();
                 
                 if (Category == "All")
                 {
@@ -89,7 +89,7 @@ namespace MyApttSocietyAPI.Controllers
 
         [Route("Society/{SocID}/Date/{date}")]
         [HttpGet]
-        public IEnumerable<Vendor> Get(String date, int SocID)
+        public IEnumerable<ViewVendor> Get(String date, int SocID)
         {
             DateTime lastDateTime = DateTime.ParseExact(date, "dd/mm/yyyy HH:MM:SS", null);
             Log.log("Date found is  : " + lastDateTime.ToLongDateString());
@@ -101,21 +101,21 @@ namespace MyApttSocietyAPI.Controllers
 
             try
             {
-                var context = new SocietyDBEntities();
-                var vendor = (from vend in context.Vendors
-                              where vend.Date >lastDateTime && vend.SocietyID == SocID
+                var context = new NestinDBEntities();
+                var vendor = (from vend in context.ViewVendors
+                              where vend.InsertDate >lastDateTime && vend.SocietyID == SocID
                               select vend
                              );
 
                 if (vendor.Count() < 1)
                 {
-                    Vendor tempVendor = new Vendor();
-                    tempVendor.ID = 9999;
+                    ViewVendor tempVendor = new ViewVendor();
+                    tempVendor.VendorID = 9999;
                     tempVendor.Address = "No Data";
                     tempVendor.ContactNumber = "11111111";
                     tempVendor.ShopCategory = "Water";
                     tempVendor.VendorName = "NA";
-                    List<Vendor> temp = new List<Vendor> { tempVendor };
+                    List<ViewVendor> temp = new List<ViewVendor> { tempVendor };
                     return temp.AsQueryable();
                 }
                 else
@@ -154,10 +154,10 @@ namespace MyApttSocietyAPI.Controllers
 
             try
             {
-                var context = new SocietyDBEntities();
-                var vendor = (from vend in context.Vendors
-                              where vend.Date > lastDateTime && vend.SocietyID == dateTime.SocietyID
-                              select new Shop() { ID = vend.ID, VendorName = vend.VendorName, ContactNum = vend.ContactNumber, Address = vend.Address, ShopCategory = vend.ShopCategory }
+                var context = new NestinDBEntities();
+                var vendor = (from vend in context.ViewVendors
+                              where vend.InsertDate > lastDateTime && vend.SocietyID == dateTime.SocietyID
+                              select new Shop() { ID = vend.VendorID, VendorName = vend.VendorName, ContactNum = vend.ContactNumber, Address = vend.Address, ShopCategory = vend.ShopCategory }
                              );
                                
                     return vendor;
@@ -174,13 +174,13 @@ namespace MyApttSocietyAPI.Controllers
         [HttpPost]
         public IEnumerable<ShopImage> Post([FromBody]Batch value)
         {
-            var context = new SocietyDBEntities();
+            var context = new NestinDBEntities();
 
             var count = value.EndIndex - value.StartIndex;
 
             var vendor = (from vend in context.Vendors
                           where vend.SocietyID == value.SocietyID
-                          orderby vend.Date descending
+                          orderby vend.InsertDate descending
                           select new ShopImage() { ID = vend.ID, ImageString = vend.VendorIcon }
                              );
 

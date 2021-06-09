@@ -15,6 +15,7 @@ namespace MyApttSocietyAPI
     public partial class ViewVendor
     {
         public int VendorID { get; set; }
+        public int ShopCategoryID { get; set; }
         public string ShopCategory { get; set; }
         public string VendorName { get; set; }
         public string ContactNumber { get; set; }
@@ -22,9 +23,11 @@ namespace MyApttSocietyAPI
         public int SocietyID { get; set; }
         public string ContactNumber2 { get; set; }
         public string Address2 { get; set; }
+        public Nullable<System.DateTime> InsertDate { get; set; }
         public int OfferID { get; set; }
         public string offer { get; set; }
         public System.DateTime OfferStartDate { get; set; }
         public System.DateTime OfferEndDate { get; set; }
+        public System.DateTime OfferModifiedDate { get; set; }
     }
 }

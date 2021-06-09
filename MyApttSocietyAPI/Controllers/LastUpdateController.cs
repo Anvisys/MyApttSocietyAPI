@@ -46,7 +46,7 @@ namespace MyApttSocietyAPI.Controllers
             DateTime PollDateTime = DateTime.ParseExact(value.PollRefreshTime, "dd/MM/yyyy HH:mm:ss", System.Globalization.CultureInfo.CurrentUICulture);
 
           
-                var context = new SocietyDBEntities();
+                var context = new NestinDBEntities();
                 update.ComplaintCount = (from comp in context.ViewComplaintHistories
                                          where comp.ResidentID == value.resID && comp.ModifiedAt > ComplaintDateTime
                                          select comp).Count();
@@ -71,7 +71,7 @@ namespace MyApttSocietyAPI.Controllers
                                      select poll).Count();
 
                 update.VendorCount = (from vend in context.Vendors
-                                      where vend.Date > VendorDateTime
+                                      where vend.InsertDate > VendorDateTime
                                       select vend).Count();
 
                 update.TotalVendorCount = (from vend in context.Vendors

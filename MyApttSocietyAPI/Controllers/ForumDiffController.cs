@@ -40,7 +40,7 @@ namespace MyApttSocietyAPI.Controllers
          
             try
             {
-                var context = new SocietyDBEntities();
+                var context = new NestinDBEntities();
                 if (value.LastRefreshTime == "")
                 {
                 

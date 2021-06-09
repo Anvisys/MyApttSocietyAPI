@@ -12,17 +12,20 @@ namespace MyApttSocietyAPI
     using System;
     using System.Collections.Generic;
     
-    public partial class Flat
+    public partial class ViewFlatsBillPlan
     {
-        public int ID { get; set; }
+        public Nullable<int> FlatID { get; set; }
         public string FlatNumber { get; set; }
-        public int Floor { get; set; }
-        public string Block { get; set; }
-        public Nullable<int> IntercomNumber { get; set; }
-        public int BHK { get; set; }
-        public int UserID { get; set; }
         public string FlatArea { get; set; }
-        public int SocietyID { get; set; }
-        public System.DateTime FlatAddDate { get; set; }
+        public Nullable<System.DateTime> FlatAddDate { get; set; }
+        public Nullable<int> SocietyID { get; set; }
+        public int SocietyBillID { get; set; }
+        public int BillTypeID { get; set; }
+        public string BillType { get; set; }
+        public string ChargeType { get; set; }
+        public string Rate { get; set; }
+        public string CycleTYpe { get; set; }
+        public int Applyto { get; set; }
+        public System.DateTime BillPlanDate { get; set; }
     }
 }

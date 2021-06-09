@@ -16,7 +16,7 @@ namespace MyApttSocietyAPI.Controllers.Rent
         {
             try
             {
-                using(var context = new SocietyDBEntities())
+                using(var context = new NestinDBEntities())
                 {
                     var rt = context.lukInventoryTypes.ToList();
                     return Ok(rt);
@@ -36,7 +36,7 @@ namespace MyApttSocietyAPI.Controllers.Rent
         {
             try
             {
-                using (var context = new SocietyDBEntities())
+                using (var context = new NestinDBEntities())
                 {
                     var at = context.ViewInventoryAccomodations.Where(x=> x.InventoryTypeID == InvTypeID).ToList();
                     return Ok(at);
@@ -58,7 +58,7 @@ namespace MyApttSocietyAPI.Controllers.Rent
         {
             try
             {
-                using (var context = new SocietyDBEntities())
+                using (var context = new NestinDBEntities())
                 {
                     var rt = context.lukAccomodationTypes.ToList();
                     return Ok(rt);
@@ -77,7 +77,7 @@ namespace MyApttSocietyAPI.Controllers.Rent
         {
             try
             {
-                using (var context = new SocietyDBEntities())
+                using (var context = new NestinDBEntities())
                 {
                     var rt = from ia in context.lukInventoryAccomodations
                              join at in context.lukAccomodationTypes

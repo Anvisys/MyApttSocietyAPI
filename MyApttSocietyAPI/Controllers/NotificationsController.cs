@@ -28,7 +28,7 @@ namespace MyApttSocietyAPI.Controllers
         [HttpGet]  // GET: api/Notifications
         public IQueryable<Notification> Get()
         {
-            var context = new SocietyDBEntities();
+            var context = new NestinDBEntities();
             var notifications = (from notes in context.Notifications
                                  orderby notes.Date descending
                                  select notes).Take(10);
@@ -57,7 +57,7 @@ namespace MyApttSocietyAPI.Controllers
             //int count = 10;
             try
             {
-                using (var context = new SocietyDBEntities())
+                using (var context = new NestinDBEntities())
                 {
                     if (Status == "Open")
                     {
@@ -89,7 +89,7 @@ namespace MyApttSocietyAPI.Controllers
 
         public IEnumerable<Notification> GetOldNotice(int SocietyID)
         {
-            using (var context = new SocietyDBEntities())
+            using (var context = new NestinDBEntities())
             {
                 var notification = (from notes in context.Notifications
                                     where notes.SocietyID == SocietyID && notes.EndDate < DateTime.UtcNow

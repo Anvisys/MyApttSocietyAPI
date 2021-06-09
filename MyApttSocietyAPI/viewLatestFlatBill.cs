@@ -19,6 +19,8 @@ namespace MyApttSocietyAPI
         public string FlatNumber { get; set; }
         public string FlatArea { get; set; }
         public int SocietyBillID { get; set; }
+        public Nullable<System.DateTime> FlatAddDate { get; set; }
+        public System.DateTime BillPlanDate { get; set; }
         public int BillTypeID { get; set; }
         public string BillType { get; set; }
         public string ChargeType { get; set; }

@@ -23,7 +23,7 @@ namespace MyApttSocietyAPI.Controllers
          [HttpGet]
         public IEnumerable<ViewSocietyUser> Get()
         {
-            var context = new SocietyDBEntities();
+            var context = new NestinDBEntities();
             var Residents = (from res in context.ViewSocietyUsers
                              where (res.DeActiveDate == null) || (DbFunctions.TruncateTime(res.DeActiveDate) > DbFunctions.TruncateTime(DateTime.UtcNow))
                              select res);
@@ -37,7 +37,7 @@ namespace MyApttSocietyAPI.Controllers
         {
             try
             {
-                    var context = new SocietyDBEntities();
+                    var context = new NestinDBEntities();
                     var Residents = (from res in context.ViewSocietyUsers
                                      where ((res.DeActiveDate == null) || (DbFunctions.TruncateTime(res.DeActiveDate) > DbFunctions.TruncateTime(DateTime.UtcNow))) && res.UserID ==id
                                      select res).ToList();
@@ -59,7 +59,7 @@ namespace MyApttSocietyAPI.Controllers
         {
             try
             {
-                using (var context = new SocietyDBEntities())
+                using (var context = new NestinDBEntities())
                 {
                     var L2EQuery = context.ViewSocietyUsers.Where(u => u.MobileNo == mobile);
                     var user = L2EQuery.FirstOrDefault<ViewSocietyUser>();
@@ -80,7 +80,7 @@ namespace MyApttSocietyAPI.Controllers
         {
             try
             {
-                using (var context = new SocietyDBEntities())
+                using (var context = new NestinDBEntities())
                 {
                     var L2EQuery = context.ViewSocietyUsers.Where(u => u.EmailId.ToLower() == email.ToLower());
                     var user = L2EQuery.FirstOrDefault<ViewSocietyUser>();
@@ -104,7 +104,7 @@ namespace MyApttSocietyAPI.Controllers
             String resp;
             try
             {
-                using (var context = new SocietyDBEntities())
+                using (var context = new NestinDBEntities())
                 {
                     var usr = context.SocietyUsers;
                     //usr.Add(new SocietyUser()

@@ -13,10 +13,10 @@ namespace MyApttSocietyAPI.Controllers
     public class DomainController : ApiController
     {
 
-        SocietyDBEntities context;
+        NestinDBEntities context;
         public DomainController()
         {
-            context = new SocietyDBEntities();
+            context = new NestinDBEntities();
         }
 
 

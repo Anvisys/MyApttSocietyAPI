@@ -27,7 +27,7 @@ namespace MyApttSocietyAPI.Controllers
             try
             {
                 Log.log("Register User called At :" + DateTime.Now.ToString());
-                using (var context = new SocietyDBEntities())
+                using (var context = new NestinDBEntities())
                 {
                     var GCM = context.ViewGCMLists;
                     var reg = GCM.Where(g => g.UserID == UserId).First();
@@ -58,7 +58,7 @@ namespace MyApttSocietyAPI.Controllers
             try
             {
                 Log.log("Register User called At :" + DateTime.Now.ToString());
-                using (var context = new SocietyDBEntities())
+                using (var context = new NestinDBEntities())
                 {
                     var GCM = context.ViewGCMLists;
                     var reg = GCM.Where(g => g.ResID == ResId).First();
@@ -88,7 +88,7 @@ namespace MyApttSocietyAPI.Controllers
             try
             {
                 Log.log("Register User called At :" + DateTime.Now.ToString());
-                using (var context = new SocietyDBEntities())
+                using (var context = new NestinDBEntities())
                 {
                     var GCM = context.GCMLists;
                     var reg = GCM.Where(g => g.UserId == value.UserId);
@@ -131,7 +131,7 @@ namespace MyApttSocietyAPI.Controllers
             try
             {
                 Log.log("Register User called At :" + DateTime.Now.ToString());
-                using (var context = new SocietyDBEntities())
+                using (var context = new NestinDBEntities())
                 {
                     var GCM = context.GCMLists;
                     var reg = GCM.Where(g => g.UserId == value.UserId);

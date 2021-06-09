@@ -40,7 +40,7 @@ namespace MyApttSocietyAPI.Controllers
             String resp;
             try
             {
-                using (var context = new SocietyDBEntities())
+                using (var context = new NestinDBEntities())
                 {
                     var usr = context.SocietyUsers;
                     usr.Add(new SocietyUser()
@@ -94,7 +94,7 @@ namespace MyApttSocietyAPI.Controllers
             String resp;
             try
             {
-                using (var context = new SocietyDBEntities())
+                using (var context = new NestinDBEntities())
                 {
                     List<SocietyUser> users = (from u in context.SocietyUsers
                                             where u.ResID == updatedDate.id && u.Type == "Tenant"

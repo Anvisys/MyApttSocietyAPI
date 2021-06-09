@@ -22,7 +22,7 @@ namespace MyApttSocietyAPI.Controllers
         {
             try
             {
-                using (var context = new SocietyDBEntities())
+                using (var context = new NestinDBEntities())
                 {
                     var L2EQuery = context.ViewFlats.Where(f => f.ID == id);
                     var flat = L2EQuery.FirstOrDefault();

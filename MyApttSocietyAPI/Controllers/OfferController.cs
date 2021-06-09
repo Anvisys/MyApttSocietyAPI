@@ -17,7 +17,7 @@ namespace MyApttSocietyAPI.Controllers
         [Route("All")]
         public IEnumerable<Offer> GetAllOffers()
         {
-            var context = new SocietyDBEntities();
+            var context = new NestinDBEntities();
             var offers = (from s in context.Offers
                           select s).ToList();
             return offers;
@@ -28,7 +28,7 @@ namespace MyApttSocietyAPI.Controllers
 
         public IEnumerable<ViewVendor> GetNoOffersVendorsBySociety(int societyid)
         {
-                var context = new SocietyDBEntities();
+                var context = new NestinDBEntities();
                 var offers = (from tab in context.ViewVendors
                               where tab.SocietyID == societyid
                               && tab.offer.Equals("No Offer")
@@ -43,7 +43,7 @@ namespace MyApttSocietyAPI.Controllers
         public IEnumerable<ViewOffer> Get(int societyid ,int vendorid)
         {
 
-            var context = new SocietyDBEntities();
+            var context = new NestinDBEntities();
             var offers = (from s in context.ViewOffers
                           where s.SocietyID == societyid && s.VendorID == vendorid
                           select s).ToList();
@@ -57,7 +57,7 @@ namespace MyApttSocietyAPI.Controllers
         {
             try
             {
-                var context = new SocietyDBEntities();
+                var context = new NestinDBEntities();
                 context.Offers.Add(value);
                 context.SaveChanges();
 
