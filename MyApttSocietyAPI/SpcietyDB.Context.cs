@@ -95,7 +95,6 @@ namespace MyApttSocietyAPI
         public virtual DbSet<ViewTempResident> ViewTempResidents { get; set; }
         public virtual DbSet<ViewThreadSummaryNoImageCount> ViewThreadSummaryNoImageCounts { get; set; }
         public virtual DbSet<ViewUserImage> ViewUserImages { get; set; }
-        public virtual DbSet<ViewUserSetting> ViewUserSettings { get; set; }
         public virtual DbSet<ViewVehiclePool> ViewVehiclePools { get; set; }
         public virtual DbSet<ViewVehiclePoolEngagement> ViewVehiclePoolEngagements { get; set; }
         public virtual DbSet<ViewVendor> ViewVendors { get; set; }

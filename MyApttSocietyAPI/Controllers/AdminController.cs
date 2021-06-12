@@ -18,7 +18,7 @@ namespace MyApttSocietyAPI.Controllers
         // GET: api/Admin
         public ViewSocietyUser GetAdminDetails(int societyid)
         {
-            var context = new SocietyDBEntities();
+            var context = new NestinDBEntities();
             var admindetails = (from s in context.ViewSocietyUsers
                                 where s.SocietyID==societyid && s.Type=="Admin"
                                 select s).First();

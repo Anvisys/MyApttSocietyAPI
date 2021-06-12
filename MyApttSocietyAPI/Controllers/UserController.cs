@@ -40,7 +40,7 @@ namespace MyApttSocietyAPI.Controllers
         [HttpGet]
         public IEnumerable<ViewSocietyUser> GetResidents(int SocID)
         {
-            var context = new SocietyDBEntities();
+            var context = new NestinDBEntities();
             var soc = (from s in context.ViewSocietyUsers
                        where s.SocietyID == SocID
                        select s).ToList();

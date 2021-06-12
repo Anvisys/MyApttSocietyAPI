@@ -409,9 +409,6 @@
     <Compile Include="ViewUserImage.cs">
       <DependentUpon>SpcietyDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="ViewUserSetting.cs">
-      <DependentUpon>SpcietyDB.tt</DependentUpon>
-    </Compile>
     <Compile Include="ViewVehiclePool.cs">
       <DependentUpon>SpcietyDB.tt</DependentUpon>
     </Compile>
