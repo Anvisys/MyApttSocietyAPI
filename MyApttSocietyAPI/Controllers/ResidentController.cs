@@ -151,6 +151,43 @@ namespace MyApttSocietyAPI.Controllers
             }
         }
 
+        [Route("RenewResident")]
+        [HttpPost]
+        // POST: api/Resident/RenewResident
+        public HttpResponseMessage RenewResident([FromBody] SocietyUser inputRes)
+        {
+            String resp;
+            try
+            {
+                using (var context = new NestinDBEntities())
+                {
+                    var usr = context.SocietyUsers;
+
+                    var res = (from r in context.SocietyUsers
+                              where r.ResID == inputRes.ResID
+                              select r);
+                    if (res.Count() > 0)
+                    {
+                        res.First().DeActiveDate = DateTime.Now.AddYears(2);
+                        context.SaveChanges();
+                    }
+                    resp = "{\"Response\":\"OK\"}";
+                }
+
+                var response = Request.CreateResponse(HttpStatusCode.OK);
+                response.Content = new StringContent(resp, System.Text.Encoding.UTF8, "application/json");
+                return response;
+            }
+
+            catch (Exception Ex)
+            {
+                resp = "{\"Response\":\"Fail\"}";
+                var response = Request.CreateResponse(HttpStatusCode.OK);
+                response.Content = new StringContent(resp, System.Text.Encoding.UTF8, "application/json");
+                return response;
+            }
+        }
+
         // PUT: api/Resident/5
         public void Put(int id, [FromBody]string value)
         {
